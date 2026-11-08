@@ -556,7 +556,7 @@ dl.gloss dd{margin:0}
 </ul></div>
 <div class="box"><h4>Cómo usar esta guía</h4>
 <ol>
-<li>Lee el recuadro verde «Desde cero» de cada unidad.</li>
+<li>Lee el recuadro «Desde cero» de cada unidad.</li>
 <li>Juega con el simulador hasta que puedas <b>predecir</b> el resultado antes de mover un control.</li>
 <li>Haz el problema de examen resuelto <b>tapando la solución</b> y despliega solo el paso en el que te atascas.</li>
 <li>Marca la unidad en «Tu progreso».</li>
@@ -737,7 +737,7 @@ $$\frac{v_o}{v_s}=\frac{9}{1+9}\cdot100\cdot\frac{3}{1+3}=0{,}9\cdot100\cdot0{,}
 <p>Un AO como el 741 es un chip de 8 patillas. Para el examen te bastan cinco: dos entradas (patillas 2 y 3), la salida (6) y las dos alimentaciones (7 y 4, típicamente +15 V y −15 V). La alimentación fija el máximo de la salida.</p>
 <figure class="slide"><img src="img/t2-15.jpg" alt="Tema 2 · diapositiva 15. Terminales de entrada: patilla 2 inversora (-) y patilla 3 no inversora (+). La tensión diferencial es E_d=V_(" loading="lazy" width="1000" height="563"><figcaption><b class="n">Tema 2 · diapositiva 15</b>Terminales de entrada: patilla 2 inversora ($-$) y patilla 3 no inversora ($+$). La tensión diferencial es $E_d=V_{(+)}-V_{(-)}$.</figcaption></figure>
 <h3>Qué significa «ideal» y qué se deduce</h3>
-<p>Ideal significa tres cosas: impedancia de entrada infinita, impedancia de salida nula y ganancia infinita. De ahí salen las dos reglas del recuadro verde.</p>
+<p>Ideal significa tres cosas: impedancia de entrada infinita, impedancia de salida nula y ganancia infinita. De ahí salen las dos reglas del recuadro «Desde cero».</p>
 <figure class="slide"><img src="img/t2-17.jpg" alt="Tema 2 · diapositiva 17. Del AO ideal se deduce: (1) Z_in=, por las patillas + y - no entra corriente; (2) Z_out=0, la salida vale A_OL" loading="lazy" width="1000" height="563"><figcaption><b class="n">Tema 2 · diapositiva 17</b>Del AO ideal se deduce: (1) $Z_{in}=\infty$, por las patillas $+$ y $-$ no entra corriente; (2) $Z_{out}=0$, la salida vale $A_{OL}\cdot E_d$ sea cual sea la carga; (3) $A_{OL}=\infty$, así que $V^+=V^-$. Si $V^+$ está a masa, $V^-$ es una tierra virtual.</figcaption></figure>
 <figure class="slide"><img src="img/t2-18.jpg" alt="Tema 2 · diapositiva 18. a mano. Si A_OL y la salida u_s es finita, u_d=u_s/A_OL0, es decir u^+=u^-. Esa es la demostración del princip" loading="lazy" width="1000" height="563"><figcaption><b class="n">Tema 2 · diapositiva 18</b>a mano. Si $A_{OL}\to\infty$ y la salida $u_s$ es finita, $u_d=u_s/A_{OL}\to0$, es decir $u^+=u^-$. Esa es la demostración del principio de tierra virtual.</figcaption></figure>
 <h3>Procedimiento para cualquier circuito</h3>
@@ -868,7 +868,7 @@ $$V_o=\begin{cases}+V_{sat}&V^+>V^-\\-V_{sat}&V^+&lt;V^-\end{cases}$$
 <label for="sc-a">Amplitud entrada <input type="range" id="sc-a" min="1" max="15" step="0.5" value="8"></label><output id="sc-a-o"></output></div>
 <div id="fig-sc"></div>
 <div class="readout" id="sc-txt"></div>
-<figcaption>Entrada triangular en verde y salida en rojo. Con los valores iniciales $\beta=0{,}25$, así que los umbrales son $\pm3$ V. Sube $V_{ref}$ y verás la ventana desplazarse sin cambiar su ancho. Baja la amplitud de entrada por debajo del umbral y la salida deja de cambiar.</figcaption>
+<figcaption>Entrada triangular en azul y salida en rojo. Con los valores iniciales $\beta=0{,}25$, así que los umbrales son $\pm3$ V. Sube $V_{ref}$ y verás la ventana desplazarse sin cambiar su ancho. Baja la amplitud de entrada por debajo del umbral y la salida deja de cambiar.</figcaption>
 </figure>
 <details><summary>Ejemplo: umbrales de 3 V y 9 V <span class="src">comprobado</span></summary><div class="inner">
 <p>Queremos $V_{TL}=3$ V y $V_{TH}=9$ V con $V_{sat}=12$ V. El centro es $\dfrac{3+9}{2}=6$ V y la semianchura $\dfrac{9-3}{2}=3$ V.</p>
@@ -938,7 +938,7 @@ $$2\pi f A\le SR\quad\Longrightarrow\quad f_{max}=\frac{SR}{2\pi A}$$
 <label for="sr-f">Frecuencia <input type="range" id="sr-f" min="1" max="100" step="0.5" value="7"></label><output id="sr-f-o"></output><span class="pill" id="sr-p"></span></div>
 <div id="fig-sr"></div>
 <div class="readout" id="sr-txt"></div>
-<figcaption>En rojo discontinuo, la senoidal que querías; en verde, lo que entrega el AO. Con $SR=0{,}5$ V/µs y $A=10$ V, el límite es 7,96 kHz. Pasa de ahí y la senoidal se vuelve una onda triangular de menos amplitud.</figcaption>
+<figcaption>En rojo discontinuo, la senoidal que querías; en azul, lo que entrega el AO. Con $SR=0{,}5$ V/µs y $A=10$ V, el límite es 7,96 kHz. Pasa de ahí y la senoidal se vuelve una onda triangular de menos amplitud.</figcaption>
 </figure>
 <h3>5.3 CMRR: cuánto rechaza el modo común</h3>
 <p>Un AO amplifica la <b>diferencia</b> entre sus entradas. Pero si las dos entradas suben o bajan juntas (modo común), un poco de eso también pasa a la salida. Se definen la tensión diferencial $V_d=V_p-V_n$ y la de modo común $V_c=\dfrac{V_p+V_n}{2}$.</p>
@@ -1066,7 +1066,7 @@ $$CMRR=\frac{A_d}{A_c},\qquad CMRR(dB)=20\log\frac{A_d}{A_c},\qquad V_{OUT}=A_dV
 <div class="ctrl"><label><input type="checkbox" id="bd-ez" checked> Cero</label><label><input type="checkbox" id="bd-e1" checked> Polo 1</label><label><input type="checkbox" id="bd-e2" checked> Polo 2</label><label><input type="checkbox" id="bd-i"> Integrador $1/(j\omega)$</label></div>
 <div id="fig-bd"></div><div id="fig-bdp"></div>
 <div class="readout" id="bd-txt"></div>
-<figcaption>Los controles de frecuencia están en escala logarítmica y se muestran en rad/s. Línea negra discontinua: aproximación asintótica. Línea verde continua: curva exacta. Con los valores del ejemplo, la meseta intermedia ronda 28 dB. Con integrador, $K$ es la ganancia a 1 rad/s.</figcaption>
+<figcaption>Los controles de frecuencia están en escala logarítmica y se muestran en rad/s. Línea negra discontinua: aproximación asintótica. Línea azul continua: curva exacta. Con los valores del ejemplo, la meseta intermedia ronda 28 dB. Con integrador, $K$ es la ganancia a 1 rad/s.</figcaption>
 </figure>
 <h3>6.5 Filtros básicos de primer orden</h3>
 <p>El filtro más simple es una red RC. La frecuencia de corte es la frecuencia a la que la ganancia cae 3 dB, y su fórmula es $\omega_c=\dfrac1{RC}$, o $f_c=\dfrac1{2\pi RC}$.</p>
@@ -1757,7 +1757,7 @@ function plotSVG(o,items){
     $('fig-ao').innerHTML=plotSVG({x0:0,x1:2,y0:-L,y1:L,xt:[0,.5,1,1.5,2],yt:[-L,0,L].map(v=>+v.toFixed(1)),label:'Entrada y salida',xl:'t (periodos)',yl:'V'},[
       {t:'line',x:t,y:vi,c:'s1'},{t:'line',x:t,y:vo,c:'s2'},{t:'line',x:[0,2],y:[vs,vs],c:'s3',dash:1,w:1},{t:'line',x:[0,2],y:[-vs,-vs],c:'s3',dash:1,w:1}]);
     const sat=Math.abs(G*A)>vs;const p=$('ao-p');p.textContent=sat?'satura':'lineal';p.className='pill'+(sat?' bad':'');
-    $('ao-txt').textContent='Ganancia '+num(G,2)+' · '+num(20*Math.log10(Math.abs(G)),1)+' dB · entrada máxima sin saturar = '+num(vs/Math.abs(G),2)+' V · verde = entrada, rojo = salida';
+    $('ao-txt').textContent='Ganancia '+num(G,2)+' · '+num(20*Math.log10(Math.abs(G)),1)+' dB · entrada máxima sin saturar = '+num(vs/Math.abs(G),2)+' V · azul = entrada, rojo = salida';
   };
   ['ao-m','ao-r1','ao-r2','ao-a','ao-v'].forEach(i=>$(i).addEventListener('input',fn));fn();
 })();
@@ -1772,7 +1772,7 @@ function plotSVG(o,items){
     const L=Math.max(A,...y.map(Math.abs))*1.1;const Lc=Math.max(1,Math.min(L,14));
     $('fig-in').innerHTML=plotSVG({x0:0,x1:2*T*1000,y0:-Lc,y1:Lc,xt:[0,T*1000,2*T*1000],xtf:v=>num(v,2)+' ms',yt:[-Lc,0,Lc].map(v=>+v.toFixed(1)),label:'Integrador'},[
       {t:'line',x:t,y:vi,c:'s1'},{t:'line',x:t,y:y,c:'s2'}]);
-    $('in-txt').textContent='RC = '+num(tau*1e3,3)+' ms · pendiente con cuadrada = −V/RC = '+num(-A/tau,0)+' V/s · verde = entrada, rojo = salida'+(Math.max(...y.map(Math.abs))>=13?' · SATURA':'');
+    $('in-txt').textContent='RC = '+num(tau*1e3,3)+' ms · pendiente con cuadrada = −V/RC = '+num(-A/tau,0)+' V/s · azul = entrada, rojo = salida'+(Math.max(...y.map(Math.abs))>=13?' · SATURA':'');
   };
   ['in-w','in-r','in-c','in-f','in-a'].forEach(i=>$(i).addEventListener('input',fn));fn();
 })();
@@ -1804,7 +1804,7 @@ function plotSVG(o,items){
       {t:'line',x:t,y:id,c:'s2',dash:1,w:1.5},{t:'line',x:t,y:re,c:'s1'}]);
     const fmax=1e6*SR/(2*Math.PI*A);const bad=fk*1000>fmax;
     const p=$('sr-p');p.textContent=bad?'distorsiona':'sin distorsión';p.className='pill'+(bad?' bad':'');
-    $('sr-txt').textContent='f_max = SR/(2πA) = '+freq(fmax)+' · pendiente exigida = 2πfA = '+num(2*Math.PI*fk*1e3*A/1e6,2)+' V/µs · rojo discontinuo = ideal, verde = real';
+    $('sr-txt').textContent='f_max = SR/(2πA) = '+freq(fmax)+' · pendiente exigida = 2πfA = '+num(2*Math.PI*fk*1e3*A/1e6,2)+' V/µs · rojo discontinuo = ideal, azul = real';
   });
 })();
 /* ---------- U6: Bode ---------- */
