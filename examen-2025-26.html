@@ -41,6 +41,7 @@ window.MathJax = { tex: { inlineMath: [['$','$']], displayMath: [['$$','$$']] },
 <div class="grp">Practicar</div>
 <a href="examen-2025-26.html" aria-current="page" class="cur" style="--tc:var(--c3)">P1 curso 25-26 resuelto</a>
 <a href="examenes.html" style="--tc:var(--c8)">Exámenes resueltos</a>
+<a href="examenes-p2.html" style="--tc:var(--c8)">Exámenes P2 resueltos</a>
 <a href="fuen.html" style="--tc:var(--c0)">Apuntes de Fuen</a>
 <a href="problemas.html" style="--tc:var(--c8)">Problemas resueltos</a>
 <a href="calculadoras.html" style="--tc:var(--c8)">Calculadoras de bolsillo</a>
@@ -212,6 +213,22 @@ window.MathJax = { tex: { inlineMath: [['$','$']], displayMath: [['$$','$$']] },
       {t:'line',x:[0,a,a,b,b,180-b,180-b,180-a,180-a,360],y:[12,12,0,0,12,12,0,0,12,12],c:'s2',w:2.4},
       {t:'text',x:200,y:5.6,s:'4,75 V',a:'start',c:'s3'},{t:'text',x:200,y:2.2,s:'3,5 V',a:'start',c:'s3'}]);
   })();
+
+
+  // P2: banda de paso de los emisores comunes
+  function banda(id,A0,fci,fcs,x0,x1,xt,label,yt){
+    const x=rng(x0,x1,500);
+    const mag=l=>{const f=Math.pow(10,l);return A0-10*Math.log10(1+(fci/f)*(fci/f))-10*Math.log10(1+(f/fcs)*(f/fcs));};
+    const lc=Math.log10(fci),ls=Math.log10(fcs);
+    const asy=l=>A0+(l<lc?20*(l-lc):0)-(l>ls?20*(l-ls):0);
+    const fl=v=>{const f=Math.pow(10,v);return f>=1e6?(f/1e6)+'M':f>=1e3?(f/1e3)+'k':String(f).replace('.',',');};
+    $(id).innerHTML=plotSVG({x0,x1,y0:-30,y1:A0+10,yt,xt,xtf:fl,label,yl:'|A| dB',xl:'f Hz'},[
+      {t:'line',x,y:x.map(asy),c:'s3',dash:1,w:1.6},{t:'line',x,y:x.map(mag),c:'s1'},
+      {t:'vline',x:lc,c:'s2'},{t:'vline',x:ls,c:'s2'},
+      {t:'text',x:lc+0.15,y:A0+4,s:'fci',a:'start',c:'s2'},{t:'text',x:ls-0.15,y:A0+4,s:'fcs',a:'end',c:'s2'}]);
+  }
+  banda('fig-xk3',46.9,7.97,116e3,0,7,[0,1,2,3,4,5,6,7],'Respuesta en frecuencia del emisor común de julio de 2024',[-20,0,20,40]);
+  banda('fig-xm3',16.9,0.52,33.9e3,-2,7,[-2,-1,0,1,2,3,4,5,6,7],'Respuesta en frecuencia del emisor común de diciembre de 2023',[-20,0,10,20]);
 
   // P1 curso 24-25 Ej1: Schmitt inversor, umbrales 0 y 5 V, salidas ±15 V
   $('fig-q1').innerHTML=plotSVG({x0:-3,x1:8,y0:-19,y1:19,xt:[-2,0,2,4,5,6,8],yt:[-15,0,15],xtf:v=>v+' V',ytf:v=>v+' V',label:'Característica del Schmitt inversor del curso 24-25',yl:'Us',xl:'Ue'},[
