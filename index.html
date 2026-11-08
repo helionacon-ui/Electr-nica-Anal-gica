@@ -464,11 +464,11 @@ dl.gloss dd{margin:0}
       <p class="sub">Guía para aprobar · curso 2026-27</p>
       <div class="stats">
         <div><b>11</b><span>bloques de teoría desde cero</span></div>
-        <div><b>118</b><span>diapositivas explicadas paso a paso</span></div>
-        <div><b>8</b><span>problemas resueltos</span></div>
-        <div><b>13</b><span>simuladores y calculadoras</span></div>
+        <div><b>124</b><span>diapositivas explicadas paso a paso</span></div>
+        <div><b>12</b><span>problemas resueltos</span></div>
+        <div><b>15</b><span>simuladores, calculadoras y generador</span></div>
       </div>
-      <div class="cta"><a class="btn pri" href="#cero">Empieza desde cero</a><a class="btn" href="#examen">Cómo es el examen</a><a class="btn" href="#problemas">Problemas resueltos</a><a class="btn" href="#u6">Bode</a><a class="btn" href="#auto">Autoevaluación</a><a class="btn" href="#formulario">Formulario</a></div>
+      <div class="cta"><a class="btn pri" href="#cero">Empieza desde cero</a><a class="btn" href="#examen">Cómo es el examen</a><a class="btn" href="#problemas">Problemas resueltos</a><a class="btn" href="#bode">Bode</a><a class="btn" href="#auto">Autoevaluación</a><a class="btn" href="#formulario">Formulario</a></div>
     </div>
     <div class="hero-art" aria-hidden="true">
       <svg viewBox="0 0 300 250" class="zart">
@@ -507,6 +507,7 @@ dl.gloss dd{margin:0}
   <a href="#u5" style="--tc:var(--c5)">U5 AO real</a>
   <div class="grp">Frecuencia y transistores</div>
   <a href="#u6" style="--tc:var(--c6)">U6 Bode y filtros básicos</a>
+  <a href="#bode" style="--tc:var(--c6)">Bode a fondo</a>
   <a href="#filtros" style="--tc:var(--c6)">Filtros activos</a>
   <a href="#u7" style="--tc:var(--c7)">U7 Cuadripolos</a>
   <a href="#u8" style="--tc:var(--c8)">U8 Transistores en frecuencia</a>
@@ -1051,7 +1052,7 @@ $$CMRR=\frac{A_d}{A_c},\qquad CMRR(dB)=20\log\frac{A_d}{A_c},\qquad V_{OUT}=A_dV
 <figure class="slide"><img src="img/t6-51.jpg" alt="Tema 6 · diapositiva 51. Resultado final en dB: ganancia de 40 dB hasta 10 rad/s, tramo llano de unos 28,3 dB entre 40 y 400 rad/s y ca" loading="lazy" width="1000" height="563"><figcaption><b class="n">Tema 6 · diapositiva 51</b>Resultado final en dB: ganancia de 40 dB hasta 10 rad/s, tramo llano de unos 28,3 dB entre 40 y 400 rad/s y caída de $-20$ dB/década después. Para comprobar el nivel del tramo llano, se evalúa $G(j100)$: $|G|=26$, es decir 28,3 dB. Es el valor de la zona intermedia, ya con el cero compensando el primer polo.</figcaption></figure>
 <div class="box key"><h4>Qué pasa si añades un factor $j\omega$</h4>
 <p>Multiplicar por $j\omega$ añade un cero en el origen: toda la curva se inclina $+20$ dB/década y se desplaza para pasar por el punto $(\omega=1$ rad/s, $20\log K)$. En el ejemplo, $G(s)\cdot j\omega$ sube con +20 dB/década hasta 10 rad/s, se aplana entre 10 y 40, vuelve a subir entre 40 y 400 y se aplana a partir de ahí en 80 dB.</p></div>
-<figure class="slide"><img src="img/t6-52.jpg" alt="Tema 6 · diapositiva 52. Ahora el término j pasa por 0 dB en =1 rad/s. Los puntos de paso por cero de los términos a\,j (imaginarios pu" loading="lazy" width="1000" height="563"><figcaption><b class="n">Tema 6 · diapositiva 52</b>Ahora el término $j\omega$ pasa por 0 dB en $\omega=1$ rad/s. Los puntos de paso por cero de los términos $a\,j\omega$ (imaginarios puros) no separan regiones, mientras que las frecuencias de corte sí.</figcaption></figure>
+<figure class="slide"><img src="img/t6-52.jpg" alt="Tema 6 · diapositiva 52. Ahora el término j pasa por 0 dB en =1 rad/s. Los puntos de paso por cero de los términos a\,j (imaginarios pu" loading="lazy" width="1000" height="563"><figcaption><b class="n">Tema 6 · diapositiva 52</b>Pregunta de la clase: ¿qué pasaría si a la función anterior le añadimos un término $j\omega$? Se multiplica por $j\omega$, es decir, se añade un <b>cero en el origen</b>. Con $\omega=100$ rad/s, el nuevo $G(j100)$ se calcula igual, y los puntos de paso por cero de $a\,j\omega$ (imaginarios puros) no separan regiones.</figcaption></figure>
 <figure class="slide"><img src="img/t6-56.jpg" alt="Tema 6 · diapositiva 56. Resultado: pendiente +20 dB/década desde las frecuencias bajas hasta 10 rad/s, tramo de 60 dB entre 10 y 40, v" loading="lazy" width="1000" height="563"><figcaption><b class="n">Tema 6 · diapositiva 56</b>Resultado: pendiente +20 dB/década desde las frecuencias bajas hasta 10 rad/s, tramo de 60 dB entre 10 y 40, vuelta a subir hasta 400 y meseta de 80 dB en alta frecuencia (el límite es $|G|=10\,000=80$ dB).</figcaption></figure>
 <h4>Bode builder</h4>
 <p>Prueba tú: mueve las frecuencias del cero y de los polos y observa cómo se construye el diagrama.</p>
@@ -1073,6 +1074,121 @@ $$CMRR=\frac{A_d}{A_c},\qquad CMRR(dB)=20\log\frac{A_d}{A_c},\qquad V_{OUT}=A_dV
 <figure class="slide"><img src="img/t6-58.jpg" alt="Tema 6 · diapositiva 58. Filtro <b>paso alto</b>: se intercambian R y C y la salida se toma en la resistencia. U_sU_e=j RC1+j RC. Sube " loading="lazy" width="1000" height="563"><figcaption><b class="n">Tema 6 · diapositiva 58</b>Filtro <b>paso alto</b>: se intercambian $R$ y $C$ y la salida se toma en la resistencia. $\dfrac{U_s}{U_e}=\dfrac{j\omega RC}{1+j\omega RC}$. Sube a $+20$ dB/década hasta $f_c$ y se aplana en 0 dB. La $f_c$ es la misma fórmula.</figcaption></figure>
 <div class="box key"><h4>Cómo reconocerlos sin calcular</h4>
 <p>Pregunta qué hace el condensador a cada extremo. Si en <b>alta frecuencia</b> el condensador es un cortocircuito y está <b>a masa</b> (paso bajo) o <b>en serie con la señal</b> (paso alto), ya sabes qué pasa. A baja frecuencia es un circuito abierto: en el paso alto bloquea la señal; en el paso bajo no pasa nada y la salida iguala a la entrada.</p></div>
+</section>
+
+
+<!-- ===================== BODE A FONDO ===================== -->
+<section class="sec tema" style="--tc:var(--c6);--tcs:var(--c6s)">
+<div class="sh"><span class="badge" aria-hidden="true">dB</span><div class="shx"><p class="kick">Tema 6 · Para dominar el examen</p><h2 id="bode">Bode a fondo: dibuja cualquier diagrama sin dudar</h2><div class="tags"><span class="tag">Parcial 2</span><span class="tag w">Lo más preguntado</span></div></div></div>
+<div class="zero">
+<p class="ft">Desde cero</p>
+<p>Hay <b>una sola idea</b> detrás de todo Bode: cada factor de la función de transferencia dobla la gráfica en un punto concreto, y en ese punto cambia la pendiente en $\pm20$ dB por década. Un <b>polo</b> la baja 20 dB/década, un <b>cero</b> la sube 20 dB/década. Si sabes dónde están los polos y los ceros, y de dónde parte la gráfica, la dibujas sin calcular nada más. La fase sigue la misma lógica: cada polo resta 90° (repartidos en dos décadas, de $\omega_c/10$ a $10\,\omega_c$), cada cero los suma.</p>
+</div>
+<div class="box key"><h4>Tarjeta de repaso: lo que cambia en cada punto</h4>
+<div class="tw"><table>
+<tr><th>Factor</th><th>Pendiente del módulo</th><th>Fase total que aporta</th><th>Dónde actúa</th></tr>
+<tr><td>Polo real $\dfrac1{1+j\omega/p}$</td><td>baja 20 dB/dec</td><td>−90°</td><td>$\omega=p$ (fase: de $p/10$ a $10p$)</td></tr>
+<tr><td>Cero real $1+j\omega/z$</td><td>sube 20 dB/dec</td><td>+90°</td><td>$\omega=z$</td></tr>
+<tr><td>Integrador $\dfrac1{j\omega}$</td><td>−20 dB/dec desde el principio</td><td>−90° siempre</td><td>pasa por 0 dB (si $K=1$) en $\omega=1$</td></tr>
+<tr><td>Derivador $j\omega$</td><td>+20 dB/dec desde el principio</td><td>+90° siempre</td><td>pasa por 0 dB (si $K=1$) en $\omega=1$</td></tr>
+<tr><td>Polos complejos ($\zeta$, $\omega_n$)</td><td>baja 40 dB/dec</td><td>−180°</td><td>$\omega=\omega_n$, con pico si $\zeta&lt;0{,}707$</td></tr>
+<tr><td>Constante $K$</td><td>nada, sólo sube o baja todo</td><td>0° ($K>0$) o 180° ($K&lt;0$)</td><td>—</td></tr>
+</table></div></div>
+<h3>Receta de 6 pasos, sin saltarse ninguno</h3>
+<ol class="steps">
+<li><b>Normaliza.</b> Que cada factor sea $(1+s/\omega_c)$ o $s$ (o $1/s$). Las constantes salen fuera y se multiplican en una sola $K$. Ejemplo: $s+10=10\,(1+s/10)$.</li>
+<li><b>Haz una lista ordenada</b> de todas las frecuencias de corte, de menor a mayor, anotando si es polo (↓) o cero (↑).</li>
+<li><b>Punto de partida.</b> Si no hay factores en el origen: la gráfica empieza plana en $20\log|K|$. Si hay $n$ integradores: empieza con pendiente $-20n$ y pasa por el punto $(\omega=1,\ 20\log|K|)$. Si hay $n$ derivadores: pendiente $+20n$ y el mismo punto.</li>
+<li><b>Recorre la lista.</b> En cada frecuencia, suma $-20$ (polo) o $+20$ (cero) a la pendiente. Para saber el valor, multiplica la pendiente por el número de décadas del tramo: $\Delta\text{dB}=\text{pendiente}\times\log_{10}\dfrac{\omega_2}{\omega_1}$.</li>
+<li><b>Suaviza.</b> En cada frecuencia de corte, la curva real queda 3 dB por debajo (polo) o por encima (cero) de la asíntota, si las frecuencias están separadas. Si dos están muy cerca, los efectos se suman.</li>
+<li><b>Fase.</b> Dibuja por separado la fase de cada factor (rampa de ±90° en dos décadas, centrada en $\omega_c$) y súmalas. Comprueba que el valor final es $90°\times(\#\text{ceros}-\#\text{polos})$.</li>
+</ol>
+<div class="box trap"><h4>Los cinco errores que más puntos cuestan</h4>
+<ul>
+<li>Olvidar normalizar: $\dfrac{10}{s+10}$ vale 1 (0 dB) en continua, no 10 (20 dB).</li>
+<li>Dibujar la pendiente en dB/octava o en dB/década equivocada. En el examen se pide <b>por década</b>.</li>
+<li>Poner la frecuencia de corte en $\omega=a$ y no en $\omega=1/a$ para el factor $1+aj\omega$.</li>
+<li>Dibujar la fase de $K/(j\omega)$ como 0°: el integrador aporta −90° desde el principio.</li>
+<li>Olvidar que un factor repetido, $(1+j\omega/p)^n$, multiplica por $n$ la pendiente y la fase.</li>
+</ul></div>
+<h3>Factores repetidos: la misma idea, multiplicada por $n$</h3>
+<p>Si un factor está elevado a la $n$, todo lo que aporta se multiplica por $n$: la pendiente pasa a ser $\pm20n$ dB/década, y la fase total $\pm90n$°. Las diapositivas lo muestran con $n=2$ (pendiente de 40 dB/década y fase de 180°).</p>
+<figure class="slide"><img src="img/t6-27.jpg" alt="Tema 6 · diapositiva 27. Cero múltiple en el origen (aj)^n: una recta de pendiente +20n dB/década que pasa por 0 dB en =1/a, con fase c" loading="lazy" width="1000" height="563"><figcaption><b class="n">Tema 6 · diapositiva 27</b>Cero múltiple en el origen $(aj\omega)^n$: una recta de pendiente $+20n$ dB/década que pasa por 0 dB en $\omega=1/a$, con fase constante de $(90\cdot n)°$.</figcaption></figure>
+<figure class="slide"><img src="img/t6-29.jpg" alt="Tema 6 · diapositiva 29. Polo múltiple en el origen 1(aj)^n: recta de pendiente -20n dB/década y fase constante de -(90 n)°." loading="lazy" width="1000" height="563"><figcaption><b class="n">Tema 6 · diapositiva 29</b>Polo múltiple en el origen $\dfrac{1}{(aj\omega)^n}$: recta de pendiente $-20n$ dB/década y fase constante de $-(90\cdot n)°$.</figcaption></figure>
+<figure class="slide"><img src="img/t6-38.jpg" alt="Tema 6 · diapositiva 38. Cero real múltiple (1+aj)^n: plano en 0 dB hasta _c=1/a y después pendiente +20n dB/década." loading="lazy" width="1000" height="563"><figcaption><b class="n">Tema 6 · diapositiva 38</b>Cero real múltiple $(1+aj\omega)^n$: plano en 0 dB hasta $\omega_c=1/a$ y después pendiente $+20n$ dB/década.</figcaption></figure>
+<figure class="slide"><img src="img/t6-39.jpg" alt="Tema 6 · diapositiva 39. Su fase es n(a): va de 0° a +90n° con pendiente +n45°/década (en la gráfica, n=2)." loading="lazy" width="1000" height="563"><figcaption><b class="n">Tema 6 · diapositiva 39</b>Su fase es $n\cdot\arctan(a\omega)$: va de 0° a $+90n$° con pendiente $+n\cdot45$°/década (en la gráfica, $n=2$).</figcaption></figure>
+<figure class="slide"><img src="img/t6-41.jpg" alt="Tema 6 · diapositiva 41. Polo real múltiple 1(1+aj)^n: pendiente -20n dB/década a partir de _c=1/a." loading="lazy" width="1000" height="563"><figcaption><b class="n">Tema 6 · diapositiva 41</b>Polo real múltiple $\dfrac1{(1+aj\omega)^n}$: pendiente $-20n$ dB/década a partir de $\omega_c=1/a$.</figcaption></figure>
+<figure class="slide"><img src="img/t6-42.jpg" alt="Tema 6 · diapositiva 42. Fase del polo múltiple: -n(a), de 0° a -90n°. En la gráfica, con n=2, termina en −180°." loading="lazy" width="1000" height="563"><figcaption><b class="n">Tema 6 · diapositiva 42</b>Fase del polo múltiple: $-n\cdot\arctan(a\omega)$, de 0° a $-90n$°. En la gráfica, con $n=2$, termina en −180°.</figcaption></figure>
+<h3>Cómo se suma todo: el ejemplo de la clase, con la fase incluida</h3>
+<p>En el ejemplo $G(s)=\dfrac{10^4(s+40)}{s^2+410s+4000}$ ya viste el módulo. Estos dos pasos de la clase muestran la idea de «las frecuencias de corte separan regiones».</p>
+<figure class="slide"><img src="img/t6-49.jpg" alt="Tema 6 · diapositiva 49. Las frecuencias de corte (10, 40 y 400 rad/s) dividen el eje en regiones. En cada región, la pendiente de la s" loading="lazy" width="1000" height="563"><figcaption><b class="n">Tema 6 · diapositiva 49</b>Las frecuencias de corte (10, 40 y 400 rad/s) dividen el eje en regiones. En cada región, la pendiente de la suma es la suma de las pendientes de los factores activos.</figcaption></figure>
+<p>¿Y si multiplicas la función por $j\omega$? Aparece un cero en el origen: toda la gráfica se inclina +20 dB/década y el nivel de cada tramo cambia.</p>
+<figure class="slide"><img src="img/t6-53.jpg" alt="Tema 6 · diapositiva 53. Con el término j (recta roja), que pasa por 0 dB en =1 rad/s. Los puntos de paso por cero de los términos a\,j" loading="lazy" width="1000" height="563"><figcaption><b class="n">Tema 6 · diapositiva 53</b>Con el término $j\omega$ (recta roja), que pasa por 0 dB en $\omega=1$ rad/s. Los puntos de paso por cero de los términos $a\,j\omega$ no separan regiones: las frecuencias de corte de los demás factores siguen siendo las que dividen el eje.</figcaption></figure>
+<figure class="slide"><img src="img/t6-55.jpg" alt="Tema 6 · diapositiva 55. Suma de todos los términos con j incluido (línea negra discontinua): sube con +20 dB/dec, se aplana entre 10 y" loading="lazy" width="1000" height="563"><figcaption><b class="n">Tema 6 · diapositiva 55</b>Suma de todos los términos con $j\omega$ incluido (línea negra discontinua): sube con +20 dB/dec, se aplana entre 10 y 40 rad/s (el polo de 10 rad/s compensa al cero del origen), vuelve a subir entre 40 y 400 y se aplana en 80 dB.</figcaption></figure>
+<h3>Polos complejos: el efecto del factor de amortiguamiento $\zeta$</h3>
+<p>Un factor de segundo orden $\dfrac{1}{1+2\zeta\frac{s}{\omega_n}+\frac{s^2}{\omega_n^2}}$ tiene dos polos que pueden ser reales ($\zeta\ge1$) o complejos ($\zeta&lt;1$). El parámetro $\zeta$ decide si la curva real tiene <b>pico de resonancia</b> o no. Para $\zeta&lt;0{,}707$ el módulo sube por encima de 0 dB antes de caer:</p>
+$$M_r=\frac{1}{2\zeta\sqrt{1-\zeta^2}}\ \text{ en }\ \omega_r=\omega_n\sqrt{1-2\zeta^2},\qquad |G(j\omega_n)|=\frac1{2\zeta}$$
+<figure class="fig">
+<p class="ft">Simulador · polos complejos y factor de amortiguamiento</p>
+<div class="ctrl"><label for="bz-z">$\zeta$ <input type="range" id="bz-z" min="0.05" max="1.5" step="0.05" value="0.3"></label><output id="bz-z-o"></output></div>
+<div id="fig-bz"></div><div id="fig-bzp"></div>
+<div class="readout" id="bz-txt"></div>
+<figcaption>Frecuencia normalizada, $\omega/\omega_n$. La línea negra discontinua es la asíntota: 0 dB y luego −40 dB/década. Baja $\zeta$ y el pico crece; con $\zeta=0{,}707$ desaparece; con $\zeta=1$ hay un polo doble real, 6 dB por debajo de la asíntota en $\omega_n$. La fase siempre pasa por −90° en $\omega_n$ y cuanto menor es $\zeta$, más brusco es el salto.</figcaption>
+</figure>
+<h3>Leer un Bode al revés: de la gráfica a $G(s)$</h3>
+<p>Es el ejercicio inverso y aparece mucho. El método es el de la receta, al revés:</p>
+<ol class="steps">
+<li><b>Nivel inicial.</b> Si la gráfica empieza plana a $L$ dB, entonces $K=10^{L/20}$. Si empieza con pendiente $\pm20n$, hay $n$ integradores o derivadores.</li>
+<li><b>Cada cambio de pendiente</b> es una frecuencia de corte. Si la pendiente baja 20, hay un polo ahí; si sube 20, un cero; si baja 40, dos polos coincidentes o un par complejo.</li>
+<li><b>Escribe cada factor</b> $(1+s/\omega_c)$ en el numerador (cero) o el denominador (polo).</li>
+<li><b>Comprueba con la fase final:</b> $90°\times(\#\text{ceros}-\#\text{polos})$.</li>
+</ol>
+<h3>Generador de ejercicios: practica sin parar</h3>
+<p>Pulsa «Nuevo ejercicio»: aparece una función. Dibuja en papel el módulo y la fase, y después pulsa «Ver solución» para comparar.</p>
+<figure class="fig">
+<p class="ft">Práctica · dibuja el Bode de esta función</p>
+<div class="ctrl"><button type="button" id="bg-new">Nuevo ejercicio</button><button type="button" id="bg-show" aria-pressed="false">Ver solución</button></div>
+<div class="readout" id="bg-fun" style="font-size:15px"></div>
+<div id="bg-sol" hidden></div>
+<figcaption>Los ejercicios mezclan una constante, un integrador opcional, un cero opcional y uno o dos polos reales, en frecuencias separadas por al menos una década para que la aproximación asintótica sea fiable.</figcaption>
+</figure>
+<h3>Problemas de Bode resueltos</h3>
+<div class="prob" id="p-bode2">
+<h3 class="ph">A. Con integrador: $G(s)=\dfrac{1000}{s(s+10)(s+100)}$</h3>
+<div class="enun"><p class="et">Enunciado</p><p>Dibuja el módulo asintótico, da los valores de cada tramo y calcula la fase final.</p></div>
+<details class="paso"><summary><span class="pn">1</span>Normaliza</summary><div class="inner"><p>$s+10=10(1+s/10)$ y $s+100=100(1+s/100)$. La constante: $\dfrac{1000}{10\cdot100}=1$. Queda $G(j\omega)=\dfrac{1}{j\omega\,(1+j\omega/10)(1+j\omega/100)}$, con $K=1$ (0 dB).</p></div></details>
+<details class="paso"><summary><span class="pn">2</span>Lista de frecuencias y pendientes</summary><div class="inner"><p>Hay un integrador (pendiente inicial $-20$) y polos en 10 y 100 rad/s. Pendientes: hasta 10 rad/s, $-20$; de 10 a 100, $-40$; más allá de 100, $-60$ dB/década.</p></div></details>
+<details class="paso"><summary><span class="pn">3</span>Valores del módulo</summary><div class="inner"><p>Parte del punto $(1\ \text{rad/s},\ 0\ \text{dB})$. En 10 rad/s: $0-20\cdot1=-20$ dB. En 100 rad/s: $-20-40\cdot1=-60$ dB. Con la curva real, en $\omega=10$: $|G|=\dfrac{1}{10\sqrt2\sqrt{1{,}01}}=0{,}070$, es decir $-23{,}1$ dB (3 dB por debajo de la asíntota).</p></div></details>
+<details class="paso"><summary><span class="pn">4</span>Fase</summary><div class="inner"><p>$\varphi=-90°-\arctan\dfrac\omega{10}-\arctan\dfrac\omega{100}$. En $\omega\to0$: −90°. En $\omega=10$: $-90-45-5{,}7=-140{,}7°$. En $\omega=100$: $-90-84{,}3-45=-219{,}3°$. Final: $-90-90-90=-270°$ (tres polos, ningún cero: $-90\cdot3$).</p></div></details>
+<details class="resul"><summary>Resultado</summary><div class="inner"><p class="et">Solución</p><p>Módulo: $-20$ dB/dec hasta 10, $-40$ hasta 100 y $-60$ después, con $0$ dB en 1 rad/s, $-20$ dB en 10 y $-60$ dB en 100. Fase de −90° a −270°.</p></div></details>
+</div>
+<div class="prob" id="p-bode3">
+<h3 class="ph">B. Derivador con polo: $G(s)=\dfrac{10\,s}{s+100}$</h3>
+<div class="enun"><p class="et">Enunciado</p><p>Calcula el módulo asintótico y di qué tipo de filtro es.</p></div>
+<details class="paso"><summary><span class="pn">1</span>Normaliza</summary><div class="inner"><p>$\dfrac{10s}{100(1+s/100)}=\dfrac{0{,}1\,s}{1+s/100}$, con $K=0{,}1$ ($-20$ dB), un cero en el origen y un polo en 100 rad/s.</p></div></details>
+<details class="paso"><summary><span class="pn">2</span>Módulo</summary><div class="inner"><p>La parte $0{,}1\,j\omega$ vale $0{,}1$ en $\omega=1$: pasa por $(1,\ -20\ \text{dB})$ con $+20$ dB/dec. En $\omega=100$ vale $-20+40=+20$ dB. Desde 100, el polo cancela la pendiente: queda plano en $+20$ dB, que es $|G|=10$, el valor de $s\to\infty$.</p></div></details>
+<details class="paso"><summary><span class="pn">3</span>Fase</summary><div class="inner"><p>Empieza en $+90°$ (cero en el origen), vale $+45°$ en 100 rad/s y termina en $0°$ (un cero y un polo: $90-90$).</p></div></details>
+<details class="paso"><summary><span class="pn">4</span>Tipo de filtro</summary><div class="inner"><p>Atenúa las bajas frecuencias y deja pasar las altas con ganancia 10: es un <b>paso alto</b>. En $\omega_c=100$ la curva real vale $\dfrac{10\cdot100}{\sqrt{100^2+100^2}}=7{,}07$, es decir $17$ dB (3 dB bajo la asíntota).</p></div></details>
+<details class="resul"><summary>Resultado</summary><div class="inner"><p class="et">Solución</p><p>Paso alto: +20 dB/dec desde $-20$ dB en 1 rad/s hasta 100 rad/s, y plano en 20 dB. Fase de +90° a 0°.</p></div></details>
+</div>
+<div class="prob" id="p-bode4">
+<h3 class="ph">C. De la gráfica a la función</h3>
+<div class="enun"><p class="et">Enunciado</p><p>Un diagrama de Bode del módulo empieza plano en 20 dB, a partir de 100 rad/s cae 20 dB/década y a partir de 10 000 rad/s cae 40 dB/década. ¿Cuál es $G(s)$ y cuál es la fase final?</p></div>
+<details class="paso"><summary><span class="pn">1</span>Constante</summary><div class="inner"><p>20 dB es $K=10^{20/20}=10$.</p></div></details>
+<details class="paso"><summary><span class="pn">2</span>Frecuencias de corte</summary><div class="inner"><p>En 100 rad/s la pendiente baja 20 dB/dec: un polo. En $10^4$ rad/s la pendiente pasa de −20 a −40: otro polo.</p></div></details>
+<details class="paso"><summary><span class="pn">3</span>Función</summary><div class="inner"><p>$G(s)=\dfrac{10}{\left(1+\frac{s}{100}\right)\left(1+\frac{s}{10^4}\right)}=\dfrac{10^7}{(s+100)(s+10^4)}$. Comprobación del segundo término: $(s+100)(s+10^4)$ vale $10^6$ en $s=0$, y $10^7/10^6=10$ ✓.</p></div></details>
+<details class="paso"><summary><span class="pn">4</span>Fase</summary><div class="inner"><p>Dos polos y ningún cero: la fase final es $-90\cdot2=-180°$, y en 100 rad/s vale cerca de $-45°$.</p></div></details>
+<details class="resul"><summary>Resultado</summary><div class="inner"><p class="et">Solución</p><p>$G(s)=\dfrac{10^7}{(s+100)(s+10^4)}$, fase final −180°. Valor en $\omega=10^4$ (asíntota): $20-20\cdot2=-20$ dB.</p></div></details>
+</div>
+<div class="prob" id="p-bode5">
+<h3 class="ph">D. Segundo orden con pico: $G(s)=\dfrac{100}{s^2+10s+100}$</h3>
+<div class="enun"><p class="et">Enunciado</p><p>Calcula $\omega_n$, $\zeta$, el pico de resonancia y la fase en $\omega_n$.</p></div>
+<details class="paso"><summary><span class="pn">1</span>Normaliza</summary><div class="inner"><p>Se divide por 100: $G=\dfrac1{1+0{,}1\,s+\dfrac{s^2}{100}}$, con $K=1$ (0 dB).</p></div></details>
+<details class="paso"><summary><span class="pn">2</span>Identifica $\omega_n$ y $\zeta$</summary><div class="inner"><p>$\dfrac{s^2}{\omega_n^2}=\dfrac{s^2}{100}\Rightarrow\omega_n=10$ rad/s. $\dfrac{2\zeta}{\omega_n}=0{,}1\Rightarrow\zeta=\dfrac{0{,}1\cdot10}{2}=0{,}5$.</p></div></details>
+<details class="paso"><summary><span class="pn">3</span>Pico</summary><div class="inner"><p>$\zeta=0{,}5&lt;0{,}707$, así que hay pico: $M_r=\dfrac1{2\cdot0{,}5\sqrt{1-0{,}25}}=1{,}155$, es decir $1{,}25$ dB, en $\omega_r=10\sqrt{1-2\cdot0{,}25}=7{,}07$ rad/s.</p></div></details>
+<details class="paso"><summary><span class="pn">4</span>En $\omega_n$</summary><div class="inner"><p>$|G(j10)|=\dfrac1{2\zeta}=1$, es decir 0 dB, y la fase es exactamente −90°. A partir de ahí, −40 dB/década: en $\omega=100$ vale $-40$ dB.</p></div></details>
+<details class="resul"><summary>Resultado</summary><div class="inner"><p class="et">Solución</p><p>$\omega_n=10$ rad/s, $\zeta=0{,}5$, pico de 1,25 dB en 7,07 rad/s, fase −90° en $\omega_n$ y −180° final.</p></div></details>
+</div>
 </section>
 
 <!-- ===================== FILTROS ===================== -->
@@ -1438,7 +1554,7 @@ $$P_L=\frac{V_p^2}{2R_L},\qquad P_{alim}=\frac{2V_{CC}V_p}{\pi R_L},\qquad \eta=
 <!-- ===================== AUTOEVALUACION ===================== -->
 <section class="sec" style="--tc:var(--c8);--tcs:var(--c8s)">
 <div class="sh"><span class="badge" aria-hidden="true">?</span><div class="shx"><p class="kick">Practicar</p><h2 id="auto">Autoevaluación</h2></div></div>
-<p>Dieciséis preguntas, tres filtros por unidad. Al elegir una opción se muestra por qué la correcta lo es y por qué se falla.</p>
+<p>Veinte preguntas; filtra por bloque. Al elegir una opción se muestra por qué la correcta lo es y por qué se falla.</p>
 <div class="ctrl quiz-tabs" id="quiz-tabs" role="group" aria-label="Filtrar por unidad"></div>
 <div id="quiz" class="box"></div>
 </section>
@@ -1461,6 +1577,7 @@ $$P_L=\frac{V_p^2}{2R_L},\qquad P_{alim}=\frac{2V_{CC}V_p}{\pi R_L},\qquad \eta=
 <tr><td>GBW</td><td>$A_{CL}\cdot f_{-3dB}=f_1$</td></tr>
 <tr><td>Polo o cero real</td><td>$\omega_c=1/a$; ±20 dB/dec; ±45° en $\omega_c$</td></tr>
 <tr><td>Paso bajo RC</td><td>$\dfrac1{1+j\omega RC}$, $f_c=\dfrac1{2\pi RC}$</td></tr>
+<tr><td>Polos complejos</td><td>$M_r=\dfrac{1}{2\zeta\sqrt{1-\zeta^2}}$ en $\omega_r=\omega_n\sqrt{1-2\zeta^2}$ (si $\zeta<0{,}707$); $|G(j\omega_n)|=\dfrac1{2\zeta}$</td></tr>
 <tr><td>Butterworth</td><td>$|H|=\dfrac1{\sqrt{1+(f/f_c)^{2n}}}$, pendiente $-20n$ dB/dec</td></tr>
 <tr><td>Sallen–Key</td><td>$\omega_0=\dfrac1{\sqrt{R_1R_2C_1C_2}}$, $Q=\dfrac{\sqrt{R_1R_2C_1C_2}}{C_2(R_1+R_2)}$</td></tr>
 <tr><td>Parámetros $h$ (amplificador)</td><td>$A_i=\dfrac{-h_{21}}{1+h_{22}R_L}$, $A_v\approx-\dfrac{h_{fe}R_L}{h_{ie}}$</td></tr>
@@ -1483,6 +1600,7 @@ $$P_L=\frac{V_p^2}{2R_L},\qquad P_{alim}=\frac{2V_{CC}V_p}{\pi R_L},\qquad \eta=
 <dt>Década</dt><dd>Factor 10 en frecuencia.</dd>
 <dt>GBW</dt><dd>Producto ganancia por ancho de banda, constante en un AO con polo dominante.</dd>
 <dt>Histéresis</dt><dd>Diferencia entre los dos umbrales de un comparador: $V_{TH}-V_{TL}$.</dd>
+<dt>Factor de amortiguamiento $\zeta$</dt><dd>Parámetro de un factor de segundo orden: $\zeta<1$ da polos complejos y, si $\zeta<0{,}707$, pico de resonancia.</dd>
 <dt>Lazo abierto, cerrado</dt><dd>Sin y con realimentación.</dd>
 <dt>Miller</dt><dd>Efecto por el que una capacidad entre entrada y salida se ve multiplicada por $(1-A)$ en la entrada.</dd>
 <dt>Offset</dt><dd>Desplazamiento de continua en la salida por $V_{IO}$, $I_B$ e $I_{IO}$.</dd>
@@ -1513,7 +1631,7 @@ $$P_L=\frac{V_p^2}{2R_L},\qquad P_{alim}=\frac{2V_{CC}V_p}{\pi R_L},\qquad \eta=
 <div class="sh"><span class="badge" aria-hidden="true">§</span><div class="shx"><p class="kick">Origen</p><h2 id="fuentes">Fuentes</h2></div></div>
 <ul>
 <li>Guía docente 2026-27 de Electrónica Analógica (507103006), UPCT.</li>
-<li>Diapositivas de los Temas 1, 2, 3, 5, 6, 7 y 8, de Juan Suárdiaz Muro (UPCT). Las imágenes de esta página son capturas de esas diapositivas con fines de estudio, con mi explicación al lado.</li>
+<li>Diapositivas de los Temas 1, 2, 3, 5, 6, 7 y 8, de la asignatura (UPCT). Las imágenes de esta página son recortes de esas diapositivas, sin pie ni logotipos, con fines de estudio y con su explicación al lado.</li>
 <li>Problemas tipo de examen resueltos y ejercicios 1 a 4 de la asignatura.</li>
 </ul>
 <p class="muted" style="font-size:14px">Esta guía es material de estudio personal y no sustituye al profesor ni a las diapositivas. Revisa los resultados contra los apuntes de clase.</p>
@@ -1803,6 +1921,10 @@ function plotSVG(o,items){
    {g:3,q:'G(s) = 100(1+s/40)/((1+s/10)(1+s/400)). ¿Qué pendiente tiene el tramo entre 40 y 400 rad/s?',o:['+20 dB/década','0 dB/década','−20 dB/década','−40 dB/década'],c:1,e:'A partir de 40 el cero (+20) cancela el efecto del polo en 10 (−20), y queda plano hasta el polo de 400.'},
    {g:3,q:'¿Qué pendiente final tiene un filtro Butterworth de cuarto orden?',o:['−20 dB/década','−40 dB/década','−80 dB/década','−4 dB/década'],c:2,e:'Cada polo añade −20 dB/década, así que el orden 4 baja −80 dB/década.'},
    {g:3,q:'En los parámetros h de un transistor, h₂₁ (h_fe) es…',o:['una impedancia en ohmios','una admitancia en siemens','la ganancia de corriente con la salida en cortocircuito (adimensional)','la ganancia inversa de tensión'],c:2,e:'h₂₁ = i₂/i₁ con v₂ = 0: ganancia de corriente directa, sin unidades.'},
+   {g:3,q:'G(s) = 1/[s(1+s/10)]. ¿Qué pendiente tiene el módulo entre 1 y 10 rad/s y cuánto vale (asíntota) en 10 rad/s?',o:['0 dB/dec y 0 dB','−20 dB/dec y −20 dB','−40 dB/dec y −40 dB','+20 dB/dec y +20 dB'],c:1,e:'El integrador da −20 dB/dec y la gráfica pasa por 0 dB en 1 rad/s. Hasta el polo de 10 rad/s baja una década: −20 dB. Luego la pendiente es −40.'},
+   {g:3,q:'Un par de polos complejos conjugados produce pico de resonancia en el módulo cuando…',o:['ζ > 1','ζ = 1','ζ < 0,707','ζ = 0'],c:2,e:'M_r = 1/(2ζ√(1−ζ²)) existe para ζ < 0,707. Con ζ = 1 son dos polos reales iguales y no hay pico.'},
+   {g:3,q:'Un diagrama de Bode empieza plano en 20 dB, cae 20 dB/década desde 100 rad/s y 40 dB/década desde 10⁴ rad/s. ¿Qué función es?',o:['10/[(1+s/100)(1+s/10⁴)]','100/[(1+s/100)(1+s/10⁴)]','10·(1+s/100)/(1+s/10⁴)','10/[s(1+s/100)]'],c:0,e:'20 dB es K = 10. En 100 rad/s hay un polo y en 10⁴ otro (la pendiente pasa de −20 a −40). Fase final −180°.'},
+   {g:3,q:'G(s) = 10s/(s+100). ¿Cuánto vale |G| a frecuencias muy altas?',o:['0 dB','20 dB','−20 dB','40 dB'],c:1,e:'Para s→∞, G → 10s/s = 10, es decir 20 dB. Es un filtro paso alto con un polo en 100 rad/s.'},
    {g:4,q:'En baja frecuencia, un amplificador tiene tres condensadores con f_c de 5,97 Hz, 1,08 Hz y 56,8 Hz. ¿Cuál es f_ci aproximada?',o:['56,8 Hz, porque es la mayor','63,9 Hz, la suma, porque no hay una década de diferencia','1,08 Hz, la menor','5,97 Hz'],c:1,e:'56,8/5,97 = 9,5 < 10: no hay polo dominante, y se suman las frecuencias: 56,8+5,97+1,08 = 63,9 Hz.'},
    {g:4,q:'Una capacidad C_μ = 2 pF une entrada y salida de una etapa de ganancia −100. ¿Cuánto vale la capacidad de entrada por el efecto Miller?',o:['2 pF','102 pF','202 pF','200 pF'],c:2,e:'C_in = C(1−A) = 2·(1+100) = 202 pF.'}
   ];
@@ -1829,6 +1951,69 @@ function plotSVG(o,items){
   }
   function upd(){const s=$('qscore');if(!s)return;const ans=list.filter(q=>done[q.q]!==undefined),ok=ans.filter(q=>done[q.q]).length;s.textContent='Acertadas: '+ok+' de '+ans.length+' respondidas ('+list.length+' en este grupo)';}
   render();
+})();
+
+/* ---------- Bode: polos complejos y generador ---------- */
+(function(){
+  if($('bz-z')){
+    bind(['bz-z'],()=>{
+      const z=val('bz-z');out('bz-z',num(z,2));
+      const lu=rng(-1,1,300);
+      const M=lu.map(l=>{const u=Math.pow(10,l);return -10*Math.log10(Math.pow(1-u*u,2)+Math.pow(2*z*u,2));});
+      const A=lu.map(l=>l>0?-40*l:0);
+      const P=lu.map(l=>{const u=Math.pow(10,l);return -Math.atan2(2*z*u,1-u*u)*180/Math.PI;});
+      const hi=Math.max(10,Math.ceil((Math.max(...M)+2)/10)*10);const yt=[];for(let v=-60;v<=hi;v+=20)yt.push(v);
+      const xo={x0:-1,x1:1,xt:[-1,-0.5,0,0.5,1],xtf:v=>num(Math.pow(10,v),2)};
+      $('fig-bz').innerHTML=plotSVG(Object.assign({y0:-60,y1:hi,yt,label:'Módulo de un par de polos complejos',yl:'|G| dB',xl:'ω/ωn'},xo),[{t:'line',x:lu,y:A,c:'s3',dash:1,w:1.5},{t:'line',x:lu,y:M,c:'s1'},{t:'vline',x:0,c:'s2'}]);
+      $('fig-bzp').innerHTML=plotSVG(Object.assign({y0:-180,y1:0,yt:[0,-45,-90,-135,-180],label:'Fase',yl:'fase °',xl:'ω/ωn'},xo),[{t:'line',x:lu,y:P,c:'s2'},{t:'vline',x:0,c:'s3'}]);
+      let t='En ω = ωn: |G| = 1/(2ζ) = '+num(20*Math.log10(1/(2*z)),2)+' dB y fase −90° · ';
+      if(z<Math.SQRT1_2){const mr=1/(2*z*Math.sqrt(1-z*z));t+='pico M_r = '+num(mr,3)+' ('+num(20*Math.log10(mr),2)+' dB) en ω/ωn = '+num(Math.sqrt(1-2*z*z),3);}
+      else t+='sin pico de resonancia (ζ ≥ 0,707)';
+      $('bz-txt').textContent=t;
+    });
+  }
+  if($('bg-new')){
+    const pick=a=>a[Math.floor(Math.random()*a.length)];
+    const w3=Math.log10;let cur=null;
+    const fw=x=>{const a=Math.abs(x);return a>=1000?String(x/1000)+'k':String(x);};
+    function gen(){
+      const m=pick([1,2,5]),nc=pick([2,2,3,3]);
+      const ex=[0,1,2,3,4].sort(()=>Math.random()-.5).slice(0,nc).sort((a,b)=>a-b);
+      const fr=ex.map(e=>m*Math.pow(10,e));
+      const I=Math.random()<.3?1:0,Kdb=pick([-20,0,20,40]);
+      let types=fr.map(()=>'p');
+      const zi=Math.random()<.55?Math.floor(Math.random()*nc):-1;
+      if(zi>=0&&nc>1)types[zi]='z';
+      if(types.every(t=>t==='z'))types[0]='p';
+      cur={I,Kdb,cs:fr.map((f,i)=>({f,t:types[i]}))};
+      const K=Math.pow(10,Kdb/20);
+      const num_=cur.cs.filter(c=>c.t==='z').map(c=>'(1 + jω/'+c.f+')').join(' · ');
+      const den=(I?['(jω)']:[]).concat(cur.cs.filter(c=>c.t==='p').map(c=>'(1 + jω/'+c.f+')')).join(' · ');
+      $('bg-fun').textContent='G(jω) = '+es(String(K))+(num_?' · '+num_:'')+(den?'  /  [ '+den+' ]':'');
+      $('bg-show').setAttribute('aria-pressed','false');$('bg-sol').hidden=true;$('bg-sol').innerHTML='';
+    }
+    function show(){
+      const {I,Kdb,cs}=cur;const lw=rng(-1,5,300);
+      const A=[],M=[],P=[];
+      lw.forEach(l=>{const w=Math.pow(10,l);let a=Kdb-20*I*l,m=Kdb-20*I*l,ph=-90*I;
+        cs.forEach(c=>{const s=c.t==='z'?1:-1;a+=s*20*Math.log10(Math.max(1,w/c.f));m+=s*10*Math.log10(1+(w/c.f)**2);ph+=s*Math.atan(w/c.f)*180/Math.PI;});
+        A.push(a);M.push(m);P.push(ph);});
+      const lo=Math.floor((Math.min(...M,...A)-10)/20)*20,hi=Math.ceil((Math.max(...M,...A)+10)/20)*20;const yt=[];for(let v=lo;v<=hi;v+=20)yt.push(v);
+      const pl=Math.floor((Math.min(...P)-10)/45)*45,ph_=Math.ceil((Math.max(...P)+10)/45)*45;const pt=[];for(let v=pl;v<=ph_;v+=45)pt.push(v);
+      const xo={x0:-1,x1:5,xt:[-1,0,1,2,3,4,5],xtf:v=>fmt(Math.pow(10,v))};
+      let sl=-20*I;const li=[];
+      li.push('<li>Constante: $20\\log K='+Kdb+'$ dB'+(I?'. Con integrador, la gráfica pasa por (1 rad/s, '+Kdb+' dB) con pendiente −20 dB/dec.':'. La gráfica empieza plana en '+Kdb+' dB.')+'</li>');
+      cs.forEach(c=>{const prev=sl;sl+=c.t==='z'?20:-20;li.push('<li>En '+c.f+' rad/s hay un '+(c.t==='z'?'cero':'polo')+': la pendiente pasa de '+prev+' a '+sl+' dB/dec (valor de la asíntota: '+num(Kdb-20*I*w3(c.f)+cs.filter(d=>d.f<c.f).reduce((s,d)=>s+(d.t==='z'?1:-1)*20*w3(c.f/d.f),0),1)+' dB).</li>');});
+      const nz=cs.filter(c=>c.t==='z').length,np=cs.length-nz+I;
+      li.push('<li>Pendiente final: '+sl+' dB/dec. Fase final: '+(90*(nz-np))+'°.</li>');
+      $('bg-sol').innerHTML='<ol class="steps">'+li.join('')+'</ol>'+plotSVG(Object.assign({y0:lo,y1:hi,yt,label:'Módulo del ejercicio',yl:'|G| dB',xl:'ω rad/s'},xo),[{t:'line',x:lw,y:A,c:'s3',dash:1,w:1.6},{t:'line',x:lw,y:M,c:'s1'}])+plotSVG(Object.assign({y0:pl,y1:ph_,yt:pt,label:'Fase del ejercicio',yl:'fase °',xl:'ω rad/s'},xo),[{t:'line',x:lw,y:P,c:'s2'}]);
+      $('bg-sol').hidden=false;$('bg-show').setAttribute('aria-pressed','true');
+      if(window.MathJax&&MathJax.typesetPromise)MathJax.typesetPromise([$('bg-sol')]).catch(()=>{});
+    }
+    $('bg-new').addEventListener('click',gen);
+    $('bg-show').addEventListener('click',()=>{if($('bg-sol').hidden)show();else{$('bg-sol').hidden=true;$('bg-show').setAttribute('aria-pressed','false');}});
+    gen();
+  }
 })();
 
 </script>

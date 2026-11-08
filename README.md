@@ -8,4 +8,4 @@ operacionales (ideal y real), aplicaciones lineales y no lineales, Bode y filtro
 
 Para verla en línea hay que activar GitHub Pages (Settings → Pages → Deploy from a branch → `main` / root).
 
-Material de estudio personal. Las diapositivas son de Juan Suárdiaz Muro (UPCT).
+Material de estudio personal. Las diapositivas son de la asignatura (UPCT) y se muestran recortadas, sin pie ni logotipos.
