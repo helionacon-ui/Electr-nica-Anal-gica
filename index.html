@@ -178,9 +178,10 @@ body{line-height:1.65}
 /* portada */
 header.hero{display:block;max-width:none;border:0;margin:0 calc(-1*max(16px, env(safe-area-inset-left, 0px))) 36px;padding-block:0;
   background:linear-gradient(135deg,var(--accent-soft),var(--bg) 70%);border-bottom:1px solid var(--line)}
-.hero-in{max-width:1180px;margin:0 auto;display:grid;grid-template-columns:minmax(0,1fr) 300px;gap:40px;align-items:center;
+.hero-in{max-width:1180px;margin:0 auto;display:grid;grid-template-columns:minmax(0,1fr) 340px;gap:40px;align-items:center;
   padding:48px max(16px, env(safe-area-inset-right, 0px)) 44px max(16px, env(safe-area-inset-left, 0px))}
-@media (max-width:760px){.hero-in{grid-template-columns:minmax(0,1fr);padding-block:32px 28px}.hero-art{display:none}}
+@media (max-width:760px){.hero-in{grid-template-columns:minmax(0,1fr);padding-block:32px 28px}.hero-art{max-width:300px}}
+header.hero svg.zart{display:block}
 header.hero h1{font-size:clamp(38px,6.4vw,64px);line-height:1.02;margin:10px 0 4px;letter-spacing:-.01em}
 header.hero h1 span{color:var(--accent)}
 header.hero .sub{font-family:var(--display);font-size:clamp(20px,2.6vw,26px);font-weight:500;color:var(--muted);margin:0 0 14px}
@@ -193,7 +194,7 @@ header.hero .sub{font-family:var(--display);font-size:clamp(20px,2.6vw,26px);fon
 .btn{display:inline-block;padding:9px 16px;border-radius:999px;border:1px solid var(--line);background:var(--surface);color:var(--fg);text-decoration:none;font-weight:600;font-size:14px}
 .btn:hover,.btn:focus-visible{border-color:var(--accent);outline:none}
 .btn.pri{background:var(--accent);border-color:var(--accent);color:var(--surface)}
-.zart{width:100%;height:auto;max-width:300px}
+.zart{width:100%;height:auto;max-width:340px}
 .orbit{transform-origin:0 0;animation:orb 9s linear infinite}
 @keyframes orb{from{transform:rotate(0)}to{transform:rotate(-360deg)}}
 @media (prefers-reduced-motion:reduce){.orbit{animation:none;transform:rotate(-40deg)}}
@@ -493,24 +494,52 @@ details.nt[open]{padding-bottom:6px}
       </div>
       <div class="cta"><a class="btn pri" href="#cero">Empieza desde cero</a><a class="btn" href="#examen">Cómo es el examen</a><a class="btn" href="examenes.html#exa-indice">Exámenes resueltos</a><a class="btn" href="practica.html#problemas">Problemas resueltos</a><a class="btn" href="bode.html#bode">Bode</a><a class="btn" href="practica.html#auto">Autoevaluación</a><a class="btn" href="referencia.html#formulario">Formulario</a></div>
     </div>
-    <div class="hero-art" aria-hidden="true">
-      <svg viewBox="0 0 300 250" class="zart">
-        <defs><linearGradient id="og" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="var(--accent)" stop-opacity=".30"/><stop offset="1" stop-color="var(--accent)" stop-opacity=".08"/></linearGradient></defs>
-        <path d="M70 40 L70 150 L190 95 Z" fill="url(#og)" stroke="var(--accent)" stroke-width="2.4" stroke-linejoin="round"/>
-        <text x="80" y="76" fill="var(--fg)" font-size="20" font-family="IBM Plex Mono, monospace">−</text>
-        <text x="80" y="128" fill="var(--fg)" font-size="20" font-family="IBM Plex Mono, monospace">+</text>
-        <path d="M20 66 H70 M20 124 H70 M190 95 H280" stroke="var(--fg)" stroke-width="1.6" fill="none"/>
-        <path d="M240 95 V28 H52 V66" stroke="var(--warn)" stroke-width="1.6" fill="none" stroke-dasharray="5 4"/>
-        <rect x="118" y="19" width="40" height="18" rx="3" fill="var(--surface)" stroke="var(--warn)" stroke-width="1.5"/>
-        <text x="138" y="32" fill="var(--warn)" font-size="11" font-family="IBM Plex Mono, monospace" text-anchor="middle">R2</text>
-        <rect x="30" y="52" width="34" height="14" rx="3" fill="var(--surface)" stroke="var(--fg)" stroke-width="1.3" transform="translate(-6 0)"/>
-        <text x="11" y="62" fill="var(--muted)" font-size="10" font-family="IBM Plex Mono, monospace" text-anchor="middle">R1</text>
-        <path d="M30 200 H110 L230 232" stroke="var(--accent)" stroke-width="2.4" fill="none"/>
-        <circle cx="110" cy="200" r="4.5" fill="var(--accent)"/>
-        <text x="30" y="190" fill="var(--muted)" font-size="10.5" font-family="IBM Plex Mono, monospace">|G| dB</text>
-        <text x="232" y="244" fill="var(--muted)" font-size="10.5" font-family="IBM Plex Mono, monospace" text-anchor="end">−20 dB/déc</text>
+    <div class="hero-art" role="img" aria-label="Ilustración de la asignatura: un amplificador operacional inversor con una señal que sale amplificada y, debajo, un diagrama de Bode con la caída de 20 dB por década">
+      <svg viewBox="0 0 340 330" class="zart" aria-hidden="true">
+        <defs>
+          <linearGradient id="og" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="var(--accent)" stop-opacity=".34"/><stop offset="1" stop-color="var(--accent)" stop-opacity=".10"/></linearGradient>
+          <pattern id="gr" width="20" height="20" patternUnits="userSpaceOnUse"><path d="M20 0H0V20" fill="none" stroke="var(--line)" stroke-width=".8"/></pattern>
+        </defs>
+        <rect x="1" y="1" width="338" height="328" rx="16" fill="var(--surface)" stroke="var(--line)" stroke-width="1.4"/>
+        <rect x="1" y="1" width="338" height="328" rx="16" fill="url(#gr)" opacity=".55"/>
+        <!-- señal de entrada -->
+        <path d="M14 78 q6 -14 12 0 t12 0" stroke="var(--fg)" stroke-width="1.7" fill="none" transform="translate(0 0)"/>
+        <text x="14" y="104" fill="var(--muted)" font-size="10" font-family="IBM Plex Mono, monospace">Vi</text>
+        <!-- R1 -->
+        <path d="M40 78 H52" stroke="var(--fg)" stroke-width="1.7"/>
+        <path d="M52 78 l4 -7 l6 14 l6 -14 l6 14 l6 -14 l4 7" stroke="var(--fg)" stroke-width="1.7" fill="none" stroke-linejoin="round"/>
+        <path d="M90 78 H132" stroke="var(--fg)" stroke-width="1.7"/>
+        <text x="71" y="63" fill="var(--muted)" font-size="10" font-family="IBM Plex Mono, monospace" text-anchor="middle">R1</text>
+        <!-- operacional -->
+        <path d="M132 40 L132 150 L252 95 Z" fill="url(#og)" stroke="var(--accent)" stroke-width="2.6" stroke-linejoin="round"/>
+        <text x="140" y="85" fill="var(--fg)" font-size="22" font-family="IBM Plex Mono, monospace">−</text>
+        <text x="140" y="136" fill="var(--fg)" font-size="22" font-family="IBM Plex Mono, monospace">+</text>
+        <!-- entrada + a masa -->
+        <path d="M132 128 H110 V150" stroke="var(--fg)" stroke-width="1.7" fill="none"/>
+        <path d="M100 150 H120 M104 156 H116 M108 162 H112" stroke="var(--fg)" stroke-width="1.7"/>
+        <!-- salida -->
+        <path d="M252 95 H324" stroke="var(--fg)" stroke-width="1.7"/>
+        <path d="M274 68 q7 -22 14 0 t14 0 t14 0" stroke="var(--accent)" stroke-width="2.6" fill="none" stroke-linecap="round"/>
+        <text x="298" y="118" fill="var(--accent)" font-size="10" font-family="IBM Plex Mono, monospace" text-anchor="middle">Vo</text>
+        <!-- realimentación -->
+        <path d="M264 95 V28 H112 V78" stroke="var(--warn)" stroke-width="1.7" fill="none" stroke-dasharray="5 4"/>
+        <rect x="170" y="18" width="46" height="20" rx="3" fill="var(--surface)" stroke="var(--warn)" stroke-width="1.6"/>
+        <text x="193" y="32" fill="var(--warn)" font-size="11" font-family="IBM Plex Mono, monospace" text-anchor="middle">R2</text>
+        <circle cx="112" cy="78" r="3" fill="var(--fg)"/><circle cx="264" cy="95" r="3" fill="var(--warn)"/>
+        <!-- separador -->
+        <path d="M18 184 H322" stroke="var(--line)" stroke-width="1.4"/>
+        <!-- bode -->
+        <path d="M44 200 V300 H316" stroke="var(--muted)" stroke-width="1.5" fill="none"/>
+        <path d="M44 232 H150 L300 288" stroke="var(--accent)" stroke-width="1.8" fill="none" stroke-dasharray="5 4" opacity=".8"/>
+        <path d="M44 232 H110 Q150 234 164 247 Q190 270 300 288" stroke="var(--accent)" stroke-width="3" fill="none" stroke-linecap="round"/>
+        <circle cx="150" cy="232" r="5" fill="var(--surface)" stroke="var(--accent)" stroke-width="2.4"/>
+        <path d="M150 232 V300" stroke="var(--muted)" stroke-width="1" stroke-dasharray="3 4"/>
+        <text x="20" y="206" fill="var(--muted)" font-size="10" font-family="IBM Plex Mono, monospace">dB</text>
+        <text x="316" y="316" fill="var(--muted)" font-size="10" font-family="IBM Plex Mono, monospace" text-anchor="end">ω</text>
+        <text x="156" y="314" fill="var(--muted)" font-size="10" font-family="IBM Plex Mono, monospace">ωc</text>
+        <text x="244" y="262" fill="var(--accent)" font-size="10.5" font-family="IBM Plex Mono, monospace">−20 dB/déc</text>
       </svg>
-      <p class="art-cap">Con realimentación negativa el operacional hace V⁺ = V⁻. Con el diagrama de Bode ves hasta dónde sigue amplificando.</p>
+      <p class="art-cap">Un operacional, su realimentación y su Bode: lo que más pesa en el examen.</p>
     </div>
   </div>
 </header>
