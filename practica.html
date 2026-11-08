@@ -178,9 +178,10 @@ body{line-height:1.65}
 /* portada */
 header.hero{display:block;max-width:none;border:0;margin:0 calc(-1*max(16px, env(safe-area-inset-left, 0px))) 36px;padding-block:0;
   background:linear-gradient(135deg,var(--accent-soft),var(--bg) 70%);border-bottom:1px solid var(--line)}
-.hero-in{max-width:1180px;margin:0 auto;display:grid;grid-template-columns:minmax(0,1fr) 300px;gap:40px;align-items:center;
+.hero-in{max-width:1180px;margin:0 auto;display:grid;grid-template-columns:minmax(0,1fr) 340px;gap:40px;align-items:center;
   padding:48px max(16px, env(safe-area-inset-right, 0px)) 44px max(16px, env(safe-area-inset-left, 0px))}
-@media (max-width:760px){.hero-in{grid-template-columns:minmax(0,1fr);padding-block:32px 28px}.hero-art{display:none}}
+@media (max-width:760px){.hero-in{grid-template-columns:minmax(0,1fr);padding-block:32px 28px}.hero-art{max-width:300px}}
+header.hero svg.zart{display:block}
 header.hero h1{font-size:clamp(38px,6.4vw,64px);line-height:1.02;margin:10px 0 4px;letter-spacing:-.01em}
 header.hero h1 span{color:var(--accent)}
 header.hero .sub{font-family:var(--display);font-size:clamp(20px,2.6vw,26px);font-weight:500;color:var(--muted);margin:0 0 14px}
@@ -193,7 +194,7 @@ header.hero .sub{font-family:var(--display);font-size:clamp(20px,2.6vw,26px);fon
 .btn{display:inline-block;padding:9px 16px;border-radius:999px;border:1px solid var(--line);background:var(--surface);color:var(--fg);text-decoration:none;font-weight:600;font-size:14px}
 .btn:hover,.btn:focus-visible{border-color:var(--accent);outline:none}
 .btn.pri{background:var(--accent);border-color:var(--accent);color:var(--surface)}
-.zart{width:100%;height:auto;max-width:300px}
+.zart{width:100%;height:auto;max-width:340px}
 .orbit{transform-origin:0 0;animation:orb 9s linear infinite}
 @keyframes orb{from{transform:rotate(0)}to{transform:rotate(-360deg)}}
 @media (prefers-reduced-motion:reduce){.orbit{animation:none;transform:rotate(-40deg)}}
@@ -458,6 +459,18 @@ details.nt>summary{padding:12px 0;font-weight:600}
 details.nt>summary:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:6px}
 details.nt[open]{padding-bottom:6px}
 
+
+/* vídeos */
+details.vids{border-left:4px solid var(--tc,var(--accent));margin:20px 0}
+.vlist{list-style:none;margin:0;padding:0;display:grid;gap:10px}
+.vlist li{padding:8px 0;border-bottom:1px dashed var(--line)}
+.vlist li:last-child{border-bottom:0}
+.vlist a{font-weight:600}
+.vnote{color:var(--muted);font-size:14px}
+.vplay{margin-left:8px;font:600 12.5px var(--body);padding:3px 10px;border-radius:99px;border:1px solid var(--line);background:var(--surface);color:var(--fg);cursor:pointer}
+.vplay:hover,.vplay:focus-visible{border-color:var(--accent);outline:none}
+.vframe{position:relative;aspect-ratio:16/9;max-width:640px;margin:10px 0 2px;border-radius:10px;overflow:hidden;border:1px solid var(--line)}
+.vframe iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
 /* ---- sitio de varias páginas ---- */
 .sitenav{max-width:1180px;margin:0 auto;padding:10px 16px 2px;display:flex;gap:6px;overflow-x:auto;scrollbar-width:thin}
 .sitenav a{flex:0 0 auto;font:600 13.5px/1 var(--body);padding:9px 13px;border-radius:99px;border:1px solid var(--line);background:var(--surface);color:var(--fg);text-decoration:none;white-space:nowrap}
@@ -733,6 +746,24 @@ function plotSVG(o,items){
 })();
 
 
+/* ---------- vídeos incrustados (solo fuera del visor de artefactos) ---------- */
+(function(){
+  if(!/(^|\.)github\.io$|^localhost$|^127\./.test(location.hostname))return;
+  document.querySelectorAll('.vlist li[data-yt]').forEach(function(li){
+    var b=document.createElement('button');b.type='button';b.className='vplay';b.textContent='▶ Ver aquí';
+    var box=null;
+    b.addEventListener('click',function(){
+      if(box){box.remove();box=null;b.textContent='▶ Ver aquí';return;}
+      box=document.createElement('div');box.className='vframe';
+      var f=document.createElement('iframe');
+      f.src='https://www.youtube-nocookie.com/embed/'+li.dataset.yt;
+      f.title='Vídeo de YouTube';f.loading='lazy';f.allowFullscreen=true;
+      f.allow='accelerometer; encrypted-media; gyroscope; picture-in-picture';
+      box.appendChild(f);li.appendChild(box);b.textContent='✕ Cerrar vídeo';
+    });
+    li.querySelector('a').after(b);
+  });
+})();
 /* ---------- búsqueda en todo el sitio ---------- */
 (function(){
   const norm=s=>s.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'');

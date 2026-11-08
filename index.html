@@ -459,6 +459,18 @@ details.nt>summary{padding:12px 0;font-weight:600}
 details.nt>summary:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:6px}
 details.nt[open]{padding-bottom:6px}
 
+
+/* vídeos */
+details.vids{border-left:4px solid var(--tc,var(--accent));margin:20px 0}
+.vlist{list-style:none;margin:0;padding:0;display:grid;gap:10px}
+.vlist li{padding:8px 0;border-bottom:1px dashed var(--line)}
+.vlist li:last-child{border-bottom:0}
+.vlist a{font-weight:600}
+.vnote{color:var(--muted);font-size:14px}
+.vplay{margin-left:8px;font:600 12.5px var(--body);padding:3px 10px;border-radius:99px;border:1px solid var(--line);background:var(--surface);color:var(--fg);cursor:pointer}
+.vplay:hover,.vplay:focus-visible{border-color:var(--accent);outline:none}
+.vframe{position:relative;aspect-ratio:16/9;max-width:640px;margin:10px 0 2px;border-radius:10px;overflow:hidden;border:1px solid var(--line)}
+.vframe iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
 /* ---- sitio de varias páginas ---- */
 .sitenav{max-width:1180px;margin:0 auto;padding:10px 16px 2px;display:flex;gap:6px;overflow-x:auto;scrollbar-width:thin}
 .sitenav a{flex:0 0 auto;font:600 13.5px/1 var(--body);padding:9px 13px;border-radius:99px;border:1px solid var(--line);background:var(--surface);color:var(--fg);text-decoration:none;white-space:nowrap}
@@ -770,6 +782,24 @@ function plotSVG(o,items){
     $('db-txt').textContent='Tensión × '+fmt(v)+' · Potencia × '+fmt(p)+(d<0?' (atenúa)':d===0?' (igual)':' (amplifica)');});
 })();
 
+/* ---------- vídeos incrustados (solo fuera del visor de artefactos) ---------- */
+(function(){
+  if(!/(^|\.)github\.io$|^localhost$|^127\./.test(location.hostname))return;
+  document.querySelectorAll('.vlist li[data-yt]').forEach(function(li){
+    var b=document.createElement('button');b.type='button';b.className='vplay';b.textContent='▶ Ver aquí';
+    var box=null;
+    b.addEventListener('click',function(){
+      if(box){box.remove();box=null;b.textContent='▶ Ver aquí';return;}
+      box=document.createElement('div');box.className='vframe';
+      var f=document.createElement('iframe');
+      f.src='https://www.youtube-nocookie.com/embed/'+li.dataset.yt;
+      f.title='Vídeo de YouTube';f.loading='lazy';f.allowFullscreen=true;
+      f.allow='accelerometer; encrypted-media; gyroscope; picture-in-picture';
+      box.appendChild(f);li.appendChild(box);b.textContent='✕ Cerrar vídeo';
+    });
+    li.querySelector('a').after(b);
+  });
+})();
 /* ---------- búsqueda en todo el sitio ---------- */
 (function(){
   const norm=s=>s.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'');

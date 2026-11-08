@@ -178,9 +178,10 @@ body{line-height:1.65}
 /* portada */
 header.hero{display:block;max-width:none;border:0;margin:0 calc(-1*max(16px, env(safe-area-inset-left, 0px))) 36px;padding-block:0;
   background:linear-gradient(135deg,var(--accent-soft),var(--bg) 70%);border-bottom:1px solid var(--line)}
-.hero-in{max-width:1180px;margin:0 auto;display:grid;grid-template-columns:minmax(0,1fr) 300px;gap:40px;align-items:center;
+.hero-in{max-width:1180px;margin:0 auto;display:grid;grid-template-columns:minmax(0,1fr) 340px;gap:40px;align-items:center;
   padding:48px max(16px, env(safe-area-inset-right, 0px)) 44px max(16px, env(safe-area-inset-left, 0px))}
-@media (max-width:760px){.hero-in{grid-template-columns:minmax(0,1fr);padding-block:32px 28px}.hero-art{display:none}}
+@media (max-width:760px){.hero-in{grid-template-columns:minmax(0,1fr);padding-block:32px 28px}.hero-art{max-width:300px}}
+header.hero svg.zart{display:block}
 header.hero h1{font-size:clamp(38px,6.4vw,64px);line-height:1.02;margin:10px 0 4px;letter-spacing:-.01em}
 header.hero h1 span{color:var(--accent)}
 header.hero .sub{font-family:var(--display);font-size:clamp(20px,2.6vw,26px);font-weight:500;color:var(--muted);margin:0 0 14px}
@@ -193,7 +194,7 @@ header.hero .sub{font-family:var(--display);font-size:clamp(20px,2.6vw,26px);fon
 .btn{display:inline-block;padding:9px 16px;border-radius:999px;border:1px solid var(--line);background:var(--surface);color:var(--fg);text-decoration:none;font-weight:600;font-size:14px}
 .btn:hover,.btn:focus-visible{border-color:var(--accent);outline:none}
 .btn.pri{background:var(--accent);border-color:var(--accent);color:var(--surface)}
-.zart{width:100%;height:auto;max-width:300px}
+.zart{width:100%;height:auto;max-width:340px}
 .orbit{transform-origin:0 0;animation:orb 9s linear infinite}
 @keyframes orb{from{transform:rotate(0)}to{transform:rotate(-360deg)}}
 @media (prefers-reduced-motion:reduce){.orbit{animation:none;transform:rotate(-40deg)}}
@@ -458,6 +459,18 @@ details.nt>summary{padding:12px 0;font-weight:600}
 details.nt>summary:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:6px}
 details.nt[open]{padding-bottom:6px}
 
+
+/* vídeos */
+details.vids{border-left:4px solid var(--tc,var(--accent));margin:20px 0}
+.vlist{list-style:none;margin:0;padding:0;display:grid;gap:10px}
+.vlist li{padding:8px 0;border-bottom:1px dashed var(--line)}
+.vlist li:last-child{border-bottom:0}
+.vlist a{font-weight:600}
+.vnote{color:var(--muted);font-size:14px}
+.vplay{margin-left:8px;font:600 12.5px var(--body);padding:3px 10px;border-radius:99px;border:1px solid var(--line);background:var(--surface);color:var(--fg);cursor:pointer}
+.vplay:hover,.vplay:focus-visible{border-color:var(--accent);outline:none}
+.vframe{position:relative;aspect-ratio:16/9;max-width:640px;margin:10px 0 2px;border-radius:10px;overflow:hidden;border:1px solid var(--line)}
+.vframe iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
 /* ---- sitio de varias páginas ---- */
 .sitenav{max-width:1180px;margin:0 auto;padding:10px 16px 2px;display:flex;gap:6px;overflow-x:auto;scrollbar-width:thin}
 .sitenav a{flex:0 0 auto;font:600 13.5px/1 var(--body);padding:9px 13px;border-radius:99px;border:1px solid var(--line);background:var(--surface);color:var(--fg);text-decoration:none;white-space:nowrap}
@@ -557,6 +570,7 @@ $$\frac{v_o}{v_s}=\frac{9}{1+9}\cdot100\cdot\frac{3}{1+3}=0{,}9\cdot100\cdot0{,}
 <p>El método de la asignatura es siempre el mismo: dibujar el amplificador como tres bloques, <b>fuente</b> (con su $R_g$), <b>modelo del amplificador</b> ($Z_{in}$, $A_u\cdot V_{in}$, $Z_o$) y <b>carga</b> ($R_L$). Después aplicar dos divisores de tensión, uno en la entrada y otro en la salida. Es la fórmula del recuadro de arriba.</p>
 <figure class="slide"><img src="img/t1-17.jpg" alt="Tema 1 · diapositiva 17. El amplificador de tensión: señal de entrada u_e y de salida u_s en voltios, con ganancia adimensional A_u=u_s" loading="lazy" width="1000" height="563"><figcaption><b class="n">Tema 1 · diapositiva 17</b>El amplificador de tensión: señal de entrada $u_e$ y de salida $u_s$ en voltios, con ganancia adimensional $A_u=u_s/u_e$. Se distinguen los tres bloques: fuente, modelo equivalente del amplificador y carga.</figcaption></figure>
 <figure class="slide"><img src="img/t1-18.jpg" alt="Tema 1 · diapositiva 18. Ganancia total A_TOTAL=V_s/V_g. No es lo mismo que A_u: es A_u multiplicada por las dos pérdidas de los diviso" loading="lazy" width="1000" height="563"><figcaption><b class="n">Tema 1 · diapositiva 18</b>Ganancia total $A_{TOTAL}=V_s/V_g$. No es lo mismo que $A_u$: es $A_u$ multiplicada por las dos pérdidas de los divisores. Si $Z_{in}$ es mucho mayor que $R_g$ y $Z_o$ mucho menor que $R_L$, las dos pérdidas son casi 1.</figcaption></figure>
+<details class="vids"><summary><span class="pn">▶</span>Vídeos para reforzar este tema</summary><div class="inner"><ul class="vlist"><li data-yt="4hhc7O_YBE0"><a href="https://www.youtube.com/watch?v=4hhc7O_YBE0" target="_blank" rel="noopener">Clase 7 Electrónica I: Modelo de circuito de un amplificador</a><span class="vnote"> El modelo con resistencia de entrada, de salida y fuente dependiente.</span></li><li data-yt="mhaa4QElSOw"><a href="https://www.youtube.com/watch?v=mhaa4QElSOw" target="_blank" rel="noopener">Como saber la Impedancia entrada y salida amplificador no inversor (Clase 62.2)</a><span class="vnote"> Cómo sacar $Z_i$ y $Z_o$ de un no inversor.</span></li></ul><p class="muted" style="font-size:13px;margin:8px 0 0">Los he elegido por su título y su tema, sin haberlos visto: comprueba que el enfoque coincide con el de tu profesor. Se abren en YouTube.</p></div></details>
 </section>
 
 <section class="sec tema" style="--tc:var(--c2);--tcs:var(--c2s)">
@@ -605,6 +619,7 @@ $$\frac{v_o}{v_s}=\frac{9}{1+9}\cdot100\cdot\frac{3}{1+3}=0{,}9\cdot100\cdot0{,}
 <h3>Realimentación negativa: por qué funciona</h3>
 <p>Sin realimentación (lazo abierto) el AO es un comparador: si $V^->V^+$ la salida va a $-V_{CC}$ y si $V^-&lt;V^+$ va a $+V_{CC}$. Al llevar una fracción de la salida a la entrada inversora, el circuito se «autocorrige» hasta que $V^-=V^+$. Con realimentación positiva ocurre lo contrario, el error se agranda y la salida satura.</p>
 <figure class="slide"><img src="img/t2-22.jpg" alt="Tema 2 · diapositiva 22. Tres casos: en bucle abierto, comparador; con realimentación positiva, el efecto se magnifica y satura; con re" loading="lazy" width="1000" height="563"><figcaption><b class="n">Tema 2 · diapositiva 22</b>Tres casos: en bucle abierto, comparador; con realimentación positiva, el efecto se magnifica y satura; con realimentación negativa, $u_-$ y $u_+$ se igualan en un equilibrio estable. Para el examen: si la resistencia de realimentación va a la entrada $-$, estás en zona lineal.</figcaption></figure>
+<details class="vids"><summary><span class="pn">▶</span>Vídeos para reforzar este tema</summary><div class="inner"><ul class="vlist"><li data-yt="4E1nLTI4_WE"><a href="https://www.youtube.com/watch?v=4E1nLTI4_WE" target="_blank" rel="noopener">Funcionamiento de un amplificador operacional «inversor y no inversor»</a><span class="vnote"> Los dos montajes básicos.</span></li><li data-yt="0--MwqCc_IM"><a href="https://www.youtube.com/watch?v=0--MwqCc_IM" target="_blank" rel="noopener">Explicación amplificador operacional no inversor (realimentación negativa)</a><span class="vnote"> Por qué con realimentación negativa $V^+=V^-$.</span></li></ul><p class="muted" style="font-size:13px;margin:8px 0 0">Los he elegido por su título y su tema, sin haberlos visto: comprueba que el enfoque coincide con el de tu profesor. Se abren en YouTube.</p></div></details>
 </section>
 
 <section class="sec tema" style="--tc:var(--c3);--tcs:var(--c3s)">
@@ -674,6 +689,7 @@ $$\frac{v_o}{v_s}=\frac{9}{1+9}\cdot100\cdot\frac{3}{1+3}=0{,}9\cdot100\cdot0{,}
 </ul>
 <p>Cada rama invierte la señal, y el sumador inversor final la devuelve con el signo correcto.</p>
 </div></details>
+<details class="vids"><summary><span class="pn">▶</span>Vídeos para reforzar este tema</summary><div class="inner"><ul class="vlist"><li data-yt="YGDTaIPfBFs"><a href="https://www.youtube.com/watch?v=YGDTaIPfBFs" target="_blank" rel="noopener">02 Amplificadores Operacionales: Inversor, No Inversor, Sumador, e Integrador</a><span class="vnote"> Inversor, sumador e integrador seguidos.</span></li><li data-yt="jKqmz1-p6i4"><a href="https://www.youtube.com/watch?v=jKqmz1-p6i4" target="_blank" rel="noopener">AMPLIFICADOR DIFERENCIAL CON OPERACIONAL</a><span class="vnote"> El restador, que sale en el pesaje y en el sensor.</span></li><li data-yt="QjyRRkSd7Wc"><a href="https://www.youtube.com/watch?v=QjyRRkSd7Wc" target="_blank" rel="noopener">Derivador e integrador con amplificadores operacionales</a><span class="vnote"> Para el derivador del examen de noviembre de 2021.</span></li></ul><p class="muted" style="font-size:13px;margin:8px 0 0">Los he elegido por su título y su tema, sin haberlos visto: comprueba que el enfoque coincide con el de tu profesor. Se abren en YouTube.</p></div></details>
 </section>
 
 <section class="sec tema" style="--tc:var(--c4);--tcs:var(--c4s)">
@@ -736,6 +752,7 @@ $$V_o=\begin{cases}+V_{sat}&V^+>V^-\\-V_{sat}&V^+&lt;V^-\end{cases}$$
 <p>Cada semiperiodo es el tiempo que tarda $V_C$ en ir de $-\beta V_{sat}$ a $+\beta V_{sat}$ mientras apunta a $+V_{sat}$: $t=RC\ln\dfrac{V_{sat}+\beta V_{sat}}{V_{sat}-\beta V_{sat}}$. El periodo es el doble:</p>
 $$T=2RC\,\ln\frac{1+\beta}{1-\beta},\qquad \beta=\frac{R_1}{R_1+R_2}$$
 <p>Con $R_1=R_2$ ($\beta=0{,}5$) queda $T=2RC\ln3\approx2{,}2\,RC$. La frecuencia es $f=1/T$. La salida es una cuadrada simétrica de amplitud $\pm V_{sat}$ y $V_C$ es una triangular redondeada entre $\pm\beta V_{sat}$.</p>
+<details class="vids"><summary><span class="pn">▶</span>Vídeos para reforzar este tema</summary><div class="inner"><ul class="vlist"><li data-yt="vx-hHn4rB98"><a href="https://www.youtube.com/watch?v=vx-hHn4rB98" target="_blank" rel="noopener">Comparador con histéresis, Amplificadores Operacionales: cómo calcular la histéresis (Trigger Schmitt)</a><span class="vnote"> Cálculo de los umbrales, como en el examen de febrero de 2020.</span></li><li data-yt="MzCOoWXR0gM"><a href="https://www.youtube.com/watch?v=MzCOoWXR0gM" target="_blank" rel="noopener">Amplificador como comparador: Schmitt trigger inversor</a><span class="vnote"> El Schmitt inversor del P1 de 24-25 y del termómetro.</span></li><li data-yt="QF6Ph0KHeqc"><a href="https://www.youtube.com/watch?v=QF6Ph0KHeqc" target="_blank" rel="noopener">Amplificador como comparador: Disparador Schmitt no inversor</a><span class="vnote"> La versión no inversora.</span></li></ul><p class="muted" style="font-size:13px;margin:8px 0 0">Los he elegido por su título y su tema, sin haberlos visto: comprueba que el enfoque coincide con el de tu profesor. Se abren en YouTube.</p></div></details>
 </section>
 
 <section class="sec tema" style="--tc:var(--c5);--tcs:var(--c5s)">
@@ -828,6 +845,7 @@ $$CMRR=\frac{A_d}{A_c},\qquad CMRR(dB)=20\log\frac{A_d}{A_c},\qquad V_{OUT}=A_dV
 <h3>5.12 Distorsión armónica</h3>
 <p>Un sistema no lineal que recibe una senoidal de frecuencia $f_0$ entrega, además de $f_0$, <b>armónicos</b> en $2f_0$, $3f_0$, etc. La <b>distorsión armónica total</b> (THD) mide cuánto pesan frente al fundamental: $THD=\dfrac{\sqrt{V_2^2+V_3^2+\dots}}{V_1}$.</p>
 <figure class="slide"><img src="img/t5-51.jpg" alt="Tema 5 · diapositiva 51. Un amplificador no lineal con una entrada de frecuencia f_o (un solo pico) saca el mismo tono más armónicos en" loading="lazy" width="1000" height="563"><figcaption><b class="n">Tema 5 · diapositiva 51</b>Un amplificador no lineal con una entrada de frecuencia $f_o$ (un solo pico) saca el mismo tono más armónicos en $2f_o$, $3f_o$… La suma de las componentes reconstruye la señal distorsionada.</figcaption></figure>
+<details class="vids"><summary><span class="pn">▶</span>Vídeos para reforzar este tema</summary><div class="inner"><ul class="vlist"><li data-yt="WMRQuvUdOYA"><a href="https://www.youtube.com/watch?v=WMRQuvUdOYA" target="_blank" rel="noopener">Medición del Slew Rate. Amplificadores operacionales.</a><span class="vnote"> Para los ejercicios de frecuencia máxima sin distorsión.</span></li><li data-yt="WZ8wdS-zQS0"><a href="https://www.youtube.com/watch?v=WZ8wdS-zQS0" target="_blank" rel="noopener">Calcular el error de tensión de salida de un amplificador operacional con tensión de Offset</a><span class="vnote"> Error de salida por offset.</span></li></ul><p class="muted" style="font-size:13px;margin:8px 0 0">Los he elegido por su título y su tema, sin haberlos visto: comprueba que el enfoque coincide con el de tu profesor. Se abren en YouTube.</p></div></details>
 </section>
 
 </main>
@@ -953,6 +971,24 @@ function plotSVG(o,items){
   });
 })();
 
+/* ---------- vídeos incrustados (solo fuera del visor de artefactos) ---------- */
+(function(){
+  if(!/(^|\.)github\.io$|^localhost$|^127\./.test(location.hostname))return;
+  document.querySelectorAll('.vlist li[data-yt]').forEach(function(li){
+    var b=document.createElement('button');b.type='button';b.className='vplay';b.textContent='▶ Ver aquí';
+    var box=null;
+    b.addEventListener('click',function(){
+      if(box){box.remove();box=null;b.textContent='▶ Ver aquí';return;}
+      box=document.createElement('div');box.className='vframe';
+      var f=document.createElement('iframe');
+      f.src='https://www.youtube-nocookie.com/embed/'+li.dataset.yt;
+      f.title='Vídeo de YouTube';f.loading='lazy';f.allowFullscreen=true;
+      f.allow='accelerometer; encrypted-media; gyroscope; picture-in-picture';
+      box.appendChild(f);li.appendChild(box);b.textContent='✕ Cerrar vídeo';
+    });
+    li.querySelector('a').after(b);
+  });
+})();
 /* ---------- búsqueda en todo el sitio ---------- */
 (function(){
   const norm=s=>s.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'');
