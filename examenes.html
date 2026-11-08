@@ -16,7 +16,7 @@ window.MathJax = { tex: { inlineMath: [['$','$']], displayMath: [['$$','$$']] },
 <link rel="manifest" href="manifest.webmanifest"><meta name="theme-color" content="#1d5fb8">
 <link rel="icon" type="image/png" sizes="192x192" href="icon-192.png"><link rel="apple-touch-icon" href="apple-touch-icon.png">
 <meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="Analógica">
-<link rel="stylesheet" href="style.css?v=1"></head><body data-page="examenes">
+<link rel="stylesheet" href="style.css?v=2"></head><body data-page="examenes">
 
 <div class="hub-bar" style="max-width:1180px;margin:0 auto;padding:10px 16px 0"><a href="https://helionacon-ui.github.io/GIEIA-UPCT/" style="display:inline-flex;align-items:center;gap:6px;font:600 13.5px/1 system-ui,sans-serif;padding:8px 12px;border-radius:999px;border:1px solid var(--line,#d3dcdf);background:var(--surface,var(--card,#fff));color:var(--fg,#18232b);text-decoration:none">← Todas las guías GIEyA</a></div>
 <header class="phead"><div class="eyebrow">UPCT · GIEyA · Electrónica Analógica · Practicar</div><h1>Exámenes resueltos</h1><p class="lede">Nueve exámenes y problemas de otros años resueltos desde cero</p></header>
@@ -48,6 +48,7 @@ window.MathJax = { tex: { inlineMath: [['$','$']], displayMath: [['$$','$$']] },
 <a class="sub" href="#x20b" style="--tc:var(--c4)">Sep 2020</a>
 <a class="sub" href="#x23a" style="--tc:var(--c5)">P1 Nov 2023</a>
 <a class="sub" href="#x24a" style="--tc:var(--c6)">Final P1 Ene 2024</a>
+<a class="sub" href="#x24j" style="--tc:var(--c6)">P1 Jul 2024</a>
 <a class="sub" href="#x2425a" style="--tc:var(--c2)">P1 curso 24-25</a>
 <a class="sub" href="#x21a" style="--tc:var(--c4)">P1 Nov 2021</a>
 <a class="sub" href="#xtemp" style="--tc:var(--c6)">Termómetro LM35</a>
@@ -68,13 +69,13 @@ window.MathJax = { tex: { inlineMath: [['$','$']], displayMath: [['$$','$$']] },
 <input type="search" id="srch" placeholder="Por ejemplo: slew rate, Schmitt, Miller, CMRR…" autocomplete="off" spellcheck="false">
 <div id="srch-out" class="srch-out" hidden></div></div>
 
-<nav class="onthispage" aria-label="En esta página" style="--tc:var(--c8);--tcs:var(--c8s)"><span>En esta página</span><a href="#exa-indice">Índice de exámenes</a><a href="#x13">Feb 2013</a><a href="#x16">Jul 2016</a><a href="#x20a">Feb 2020</a><a href="#x20b">Sep 2020</a><a href="#x23a">P1 Nov 2023</a><a href="#x24a">Final P1 Ene 2024</a><a href="#x2425a">P1 curso 24-25</a><a href="#x21a">P1 Nov 2021</a><a href="#xtemp">Termómetro LM35</a></nav>
+<nav class="onthispage" aria-label="En esta página" style="--tc:var(--c8);--tcs:var(--c8s)"><span>En esta página</span><a href="#exa-indice">Índice de exámenes</a><a href="#x13">Feb 2013</a><a href="#x16">Jul 2016</a><a href="#x20a">Feb 2020</a><a href="#x20b">Sep 2020</a><a href="#x23a">P1 Nov 2023</a><a href="#x24a">Final P1 Ene 2024</a><a href="#x24j">P1 Jul 2024</a><a href="#x2425a">P1 curso 24-25</a><a href="#x21a">P1 Nov 2021</a><a href="#xtemp">Termómetro LM35</a></nav>
 
 <section class="sec" style="--tc:var(--c8);--tcs:var(--c8s)">
 <div class="sh"><span class="badge" aria-hidden="true">✎</span><div class="shx"><p class="kick">Exámenes</p><h2 id="exa-indice">Exámenes de otros años, resueltos desde cero</h2></div></div>
 <div class="zero">
 <p class="ft">Cómo usar esta página</p>
-<p>Cada examen trae el enunciado (solo el circuito y los datos), la solución paso a paso y, cuando toca, una gráfica. Haz el ejercicio con papel y <b>abre solo el paso en el que te atascas</b>. Todos los números están recalculados aquí con un programa y coinciden con las soluciones del aula virtual, salvo dos casos en los que la solución publicada tiene un error de signo (se explican en el examen de noviembre de 2023 y en el de enero de 2024) un caso en el que el texto de la solución llama «paso bajo» a un pasa altos (curso 25-26) y un redondeo que da 0,83 dB de más (noviembre de 2021).</p>
+<p>Cada examen trae el enunciado (solo el circuito y los datos), la solución paso a paso y, cuando toca, una gráfica. Haz el ejercicio con papel y <b>abre solo el paso en el que te atascas</b>. Todos los números están recalculados aquí con un programa y coinciden con las soluciones del aula virtual, salvo dos casos en los que la solución publicada tiene un error de signo (se explican en el examen de noviembre de 2023 y en el de enero de 2024), un rango de tensión de modo común que no cuadra (julio de 2024), un caso en el que el texto de la solución llama «paso bajo» a un pasa altos (curso 25-26) y un redondeo que da 0,83 dB de más (noviembre de 2021).</p>
 </div>
 <div class="tw"><table>
 <tr><th>Examen</th><th>Ejercicio</th><th>Tema</th><th>Dificultad</th></tr>
@@ -84,6 +85,7 @@ window.MathJax = { tex: { inlineMath: [['$','$']], displayMath: [['$$','$$']] },
 <tr><td>Sep 2020</td><td><a href="#x20b">Filtro pasa banda con tres AO</a></td><td>Ganancia, $G(j\omega)$ y Bode</td><td>●●</td></tr>
 <tr><td>P1 Nov 2023</td><td><a href="#x23a">Sallen-Key con ganancia 2,9</a>, <a href="#x23b">red en T</a>, <a href="#x23c">inversor real</a></td><td>Bode de segundo orden, saturación, slew rate, tolerancias, corriente máxima</td><td>●●●</td></tr>
 <tr><td>Final P1 Ene 2024</td><td><a href="#x24a">Howland</a>, <a href="#x24b">Sallen-Key</a>, <a href="#x24c">zéner</a>, <a href="#x24d">diferencial</a></td><td>Fuente de corriente, Bode, comparador con zéner, CMRR</td><td>●●●</td></tr>
+<tr><td>P1 Jul 2024</td><td><a href="#x24j">Schmitt inversor</a>, <a href="#x24jb">dos Sallen-Key</a>, <a href="#x24jc">modo común</a>, <a href="#x24jd">ventana con diodos</a></td><td>Histéresis, Bode de cuarto orden, rango de entrada del operacional, comparadores y diodos</td><td>●●●</td></tr>
 <tr><td>P1 curso 24-25</td><td><a href="#x2425a">Schmitt con zéner</a>, <a href="#x2425b">dos etapas RC</a>, <a href="#x2425c">sensor ±10 V a 0–5 V</a></td><td>Histéresis con realimentación positiva, Bode con cero y dos polos, acondicionamiento de señal, $Z_i$, $Z_o$, $A_u$</td><td>●●●</td></tr>
 <tr><td>P1 curso 25-26</td><td><a href="examen-2025-26.html#x2526a">Pasa altos Sallen-Key</a>, <a href="examen-2025-26.html#x2526b">tiempo de establecimiento</a>, <a href="examen-2025-26.html#x2526c">pesaje con cuatro sensores</a></td><td>Bode de segundo orden con $K=1$, respuesta RC al escalón, sumadores y error por $R_s$</td><td>●●●</td></tr>
 <tr><td>P1 Nov 2021</td><td><a href="#x21a">Derivador con dos etapas</a>, <a href="#x21b">cuadripolos</a>, <a href="#x21c">slew rate</a></td><td>Bode con cinco factores, acoplamiento de impedancias, corriente máxima, frecuencia máxima</td><td>●●</td></tr>
@@ -349,6 +351,87 @@ window.MathJax = { tex: { inlineMath: [['$','$']], displayMath: [['$$','$$']] },
 </div>
 </section>
 
+<section class="sec tema" style="--tc:var(--c6);--tcs:var(--c6s)">
+<div class="sh"><span class="badge" aria-hidden="true">J</span><div class="shx"><p class="kick">Examen · primer parcial de la convocatoria de julio, curso 23-24</p><h2 id="x24j">Comparador con histéresis: umbrales y ciclo</h2></div></div>
+<div class="prob">
+<h3 class="ph">Ejercicio 1 · 2 puntos</h3>
+<div class="enun"><p class="et">Enunciado</p>
+<p>Con el operacional alimentado a ±12 V, $R_1=18$ kΩ y $R_2=2{,}2$ kΩ: (a) relación entre $V_{sal}$ y $V_{ent}$; (b) represéntala; (c) ¿qué tipo de circuito es?</p></div>
+<figure class="slide nota"><img src="img/ex-j1.jpg" alt="Operacional con Vent en la entrada negativa. La salida vuelve por 18 kiloohmios a la entrada positiva, que además tiene 2,2 kiloohmios a masa." loading="lazy" width="520" height="432"><figcaption><b class="n">Enunciado · julio de 2024</b>$V_{ent}$ entra por la <b>entrada negativa</b>; la salida vuelve a la positiva por $R_1$, con $R_2$ a masa.</figcaption></figure>
+<details class="paso" open><summary><span class="pn">0</span>La idea, desde cero</summary><div class="inner"><p>La salida se conecta de vuelta a la entrada <b>positiva</b>: realimentación positiva. Entonces el operacional ya no es un amplificador, <b>satura</b>: su salida solo puede valer $+12$ V o $-12$ V. Lo que cambia con la señal es <i>cuándo</i> pasa de una a otra. Para saberlo se mira el signo de $u_d=u^+-u^-$, con $u^-=V_{ent}$.</p></div></details>
+<details class="paso"><summary><span class="pn">1</span>Tensión en la entrada positiva</summary><div class="inner"><p>$R_1$ y $R_2$ forman un divisor entre la salida y masa: $u^+=\dfrac{R_2}{R_1+R_2}V_{sal}=\dfrac{2{,}2}{20{,}2}V_{sal}=0{,}109\,V_{sal}$. Con la salida en $\pm12$ V, $u^+=\pm1{,}307$ V. Y $u_d=u^+-V_{ent}$.</p></div></details>
+<details class="paso"><summary><span class="pn">2</span>Si la salida está en $+12$ V</summary><div class="inner"><p>$u^+=+1{,}307$ V. Se mantiene en $+12$ V mientras $u_d>0$, esto es, $V_{ent}&lt;1{,}307$ V. Cuando la entrada <b>sube</b> por encima de $+1{,}307$ V, $u_d$ cambia de signo y la salida cae a $-12$ V.</p></div></details>
+<details class="paso"><summary><span class="pn">3</span>Si la salida está en $-12$ V</summary><div class="inner"><p>$u^+=-1{,}307$ V. Se mantiene en $-12$ V mientras $u_d&lt;0$, es decir, $V_{ent}>-1{,}307$ V. Cuando la entrada <b>baja</b> de $-1{,}307$ V, la salida sube a $+12$ V.</p></div></details>
+<details class="paso"><summary><span class="pn">4</span>Gráfica y nombre</summary><div class="inner"><p>Entre $-1{,}307$ V y $+1{,}307$ V la salida puede valer cualquiera de las dos: <b>depende de la historia</b>. Eso es histéresis, de ancho $2\cdot1{,}307=2{,}61$ V. Como la entrada va a la negativa y la salida se invierte, es un <b>comparador con histéresis (Schmitt trigger) inversor</b>.</p></div></details>
+<figure class="fig"><p class="ft">Característica de transferencia · julio de 2024, ejercicio 1</p>
+<div id="fig-xj1"></div>
+<p class="muted" style="font-size:13px;margin:4px 0 0">Azul continuo: la entrada sube. Rojo discontinuo: la entrada baja.</p></figure>
+<div class="box trap"><h4>Ojo: el umbral es $R_2/(R_1+R_2)\cdot V_{cc}$, no $R_1/(R_1+R_2)$</h4><p>El dibujo final de la solución del aula virtual rotula los umbrales con $R_1/(R_1+R_2)V_{cc}$. Con $R_1=18$ kΩ eso daría 10,7 V, y los cálculos numéricos de la propia solución dan 1,31 V, que es la cifra buena con $R_2/(R_1+R_2)$. Es una errata de rotulado.</p></div>
+<details class="resul"><summary>Resultado</summary><div class="inner"><p class="et">Solución</p><p>Schmitt inversor con salidas $\pm12$ V y umbrales $\pm1{,}307$ V (sube en $+1{,}307$ V, baja en $-1{,}307$ V). Histéresis de 2,61 V.</p></div></details>
+</div>
+
+<div class="prob" id="x24jb">
+<h3 class="ph">Ejercicio 2 · 2,5 puntos · dos Sallen-Key de ganancia 1 en cascada</h3>
+<div class="enun"><p class="et">Enunciado</p>
+<p>(a) Obtén $G(j\omega)=V_o/V_i$. (b) Dibuja el diagrama de Bode. Datos: $R_1=R_2=3{,}9$ kΩ, $R_3=R_4=9{,}1$ kΩ, $C_1=C_3=15$ nF, $C_2=100$ nF, $C_4=18$ nF.</p></div>
+<figure class="slide nota"><img src="img/ex-j2.jpg" alt="Dos etapas iguales en cascada. Cada una tiene dos resistencias en serie, un condensador de realimentación desde la salida al nudo entre ellas, un condensador a masa en la entrada positiva y el operacional como seguidor." loading="lazy" width="800" height="258"><figcaption><b class="n">Enunciado · julio de 2024</b>Cada etapa es un Sallen-Key con el operacional como seguidor (ganancia 1). $C_2$ y $C_4$ son los condensadores de realimentación.</figcaption></figure>
+<details class="paso" open><summary><span class="pn">0</span>La idea, desde cero</summary><div class="inner"><p>Hay dos etapas <b>iguales en forma</b> y la salida de la primera (un operacional, impedancia de salida casi cero) alimenta a la segunda sin cargarla. Por eso $G=G_1\cdot G_2$: calculas una etapa en general y la aplicas dos veces con números distintos. En Bode eso significa <b>sumar los dos diagramas en dB</b>.</p></div></details>
+<details class="paso"><summary><span class="pn">1</span>Una etapa, en general</summary><div class="inner"><p>Llama $A$ al nudo entre las dos resistencias ($R_a$ y $R_b$) y $V_o$ a la salida. El operacional es un seguidor: $V^+=V^-=V_o$. $C_a$ (a masa) y $R_b$ hacen un divisor: $V^+=\dfrac{V_A}{1+j\omega C_aR_b}$, luego $V_A=(1+j\omega C_aR_b)V_o$.</p>
+<p>La corriente por $R_b$ es la que carga $C_a$: vale $j\omega C_aV_o$ (porque $V^+=V_o$). La que sale por $C_b$ hacia la salida es $j\omega C_b(V_A-V_o)$. En el nudo $A$ entra por $R_a$ la suma de las dos:</p>
+<p>$\dfrac{V_i-V_A}{R_a}=j\omega C_b(V_A-V_o)+j\omega C_aV_o$. Sustituyes $V_A=(1+j\omega C_aR_b)V_o$ y ordenas:</p>
+<p>$\boxed{G=\dfrac{1}{1+j\omega\,C_a(R_a+R_b)+(j\omega)^2R_aR_bC_aC_b}}$</p>
+<p>Es un <b>pasa bajos de segundo orden con ganancia 1</b>, con $\omega_0=\dfrac{1}{\sqrt{R_aR_bC_aC_b}}$ y $Q=\dfrac{\sqrt{R_aR_bC_aC_b}}{C_a(R_a+R_b)}$.</p></div></details>
+<details class="paso"><summary><span class="pn">2</span>Primera etapa ($R_1,R_2,C_1,C_2$)</summary><div class="inner"><p>$C_1(R_1+R_2)=15\cdot10^{-9}\cdot7800=1{,}17\cdot10^{-4}$ y $R_1R_2C_1C_2=3900^2\cdot15\cdot10^{-9}\cdot100\cdot10^{-9}=2{,}28\cdot10^{-8}$.</p>
+<p>$G_1=\dfrac{1}{1+1{,}17\cdot10^{-4}\,j\omega+2{,}28\cdot10^{-8}(j\omega)^2}$, con $\omega_{01}=6620$ rad/s (1054 Hz) y $Q_1=1{,}29$. Los polos son complejos: $-2564\pm j\,6104$ rad/s.</p></div></details>
+<details class="paso"><summary><span class="pn">3</span>Segunda etapa ($R_3,R_4,C_3,C_4$)</summary><div class="inner"><p>$C_3(R_3+R_4)=15\cdot10^{-9}\cdot18200=2{,}73\cdot10^{-4}$ y $R_3R_4C_3C_4=9100^2\cdot15\cdot10^{-9}\cdot18\cdot10^{-9}=2{,}24\cdot10^{-8}$.</p>
+<p>$G_2=\dfrac{1}{1+2{,}73\cdot10^{-4}\,j\omega+2{,}24\cdot10^{-8}(j\omega)^2}$, con $\omega_{02}=6688$ rad/s (1064 Hz) y $Q_2=0{,}548$. Polos complejos: $-6105\pm j\,2730$ rad/s.</p></div></details>
+<details class="paso"><summary><span class="pn">4</span>(a) Resultado global</summary><div class="inner"><p>$G(j\omega)=G_1\,G_2$, producto de los dos cuadráticos anteriores. Cuarto orden, ganancia 1 (0 dB) en continua.</p></div></details>
+<details class="paso"><summary><span class="pn">5</span>(b) Bode</summary><div class="inner"><p>Las dos frecuencias propias están casi juntas ($\omega_{01}\approx\omega_{02}\approx6{,}65\cdot10^3$ rad/s), así que el diagrama asintótico es: <b>0 dB hasta unos 6650 rad/s y después $-80$ dB/dec</b> (dos pares de polos). La fase baja de 0° a $-360^\circ$ y vale $-180^\circ$ en esa zona.</p>
+<p>La curva real tiene pequeños detalles. La primera etapa ($Q=1{,}29$) suma $+2{,}2$ dB en $\omega_{01}$ y la segunda ($Q=0{,}548$) resta $5{,}2$ dB en $\omega_{02}$: se compensan y el conjunto queda <b>casi plano</b> hasta el codo (variación máxima de 0,05 dB), con $-3$ dB en $\omega\approx6650$ rad/s (1058 Hz). Algunos valores: $-0{,}35$ dB a 5000, $-14{,}3$ dB a $10^4$, $-38{,}2$ dB a $2\cdot10^4$ y $-94$ dB a $10^5$ rad/s.</p>
+<p>No es casualidad: unos $Q$ de 0,541 y 1,307 son los de un filtro <b>Butterworth de cuarto orden</b>, y los de este ejercicio (0,548 y 1,29) se les parecen. Es un <b>pasa bajos de cuarto orden casi Butterworth, con frecuencia de corte de unos 1,06 kHz</b>.</p></div></details>
+<figure class="fig"><p class="ft">Bode · julio de 2024, ejercicio 2</p>
+<div id="fig-xj2"></div>
+<p class="muted" style="font-size:13px;margin:4px 0 0">Azul: módulo exacto. Discontinuo: asíntotas ($-80$ dB/dec desde 6650 rad/s). Las líneas verticales marcan $\omega_{01}$ y $\omega_{02}$.</p></figure>
+<div class="box trap"><h4>Ojo: no confundas los dos condensadores de cada etapa</h4><p>En cada etapa el condensador <b>a masa</b> (el que está en la entrada positiva) va multiplicando la <b>suma</b> $R_a+R_b$ en el término de primer orden, y el de <b>realimentación</b> solo aparece en el producto del término de segundo orden. Si los intercambias, $Q$ sale mal (con $C_2=100$ nF a masa, $Q_1$ sería 0,19 en vez de 1,29). La solución del aula virtual da los polos de la segunda etapa redondeados ($-6148\pm j\,2691$ en vez de $-6105\pm j\,2730$): es redondeo de $2{,}24\cdot10^{-8}$ a $(1{,}49\cdot10^{-4})^2$, sin importancia.</p></div>
+<details class="resul"><summary>Resultado</summary><div class="inner"><p class="et">Solución</p><p>$G=\dfrac{1}{(1+1{,}17\cdot10^{-4}j\omega+2{,}28\cdot10^{-8}(j\omega)^2)(1+2{,}73\cdot10^{-4}j\omega+2{,}24\cdot10^{-8}(j\omega)^2)}$. Pasa bajos de cuarto orden, 0 dB, codo hacia 6650 rad/s y $-80$ dB/dec.</p></div></details>
+</div>
+
+<div class="prob" id="x24jc">
+<h3 class="ph">Problema · 5,5 puntos · parte I · amplificador diferencial y tensión de modo común</h3>
+<div class="enun"><p class="et">Enunciado</p>
+<p>Etapa de entrada de un sistema de adquisición, con un operacional alimentado a $\pm12$ V que soporta en sus entradas tensiones hasta las de alimentación y da en su salida valores próximos a ellas. Se prevé que $V_d$ entre las dos entradas no pase de 5 V. Datos: $R_1=R_3=1$ kΩ, $R_2=R_4=2$ kΩ. (a) ¿Qué $V_d$ máxima se puede introducir sin saturar la etapa? (b) ¿Cuál es la mayor tensión en modo común permitida? ¿Qué pasaría si se supera?</p></div>
+<figure class="slide nota"><img src="img/ex-j3.jpg" alt="Amplificador diferencial. V1 entra por R1 a la entrada negativa, con R2 de realimentación. V2 entra por R3 a la entrada positiva, con R4 a masa. Vd es la diferencia entre V1 y V2." loading="lazy" width="620" height="387"><figcaption><b class="n">Enunciado · julio de 2024</b>Amplificador diferencial clásico: $V_d=V_1-V_2$ según la flecha del enunciado.</figcaption></figure>
+<details class="paso" open><summary><span class="pn">0</span>La idea, desde cero</summary><div class="inner"><p>Un diferencial amplifica la <b>diferencia</b> $V_d$ de sus dos entradas y debería ignorar lo que tienen <b>en común</b>, $V_c=\dfrac{V_1+V_2}{2}$. Pero el operacional tiene límites físicos: su salida no puede pasar de $\pm12$ V (limita $V_d$), y sus entradas tampoco pueden salirse de $\pm12$ V (limita $V_c$). Son dos límites distintos.</p></div></details>
+<details class="paso"><summary><span class="pn">1</span>Salida del circuito</summary><div class="inner"><p>Con operacional ideal, $u^+=u^-$ y $u^+=\dfrac{R_4}{R_3+R_4}V_2=\dfrac23V_2$. En el nudo de la entrada negativa, $\dfrac{V_1-u^-}{R_1}=\dfrac{u^--V_o}{R_2}$, de donde $V_o=\left(1+\dfrac{R_2}{R_1}\right)u^--\dfrac{R_2}{R_1}V_1=3u^--2V_1$. Sustituyes $u^-=\tfrac23V_2$: <b>$V_o=2(V_2-V_1)=-2V_d$</b>. Ganancia diferencial 2.</p></div></details>
+<details class="paso"><summary><span class="pn">2</span>(a) Máxima $V_d$ sin saturar</summary><div class="inner"><p>La salida debe quedar dentro de $\pm12$ V: $|V_o|=2|V_d|&lt;12$, luego <b>$|V_d|&lt;6$ V</b>. Con los 5 V previstos hay margen.</p></div></details>
+<details class="paso"><summary><span class="pn">3</span>(b) Qué limita el modo común</summary><div class="inner"><p>Las entradas del operacional valen $u^+=u^-=\tfrac23V_2$, y deben estar entre $-12$ V y $+12$ V. Eso exige $|V_2|\le18$ V. Con $V_2=V_c-\dfrac{V_d}{2}$ y $|V_d|\le5$ V (el peor caso es el que más acerca $V_2$ al límite, es decir $V_d=-5$ V para el máximo y $V_d=+5$ V para el mínimo):</p>
+<p>$V_{c,max}=18-2{,}5=\mathbf{15{,}5}$ V y $V_{c,min}=-18+2{,}5=\mathbf{-15{,}5}$ V.</p>
+<p>Comprobación para $V_c=15{,}5$ V y $V_d=-5$ V: $V_1=13$ V, $V_2=18$ V, $u^+=12$ V (justo en el límite) y $V_o=2(18-13)=10$ V, dentro de $\pm12$ V. Un poco más y $u^+$ se pasa de 12 V.</p></div></details>
+<details class="paso"><summary><span class="pn">4</span>¿Qué pasa si se supera?</summary><div class="inner"><p>La entrada del operacional sale de su <b>rango de modo común de entrada</b>. Fuera de él deja de comportarse como un diferencial: la salida deja de seguir a $-2V_d$, se distorsiona o se queda saturada, y con tensiones muy grandes en las entradas el operacional puede dañarse.</p></div></details>
+<div class="box trap"><h4>Ojo: el rango de la solución del aula virtual no coincide con éste</h4><p>La solución publicada da $V_c\in[-9{,}5;\,15{,}5]$ V (y en el cuerpo del cálculo aparece también $-10{,}5$ V). Lo he recomprobado con un programa: con $V_c=-15{,}5$ V y $V_d=+5$ V, $u^+=-12$ V, justo en el límite, y con $V_c=-15{,}51$ V ya se sale; el rango simétrico $\pm15{,}5$ V es el que sigue del enunciado. Los 9,5 V salen si se exige además que $V_1\le12$ V ($12-2{,}5$), cosa que el enunciado no pide porque $V_1$ no es una entrada del operacional. Y el $-10{,}5$ V viene de usar 13 en vez de 18 en el límite inferior. El máximo, 15,5 V, sí coincide. Si el profesor corrige con su rango, conviene razonar en el examen que el límite lo ponen las entradas del operacional.</p></div>
+<details class="resul"><summary>Resultado</summary><div class="inner"><p class="et">Solución</p><p>$V_o=-2V_d$. (a) $|V_d|&lt;6$ V. (b) $|V_c|\le15{,}5$ V. Por encima, el operacional sale de su rango de entrada y la etapa deja de amplificar bien.</p></div></details>
+</div>
+
+<div class="prob" id="x24jd">
+<h3 class="ph">Problema · parte II · comparadores con ventana y diodos</h3>
+<div class="enun"><p class="et">Enunciado</p>
+<p>Componentes ideales. Obtén las ecuaciones de la salida y grafícala para una entrada senoidal de 20 V pico a pico ($V_{max}=10$ V).</p></div>
+<figure class="slide nota"><img src="img/ex-j4.jpg" alt="Dos operacionales sin realimentación. El de arriba tiene +3,5 V en la entrada positiva y Vent en la negativa. El de abajo tiene Vent en la positiva y +4,75 V en la negativa. Cada salida pasa por un diodo hasta un nudo común con 1 kiloohmio a masa, que es Vsal." loading="lazy" width="560" height="346"><figcaption><b class="n">Enunciado · julio de 2024</b>Alimentaciones $\pm12$ V. Sin realimentación, los dos operacionales son comparadores.</figcaption></figure>
+<details class="paso" open><summary><span class="pn">0</span>La idea, desde cero</summary><div class="inner"><p>Un operacional <b>sin realimentación</b> es un comparador: su salida es $+12$ V si $u^+>u^-$ y $-12$ V si no. Los diodos ideales solo dejan pasar tensión positiva hacia el nudo de salida, donde la resistencia a masa la convierte en $V_{sal}$. Así que $V_{sal}$ es el mayor de tres valores: la salida de cada comparador (si es positiva) y 0 V.</p></div></details>
+<details class="paso"><summary><span class="pn">1</span>Cada comparador</summary><div class="inner"><p>AO1 ($u^+=3{,}5$ V, $u^-=V_{ent}$): salida $+12$ V si $V_{ent}&lt;3{,}5$ V y $-12$ V si $V_{ent}>3{,}5$ V.</p>
+<p>AO2 ($u^+=V_{ent}$, $u^-=4{,}75$ V): salida $+12$ V si $V_{ent}>4{,}75$ V y $-12$ V si $V_{ent}&lt;4{,}75$ V.</p></div></details>
+<details class="paso"><summary><span class="pn">2</span>Tres zonas</summary><div class="inner"><p><b>$V_{ent}&lt;3{,}5$ V:</b> AO1 da $+12$ V (D1 conduce) y AO2 da $-12$ V (D2 cortado): $V_{sal}=12$ V.</p>
+<p><b>$3{,}5&lt;V_{ent}&lt;4{,}75$ V:</b> los dos dan $-12$ V, los dos diodos cortados y la resistencia deja el nudo en $V_{sal}=0$ V.</p>
+<p><b>$V_{ent}>4{,}75$ V:</b> AO1 da $-12$ V (D1 cortado) y AO2 da $+12$ V (D2 conduce): $V_{sal}=12$ V.</p>
+<p>Es un <b>detector de ventana invertido</b>: 12 V fuera de la ventana [3,5 V; 4,75 V] y 0 V dentro.</p></div></details>
+<details class="paso"><summary><span class="pn">3</span>La senoidal de 10 V de pico</summary><div class="inner"><p>$V_{ent}=10\sin\theta$. Los niveles se cruzan en $\theta=\arcsin0{,}35=20{,}49^\circ$ y $\theta=\arcsin0{,}475=28{,}36^\circ$, y por simetría en $151{,}64^\circ$ y $159{,}51^\circ$. Solo hay dos <b>muescas a 0 V</b> por periodo, de 7,87° cada una (un 4,4 % del periodo en total). El resto del tiempo, incluida toda la semionda negativa, $V_{sal}=12$ V.</p></div></details>
+<figure class="fig"><p class="ft">Entrada y salida durante un periodo · julio de 2024</p>
+<div id="fig-xj4"></div>
+<p class="muted" style="font-size:13px;margin:4px 0 0">Azul: $V_{ent}$. Rojo: $V_{sal}$. Discontinuas: los niveles de 3,5 V y 4,75 V.</p></figure>
+<details class="resul"><summary>Resultado</summary><div class="inner"><p class="et">Solución</p><p>$V_{sal}=12$ V si $V_{ent}&lt;3{,}5$ V o $V_{ent}>4{,}75$ V, y $V_{sal}=0$ V entre ambos. Con la senoidal, dos muescas a 0 V por periodo entre 20,5° y 28,4° y entre 151,6° y 159,5°.</p></div></details>
+</div>
+</section>
+
 <section class="sec tema" style="--tc:var(--c2);--tcs:var(--c2s)">
 <div class="sh"><span class="badge" aria-hidden="true">24</span><div class="shx"><p class="kick">Examen · primer parcial, curso 24-25 (octubre de 2024)</p><h2 id="x2425a">Comparador con zéner y realimentación positiva</h2></div></div>
 <div class="prob">
@@ -488,7 +571,7 @@ window.MathJax = { tex: { inlineMath: [['$','$']], displayMath: [['$$','$$']] },
 </main>
 </div>
 <nav class="pager" aria-label="Páginas"><a href="examen-2025-26.html"><small>← Anterior</small>P1 curso 25-26 resuelto</a><a class="nx" href="fuen.html"><small>Siguiente →</small>Apuntes de Fuen</a></nav>
-<script src="app.js?v=1"></script>
+<script src="app.js?v=2"></script>
 <script>
 /* ---------- exámenes: gráficas ---------- */
 (function(){
@@ -544,6 +627,32 @@ window.MathJax = { tex: { inlineMath: [['$','$']], displayMath: [['$$','$$']] },
       {t:'line',x:[0,2.325,2.325,9.2,9.2,10],y:[3.6,3.6,-8.6,-8.6,3.6,3.6],c:'s2',w:2.4},
       {t:'vline',x:2.325,c:'s3'},{t:'vline',x:9.2,c:'s3'},
       {t:'text',x:1.1,y:5.6,s:'3,6 V',c:'s2'},{t:'text',x:6,y:-10.5,s:'−8,6 V',c:'s2'}]);
+  })();
+
+
+  // Jul 2024: Schmitt inversor, Bode de cuarto orden, ventana con diodos
+  $('fig-xj1').innerHTML=plotSVG({x0:-4,x1:4,y0:-16,y1:16,xt:[-4,-1.307,0,1.307,4],yt:[-12,0,12],xtf:v=>(Math.round(v*100)/100).toString().replace('.',',')+' V',ytf:v=>v+' V',label:'Característica del Schmitt inversor de julio de 2024',yl:'Vsal',xl:'Vent'},[
+    {t:'line',x:[-4,1.307,1.307,4],y:[12,12,-12,-12],c:'s1',w:2.4},
+    {t:'line',x:[4,-1.307,-1.307,-4],y:[-12,-12,12,12],c:'s2',w:2.4,dash:1},
+    {t:'vline',x:1.307,c:'s1'},{t:'vline',x:-1.307,c:'s2'}]);
+  (function(){
+    const a1=1.17e-4,b1=2.2815e-8,a2=2.73e-4,b2=2.23587e-8;
+    const x=rng(2.5,5,400);
+    const mag=l=>{const w=Math.pow(10,l);return -20*Math.log10(Math.hypot(1-b1*w*w,a1*w))-20*Math.log10(Math.hypot(1-b2*w*w,a2*w));};
+    const w1=1/Math.sqrt(b1),w2=1/Math.sqrt(b2),wm=Math.log10(Math.sqrt(w1*w2));
+    const asy=l=>-80*Math.max(0,l-wm);
+    $('fig-xj2').innerHTML=plotSVG({x0:2.5,x1:5,y0:-100,y1:10,yt:[-100,-80,-60,-40,-20,0],xt:[3,4,5],xtf:lab,label:'Bode del filtro de cuarto orden de julio de 2024',yl:'|G| dB',xl:'ω rad/s'},[
+      {t:'line',x,y:x.map(asy),c:'s3',dash:1,w:1.6},{t:'line',x,y:x.map(mag),c:'s1'},
+      {t:'vline',x:Math.log10(w1),c:'s2'},{t:'vline',x:Math.log10(w2),c:'s2'}]);
+  })();
+  (function(){
+    const th=[];for(let i=0;i<=360;i+=2)th.push(i);
+    const a=Math.asin(.35)*180/Math.PI,b=Math.asin(.475)*180/Math.PI;
+    $('fig-xj4').innerHTML=plotSVG({x0:0,x1:360,y0:-12,y1:14,xt:[0,90,180,270,360],yt:[-10,0,12],xtf:v=>v+'°',ytf:v=>v+' V',label:'Entrada senoidal y salida del detector de ventana',yl:'V',xl:'θ'},[
+      {t:'line',x:[0,360],y:[3.5,3.5],c:'s3',dash:1,w:1.2},{t:'line',x:[0,360],y:[4.75,4.75],c:'s3',dash:1,w:1.2},
+      {t:'line',x:th,y:th.map(v=>10*Math.sin(v*Math.PI/180)),c:'s1',w:2},
+      {t:'line',x:[0,a,a,b,b,180-b,180-b,180-a,180-a,360],y:[12,12,0,0,12,12,0,0,12,12],c:'s2',w:2.4},
+      {t:'text',x:200,y:5.6,s:'4,75 V',a:'start',c:'s3'},{t:'text',x:200,y:2.2,s:'3,5 V',a:'start',c:'s3'}]);
   })();
 
   // P1 curso 24-25 Ej1: Schmitt inversor, umbrales 0 y 5 V, salidas ±15 V
