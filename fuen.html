@@ -1,0 +1,822 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="description" content="Electrónica Analógica (UPCT): Siete problemas rehechos y 26 páginas de apuntes explicadas.">
+<title>Electrónica Analógica · Apuntes de Fuen</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=IBM+Plex+Sans:ital,wght@0,400;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<script>
+window.MathJax = { tex: { inlineMath: [['$','$']], displayMath: [['$$','$$']] }, svg: { fontCache: 'global' } };
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-svg.js"></script>
+<style>
+/* Layout: columna de lectura con índice lateral fijo; el triángulo del operacional y la recta de −20 dB/década como motivo */
+/* Layout: columna de lectura con índice lateral fijo en escritorio; el disco unidad del plano z como motivo */
+:root{
+  --bg:#f3f5fa; --surface:#ffffff; --fg:#141b2b; --muted:#566178; --line:#d6dce9;
+  --accent:#1d5fb8; --accent-soft:#e1ebf9; --warn:#b2482a; --warn-soft:#f7e6df;
+  --display:"Bricolage Grotesque", "Segoe UI", system-ui, sans-serif;
+  --body:"IBM Plex Sans", "Segoe UI", system-ui, sans-serif;
+  --mono:"IBM Plex Mono", ui-monospace, Consolas, monospace;
+}
+@media (prefers-color-scheme: dark){ :root:not([data-theme="light"]){
+  --bg:#0e131d; --surface:#161d2b; --fg:#e4e9f3; --muted:#9aa6bb; --line:#2a3445;
+  --accent:#6ea8f2; --accent-soft:#162a49; --warn:#ef8a68; --warn-soft:#3a221a; color-scheme:dark; } }
+:root[data-theme="dark"]{
+  --bg:#0e131d; --surface:#161d2b; --fg:#e4e9f3; --muted:#9aa6bb; --line:#2a3445;
+  --accent:#6ea8f2; --accent-soft:#162a49; --warn:#ef8a68; --warn-soft:#3a221a; color-scheme:dark; }
+
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--fg);font-family:var(--body);font-size:16px;line-height:1.6;
+  padding-left:max(16px, env(safe-area-inset-left, 0px));padding-right:max(16px, env(safe-area-inset-right, 0px));padding-block:0 64px}
+.wrap{max-width:1120px;margin:0 auto;display:grid;grid-template-columns:220px minmax(0,1fr);gap:48px}
+@media (max-width:860px){.wrap{grid-template-columns:minmax(0,1fr);gap:0}.toc{display:none}}
+header.hero{max-width:1120px;margin:0 auto;padding-block:40px 28px;display:grid;grid-template-columns:minmax(0,1fr) 180px;gap:32px;align-items:center;border-bottom:1px solid var(--line);margin-bottom:32px}
+@media (max-width:600px){header.hero{grid-template-columns:minmax(0,1fr)}header.hero svg{display:none}}
+.eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--accent)}
+h1{font-family:var(--display);font-weight:700;font-size:clamp(32px,5vw,48px);line-height:1.08;margin:8px 0 12px;text-wrap:balance}
+.lede{color:var(--muted);max-width:62ch;margin:0}
+h2{font-family:var(--display);font-weight:700;font-size:28px;line-height:1.2;margin:56px 0 8px;text-wrap:balance;scroll-margin-top:16px}
+h3{font-family:var(--display);font-weight:500;font-size:20px;margin:32px 0 8px;text-wrap:balance}
+h4{font-size:13px;font-family:var(--mono);text-transform:uppercase;letter-spacing:.07em;color:var(--muted);margin:24px 0 6px;font-weight:500}
+p,li{max-width:70ch}
+main{min-width:0}
+.toc{position:sticky;top:env(safe-area-inset-top,0px);align-self:start;padding-top:8px;max-height:100vh;overflow:auto}
+.toc a{display:block;color:var(--muted);text-decoration:none;font-size:14px;padding:4px 0 4px 10px;border-left:2px solid var(--line)}
+.toc a:hover,.toc a:focus-visible{color:var(--fg);border-left-color:var(--accent);outline:none}
+.toc .grp{font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--accent);margin:18px 0 6px}
+.tag{display:inline-block;font-family:var(--mono);font-size:12px;padding:2px 8px;border-radius:4px;background:var(--accent-soft);color:var(--accent);margin-right:6px}
+.tag.w{background:var(--warn-soft);color:var(--warn)}
+.box{background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:16px 20px;margin:16px 0}
+.box.key{border-left:3px solid var(--accent)}
+.box.trap{border-left:3px solid var(--warn)}
+.box > :first-child{margin-top:0}.box > :last-child{margin-bottom:0}
+.math{overflow-x:auto;overflow-y:hidden;max-width:100%}
+mjx-container[display="true"]{overflow-x:auto;overflow-y:hidden;max-width:100%;padding:2px 0}
+ol.steps{padding-left:22px}ol.steps li{margin:6px 0}
+details{background:var(--surface);border:1px solid var(--line);border-radius:8px;margin:14px 0}
+details>summary{cursor:pointer;padding:12px 18px;font-weight:600;list-style:none;display:flex;gap:10px;align-items:baseline}
+details>summary::-webkit-details-marker{display:none}
+details>summary::before{content:"+";font-family:var(--mono);color:var(--accent);width:1ch}
+details[open]>summary::before{content:"−"}
+details>summary:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:8px}
+details .inner{padding:0 20px 16px;border-top:1px solid var(--line)}
+.src{font-family:var(--mono);font-size:12px;color:var(--muted);font-weight:400}
+table{border-collapse:collapse;width:100%;font-size:15px}
+.tw{overflow-x:auto;margin:12px 0}
+th,td{text-align:left;padding:8px 10px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-family:var(--mono);font-size:12px;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);font-weight:500}
+pre{background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:14px 16px;overflow-x:auto;font-family:var(--mono);font-size:13.5px;line-height:1.5}
+code{font-family:var(--mono);font-size:.92em}
+.grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px}
+.grid2 .box{margin:0}
+.check{display:flex;gap:10px;align-items:flex-start;padding:8px 0;border-bottom:1px solid var(--line)}
+.check input{margin-top:5px;accent-color:var(--accent);width:16px;height:16px;flex:none}
+.check label{cursor:pointer}
+.bar{height:6px;background:var(--line);border-radius:3px;overflow:hidden;margin:8px 0 4px;max-width:420px}
+.bar i{display:block;height:100%;background:var(--accent);width:0;transition:width .3s}
+@media (prefers-reduced-motion:reduce){.bar i{transition:none}}
+.muted{color:var(--muted)}
+a{color:var(--accent)}
+
+figure.fig{margin:20px 0;background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:14px 16px}
+figure.fig figcaption{font-size:14px;color:var(--muted);margin-top:8px;max-width:70ch}
+figure.fig .ft{font-family:var(--mono);font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--accent);margin:0 0 6px}
+.plot{width:100%;height:auto;display:block}
+.plot .grid{stroke:var(--line);stroke-width:1}
+.plot .ax{stroke:var(--muted);stroke-width:1}
+.plot .tk,.plot .lb{fill:var(--muted);font-family:var(--mono);font-size:11px;stroke:none}
+.plot .lb.s1{fill:var(--accent)} .plot .lb.s2{fill:var(--warn)} .plot .lb.s3{fill:var(--fg)}
+.s1{stroke:var(--accent);fill:var(--accent)} .s2{stroke:var(--warn);fill:var(--warn)} .s3{stroke:var(--fg);fill:var(--fg)}
+.plot .st{stroke-width:1.6}
+.plot .ln{fill:none;stroke-width:2}
+.plot .ar{stroke:none}
+.plot .ar.area{fill:var(--accent);fill-opacity:.18}
+.plot .ar.areaw{fill:var(--warn);fill-opacity:.22}
+.plot .vl{stroke-width:1.2}
+.plot .dbg{fill:var(--surface)}
+details .inner{overflow-x:auto}
+main{overflow-wrap:break-word}
+.plot .disk{fill:var(--accent);fill-opacity:.12;stroke:var(--accent);stroke-width:1.5}
+.plot .outz{fill:var(--warn);fill-opacity:.10}
+.plot .zr{fill:none;stroke:var(--fg);stroke-width:1.8}
+.plot .px{stroke-width:2.5;fill:none}
+.plot .blk{fill:var(--surface);stroke:var(--fg);stroke-width:1.4}
+.plot .wire{stroke:var(--fg);stroke-width:1.4;fill:none}
+.plot .ahd{fill:var(--fg)}
+.plot .bt{fill:var(--fg);font-family:var(--body);font-size:13px}
+.ctrl{display:flex;flex-wrap:wrap;gap:10px 22px;align-items:center;font-size:14px;margin:4px 0 10px}
+.ctrl label{display:flex;gap:8px;align-items:center}
+.ctrl input[type=range]{width:190px;max-width:60vw;accent-color:var(--accent)}
+.ctrl output{font-family:var(--mono);font-size:13px;min-width:5ch}
+.pill{font-family:var(--mono);font-size:12px;padding:2px 10px;border-radius:999px;background:var(--accent-soft);color:var(--accent)}
+.pill.bad{background:var(--warn-soft);color:var(--warn)}
+.figrow{display:grid;grid-template-columns:minmax(0,250px) minmax(0,1fr);gap:16px;align-items:center}
+@media (max-width:640px){.figrow{grid-template-columns:minmax(0,1fr)}}
+.fig3{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px}
+.fig3 p{margin:0;font-size:13px;color:var(--muted);text-align:center}
+.fcards{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:16px}
+.fcards .box{margin:0}
+.fcards ul{padding-left:18px;margin:0}.fcards li{margin:5px 0}
+dl.gl{display:grid;grid-template-columns:minmax(0,1fr);gap:0;margin:8px 0}
+dl.gl div{padding:10px 0;border-bottom:1px solid var(--line)}
+dl.gl dt{font-weight:600}
+dl.gl div{border-left:3px solid color-mix(in srgb,var(--tc,var(--accent)) 35%,transparent);padding-left:12px}
+dl.gl dd{margin:2px 0 0 0;max-width:72ch}
+dl.gl .tt{font-family:var(--mono);font-size:12px;color:var(--accent);margin-left:6px;font-weight:400}
+
+.ctrl[hidden]{display:none!important}
+.zero{background:var(--accent-soft);border:1px solid var(--line);border-radius:8px;padding:16px 20px;margin:16px 0}
+.zero > :first-child{margin-top:0}.zero > :last-child{margin-bottom:0}
+.zero .ft{font-family:var(--mono);font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--accent);margin:0 0 6px}
+.zero ol,.zero ul{padding-left:20px}
+.map{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:12px 0}
+.map a{display:inline-block;padding:8px 12px;border:1px solid var(--line);border-radius:6px;background:var(--surface);color:var(--fg);text-decoration:none;font-size:14px}
+.map a:hover,.map a:focus-visible{border-color:var(--accent);outline:none}
+.map a b{color:var(--accent);font-family:var(--mono);font-weight:500;margin-right:4px}
+.map span{color:var(--muted);font-family:var(--mono)}
+.ctrl label{flex-wrap:wrap;min-width:0;max-width:100%}
+.ctrl select{max-width:100%;min-width:0}
+.ctrl select,.ctrl input[type=text]{font:inherit;font-size:14px;padding:4px 8px;border:1px solid var(--line);border-radius:6px;background:var(--surface);color:var(--fg)}
+.ctrl input[type=text]{width:220px;max-width:70vw;font-family:var(--mono)}
+.ctrl input[type=checkbox]{accent-color:var(--accent);width:16px;height:16px}
+.ctrl button{font:inherit;font-size:14px;padding:5px 12px;border:1px solid var(--accent);border-radius:6px;background:var(--surface);color:var(--accent);cursor:pointer}
+.ctrl button[aria-pressed="true"]{background:var(--accent);color:var(--surface)}
+.readout{font-family:var(--mono);font-size:13px;background:var(--bg);border:1px solid var(--line);border-radius:6px;padding:8px 12px;margin:8px 0;overflow-x:auto;white-space:pre-wrap}
+.props{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:8px;margin:8px 0}
+.props div{border:1px solid var(--line);border-radius:6px;padding:8px 10px;font-size:13px;background:var(--surface)}
+.props b{display:block;font-size:12px;font-family:var(--mono);text-transform:uppercase;letter-spacing:.05em}
+.props .y b{color:var(--accent)} .props .n b{color:var(--warn)}
+
+/* ===== Rediseño visual ===== */
+:root{
+  --c0:#1d5fb8; --c0s:#e1ebf9;
+  --c1:#4652c4; --c1s:#e6e8f8;
+  --c2:#0b7f93; --c2s:#dff1f4;
+  --c3:#7d45c9; --c3s:#efe7f9;
+  --c4:#b8730c; --c4s:#f7ecda;
+  --c5:#c43d63; --c5s:#f8e3e9;
+  --c6:#2c8a52; --c6s:#e1f2e8;
+  --c7:#4b5b70; --c7s:#e6eaef;
+  --c8:#c25a1c; --c8s:#f8e7dc;
+  --shadow:0 1px 2px rgba(20,30,52,.06),0 6px 24px rgba(20,30,52,.06);
+}
+@media (prefers-color-scheme: dark){ :root:not([data-theme="light"]){
+  --c0:#6ea8f2; --c0s:#162a49; --c1:#8f98ff; --c1s:#1f2240; --c2:#4cc6d9; --c2s:#13303a; --c3:#c09bff; --c3s:#2a1f3d;
+  --c4:#f0b252; --c4s:#3a2b12; --c5:#ff8aa8; --c5s:#3d1c27; --c6:#6fd39a; --c6s:#163322; --c7:#a9b6c8; --c7s:#232a33; --c8:#ff9e66; --c8s:#3a2316;
+  --shadow:0 1px 2px rgba(0,0,0,.3),0 8px 28px rgba(0,0,0,.25); } }
+:root[data-theme="dark"]{
+  --c0:#6ea8f2; --c0s:#162a49; --c1:#8f98ff; --c1s:#1f2240; --c2:#4cc6d9; --c2s:#13303a; --c3:#c09bff; --c3s:#2a1f3d;
+  --c4:#f0b252; --c4s:#3a2b12; --c5:#ff8aa8; --c5s:#3d1c27; --c6:#6fd39a; --c6s:#163322; --c7:#a9b6c8; --c7s:#232a33; --c8:#ff9e66; --c8s:#3a2316;
+  --shadow:0 1px 2px rgba(0,0,0,.3),0 8px 28px rgba(0,0,0,.25); }
+
+body{line-height:1.65}
+/* portada */
+header.hero{display:block;max-width:none;border:0;margin:0 calc(-1*max(16px, env(safe-area-inset-left, 0px))) 36px;padding-block:0;
+  background:linear-gradient(135deg,var(--accent-soft),var(--bg) 70%);border-bottom:1px solid var(--line)}
+.hero-in{max-width:1180px;margin:0 auto;display:grid;grid-template-columns:minmax(0,1fr) 300px;gap:40px;align-items:center;
+  padding:48px max(16px, env(safe-area-inset-right, 0px)) 44px max(16px, env(safe-area-inset-left, 0px))}
+@media (max-width:760px){.hero-in{grid-template-columns:minmax(0,1fr);padding-block:32px 28px}.hero-art{display:none}}
+header.hero h1{font-size:clamp(38px,6.4vw,64px);line-height:1.02;margin:10px 0 4px;letter-spacing:-.01em}
+header.hero h1 span{color:var(--accent)}
+header.hero .sub{font-family:var(--display);font-size:clamp(20px,2.6vw,26px);font-weight:500;color:var(--muted);margin:0 0 14px}
+.stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin:22px 0 18px;max-width:640px}
+@media (max-width:520px){.stats{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.stats div{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:10px 12px;box-shadow:var(--shadow)}
+.stats b{display:block;font-family:var(--display);font-size:28px;line-height:1.1;color:var(--accent);font-variant-numeric:tabular-nums}
+.stats span{font-size:12.5px;color:var(--muted);line-height:1.3;display:block}
+.cta{display:flex;flex-wrap:wrap;gap:8px}
+.btn{display:inline-block;padding:9px 16px;border-radius:999px;border:1px solid var(--line);background:var(--surface);color:var(--fg);text-decoration:none;font-weight:600;font-size:14px}
+.btn:hover,.btn:focus-visible{border-color:var(--accent);outline:none}
+.btn.pri{background:var(--accent);border-color:var(--accent);color:var(--surface)}
+.zart{width:100%;height:auto;max-width:300px}
+.orbit{transform-origin:0 0;animation:orb 9s linear infinite}
+@keyframes orb{from{transform:rotate(0)}to{transform:rotate(-360deg)}}
+@media (prefers-reduced-motion:reduce){.orbit{animation:none;transform:rotate(-40deg)}}
+.art-cap{font-size:13px;color:var(--muted);text-align:center;margin:6px 0 0}
+
+/* rejilla general */
+.wrap{max-width:1180px;gap:40px;grid-template-columns:230px minmax(0,1fr)}
+main{display:flex;flex-direction:column;gap:28px}
+
+/* tarjetas de sección */
+section.sec{background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:8px 32px 30px;box-shadow:var(--shadow);position:relative;overflow:hidden;min-width:0}
+section.sec::before{content:"";position:absolute;inset:0 0 auto 0;height:6px;background:var(--tc)}
+@media (max-width:640px){section.sec{padding:6px 18px 22px;border-radius:14px}}
+.sh{display:flex;gap:16px;align-items:center;margin:24px 0 10px}
+.badge{flex:none;min-width:58px;height:58px;padding:0 10px;border-radius:16px;background:var(--tc);color:var(--surface);display:flex;align-items:center;justify-content:center;
+  font-family:var(--display);font-weight:700;font-size:22px;letter-spacing:-.01em;box-shadow:0 4px 14px color-mix(in srgb,var(--tc) 35%,transparent)}
+.shx{min-width:0}
+.kick{margin:0;font-family:var(--mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--tc)}
+.sh h2{margin:2px 0 0;font-size:clamp(24px,3.2vw,32px)}
+.tags{margin-top:6px}
+section.sec h2{scroll-margin-top:70px}
+section.sec h3{font-size:21px;margin:34px 0 10px;padding-left:12px;border-left:4px solid var(--tc)}
+section.sec h4{color:var(--tc)}
+
+/* cajas */
+.box{border-radius:12px;padding:18px 22px}
+.box.key{border-left:4px solid var(--tc,var(--accent));background:color-mix(in srgb,var(--tcs,var(--accent-soft)) 45%,var(--surface))}
+.box.trap{border-left:4px solid var(--warn);background:color-mix(in srgb,var(--warn-soft) 55%,var(--surface))}
+.zero{background:var(--tcs,var(--accent-soft));border:0;border-radius:14px;padding:20px 24px;position:relative}
+.zero .ft{color:var(--tc,var(--accent))}
+.zero::after{content:"";position:absolute;right:18px;top:16px;width:34px;height:34px;border-radius:50%;border:3px solid var(--tc,var(--accent));opacity:.25}
+.grid2{gap:18px}
+
+/* figuras / simuladores */
+figure.fig{border-radius:14px;padding:18px 20px;border:1px solid var(--line);background:linear-gradient(180deg,var(--tcs,var(--accent-soft)) 0,var(--surface) 64px);margin:24px 0}
+figure.fig .ft{display:inline-block;background:var(--tc,var(--accent));color:var(--surface);padding:3px 10px;border-radius:999px;font-size:11.5px;margin-bottom:12px}
+figure.fig figcaption{font-size:14.5px}
+.ctrl input[type=range]{accent-color:var(--tc,var(--accent))}
+.readout{border-radius:10px}
+
+/* desplegables */
+details{border-radius:12px;transition:box-shadow .2s}
+details[open]{box-shadow:var(--shadow);border-color:color-mix(in srgb,var(--tc,var(--accent)) 45%,var(--line))}
+details>summary{padding:14px 18px;border-radius:12px}
+details>summary::before{content:"";width:9px;height:9px;flex:none;border-right:2.5px solid var(--tc,var(--accent));border-bottom:2.5px solid var(--tc,var(--accent));transform:rotate(-45deg);margin:0 4px 0 2px;transition:transform .2s;align-self:center}
+details[open]>summary::before{content:"";transform:rotate(45deg)}
+details>summary:hover{background:var(--tcs,var(--accent-soft))}
+@media (prefers-reduced-motion:reduce){details>summary::before,details{transition:none}}
+.tag{border-radius:999px;padding:2px 10px;background:var(--tcs,var(--accent-soft));color:var(--tc,var(--accent))}
+.tag.w{background:var(--warn-soft);color:var(--warn)}
+
+/* tablas */
+.tw{border:1px solid var(--line);border-radius:12px}
+.tw table{margin:0}
+.tw th{background:var(--tcs,var(--accent-soft))}
+.tw tr:last-child td{border-bottom:0}
+
+/* mapa de temas como tarjetas */
+.map{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px}
+.map span{display:none}
+.map a{padding:14px;border-radius:12px;font-weight:600;line-height:1.3;border-top:4px solid var(--accent)}
+.map a b{display:block;font-family:var(--display);font-size:24px;margin-bottom:4px}
+.map a:nth-of-type(1){border-top-color:var(--c1)}.map a:nth-of-type(1) b{color:var(--c1)}
+.map a:nth-of-type(2){border-top-color:var(--c2)}.map a:nth-of-type(2) b{color:var(--c2)}
+.map a:nth-of-type(3){border-top-color:var(--c3)}.map a:nth-of-type(3) b{color:var(--c3)}
+.map a:nth-of-type(4){border-top-color:var(--c4)}.map a:nth-of-type(4) b{color:var(--c4)}
+.map a:nth-of-type(5){border-top-color:var(--c5)}.map a:nth-of-type(5) b{color:var(--c5)}
+.map a:nth-of-type(6){border-top-color:var(--c6)}.map a:nth-of-type(6) b{color:var(--c6)}
+
+/* índice */
+.toc{padding-top:4px;top:16px}
+.toc a{border-left:3px solid color-mix(in srgb,var(--tc,var(--line)) 30%,transparent);border-radius:0 6px 6px 0;padding:5px 10px;margin:1px 0;transition:background .15s}
+.toc a:hover{background:var(--surface)}
+.toc a.on{border-left-color:var(--tc);color:var(--fg);background:var(--surface);font-weight:600}
+@media (max-width:860px){
+  .toc{display:flex;position:sticky;top:env(safe-area-inset-top,0px);z-index:20;overflow-x:auto;gap:6px;max-height:none;padding:10px 0;margin:0 0 6px;
+    background:color-mix(in srgb,var(--bg) 92%,transparent);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);scrollbar-width:none}
+  .toc::-webkit-scrollbar{display:none}
+  .toc .grp{display:none}
+  .toc a{flex:none;border:1px solid var(--line);border-radius:999px;padding:6px 12px;background:var(--surface);font-size:13px;white-space:nowrap}
+  .toc a.on{border-color:var(--tc);color:var(--tc)}
+  body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:21;background:var(--bg)}
+}
+@media (max-width:860px){.wrap{grid-template-columns:minmax(0,1fr);gap:0}}
+/* volver arriba */
+.totop{position:fixed;right:calc(18px + env(safe-area-inset-right,0px));bottom:calc(18px + env(safe-area-inset-bottom,0px));width:44px;height:44px;border-radius:50%;
+  background:var(--accent);color:var(--surface);display:flex;align-items:center;justify-content:center;text-decoration:none;font-size:20px;font-weight:700;box-shadow:var(--shadow);z-index:30;opacity:0;pointer-events:none;transition:opacity .2s}
+.totop.show{opacity:1;pointer-events:auto}
+@media (prefers-reduced-motion:reduce){.totop{transition:none}}
+
+details.nom{border:1px dashed color-mix(in srgb,var(--tc,var(--accent)) 55%,var(--line));background:var(--surface)}
+details.nom>summary{font-weight:600}
+.nom-ic{display:inline-flex;align-items:center;justify-content:center;width:30px;height:30px;border-radius:8px;background:var(--tcs,var(--accent-soft));color:var(--tc,var(--accent));font-family:var(--display);font-weight:700;font-size:14px;flex:none}
+details.nom td.sym{white-space:nowrap;font-size:16px;width:1%}
+details.nom td.u{color:var(--muted);font-size:14px}
+details.nom .inner{padding-top:14px}
+
+/* ===== bloques nuevos ===== */
+.srch-card{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:14px 18px;box-shadow:var(--shadow)}
+.srch-lab{display:block;font-family:var(--mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--accent);margin-bottom:6px}
+#srch{width:100%;font:inherit;font-size:16px;padding:10px 14px;border:1px solid var(--line);border-radius:10px;background:var(--bg);color:var(--fg)}
+#srch:focus{outline:2px solid var(--accent);outline-offset:1px}
+.srch-out{display:grid;gap:6px;margin-top:10px;max-height:420px;overflow:auto}
+.sres{display:block;text-align:left;font:inherit;font-size:14px;color:var(--fg);background:var(--bg);border:1px solid var(--line);border-left:4px solid var(--tc,var(--accent));border-radius:8px;padding:8px 12px;cursor:pointer}
+.sres:hover,.sres:focus-visible{border-color:var(--tc,var(--accent));outline:none}
+.sres-t{display:block;font-family:var(--mono);font-size:11px;text-transform:uppercase;letter-spacing:.06em;color:var(--tc,var(--accent));margin-bottom:2px}
+.sres mark{background:var(--accent-soft);color:inherit;padding:0 2px;border-radius:3px}
+.flash{animation:fl 1.8s ease}
+@keyframes fl{0%,40%{background:var(--accent-soft)}100%{background:transparent}}
+@media (prefers-reduced-motion:reduce){.flash{animation:none;outline:2px solid var(--accent)}}
+.timer .tm-row{display:flex;flex-wrap:wrap;gap:12px;align-items:center}
+.tm-lab{font-family:var(--mono);font-size:12px;text-transform:uppercase;letter-spacing:.08em;color:var(--tc)}
+.tm-o{font-family:var(--display);font-size:34px;font-weight:700;font-variant-numeric:tabular-nums;min-width:5ch}
+.tm-o.low{color:var(--warn)}
+.quiz-tabs{gap:6px}
+.qt{font:inherit;font-size:13px;padding:6px 12px;border-radius:999px;border:1px solid var(--line);background:var(--surface);color:var(--fg);cursor:pointer}
+.qt[aria-pressed="true"]{background:var(--tc);border-color:var(--tc);color:var(--surface)}
+.qp{font-weight:600;font-size:17px;margin:0 0 12px}
+.qops{display:grid;gap:8px}
+.qo{font:inherit;text-align:left;padding:10px 14px;border:1px solid var(--line);border-radius:10px;background:var(--bg);color:var(--fg);cursor:pointer}
+.qo:hover:not(:disabled){border-color:var(--tc,var(--accent))}
+.qo.ok{border-color:var(--c6);background:var(--c6s)}
+.qo.ko{border-color:var(--warn);background:var(--warn-soft)}
+.qo:disabled{cursor:default}
+.qex{margin:10px 0 0;font-size:14.5px;color:var(--muted)}
+.qnav{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-top:14px}
+.qnav span{margin-right:auto;font-size:13px}
+.qnav .btn:disabled{opacity:.45;cursor:default}
+.qscore{margin:8px 0 0;font-weight:600;color:var(--tc,var(--accent))}
+.gq{font-weight:600;font-size:16px;margin:0 0 8px}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:10px}
+.card{font:inherit;min-height:96px;padding:14px;border-radius:12px;border:1px solid var(--line);background:var(--surface);color:var(--fg);cursor:pointer;text-align:left;display:flex;align-items:center;box-shadow:var(--shadow)}
+.card .cf{font-weight:600}
+.card.flip{background:var(--tcs,var(--accent-soft));border-color:var(--tc,var(--accent))}
+
+.prob{margin:22px 0 26px}
+.prob .ph{margin:18px 0 6px;font-size:17px}
+.enun{background:var(--tcs,var(--accent-soft));border-left:4px solid var(--tc,var(--accent));border-radius:10px;padding:10px 16px;margin:8px 0 12px}
+.enun .et{margin:0 0 2px;font:700 12px/1.4 var(--mono,monospace);letter-spacing:.06em;text-transform:uppercase;color:var(--tc,var(--accent))}
+.enun p{margin:4px 0}
+.pasos-t{margin:10px 0 4px;font-weight:700;font-size:14px}
+.pasos-t span{font-weight:400;color:var(--muted)}
+details.paso{margin:6px 0;border-radius:10px;box-shadow:none}
+details.paso>summary{padding:9px 14px;font-weight:600;font-size:15px;align-items:center}
+details.paso .pn{display:inline-grid;place-items:center;min-width:24px;height:24px;border-radius:7px;background:var(--tc,var(--accent));color:#fff;font:700 13px/1 var(--mono,monospace);flex:none}
+details.paso .inner{padding:4px 16px 10px}
+details.paso[open]{box-shadow:none}
+.ojo{border-left:3px solid var(--warn,#b4232f);padding-left:10px}
+.box mjx-container[display="true"]{overflow-x:auto;overflow-y:hidden;max-width:100%}
+
+mjx-container[display="true"]{max-width:100%;overflow-x:auto;overflow-y:hidden}
+
+/* ===== Más espaciado y más visual (capa final) ===== */
+body{line-height:1.75;font-size:16.5px}
+main{gap:44px}
+.sec{padding:14px 40px 40px}
+.sec>p,.sec .inner>p,.box p{margin:0 0 14px}
+.sec>p{max-width:72ch}
+.sh{margin-bottom:22px;padding-bottom:16px;border-bottom:1px dashed color-mix(in srgb,var(--tc) 35%,var(--line))}
+.badge{transform:scale(1.08)}
+h3{font-size:23px;margin:56px 0 16px;padding:6px 0 6px 14px;border-left:5px solid var(--tc);background:linear-gradient(90deg,var(--tcs),transparent 70%);border-radius:0 10px 10px 0}
+h4{margin:6px 0 12px}
+ul,ol{padding-left:22px}
+li{margin:8px 0}
+li::marker{color:var(--tc)}
+.box,.zero{padding:22px 26px;margin:22px 0}
+.box.key{position:relative;padding-top:42px}
+.box.key::before{content:"★  Lo esencial";position:absolute;top:12px;left:24px;font:700 11.5px/1 var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--tc,var(--accent))}
+.box.key>p+p{border-top:1px dashed color-mix(in srgb,var(--tc,var(--accent)) 30%,var(--line));padding-top:14px;margin-top:14px}
+.box.trap h4::before{content:"⚠  "}
+.zero .ft::before{content:"◎  "}
+.grid2{gap:22px}
+.grid2 .box{margin:0}
+mjx-container[display="true"]{margin:16px 0!important;padding:12px 10px;border-radius:12px;background:color-mix(in srgb,var(--tcs,var(--accent-soft)) 55%,transparent)}
+.box mjx-container[display="true"],.zero mjx-container[display="true"],.enun mjx-container[display="true"]{background:color-mix(in srgb,var(--surface) 55%,transparent)}
+figure.fig{margin:34px 0}
+details{margin:16px 0}
+details>summary{padding:16px 20px}
+details .inner{padding:6px 24px 20px}
+details .inner>p{margin:12px 0}
+th,td{padding:11px 14px}
+.tw tr:nth-child(even) td{background:color-mix(in srgb,var(--tcs,var(--accent-soft)) 40%,transparent)}
+.tw{border-radius:12px;overflow:auto;border:1px solid var(--line);margin:18px 0}
+ol.steps li{margin:12px 0;padding-left:4px}
+.prob{margin:34px 0 40px;padding-top:6px}
+.prob+.prob{border-top:1px dashed var(--line);padding-top:30px}
+.enun{padding:16px 20px;margin:12px 0 18px}
+details.paso{margin:10px 0}
+details.paso>summary{padding:12px 16px}
+details.paso .inner{padding:8px 20px 14px}
+.pasos-t{margin:18px 0 8px}
+@media (max-width:860px){
+  body{font-size:16px}
+  main{gap:28px}
+  .sec{padding:8px 18px 26px}
+  h3{font-size:20px;margin:40px 0 12px}
+  .box,.zero{padding:18px 18px}
+  .box.key{padding-top:38px}
+  .box.key::before{left:18px}
+  details .inner{padding:4px 16px 16px}
+}
+/*exnav*/.lede-ex{font-size:17px;margin:6px 0 14px}
+.exnav{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin:10px 0 18px}
+.exn{display:flex;flex-direction:column;gap:4px;padding:16px 16px 14px;border:1px solid var(--line);border-radius:14px;background:var(--surface);text-decoration:none;color:var(--fg);box-shadow:var(--shadow);transition:transform .15s,border-color .15s}
+.exn:hover{transform:translateY(-2px);border-color:var(--tc)}
+.exn b{font-size:16px}
+.exn small{color:var(--muted);font-size:13px;line-height:1.4}
+.exn-n{display:inline-grid;place-items:center;width:28px;height:28px;border-radius:8px;background:var(--tc);color:#fff;font:700 14px/1 var(--mono);margin-bottom:4px}
+details.nota-ex>summary{font-size:15px}
+.exrec{list-style:none;counter-reset:r;padding:0;margin:10px 0 18px;display:grid;gap:8px}
+.exrec li{counter-increment:r}
+.exrec a{display:flex;gap:12px;align-items:baseline;padding:12px 16px;border:1px solid var(--line);border-radius:12px;background:var(--surface);text-decoration:none;color:var(--fg)}
+.exrec a::before{content:counter(r);display:inline-grid;place-items:center;min-width:26px;height:26px;border-radius:50%;background:var(--tcs);color:var(--tc);font:700 13px/1 var(--mono);flex:none;align-self:center}
+.exrec a:hover{border-color:var(--tc)}
+.exrec span{color:var(--muted);font-size:14px}
+.extemas{display:grid;gap:8px;margin:10px 0 20px}
+details.extema{margin:0}
+details.extema>summary{align-items:center;flex-wrap:wrap}
+.xt{display:inline-block;font:700 12px/1 var(--mono);padding:5px 8px;border-radius:6px;background:var(--tcs);color:var(--tc);min-width:76px;text-align:center}
+.exlist{margin:4px 0 6px;padding-left:20px;columns:2;column-gap:28px}
+.exlist li{break-inside:avoid;margin:0 0 6px;font-size:14.5px}
+.exlist .src{display:block;font-size:12px}
+.exfil{position:sticky;top:0;z-index:5;background:var(--bg);padding:10px 0 6px;margin:6px 0 4px;border-bottom:1px solid var(--line)}
+.exchips{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:8px}
+.exf{font:600 13px/1 var(--body,inherit);padding:8px 12px;border-radius:999px;border:1px solid var(--line);background:var(--surface);color:var(--fg);cursor:pointer}
+.exf.on{background:var(--tc);border-color:var(--tc);color:#fff}
+.exq{width:100%;box-sizing:border-box;padding:10px 12px;border:1px solid var(--line);border-radius:10px;background:var(--surface);color:var(--fg);font-size:15px}
+.exres{margin:6px 0 0;font-size:13px;min-height:1em}
+details.exgrupo{margin:12px 0}
+details.exgrupo>summary{font-size:17px}
+details.exgrupo>.inner{padding-top:4px}
+details.exd>summary{flex-wrap:wrap;align-items:center;row-gap:6px}
+.xc{display:inline-block;font:600 11.5px/1 var(--mono);padding:4px 7px;border-radius:5px;background:var(--accent-soft);color:var(--accent);margin-right:4px}
+.xc.p1{background:var(--c2s);color:var(--c2)}
+.xc.p2{background:var(--c5s);color:var(--c5)}
+.xc.p12{background:var(--c3s);color:var(--c3)}
+.prob:target{outline:2px solid var(--tc);outline-offset:6px;border-radius:8px}
+@media (max-width:720px){.exnav{grid-template-columns:1fr}.exlist{columns:1}.exrec a{flex-direction:column;gap:2px}.exrec a::before{align-self:flex-start}}
+.xn{display:flex;flex-direction:column;gap:3px;flex:1;min-width:0}
+.xn .src{margin:0;font-size:12px}
+.idea{border:1px solid var(--line);border-left:4px solid var(--c1);background:var(--c1s);border-radius:10px;padding:10px 16px;margin:8px 0 12px}
+.idea .et,.resul .et{margin:0 0 4px;font:700 12px/1.4 var(--mono,monospace);letter-spacing:.06em;text-transform:uppercase;color:var(--c1)}
+.idea p,.resul p{margin:5px 0}
+details.resul{border:1px solid var(--c6);background:var(--c6s);margin:12px 0 4px}
+details.resul>summary{color:var(--c6);font-size:14px}
+details.resul .inner{padding:0 16px 10px}
+details.paso .inner p{margin:6px 0}
+
+/* ===== Diapositivas con explicación ===== */
+figure.slide{margin:20px 0;padding:0;border:1px solid var(--line);border-radius:14px;overflow:hidden;background:var(--surface);box-shadow:var(--shadow)}
+figure.slide img{display:block;width:100%;height:auto;max-width:100%;background:#fff;border-bottom:1px solid var(--line)}
+figure.slide figcaption{padding:12px 18px 14px;font-size:15px;line-height:1.65;border-left:4px solid var(--tc,var(--accent))}
+figure.slide figcaption b.n{font-family:var(--mono);font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--tc,var(--accent));display:block;margin-bottom:2px}
+dl.gloss{display:grid;grid-template-columns:minmax(140px,220px) 1fr;gap:8px 18px;margin:0}
+dl.gloss dt{font-weight:700;color:var(--tc,var(--accent))}
+dl.gloss dd{margin:0}
+@media (max-width:640px){dl.gloss{grid-template-columns:1fr}dl.gloss dd{margin-bottom:6px}}
+.sec .quiz-tabs{margin-bottom:10px}
+figure.slide.nota{max-width:720px;margin-left:auto;margin-right:auto}
+details.nt{margin:14px 0 4px;border:1px solid var(--line);border-radius:10px;background:var(--surface);padding:0 14px}
+details.nt>summary{padding:12px 0;font-weight:600}
+details.nt>summary:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:6px}
+details.nt[open]{padding-bottom:6px}
+
+/* ---- sitio de varias páginas ---- */
+.sitenav{max-width:1180px;margin:0 auto;padding:10px 16px 2px;display:flex;gap:6px;overflow-x:auto;scrollbar-width:thin}
+.sitenav a{flex:0 0 auto;font:600 13.5px/1 var(--body);padding:9px 13px;border-radius:99px;border:1px solid var(--line);background:var(--surface);color:var(--fg);text-decoration:none;white-space:nowrap}
+.sitenav a:hover,.sitenav a:focus-visible{border-color:var(--accent);outline:none}
+.sitenav a[aria-current=page]{background:var(--accent);border-color:var(--accent);color:#fff}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .sitenav a[aria-current=page]{color:#0e131d}}
+:root[data-theme="dark"] .sitenav a[aria-current=page]{color:#0e131d}
+.phead{max-width:1180px;margin:0 auto;padding-block:26px 12px}
+.phead h1{margin:6px 0 8px}
+.phead .lede{color:var(--muted);margin:0;max-width:62ch}
+.pager{max-width:1180px;margin:36px auto 0;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:12px}
+.pager a{display:block;padding:14px 16px;border:1px solid var(--line);border-radius:12px;background:var(--surface);color:var(--fg);text-decoration:none;font-weight:600;line-height:1.3}
+.pager a small{display:block;font:500 12px/1.4 var(--mono);letter-spacing:.06em;text-transform:uppercase;color:var(--accent);margin-bottom:4px}
+.pager a:hover,.pager a:focus-visible{border-color:var(--accent);outline:none}
+.pager a.nx{text-align:right;grid-column:2}
+.sres-p{font:500 11px/1 var(--mono);letter-spacing:.05em;text-transform:uppercase;color:var(--muted);margin-left:8px}
+</style></head><body data-page="fuen">
+
+<div class="hub-bar" style="max-width:1180px;margin:0 auto;padding:10px 16px 0"><a href="https://helionacon-ui.github.io/GIEIA-UPCT/" style="display:inline-flex;align-items:center;gap:6px;font:600 13.5px/1 system-ui,sans-serif;padding:8px 12px;border-radius:999px;border:1px solid var(--line,#d3dcdf);background:var(--surface,var(--card,#fff));color:var(--fg,#18232b);text-decoration:none">← Todas las guías GIEyA</a></div>
+<nav class="sitenav" aria-label="Páginas de la guía"><a href="index.html">Inicio</a><a href="operacionales.html">Operacionales</a><a href="bode.html">Bode y filtros</a><a href="transistores.html">Transistores</a><a href="examenes.html">Exámenes</a><a href="fuen.html" aria-current="page">Apuntes de Fuen</a><a href="practica.html">Practicar</a><a href="referencia.html">Referencia</a></nav>
+<header class="phead"><div class="eyebrow">UPCT · GIEyA · Electrónica Analógica</div><h1>Apuntes de Fuen</h1><p class="lede">Siete problemas rehechos y 26 páginas de apuntes explicadas</p></header>
+
+<a href="#top" class="totop" id="totop" aria-label="Volver arriba">↑</a>
+<div class="wrap" id="top">
+<nav class="toc" aria-label="Índice de esta página">
+  <div class="grp">Apuntes de Fuen</div>
+  <a href="#fuen" style="--tc:var(--c0)">Apuntes de Fuen</a>
+</nav>
+
+<main>
+<div class="srch-card" id="srch-card"><label for="srch" class="srch-lab">Buscar en la guía</label>
+<input type="search" id="srch" placeholder="Por ejemplo: slew rate, Schmitt, Miller, CMRR…" autocomplete="off" spellcheck="false">
+<div id="srch-out" class="srch-out" hidden></div></div>
+
+<section class="sec tema" style="--tc:var(--c0);--tcs:var(--c0s)">
+<div class="sh"><span class="badge" aria-hidden="true">✎</span><div class="shx"><p class="kick">Tus apuntes manuscritos</p><h2 id="fuen">Apuntes de Fuen: mapa, páginas clave y problemas rehechos</h2></div></div>
+<div class="zero">
+<p class="ft">Cómo usar esta parte</p>
+<p>El PDF <b>«Analógica fuen»</b> tiene 143 páginas manuscritas: teoría de los temas 0 a 8, ejercicios resueltos y problemas tipo examen. Aquí tienes primero un <b>mapa</b> para encontrar cada cosa, después <b>7 problemas</b> de esos apuntes rehechos paso a paso, con las páginas escaneadas plegadas debajo de cada uno por si quieres ver el original. Los números de página son los del PDF. Al rehacerlos he recalculado todos los resultados, y en cinco puntos no me salen los mismos números que en el cuaderno (están marcados en el recuadro rojo de abajo).</p>
+</div>
+
+<h3>Mapa del cuaderno</h3>
+<div class="tw"><table>
+<tr><th>Tema</th><th>Págs.</th><th>Qué hay</th><th>En esta guía</th></tr>
+<tr><td>0 Fundamentos</td><td>1–5</td><td>Señales, ganancia y dB, fuentes, Thévenin/Norton, máxima transferencia de potencia ($R_L=R_g$)</td><td><a href="index.html#cero">Empieza desde cero</a></td></tr>
+<tr><td>1 Amplificadores</td><td>6–10</td><td>Cuatro tipos, $Z_{in}$, $Z_{out}$, atenuación en entrada y salida, mejor amplificador de cada tipo</td><td><a href="operacionales.html#u1">U1</a></td></tr>
+<tr><td>2 AO ideal</td><td>11–13</td><td>Tierra virtual, modo diferencial y común, realimentación negativa</td><td><a href="operacionales.html#u2">U2</a></td></tr>
+<tr><td>3 Aplicaciones lineales</td><td>14–24</td><td>Inversor, no inversor, integrador, derivador, seguidor, sumador, restador, instrumentación. Ejercicios en 20–24 (fuente de corriente, regulador con zener)</td><td><a href="operacionales.html#u3">U3</a></td></tr>
+<tr><td>4 No lineales</td><td>25–31</td><td>Comparador, Schmitt, rectificador de precisión, log/exp. Ejercicios tipo examen en 28–31</td><td><a href="operacionales.html#u4">U4</a> · problemas F1 y F2</td></tr>
+<tr><td>5 AO real</td><td>32–40</td><td>Estructura interna, límites, slew rate, CMRR, $Z_{in}$ finita, ganancia finita, offsets, tolerancias, GBW</td><td><a href="operacionales.html#u5">U5</a></td></tr>
+<tr><td>6 Bode</td><td>41–81</td><td>Teoría 41–52. Ejercicios 53–55. Problemas tipo examen resueltos 57–81 (circuitos con C, polos complejos, resonancia)</td><td><a href="bode.html#u6">U6</a>, <a href="bode.html#bode">Bode a fondo</a> · F3 y F4</td></tr>
+<tr><td>Exámenes</td><td>82–85</td><td>Enunciados de parciales (los resueltos están en 57–81)</td><td>—</td></tr>
+<tr><td>7 Cuadripolos</td><td>86–90</td><td>Parámetros z, y, h, g y un problema de h de un cuadripolo en T</td><td><a href="transistores.html#u7">U7</a></td></tr>
+<tr><td>8 Transistores en frecuencia</td><td>91–140, 143</td><td>Teoría 91–100 (modelo h, $\pi$, Miller, constantes de tiempo). Ejercicios 101–140. Resumen de modelos en 143</td><td><a href="transistores.html#u8">U8</a> · F5, F6 y F7</td></tr>
+</table></div>
+<p class="muted" style="font-size:14px">Las págs. 56 y 141 son escaneos casi en blanco, y la 142 es de otra asignatura (contaminación atmosférica).</p>
+
+<div class="box trap"><h4>Cinco sitios donde mis cuentas no coinciden con el cuaderno</h4>
+<ul>
+<li><b>Pág. 55 (intercambiar $Z_1$ y $Z_2$).</b> Con $R_1=160$ kΩ y $R_2=32$ kΩ la ganancia en continua es $R_1/R_2=5$ (13,98 dB), no 3,2 (10,1 dB). El nivel de alta frecuencia sale $-20$ dB, no $-17{,}7$ dB.</li>
+<li><b>Pág. 54–55 ($K_1$).</b> El 17,93 dB del cuaderno es el módulo <i>exacto</i> en 40 000 rad/s, ya pegado al polo. La meseta asintótica de alta frecuencia es 20 dB.</li>
+<li><b>Pág. 106 (sin $C_E$).</b> $f_{c1}=0{,}30$ Hz, no 0,33, así que la suma queda 1,63 Hz y no 1,66 Hz.</li>
+<li><b>Pág. 109 (ejercicio de Miller).</b> $h_{ie}\parallel(R_1\parallel R_2)$ es 581 Ω, no 588 Ω. La ganancia queda $-96{,}5$ (39,7 dB), no $-95{,}5$.</li>
+<li><b>Págs. 115–118 (seguidor de emisor, alta frecuencia).</b> No me sale 151 kHz sino unos 4 MHz. Detalle en F7.</li>
+</ul>
+<p>Si el examen se corrige con el criterio del profesor, contrasta estas cinco con tus diapositivas antes de fiarte de ninguna de las dos versiones.</p></div>
+
+<!-- ============ F1 ============ -->
+<div class="prob" id="p-f1">
+<h3 class="ph">F1. Schmitt con tensión de referencia</h3>
+<div class="enun"><p class="et">Enunciado · Tema 4 · págs. 28–29</p>
+<p>AO ideal con alimentación $\pm V_{cc}$. La señal $V_2$ entra por la entrada $-$. La entrada $+$ recibe $V_{ref}$ a través de $R_3$, y $R_4$ une la salida con la entrada $+$. Calcula $V_{out}$ en función de $V_2$ y dibuja la característica.</p></div>
+<p class="pasos-t">Pasos <span>(toca para abrir)</span></p>
+<details class="paso"><summary><span class="pn">1</span>Qué tipo de circuito es</summary><div class="inner"><p>No hay camino de la salida a la entrada $-$, pero sí a la $+$ (por $R_4$). Es <b>realimentación positiva</b>, así que no vale la tierra virtual: la salida satura en $+V_{cc}$ o en $-V_{cc}$ y hay que <b>probar hipótesis</b>.</p></div></details>
+<details class="paso"><summary><span class="pn">2</span>Tensión en la entrada $+$</summary><div class="inner"><p>Por $R_3$ llega $V_{ref}$ y por $R_4$ llega $V_{out}$, y ninguna corriente entra en el AO. Es un divisor con dos fuentes: $$U^+=\dfrac{R_4}{R_3+R_4}V_{ref}+\dfrac{R_3}{R_3+R_4}V_{out}$$ La diferencia que decide es $U_d=U^+-V_2$.</p></div></details>
+<details class="paso"><summary><span class="pn">3</span>Hipótesis $V_{out}=+V_{cc}$</summary><div class="inner"><p>Se mantiene mientras $U_d&gt;0$, es decir, mientras $$V_2&lt;V_H=\dfrac{R_4V_{ref}+R_3V_{cc}}{R_3+R_4}.$$</p></div></details>
+<details class="paso"><summary><span class="pn">4</span>Hipótesis $V_{out}=-V_{cc}$</summary><div class="inner"><p>Se mantiene mientras $U_d&lt;0$, es decir, mientras $$V_2&gt;V_L=\dfrac{R_4V_{ref}-R_3V_{cc}}{R_3+R_4}.$$</p></div></details>
+<details class="paso"><summary><span class="pn">5</span>Une las dos: ciclo de histéresis</summary><div class="inner"><p>Entre $V_L$ y $V_H$ caben las dos hipótesis, así que la salida <b>depende de la historia</b>. Si $V_2$ sube y pasa $V_H$, la salida cae a $-V_{cc}$ y no vuelve hasta que $V_2$ baje de $V_L$. Es inversor: entrada alta, salida baja. El ciclo está centrado en $\dfrac{R_4}{R_3+R_4}V_{ref}$ y tiene semianchura $\dfrac{R_3}{R_3+R_4}V_{cc}$. Mover $V_{ref}$ desplaza el ciclo sin cambiarle el ancho, y cambiar $R_3/R_4$ le cambia el ancho.</p></div></details>
+<details class="resul"><summary>Resultado</summary><div class="inner"><p class="et">Solución</p><p>$V_H=\dfrac{R_4V_{ref}+R_3V_{cc}}{R_3+R_4}$ y $V_L=\dfrac{R_4V_{ref}-R_3V_{cc}}{R_3+R_4}$. Salida $+V_{cc}$ por debajo de $V_L$, $-V_{cc}$ por encima de $V_H$ y, entre medias, la que tuviera antes.</p></div></details>
+<details class="nt"><summary>Ver tus apuntes: págs. 28–29</summary>
+<figure class="slide nota"><img src="img/f-028.jpg" alt="Apuntes pág. 28: ejercicio de Schmitt con Vref, cálculo de U+ y de la salida" loading="lazy" width="900" height="1271"><figcaption><b class="n">Apuntes · pág. 28</b>Planteamiento: tensión en $U^+$ y hipótesis $V_{out}=+V_{cc}$.</figcaption></figure>
+<figure class="slide nota"><img src="img/f-029.jpg" alt="Apuntes pág. 29: hipótesis -Vcc, gráfica del ciclo y enunciado del ejercicio del sensor LM35" loading="lazy" width="900" height="1271"><figcaption><b class="n">Apuntes · pág. 29</b>Hipótesis $-V_{cc}$, el ciclo dibujado, y el enunciado del termostato con LM35 (F2).</figcaption></figure>
+</details>
+</div>
+
+<!-- ============ F2 ============ -->
+<div class="prob" id="p-f2">
+<h3 class="ph">F2. Termostato con sensor LM35 y tres operacionales</h3>
+<div class="enun"><p class="et">Enunciado · Tema 4 · págs. 29–31</p>
+<p>Un LM35 da 10 mV/°C. Va a un seguidor (AO1), luego a un no inversor de ganancia $1+R_2/R_1$ (AO2), y su salida $V_2$ se compara con $V_{ref}$ en AO3. $\pm V_{cc}=\pm10$ V. (a) Función de cada etapa. (b) Ajusta la ganancia para que $V_2$ valga 0–3 V cuando la temperatura va de 0 a 30 °C. (c) $V_{ref}$ para conmutar a 10 °C. (d) Rediseña la última etapa con histéresis de $\pm2$ °C. (e) Si midiéramos de 35 a 42 °C con $V_2$ entre 0 y 2 V, ¿qué hay que añadir y cuánto vale $V_{ref}$ para detectar 37 °C?</p></div>
+<p class="pasos-t">Pasos <span>(toca para abrir)</span></p>
+<details class="paso"><summary><span class="pn">1</span>(a) Qué hace cada etapa</summary><div class="inner"><p>AO1 es un <b>seguidor</b>: copia la tensión del sensor y le da impedancia de entrada alta (no carga al LM35). AO2 es un <b>no inversor</b>: amplifica con $G=1+R_2/R_1$. AO3 no tiene realimentación negativa: es un <b>comparador</b>. Si $V_2&gt;V_{ref}$ la entrada $-$ gana y la salida va a $-V_{cc}$. Si $V_2&lt;V_{ref}$, a $+V_{cc}$.</p></div></details>
+<details class="paso"><summary><span class="pn">2</span>(b) Ganancia</summary><div class="inner"><p>0–30 °C son 0–0,3 V a la salida del seguidor. Queremos 0–3 V, luego $G=3/0{,}3=10$ y $1+R_2/R_1=10$, o sea $R_2=9R_1$.</p></div></details>
+<details class="paso"><summary><span class="pn">3</span>(c) $V_{ref}$ para 10 °C</summary><div class="inner"><p>10 °C dan 0,1 V a la salida del sensor y $V_2=10\cdot0{,}1=1$ V. Se conmuta cuando $V_2=V_{ref}$, así que $V_{ref}=1$ V.</p></div></details>
+<details class="paso"><summary><span class="pn">4</span>(d) Histéresis de $\pm2$ °C</summary><div class="inner"><p>$\pm2$ °C son $\pm0{,}02$ V en el sensor y $\pm0{,}2$ V en $V_2$. Usamos el Schmitt de F1: el centro tiene que ser 1 V y la semianchura 0,2 V. Con $V_{cc}=10$ V: $$\dfrac{R_3}{R_3+R_4}\cdot10=0{,}2\;\Rightarrow\;\dfrac{R_3}{R_3+R_4}=0{,}02\;\Rightarrow\;R_4=49R_3.$$ El centro es $\dfrac{R_4}{R_3+R_4}V_{ref}=\dfrac{49}{50}V_{ref}=1$ V, luego $V_{ref}=\dfrac{50}{49}=1{,}02$ V. Ojo: el valor 1 V del apartado (c) ya no vale, porque el divisor atenúa $V_{ref}$.</p></div></details>
+<details class="paso"><summary><span class="pn">5</span>(e) Medir 35–42 °C</summary><div class="inner"><p>35 °C son 0,35 V y 42 °C son 0,42 V. Quieren 0 V y 2 V. Como 0,35 V no se convierte en 0 V multiplicando, primero hay que <b>restar 0,35 V</b> con un restador ($R_1=R_2$, $R_3=R_d$): $V_2=\dfrac{R_d}{R_1}(V_1-0{,}35)$. La pendiente es $\dfrac{2-0}{0{,}42-0{,}35}=28{,}57$, así que con $R_1=1$ kΩ queda $R_d=28{,}57$ kΩ.</p></div></details>
+<details class="paso"><summary><span class="pn">6</span>(e) $V_{ref}$ para 37 °C</summary><div class="inner"><p>37 °C son 0,37 V. Entonces $V_2=28{,}57\cdot(0{,}37-0{,}35)=0{,}571$ V, que es el valor de referencia.</p></div></details>
+<details class="resul"><summary>Resultado</summary><div class="inner"><p class="et">Solución</p><p>$R_2=9R_1$; $V_{ref}=1$ V sin histéresis; con $\pm2$ °C, $R_4=49R_3$ y $V_{ref}=1{,}02$ V; restador con $R_d=28{,}57$ kΩ y $V_{ref}\approx0{,}57$ V.</p></div></details>
+<details class="nt"><summary>Ver tus apuntes: págs. 30–31</summary>
+<figure class="slide nota"><img src="img/f-030.jpg" alt="Apuntes pág. 30: apartados b, c y d del termostato" loading="lazy" width="900" height="1271"><figcaption><b class="n">Apuntes · pág. 30</b>Apartados (b), (c) y (d): ganancia 10, $V_{ref}=1$ V y rediseño con histéresis.</figcaption></figure>
+<figure class="slide nota"><img src="img/f-031.jpg" alt="Apuntes pág. 31: restador y cálculo de Vref para 37 grados" loading="lazy" width="900" height="1271"><figcaption><b class="n">Apuntes · pág. 31</b>Apartado (e): restador de 0,35 V, $R_d=28{,}57$ kΩ y $V_{ref}=0{,}57$ V.</figcaption></figure>
+</details>
+</div>
+
+<!-- ============ F3 ============ -->
+<div class="prob" id="p-f3">
+<h3 class="ph">F3. Inversor con $Z_1=R_1\parallel C_1$ y $Z_2=R_2\parallel C_2$</h3>
+<div class="enun"><p class="et">Enunciado · Tema 6 · págs. 53–55</p>
+<p>Inversor ideal con $R_1=160$ kΩ, $C_1=10$ nF en la entrada y $R_2=32$ kΩ, $C_2=1$ nF en la realimentación. (a) Ganancia $A(j\omega)$. (b) Diagrama de Bode. (c) ¿Qué cambia si se intercambian $Z_1$ y $Z_2$?</p></div>
+<p class="pasos-t">Pasos <span>(toca para abrir)</span></p>
+<details class="paso"><summary><span class="pn">1</span>Impedancias</summary><div class="inner"><p>Un paralelo de $R$ y $C$ vale $\dfrac{R}{1+j\omega RC}$. Entonces $Z_1=\dfrac{R_1}{1+j\omega R_1C_1}$ y $Z_2=\dfrac{R_2}{1+j\omega R_2C_2}$.</p></div></details>
+<details class="paso"><summary><span class="pn">2</span>(a) Ganancia</summary><div class="inner"><p>Es un inversor, así que $A=-\dfrac{Z_2}{Z_1}=-\dfrac{R_2}{R_1}\cdot\dfrac{1+j\omega R_1C_1}{1+j\omega R_2C_2}$. Con los datos, $R_2/R_1=0{,}2$, $R_1C_1=1{,}6$ ms y $R_2C_2=32$ µs: $$A(j\omega)=-0{,}2\;\dfrac{1+j\omega\,0{,}0016}{1+j\omega\,0{,}000032}.$$</p></div></details>
+<details class="paso"><summary><span class="pn">3</span>(b) Factores</summary><div class="inner"><p>Constante $0{,}2$: $20\log0{,}2=-13{,}98$ dB (el signo menos es sólo un giro de 180°). Cero en $\omega_z=1/0{,}0016=625$ rad/s. Polo en $\omega_p=1/0{,}000032=31\,250$ rad/s.</p></div></details>
+<details class="paso"><summary><span class="pn">4</span>(b) Tramos</summary><div class="inner"><p>Hasta 625 rad/s: plano en $-13{,}98$ dB. De 625 a 31 250: sube 20 dB/década. Hay $\log_{10}(31250/625)=1{,}70$ décadas, o sea $+33{,}98$ dB, y el tramo final queda a $-13{,}98+33{,}98=20$ dB. Más allá del polo, plano a 20 dB. Comprobación directa: $0{,}2\cdot R_1C_1/(R_2C_2)=0{,}2\cdot50=10$, y $20\log10=20$ dB.</p></div></details>
+<details class="paso"><summary><span class="pn">5</span>(c) Intercambiar Z₁ y Z₂</summary><div class="inner"><p>Ahora $A=-\dfrac{R_1}{R_2}\cdot\dfrac{1+j\omega R_2C_2}{1+j\omega R_1C_1}=-5\,\dfrac{1+j\omega\,32\text{ µs}}{1+j\omega\,1{,}6\text{ ms}}$. El cero y el polo se cambian de sitio: polo en 625, cero en 31 250. La ganancia en continua pasa a $+13{,}98$ dB y la final a $-20$ dB. De <b>pasa-altas con amplificación</b> se convierte en <b>pasa-bajas</b>. Pulsa el botón de la gráfica para verlo.</p></div></details>
+<div class="sim" style="margin-top:14px">
+<div class="ctrl"><button type="button" id="fz-sw" aria-pressed="false">Intercambiar Z₁ y Z₂</button></div>
+<div id="fig-fz"></div>
+<p id="fz-txt" class="muted" style="font-size:14px"></p>
+<p class="muted" style="font-size:13px;margin:4px 0 0">Línea discontinua: aproximación asintótica. Línea azul continua: módulo exacto. Líneas verticales: frecuencias del cero y del polo.</p>
+</div>
+<details class="resul"><summary>Resultado</summary><div class="inner"><p class="et">Solución</p><p>$A=-0{,}2\,\dfrac{1+j\omega\,1{,}6\text{ ms}}{1+j\omega\,32\text{ µs}}$: $-13{,}98$ dB hasta 625 rad/s, +20 dB/dec hasta 31 250 rad/s y 20 dB a partir de ahí. Intercambiando, 13,98 dB, polo en 625, cero en 31 250 y $-20$ dB al final.</p></div></details>
+<details class="nt"><summary>Ver tus apuntes: págs. 53–55</summary>
+<figure class="slide nota"><img src="img/f-053.jpg" alt="Apuntes pág. 53: Bode de una función con cuatro factores y enunciado del inversor con R y C" loading="lazy" width="900" height="1271"><figcaption><b class="n">Apuntes · pág. 53</b>Ejercicio 1, un Bode con cuatro factores (ceros en 10 y 10 000, polos en 1 000 y 100 000) y el enunciado de este problema.</figcaption></figure>
+<figure class="slide nota"><img src="img/f-054.jpg" alt="Apuntes pág. 54: ganancia del inversor con R en paralelo con C y su diagrama de Bode" loading="lazy" width="900" height="1271"><figcaption><b class="n">Apuntes · pág. 54</b>Impedancias, ganancia y Bode. Fíjate en la nota de $K_1$ (sección «Cinco sitios…»).</figcaption></figure>
+<figure class="slide nota"><img src="img/f-055.jpg" alt="Apuntes pág. 55: módulo exacto en 40000 rad/s y caso con Z1 y Z2 intercambiadas" loading="lazy" width="900" height="1271"><figcaption><b class="n">Apuntes · pág. 55</b>Valor de $K_1$ y el apartado de intercambiar $Z_1$ y $Z_2$.</figcaption></figure>
+</details>
+</div>
+
+<!-- ============ F4 ============ -->
+<div class="prob" id="p-f4">
+<h3 class="ph">F4. Un polo en el origen que se cancela con un cero</h3>
+<div class="enun"><p class="et">Enunciado · Tema 6 · págs. 57–58 · tipo examen</p>
+<p>AO ideal. $U^-$ se conecta a masa por $R_1$ y a la salida por $C_1$. $U^+$ recibe $U_e$ por $R_2$ y está unido a masa por $C_2$. (a) Ganancia $A(j\omega)=U_s/U_e$. (b) Bode, sabiendo que $\dfrac1{R_1C_1}&lt;\dfrac1{R_2C_2}$.</p></div>
+<p class="pasos-t">Pasos <span>(toca para abrir)</span></p>
+<details class="paso"><summary><span class="pn">1</span>Las dos entradas son dos divisores</summary><div class="inner"><p>$U^+=U_e\dfrac{Z_{C2}}{Z_{C2}+R_2}$ y $U^-=U_s\dfrac{R_1}{R_1+Z_{C1}}$. Con realimentación negativa $U^+=U^-$.</p></div></details>
+<details class="paso"><summary><span class="pn">2</span>Despeja $U_s/U_e$</summary><div class="inner"><p>$$A=\dfrac{Z_{C2}}{Z_{C2}+R_2}\cdot\dfrac{R_1+Z_{C1}}{R_1}=\dfrac1{1+j\omega R_2C_2}\cdot\Big(1+\dfrac1{j\omega R_1C_1}\Big)=\dfrac{1+j\omega R_1C_1}{j\omega R_1C_1\,(1+j\omega R_2C_2)}.$$ Esta expresión ya está normalizada.</p></div></details>
+<details class="paso"><summary><span class="pn">3</span>Factores</summary><div class="inner"><p>Constante $K=1$ (0 dB). Un <b>polo en el origen</b>, $1/(j\omega R_1C_1)$. Un <b>cero real</b> en $\omega_1=1/(R_1C_1)$. Un <b>polo real</b> en $\omega_2=1/(R_2C_2)$.</p></div></details>
+<details class="paso"><summary><span class="pn">4</span>Dibujo</summary><div class="inner"><p>El integrador baja 20 dB/década y pasa por 0 dB justo en $\omega=1/(R_1C_1)$, que es donde está el cero. El cero <b>anula</b> esa pendiente: desde $\omega_1$ el módulo queda plano en 0 dB. Al llegar a $\omega_2$ el polo hace bajar $-20$ dB/dec. La forma es: <b>baja $-20$ dB/dec hasta $\omega_1$, plano a 0 dB hasta $\omega_2$, baja $-20$ dB/dec</b>. La fase empieza en $-90^\circ$, sube hacia $0^\circ$ en la zona plana y baja a $-90^\circ$ después.</p></div></details>
+<div class="sim" style="margin-top:14px">
+<div id="fig-fy"></div>
+<p class="muted" style="font-size:13px;margin:4px 0 0">Ejemplo numérico con $R_1C_1=1$ ms ($\omega_1=1000$ rad/s) y $R_2C_2=0{,}1$ ms ($\omega_2=10^4$ rad/s). Discontinua: asíntotas. Continua: exacta. Por debajo de $\omega_1$ el módulo crece sin límite hacia las bajas frecuencias, porque el integrador no tiene ganancia finita en continua.</p>
+</div>
+<details class="resul"><summary>Resultado</summary><div class="inner"><p class="et">Solución</p><p>$A=\dfrac{1+j\omega R_1C_1}{j\omega R_1C_1(1+j\omega R_2C_2)}$. Bode: $-20$ dB/dec hasta $1/(R_1C_1)$, 0 dB hasta $1/(R_2C_2)$ y $-20$ dB/dec después.</p></div></details>
+<details class="nt"><summary>Ver tus apuntes: págs. 57–58</summary>
+<figure class="slide nota"><img src="img/f-057.jpg" alt="Apuntes pág. 57: circuito con R1 C1 R2 C2 y obtención de la ganancia" loading="lazy" width="900" height="1271"><figcaption><b class="n">Apuntes · pág. 57</b>Circuito y obtención de $A(j\omega)$ con los dos divisores.</figcaption></figure>
+<figure class="slide nota"><img src="img/f-058.jpg" alt="Apuntes pág. 58: diagrama de Bode con polo en el origen cancelado" loading="lazy" width="900" height="1271"><figcaption><b class="n">Apuntes · pág. 58</b>El Bode dibujado, con la zona plana entre las dos frecuencias.</figcaption></figure>
+</details>
+</div>
+
+<!-- ============ F5 ============ -->
+<div class="prob" id="p-f5">
+<h3 class="ph">F5. Emisor común: ganancias, impedancias y frecuencias de corte inferiores</h3>
+<div class="enun"><p class="et">Enunciado · Tema 8 · págs. 101–106</p>
+<p>Etapa en emisor común con polarización automática. $R_1=R_2=\infty$ (no cuentan), $R_C=8$ kΩ, $R_E=1$ kΩ, $R_L=4$ kΩ, $R_g=0$, $C_1=C_2=C_E=10$ µF, $h_{ie}=2$ kΩ, $h_{fe}=50$. (a) $A_I$. (b) $A_V$. (c) $Z_{in}$ y $Z_{out}$. (d) Frecuencia de cada condensador y $f_{ci}$. (e) Repite sin $C_E$.</p></div>
+<p class="pasos-t">Pasos <span>(toca para abrir)</span></p>
+<details class="paso"><summary><span class="pn">1</span>Modelo a frecuencias medias</summary><div class="inner"><p>En medias, los condensadores de acoplo y desacoplo (en serie y a masa) son cortocircuitos. Dejamos sólo el modelo simplificado: $h_{ie}$ en la base y una fuente $h_{fe}i_b$ en el colector, con $R_C\parallel R_L$ como carga. Como $R_E$ queda puenteada por $C_E$, desaparece.</p></div></details>
+<details class="paso"><summary><span class="pn">2</span>(a) y (b) Ganancias</summary><div class="inner"><p>$A_I=-h_{fe}\dfrac{R_C}{R_C+R_L}=-50\cdot\dfrac8{12}=-33{,}33$. $A_V=-\dfrac{h_{fe}}{h_{ie}}(R_C\parallel R_L)=-25\cdot2{,}667\text{ k}=-66{,}67$.</p></div></details>
+<details class="paso"><summary><span class="pn">3</span>(c) $Z_{in}$ y $Z_{out}$</summary><div class="inner"><p>Mirando desde la entrada sólo se ve $h_{ie}$: $Z_{in}=2$ kΩ. Para $Z_{out}$ se apaga la fuente de entrada, $i_b=0$ y $h_{fe}i_b$ se abre. Queda $Z_{out}=R_C=8$ kΩ ($R_L$ no cuenta, es la carga).</p></div></details>
+<details class="paso"><summary><span class="pn">4</span>(d) $C_1$: el resto en cortocircuito</summary><div class="inner"><p>$C_1$ ve $h_{ie}$ (con $R_g=0$): $f_{c}(C_1)=\dfrac1{2\pi\cdot2000\cdot10\mu}=7{,}96$ Hz.</p></div></details>
+<details class="paso"><summary><span class="pn">5</span>(d) $C_2$</summary><div class="inner"><p>Apagada la fuente, $C_2$ ve $R_C+R_L=12$ kΩ: $f_c(C_2)=\dfrac1{2\pi\cdot12\text{k}\cdot10\mu}=1{,}33$ Hz.</p></div></details>
+<details class="paso"><summary><span class="pn">6</span>(d) $C_E$: refléjalo a la base</summary><div class="inner"><p>$C_E$ está en el emisor, entre dos mallas, y no se puede separar. Se <b>refleja a la base</b>: una impedancia $Z$ del emisor se ve en la base multiplicada por $(1+h_{fe})$, es decir $R_E^*=R_E(1+h_{fe})=51$ kΩ y $C_E^*=C_E/(1+h_{fe})$. Entonces $Z_{th}(C_E^*)=R_E^*\parallel h_{ie}=1{,}925$ kΩ, y para volver al emisor se divide entre 51: $Z_{th}(C_E)=37{,}74$ Ω. $$f_c(C_E)=\dfrac1{2\pi\cdot37{,}74\cdot10\mu}=421{,}8\text{ Hz}.$$</p></div></details>
+<details class="paso"><summary><span class="pn">7</span>(d) Frecuencia de corte inferior</summary><div class="inner"><p>$421{,}8/7{,}96=53\gt10$: hay un polo dominante y $f_{ci}=f_c(C_E)=421{,}8$ Hz. Lo habitual es que el condensador del emisor domine.</p></div></details>
+<details class="paso"><summary><span class="pn">8</span>(e) Sin $C_E$: baja la ganancia</summary><div class="inner"><p>Ahora $R_E$ queda en el camino. Es una <b>degeneración de emisor</b>: $A_V=-h_{fe}\dfrac{R_C\parallel R_L}{h_{ie}+(1+h_{fe})R_E}=-\dfrac{50\cdot2{,}667\text{ k}}{2\text{ k}+51\text{ k}}=-2{,}52$. La ganancia ha pasado de $-66{,}7$ a $-2{,}5$. $Z_{in}=h_{ie}+(1+h_{fe})R_E=53$ kΩ.</p></div></details>
+<details class="paso"><summary><span class="pn">9</span>(e) Nuevas frecuencias de corte</summary><div class="inner"><p>$f_c(C_1)=\dfrac1{2\pi\cdot53\text{k}\cdot10\mu}=0{,}30$ Hz y $f_c(C_2)=1{,}33$ Hz. Ahora $1{,}33/0{,}30=4{,}4&lt;10$, no hay polo dominante y se <b>suman</b>: $f_{ci}\approx1{,}63$ Hz. Con $C_E$ era 421,8 Hz y sin él 1,63 Hz: menos ganancia ⇒ más ancho de banda (el producto ganancia por ancho de banda es casi constante).</p></div></details>
+<details class="paso"><summary><span class="pn">10</span>Frecuencia de corte superior</summary><div class="inner"><p>Aquí los condensadores de acoplo son cortocircuitos y manda la capacidad $C_{ce}\approx1{,}49$ nF (= $1/0{,}672$ nF) en paralelo con la carga. Se apaga la fuente: $Z_{th}=R_C\parallel R_L=2{,}667$ kΩ y $f_{cs}=\dfrac1{2\pi\cdot2{,}667\text{k}\cdot1{,}49\text{n}}\approx40$ kHz. No hay más condensadores de alta frecuencia, así que ese es $f_{cs}$.</p></div></details>
+<details class="resul"><summary>Resultado</summary><div class="inner"><p class="et">Solución</p><p>$A_I=-33{,}3$, $A_V=-66{,}7$, $Z_{in}=2$ kΩ, $Z_{out}=8$ kΩ. $f_c$: 7,96 Hz, 1,33 Hz y 421,8 Hz (dominante). Sin $C_E$: $A_V=-2{,}52$, $Z_{in}=53$ kΩ, $f_{ci}\approx1{,}63$ Hz. $f_{cs}\approx40$ kHz.</p></div></details>
+<details class="nt"><summary>Ver tus apuntes: págs. 99–108</summary>
+<figure class="slide nota"><img src="img/f-099.jpg" alt="Apuntes pág. 99: modelo del transistor bipolar en alta frecuencia y teorema de Miller" loading="lazy" width="900" height="1271"><figcaption><b class="n">Apuntes · pág. 99</b>Modelo $h$ y modelo $\pi$ (con $C_\pi$ y $C_\mu$) y el enunciado del teorema de Miller.</figcaption></figure>
+<figure class="slide nota"><img src="img/f-100.jpg" alt="Apuntes pág. 100: aplicación de Miller y método de constantes de tiempo" loading="lazy" width="900" height="1271"><figcaption><b class="n">Apuntes · pág. 100</b>Miller aplicado al análisis en alta frecuencia y método aproximado de $f_{cs}$.</figcaption></figure>
+<figure class="slide nota"><img src="img/f-101.jpg" alt="Apuntes pág. 101: enunciado del emisor común con polarización automática" loading="lazy" width="900" height="1271"><figcaption><b class="n">Apuntes · pág. 101</b>Enunciado, modelo simplificado y planteamiento de $A_I$.</figcaption></figure>
+<figure class="slide nota"><img src="img/f-102.jpg" alt="Apuntes pág. 102: ganancia de corriente y tensión, impedancias" loading="lazy" width="900" height="1271"><figcaption><b class="n">Apuntes · pág. 102</b>$A_I$, $A_V$, $Z_{in}$ y $Z_{out}$.</figcaption></figure>
+<figure class="slide nota"><img src="img/f-103.jpg" alt="Apuntes pág. 103: efecto de C1, C2 y CE" loading="lazy" width="900" height="1271"><figcaption><b class="n">Apuntes · pág. 103</b>Efecto de $C_1$, $C_2$ y, reflejado a la base, de $C_E$.</figcaption></figure>
+<figure class="slide nota"><img src="img/f-104.jpg" alt="Apuntes pág. 104: Zth de CE y ganancia sin CE" loading="lazy" width="900" height="1271"><figcaption><b class="n">Apuntes · pág. 104</b>$f_c(C_E)=421{,}76$ Hz y el caso sin $C_E$ ($A_V=-2{,}52$).</figcaption></figure>
+<figure class="slide nota"><img src="img/f-105.jpg" alt="Apuntes pág. 105: impedancias y frecuencias de corte sin CE" loading="lazy" width="900" height="1271"><figcaption><b class="n">Apuntes · pág. 105</b>Sin $C_E$: $Z_{in}=53$ kΩ, $Z_{out}=8$ kΩ y $f_c(C_1)=0{,}3$ Hz.</figcaption></figure>
+<figure class="slide nota"><img src="img/f-106.jpg" alt="Apuntes pág. 106: comparación de fci y frecuencia de corte superior" loading="lazy" width="900" height="1271"><figcaption><b class="n">Apuntes · pág. 106</b>Suma de frecuencias, comparación con la etapa anterior y modelo $\pi$ para $f_{cs}$.</figcaption></figure>
+<figure class="slide nota"><img src="img/f-107.jpg" alt="Apuntes pág. 107: fcs con Cce y enunciado del amplificador de alta frecuencia" loading="lazy" width="900" height="1271"><figcaption><b class="n">Apuntes · pág. 107</b>$f_{cs}=40{,}06$ kHz y el enunciado de F6.</figcaption></figure>
+</details>
+</div>
+
+<!-- ============ F6 ============ -->
+<div class="prob" id="p-f6">
+<h3 class="ph">F6. Alta frecuencia con efecto Miller</h3>
+<div class="enun"><p class="et">Enunciado · Tema 8 · págs. 107–111</p>
+<p>Etapa en emisor común con $R_1=27$ kΩ, $R_2=6{,}8$ kΩ, $R_3=1{,}2$ kΩ (colector), $R_5=1$ kΩ (carga), $R_g=100$ Ω, $h_{fe}=135$, $h_{ie}=651$ Ω, $C_{BE}=22$ pF, $C_{BC}=4$ pF. Calcula: (a) ganancia a frecuencias medias, (b) $Z_{in}$, (c) $Z_{out}$, (d) $f_{cs}$.</p></div>
+<p class="pasos-t">Pasos <span>(toca para abrir)</span></p>
+<details class="paso"><summary><span class="pn">1</span>Frecuencias medias</summary><div class="inner"><p>En medias, los condensadores de baja frecuencia ($C_3$, $C_2$, $C_E$) son cortos y los de alta ($C_{BE}$, $C_{BC}$) abiertos. $R_1\parallel R_2=5{,}43$ kΩ y $h_{ie}\parallel(R_1\parallel R_2)=581$ Ω. Hay dos mallas independientes.</p></div></details>
+<details class="paso"><summary><span class="pn">2</span>(a) Ganancia</summary><div class="inner"><p>Entrada: divisor $\dfrac{581}{100+581}=0{,}853$. Transistor: $-\dfrac{h_{fe}}{h_{ie}}(R_3\parallel R_5)=-0{,}2074\cdot545{,}5=-113{,}1$. Total: $A_v=0{,}853\cdot(-113{,}1)\approx-96{,}5$, que son 39,7 dB.</p></div></details>
+<details class="paso"><summary><span class="pn">3</span>(b) y (c) Impedancias</summary><div class="inner"><p>$Z_{in}=(R_1\parallel R_2)\parallel h_{ie}=581$ Ω ($R_g$ forma parte de la fuente y no cuenta). $Z_{out}=R_3=1{,}2$ kΩ: se apaga la fuente, $h_{fe}i_b=0$, y $R_5$ es la carga.</p></div></details>
+<details class="paso"><summary><span class="pn">4</span>(d) $C_{BC}$ está en medio: teorema de Miller</summary><div class="inner"><p>$C_{BC}$ une la base con el colector y no se pueden separar las mallas. Se sustituye por dos condensadores a masa: $C_X=C_{BC}(1-A)$ a la entrada y $C_Y=C_{BC}(1-1/A)$ a la salida, donde $A=V_{col}/V_{base}=-\dfrac{h_{fe}}{h_{ie}}(R_3\parallel R_5)=-113{,}1$. $$C_X=4\text{ pF}\cdot114{,}1=456\text{ pF},\qquad C_Y=4\text{ pF}\cdot1{,}009=4{,}04\text{ pF}.$$ Los 4 pF de $C_{BC}$ se han convertido en 456 pF en la entrada.</p></div></details>
+<details class="paso"><summary><span class="pn">5</span>(d) Un condensador cada vez</summary><div class="inner"><p>Para cada uno, apaga la fuente y mira lo que ve. En la entrada: $Z_{th}=R_g\parallel R_1\parallel R_2\parallel h_{ie}=85{,}3$ Ω. $f_c(C_{BE})=\dfrac1{2\pi\cdot85{,}3\cdot22\text{p}}=84{,}8$ MHz. $f_c(C_X)=\dfrac1{2\pi\cdot85{,}3\cdot456\text{p}}=4{,}09$ MHz. En la salida: $Z_{th}=R_3\parallel R_5=545$ Ω, $f_c(C_Y)=72$ MHz.</p></div></details>
+<details class="paso"><summary><span class="pn">6</span>(d) Cuál manda</summary><div class="inner"><p>La menor es 4,09 MHz y la siguiente está más de 10 veces por encima (72/4,09 ≈ 17). Hay polo dominante y $f_{cs}=4{,}09$ MHz.</p></div></details>
+<details class="resul"><summary>Resultado</summary><div class="inner"><p class="et">Solución</p><p>$A_v\approx-96{,}5$ (39,7 dB), $Z_{in}=581$ Ω, $Z_{out}=1{,}2$ kΩ, $f_{cs}\approx4{,}09$ MHz fijada por la capacidad Miller de entrada.</p></div></details>
+<details class="nt"><summary>Ver tus apuntes: págs. 108–111</summary>
+<figure class="slide nota"><img src="img/f-108.jpg" alt="Apuntes pág. 108: circuito equivalente a frecuencias medias y ganancia" loading="lazy" width="900" height="1271"><figcaption><b class="n">Apuntes · pág. 108</b>Circuito de medias y cálculo de la ganancia. (Ahí aparece 588 Ω y $-95{,}53$; yo obtengo 581 Ω y $-96{,}5$.)</figcaption></figure>
+<figure class="slide nota"><img src="img/f-109.jpg" alt="Apuntes pág. 109: impedancias y efecto de CBE" loading="lazy" width="900" height="1271"><figcaption><b class="n">Apuntes · pág. 109</b>$Z_{in}$, $Z_{out}$ y $f_c(C_{BE})=84{,}8$ MHz.</figcaption></figure>
+<figure class="slide nota"><img src="img/f-110.jpg" alt="Apuntes pág. 110: teorema de Miller sobre CBC" loading="lazy" width="900" height="1271"><figcaption><b class="n">Apuntes · pág. 110</b>Miller sobre $C_{BC}$: $A=-113{,}1$, $C_X$ y $C_Y$. La nota verde «no estoy de acuerdo» sobre $A$: el resultado es correcto.</figcaption></figure>
+<figure class="slide nota"><img src="img/f-111.jpg" alt="Apuntes pág. 111: frecuencias de CBx, CBy y fcs, y enunciado del seguidor de emisor" loading="lazy" width="900" height="1271"><figcaption><b class="n">Apuntes · pág. 111</b>$f_c(C_X)=4{,}09$ MHz, $f_c(C_Y)\approx72$ MHz, $f_{cs}=4{,}09$ MHz, y enunciado de F7.</figcaption></figure>
+</details>
+</div>
+
+<!-- ============ F7 ============ -->
+<div class="prob" id="p-f7">
+<h3 class="ph">F7. Seguidor de emisor (colector común)</h3>
+<div class="enun"><p class="et">Enunciado · Tema 8 · págs. 111–118</p>
+<p>$V_{cc}=12$ V, $R_g=1$ kΩ, $R_B=270$ kΩ, $R_E=3$ kΩ, $R_L=1$ kΩ, $C_1=C_2=10$ µF, $h_{ie}=1$ kΩ, $h_{fe}=100$, $C_{BE}=C_\pi=2$ nF, $C_{BC}=C_\mu=4$ pF, $g_m=h_{fe}/h_{ie}=0{,}1$ S. Calcula la ganancia, $f_{ci}$ y $f_{cs}$. El colector va directo a $V_{cc}$.</p></div>
+<p class="pasos-t">Pasos <span>(toca para abrir)</span></p>
+<details class="paso"><summary><span class="pn">1</span>Topología y ganancia</summary><div class="inner"><p>Entrada en la base, salida en el emisor, colector común. Con los condensadores de acoplo en cortocircuito, $R_E\parallel R_L=750$ Ω. Impedancia vista desde la base: $h_{ie}+(1+h_{fe})\cdot750=76{,}75$ kΩ. Con $R_B$ en paralelo, $Z_{in}=59{,}8$ kΩ. $$A_v=\dfrac{Z_{in}}{R_g+Z_{in}}\cdot\dfrac{(1+h_{fe})750}{h_{ie}+(1+h_{fe})750}=0{,}984\cdot0{,}987\approx0{,}97.$$ Casi 1, es un seguidor (0 dB aproximadamente).</p></div></details>
+<details class="paso"><summary><span class="pn">2</span>Frecuencia de $C_1$</summary><div class="inner"><p>$C_1$ ve $R_g+Z_{in}=60{,}8$ kΩ: $f_c(C_1)=\dfrac1{2\pi\cdot60{,}8\text{k}\cdot10\mu}=0{,}26$ Hz.</p></div></details>
+<details class="paso"><summary><span class="pn">3</span>Frecuencia de $C_2$</summary><div class="inner"><p>Apagada la fuente, $C_2$ ve $R_L$ en serie con ($R_E$ en paralelo con la impedancia de salida del seguidor). La salida vista por el emisor es $\dfrac{h_{ie}+R_g\parallel R_B}{1+h_{fe}}=19{,}8$ Ω, luego $R_E\parallel19{,}8=19{,}6$ Ω y $Z_{th}(C_2)=19{,}6+1000=1019{,}6$ Ω. $f_c(C_2)=\dfrac1{2\pi\cdot1019{,}6\cdot10\mu}=15{,}6$ Hz.</p></div></details>
+<details class="paso"><summary><span class="pn">4</span>$f_{ci}$</summary><div class="inner"><p>$15{,}6/0{,}26=60\gt10$: $f_{ci}=15{,}6$ Hz. Lo manda $C_2$, que es el que ve una impedancia baja.</p></div></details>
+<details class="paso"><summary><span class="pn">5</span>Alta frecuencia: $C_{BC}$ sin Miller</summary><div class="inner"><p>El colector está unido a $V_{cc}$, que en alterna es masa. Así que $C_{BC}$ no une dos nodos con ganancia entre ellos: va <b>de la base a masa</b>. No hay Miller. Ve $R_g\parallel R_B\parallel[h_{ie}+(1+h_{fe})750]\approx984$ Ω, y $f_c(C_{BC})=\dfrac1{2\pi\cdot984\cdot4\text{p}}=40$ MHz.</p></div></details>
+<details class="paso"><summary><span class="pn">6</span>Alta frecuencia: $C_\pi$ (entre base y emisor)</summary><div class="inner"><p>$C_\pi$ une la base con el emisor, y el emisor sigue a la base (ganancia 0,987). Ve una realimentación fuerte y por eso la impedancia que ve es mucho menor. Resolviendo el circuito con una fuente de prueba en bornes de $C_\pi$ sale $Z_{th}\approx22$ Ω, así que $f_c(C_\pi)\approx\dfrac1{2\pi\cdot22\cdot2\text{n}}\approx3{,}5$ MHz. Por el método de constantes de tiempo, $\tau_\pi+\tau_\mu\approx49$ ns, y $f_{cs}\approx3{,}3$ MHz.</p></div></details>
+<details class="paso"><summary><span class="pn">7</span>Comprobación con simulación</summary><div class="inner"><p>He resuelto el circuito completo con análisis AC (nodos B y E, $r_\pi$, $g_m$, $C_\pi$, $C_\mu$ a masa). La ganancia en medias sale 0,971 y la caída de 3 dB queda en unos 4,2 MHz. El cuaderno da 151 kHz (págs. 116–118) y no me coincide. Creo que hay dos causas: en la derivación de $Z_{th}(C_\pi)$ parece perderse el factor $R_E\parallel R_L$ al escribir $V^*=-g_mU_{th}$ (una corriente no se puede igualar a una tensión), y $C_{BC}$ se trata con Miller como si el colector fuera una salida con ganancia, cuando va directo a $V_{cc}$. Revisa esas dos líneas con tus diapositivas.</p></div></details>
+<details class="resul"><summary>Resultado</summary><div class="inner"><p class="et">Solución</p><p>$A_v\approx0{,}97$ (≈ 0 dB), $f_{ci}=15{,}6$ Hz y $f_{cs}\approx3$–4 MHz (el cuaderno da 151 kHz).</p></div></details>
+<details class="nt"><summary>Ver tus apuntes: págs. 113–117</summary>
+<figure class="slide nota"><img src="img/f-113.jpg" alt="Apuntes pág. 113: ganancia del seguidor de emisor y fc de C1" loading="lazy" width="900" height="1271"><figcaption><b class="n">Apuntes · pág. 113</b>Ganancia 0,98 (yo 0,97) y efecto de $C_1$.</figcaption></figure>
+<figure class="slide nota"><img src="img/f-114.jpg" alt="Apuntes pág. 114: Zth de C1 y efecto de C2" loading="lazy" width="900" height="1271"><figcaption><b class="n">Apuntes · pág. 114</b>$Z_{th}$ de $C_1$ (60 762 Ω, 0,26 Hz) y planteamiento de $C_2$ reflejando a la base.</figcaption></figure>
+<figure class="slide nota"><img src="img/f-115.jpg" alt="Apuntes pág. 115: fc de C2, fci y modelo pi" loading="lazy" width="900" height="1271"><figcaption><b class="n">Apuntes · pág. 115</b>$f_c(C_2)=15{,}61$ Hz, $f_{ci}=15{,}61$ Hz y el modelo $\pi$ en alta frecuencia.</figcaption></figure>
+<figure class="slide nota"><img src="img/f-117.jpg" alt="Apuntes pág. 117: teorema de Miller sobre CBC" loading="lazy" width="900" height="1271"><figcaption><b class="n">Apuntes · pág. 117</b>Aquí se aplica Miller a $C_{BC}$ con $A=g_m$; es la parte que no me cuadra (el colector va a $V_{cc}$).</figcaption></figure>
+</details>
+</div>
+</section>
+
+</main>
+</div>
+<div class="pager"><a href="examenes.html"><small>← Anterior</small>Exámenes</a><a class="nx" href="practica.html"><small>Siguiente →</small>Practicar</a></div>
+<script>
+const $=id=>document.getElementById(id);
+const fmt=v=>{const a=Math.abs(v);if(a===0)return '0';if(a>=1e6)return (v/1e6).toPrecision(3).replace(/\.?0+$/,'')+'M';if(a>=1e4)return (v/1e3).toPrecision(3).replace(/\.?0+$/,'')+'k';if(a>=100)return String(Math.round(v));if(a>=1)return v.toPrecision(3).replace(/\.?0+$/,'');return v.toPrecision(2).replace(/\.?0+$/,'')};
+const es=v=>String(v).replace('.',',');
+const num=(v,d=2)=>es((+v).toFixed(d));
+const rng=(a,b,n)=>Array.from({length:n},(_,i)=>a+(b-a)*i/(n-1));
+const val=id=>parseFloat($(id).value);
+function bind(ids,fn){ids.forEach(i=>$(i).addEventListener('input',fn));fn();}
+function out(id,t){const e=$(id+'-o');if(e)e.textContent=t;}
+function freq(f){return f>=1e6?num(f/1e6,3)+' MHz':f>=1e3?num(f/1e3,3)+' kHz':num(f,2)+' Hz';}
+function plotSVG(o,items){
+  const W=o.w||640,H=o.h||210,m={l:40,r:14,t:14,b:28};
+  const X=x=>+(m.l+(x-o.x0)/(o.x1-o.x0)*(W-m.l-m.r)).toFixed(2);
+  const cl=y=>Math.max(o.y0,Math.min(o.y1,y));
+  const Y=y=>+(H-m.b-(cl(y)-o.y0)/(o.y1-o.y0)*(H-m.t-m.b)).toFixed(2);
+  let s=`<svg viewBox="0 0 ${W} ${H}" class="plot" role="img" aria-label="${o.label||'gráfica'}">`;
+  for(const v of (o.yt||[])) s+=`<line class="grid" x1="${m.l}" x2="${W-m.r}" y1="${Y(v)}" y2="${Y(v)}"/><text class="tk" x="${m.l-6}" y="${Y(v)+4}" text-anchor="end">${o.ytf?o.ytf(v):fmt(v)}</text>`;
+  for(const v of (o.xt||[])) s+=`<text class="tk" x="${X(v)}" y="${H-9}" text-anchor="middle">${o.xtf?o.xtf(v):fmt(v)}</text>`;
+  const base=(o.y0<=0&&o.y1>=0)?0:o.y0;
+  s+=`<line class="ax" x1="${m.l}" x2="${W-m.r}" y1="${Y(base)}" y2="${Y(base)}"/>`;
+  if(o.x0<=0&&o.x1>=0) s+=`<line class="ax" x1="${X(0)}" x2="${X(0)}" y1="${m.t}" y2="${H-m.b}"/>`;
+  if(o.xl) s+=`<text class="lb" x="${W-m.r}" y="${Y(base)-6}" text-anchor="end">${o.xl}</text>`;
+  if(o.yl) s+=`<text class="lb" x="${m.l+6}" y="${m.t+10}">${o.yl}</text>`;
+  for(const it of items){
+    const c=it.c||'s1';
+    if(it.t==='stem'){ it.n.forEach((n,i)=>{ if(n<o.x0||n>o.x1) return; const yy=it.y[i]; s+=`<line class="st ${c}" x1="${X(n)}" x2="${X(n)}" y1="${Y(base)}" y2="${Y(yy)}"/><circle class="${c}" cx="${X(n)}" cy="${Y(yy)}" r="${it.hl===n?6:(it.r||3.5)}"/>`; }); }
+    else if(it.t==='line'||it.t==='step'){ let d=''; it.x.forEach((x,i)=>{ if(it.t==='step'&&i>0) d+=`L${X(x)},${Y(it.y[i-1])}`; d+=(i?'L':'M')+X(x)+','+Y(it.y[i]); }); s+=`<path class="ln ${c}" d="${d}"${it.dash?' stroke-dasharray="5 4"':''}${it.w?` stroke-width="${it.w}"`:''}/>`; }
+    else if(it.t==='area'){ let d=`M${X(it.x[0])},${Y(base)}`; it.x.forEach((x,i)=>{d+=`L${X(x)},${Y(it.y[i])}`}); d+=`L${X(it.x[it.x.length-1])},${Y(base)}Z`; s+=`<path class="ar ${c}" d="${d}"/>`; }
+    else if(it.t==='poly'){ const d=it.pts.map((p,i)=>(i?'L':'M')+X(p[0])+','+Y(p[1])).join('')+'Z'; s+=`<path class="ar ${c}" d="${d}"/>`; }
+    else if(it.t==='pt'){ s+=`<circle class="${c}" cx="${X(it.x)}" cy="${Y(it.y)}" r="${it.r||5}"/>`; }
+    else if(it.t==='vline'){ s+=`<line class="vl ${c}" x1="${X(it.x)}" x2="${X(it.x)}" y1="${m.t}" y2="${H-m.b}" stroke-dasharray="3 4"/>`; }
+    else if(it.t==='text'){ s+=`<text class="lb ${c}" x="${X(it.x)}" y="${Y(it.y)}" text-anchor="${it.a||'middle'}">${it.s}</text>`; }
+  }
+  return s+'</svg>';
+}
+
+
+/* ---------- apuntes de Fuen: Bode de F3 y F4 ---------- */
+(function(){
+  if(!$('fig-fz'))return;
+  const lw=rng(1,6,300);
+  const lab=v=>{const w=Math.round(Math.pow(10,v));return w>=1e6?(w/1e6)+'M':w>=1e3?(w/1e3)+'k':String(w);};
+  const rad=w=>String(Math.round(w)).replace(/\B(?=(\d{3})+(?!\d))/g,'\u202f');
+  const xo={x0:1,x1:6,xt:[1,2,3,4,5,6],xtf:lab};
+  let sw=false;
+  function drawF3(){
+    const R1=160e3,C1=10e-9,R2=32e3,C2=1e-9;
+    const t1=sw?R2*C2:R1*C1, t2=sw?R1*C1:R2*C2, K=sw?R1/R2:R2/R1;
+    const ex=lw.map(l=>{const w=Math.pow(10,l);return 20*Math.log10(K*Math.hypot(1,w*t1)/Math.hypot(1,w*t2));});
+    const as=lw.map(l=>20*Math.log10(K)+20*Math.max(0,l+Math.log10(t1))-20*Math.max(0,l+Math.log10(t2)));
+    const yt=[-40,-20,0,20,40];
+    $('fig-fz').innerHTML=plotSVG(Object.assign({y0:-40,y1:40,yt,label:'Módulo del inversor con Z1 y Z2 en paralelo RC',yl:'|A| dB',xl:'ω rad/s'},xo),[
+      {t:'line',x:lw,y:as,c:'s3',dash:1,w:1.6},{t:'line',x:lw,y:ex,c:'s1'},
+      {t:'vline',x:-Math.log10(t1),c:'s2'},{t:'vline',x:-Math.log10(t2),c:'s2'}]);
+    $('fz-txt').textContent=(sw?'Z₁ y Z₂ intercambiadas: ':'Original: ')+'ganancia en continua '+num(20*Math.log10(K),2)+' dB · cero en '+rad(1/t1)+' rad/s · polo en '+rad(1/t2)+' rad/s · nivel final '+num(20*Math.log10(K*t1/t2),2)+' dB';
+  }
+  $('fz-sw').addEventListener('click',()=>{sw=!sw;$('fz-sw').setAttribute('aria-pressed',sw);drawF3();});
+  drawF3();
+  if($('fig-fy')){
+    const t1=1e-3,t2=1e-4;
+    const ex=lw.map(l=>{const w=Math.pow(10,l);return 20*Math.log10(Math.hypot(1,w*t1)/(w*t1*Math.hypot(1,w*t2)));});
+    const as=lw.map(l=>-20*(l+Math.log10(t1))+20*Math.max(0,l+Math.log10(t1))-20*Math.max(0,l+Math.log10(t2)));
+    $('fig-fy').innerHTML=plotSVG(Object.assign({y0:-40,y1:40,yt:[-40,-20,0,20,40],label:'Módulo con polo en el origen cancelado por un cero',yl:'|A| dB',xl:'ω rad/s'},xo),[
+      {t:'line',x:lw,y:as,c:'s3',dash:1,w:1.6},{t:'line',x:lw,y:ex,c:'s1'},
+      {t:'vline',x:3,c:'s2'},{t:'vline',x:4,c:'s2'}]);
+  }
+})();
+
+/* ---------- búsqueda en todo el sitio ---------- */
+(function(){
+  const norm=s=>s.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'');
+  const PG=document.body.dataset.page;
+  const NAMES={"index": "Inicio", "operacionales": "Operacionales", "bode": "Bode y filtros", "transistores": "Transistores", "examenes": "Exámenes", "fuen": "Apuntes de Fuen", "practica": "Practicar", "referencia": "Referencia"};
+  const idx=[];
+  document.querySelectorAll('main section').forEach(sec=>{
+    const h=sec.querySelector('h2');const title=h?h.textContent:'';const tc=sec.getAttribute('style')||'';
+    sec.querySelectorAll('h3,h4,p,li,figcaption,summary,dt,dd,td').forEach(el=>{
+      const t=el.textContent.replace(/\s+/g,' ').trim();if(t.length<12)return;idx.push({el,title,t,n:norm(t),tc,p:PG});
+    });
+  });
+  let remote=null,loading=false;
+  function load(cb){
+    if(remote){cb();return;} if(loading)return; loading=true;
+    fetch('buscar.json').then(r=>r.json()).then(j=>{remote=j.filter(e=>e.p!==PG).map(e=>Object.assign(e,{n:norm(e.t)}));cb();}).catch(()=>{remote=[];});
+  }
+  const inp=$('srch'),box=$('srch-out');
+  function open_(el){let d=el.closest('details');while(d){d.open=true;d=d.parentElement.closest('details');}
+    el.scrollIntoView({behavior:'smooth',block:'center'});el.classList.add('flash');setTimeout(()=>el.classList.remove('flash'),1900);}
+  function show(){
+    const q=norm(inp.value.trim());if(q.length<2){box.hidden=true;box.innerHTML='';return;}
+    const w=q.split(/\s+/);
+    const loc=idx.filter(e=>w.every(x=>e.n.includes(x))).slice(0,6);
+    const rem=(remote||[]).filter(e=>w.every(x=>e.n.includes(x))).slice(0,6);
+    box.hidden=false;box.innerHTML='';
+    if(!loc.length&&!rem.length){box.textContent='Sin resultados. Prueba con otra palabra, por ejemplo «Miller» o «slew».';return;}
+    const add=(r,here)=>{
+      const b=document.createElement('button');b.type='button';b.className='sres';b.setAttribute('style',r.tc);
+      const s=document.createElement('span');s.className='sres-t';s.textContent=r.title;
+      if(!here){const pp=document.createElement('span');pp.className='sres-p';pp.textContent=NAMES[r.p]||r.p;s.appendChild(pp);}
+      b.appendChild(s);
+      const i=r.n.indexOf(w[0]);const a=Math.max(0,i-50);const sn=r.t.slice(a,a+150);
+      b.appendChild(document.createTextNode((a>0?'… ':'')+sn+(a+150<r.t.length?' …':'')));
+      b.addEventListener('click',()=>{ if(here)open_(r.el); else location.href=r.p+'.html#'+r.id; });
+      box.appendChild(b);
+    };
+    loc.forEach(r=>add(r,true)); rem.forEach(r=>add(r,false));
+  }
+  inp.addEventListener('input',()=>{show();load(show);});
+})();
+/* ---------- ir a un ancla y abrir los desplegables que la contienen ---------- */
+(function(){
+  function go(){
+    const h=decodeURIComponent(location.hash.slice(1));if(!h)return;
+    const el=document.getElementById(h);if(!el)return;
+    let d=el.closest('details');while(d){d.open=true;d=d.parentElement.closest('details');}
+    setTimeout(()=>el.scrollIntoView({block:'start'}),60);
+    setTimeout(()=>el.scrollIntoView({block:'start'}),900);
+  }
+  addEventListener('hashchange',go);addEventListener('load',go);
+})();
+/* ---------- índice lateral y botón de subir ---------- */
+(function(){
+  const links=[...document.querySelectorAll('.toc a')];
+  const map=new Map(links.map(a=>[a.getAttribute('href').slice(1),a]));
+  const heads=[...map.keys()].map(i=>$(i)).filter(Boolean);
+  if('IntersectionObserver' in window){
+    const io=new IntersectionObserver(es_=>{es_.forEach(e=>{if(e.isIntersecting){links.forEach(a=>a.classList.remove('on'));const a=map.get(e.target.id);if(a){a.classList.add('on');if(getComputedStyle(a.parentElement).display==='flex'){a.scrollIntoView({block:'nearest',inline:'center'});}}}});},{rootMargin:'-20% 0px -70% 0px'});
+    heads.forEach(h=>io.observe(h));
+  }
+  const t=$('totop');const f=()=>t.classList.toggle('show',window.scrollY>600);addEventListener('scroll',f,{passive:true});f();
+})();
+
+</script>
+</body>
+</html>

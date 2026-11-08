@@ -1,0 +1,938 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="description" content="Electrónica Analógica (UPCT): Seis exámenes de otros años resueltos desde cero.">
+<title>Electrónica Analógica · Exámenes</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=IBM+Plex+Sans:ital,wght@0,400;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<script>
+window.MathJax = { tex: { inlineMath: [['$','$']], displayMath: [['$$','$$']] }, svg: { fontCache: 'global' } };
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-svg.js"></script>
+<style>
+/* Layout: columna de lectura con índice lateral fijo; el triángulo del operacional y la recta de −20 dB/década como motivo */
+/* Layout: columna de lectura con índice lateral fijo en escritorio; el disco unidad del plano z como motivo */
+:root{
+  --bg:#f3f5fa; --surface:#ffffff; --fg:#141b2b; --muted:#566178; --line:#d6dce9;
+  --accent:#1d5fb8; --accent-soft:#e1ebf9; --warn:#b2482a; --warn-soft:#f7e6df;
+  --display:"Bricolage Grotesque", "Segoe UI", system-ui, sans-serif;
+  --body:"IBM Plex Sans", "Segoe UI", system-ui, sans-serif;
+  --mono:"IBM Plex Mono", ui-monospace, Consolas, monospace;
+}
+@media (prefers-color-scheme: dark){ :root:not([data-theme="light"]){
+  --bg:#0e131d; --surface:#161d2b; --fg:#e4e9f3; --muted:#9aa6bb; --line:#2a3445;
+  --accent:#6ea8f2; --accent-soft:#162a49; --warn:#ef8a68; --warn-soft:#3a221a; color-scheme:dark; } }
+:root[data-theme="dark"]{
+  --bg:#0e131d; --surface:#161d2b; --fg:#e4e9f3; --muted:#9aa6bb; --line:#2a3445;
+  --accent:#6ea8f2; --accent-soft:#162a49; --warn:#ef8a68; --warn-soft:#3a221a; color-scheme:dark; }
+
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--fg);font-family:var(--body);font-size:16px;line-height:1.6;
+  padding-left:max(16px, env(safe-area-inset-left, 0px));padding-right:max(16px, env(safe-area-inset-right, 0px));padding-block:0 64px}
+.wrap{max-width:1120px;margin:0 auto;display:grid;grid-template-columns:220px minmax(0,1fr);gap:48px}
+@media (max-width:860px){.wrap{grid-template-columns:minmax(0,1fr);gap:0}.toc{display:none}}
+header.hero{max-width:1120px;margin:0 auto;padding-block:40px 28px;display:grid;grid-template-columns:minmax(0,1fr) 180px;gap:32px;align-items:center;border-bottom:1px solid var(--line);margin-bottom:32px}
+@media (max-width:600px){header.hero{grid-template-columns:minmax(0,1fr)}header.hero svg{display:none}}
+.eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--accent)}
+h1{font-family:var(--display);font-weight:700;font-size:clamp(32px,5vw,48px);line-height:1.08;margin:8px 0 12px;text-wrap:balance}
+.lede{color:var(--muted);max-width:62ch;margin:0}
+h2{font-family:var(--display);font-weight:700;font-size:28px;line-height:1.2;margin:56px 0 8px;text-wrap:balance;scroll-margin-top:16px}
+h3{font-family:var(--display);font-weight:500;font-size:20px;margin:32px 0 8px;text-wrap:balance}
+h4{font-size:13px;font-family:var(--mono);text-transform:uppercase;letter-spacing:.07em;color:var(--muted);margin:24px 0 6px;font-weight:500}
+p,li{max-width:70ch}
+main{min-width:0}
+.toc{position:sticky;top:env(safe-area-inset-top,0px);align-self:start;padding-top:8px;max-height:100vh;overflow:auto}
+.toc a{display:block;color:var(--muted);text-decoration:none;font-size:14px;padding:4px 0 4px 10px;border-left:2px solid var(--line)}
+.toc a:hover,.toc a:focus-visible{color:var(--fg);border-left-color:var(--accent);outline:none}
+.toc .grp{font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--accent);margin:18px 0 6px}
+.tag{display:inline-block;font-family:var(--mono);font-size:12px;padding:2px 8px;border-radius:4px;background:var(--accent-soft);color:var(--accent);margin-right:6px}
+.tag.w{background:var(--warn-soft);color:var(--warn)}
+.box{background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:16px 20px;margin:16px 0}
+.box.key{border-left:3px solid var(--accent)}
+.box.trap{border-left:3px solid var(--warn)}
+.box > :first-child{margin-top:0}.box > :last-child{margin-bottom:0}
+.math{overflow-x:auto;overflow-y:hidden;max-width:100%}
+mjx-container[display="true"]{overflow-x:auto;overflow-y:hidden;max-width:100%;padding:2px 0}
+ol.steps{padding-left:22px}ol.steps li{margin:6px 0}
+details{background:var(--surface);border:1px solid var(--line);border-radius:8px;margin:14px 0}
+details>summary{cursor:pointer;padding:12px 18px;font-weight:600;list-style:none;display:flex;gap:10px;align-items:baseline}
+details>summary::-webkit-details-marker{display:none}
+details>summary::before{content:"+";font-family:var(--mono);color:var(--accent);width:1ch}
+details[open]>summary::before{content:"−"}
+details>summary:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:8px}
+details .inner{padding:0 20px 16px;border-top:1px solid var(--line)}
+.src{font-family:var(--mono);font-size:12px;color:var(--muted);font-weight:400}
+table{border-collapse:collapse;width:100%;font-size:15px}
+.tw{overflow-x:auto;margin:12px 0}
+th,td{text-align:left;padding:8px 10px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-family:var(--mono);font-size:12px;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);font-weight:500}
+pre{background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:14px 16px;overflow-x:auto;font-family:var(--mono);font-size:13.5px;line-height:1.5}
+code{font-family:var(--mono);font-size:.92em}
+.grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px}
+.grid2 .box{margin:0}
+.check{display:flex;gap:10px;align-items:flex-start;padding:8px 0;border-bottom:1px solid var(--line)}
+.check input{margin-top:5px;accent-color:var(--accent);width:16px;height:16px;flex:none}
+.check label{cursor:pointer}
+.bar{height:6px;background:var(--line);border-radius:3px;overflow:hidden;margin:8px 0 4px;max-width:420px}
+.bar i{display:block;height:100%;background:var(--accent);width:0;transition:width .3s}
+@media (prefers-reduced-motion:reduce){.bar i{transition:none}}
+.muted{color:var(--muted)}
+a{color:var(--accent)}
+
+figure.fig{margin:20px 0;background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:14px 16px}
+figure.fig figcaption{font-size:14px;color:var(--muted);margin-top:8px;max-width:70ch}
+figure.fig .ft{font-family:var(--mono);font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--accent);margin:0 0 6px}
+.plot{width:100%;height:auto;display:block}
+.plot .grid{stroke:var(--line);stroke-width:1}
+.plot .ax{stroke:var(--muted);stroke-width:1}
+.plot .tk,.plot .lb{fill:var(--muted);font-family:var(--mono);font-size:11px;stroke:none}
+.plot .lb.s1{fill:var(--accent)} .plot .lb.s2{fill:var(--warn)} .plot .lb.s3{fill:var(--fg)}
+.s1{stroke:var(--accent);fill:var(--accent)} .s2{stroke:var(--warn);fill:var(--warn)} .s3{stroke:var(--fg);fill:var(--fg)}
+.plot .st{stroke-width:1.6}
+.plot .ln{fill:none;stroke-width:2}
+.plot .ar{stroke:none}
+.plot .ar.area{fill:var(--accent);fill-opacity:.18}
+.plot .ar.areaw{fill:var(--warn);fill-opacity:.22}
+.plot .vl{stroke-width:1.2}
+.plot .dbg{fill:var(--surface)}
+details .inner{overflow-x:auto}
+main{overflow-wrap:break-word}
+.plot .disk{fill:var(--accent);fill-opacity:.12;stroke:var(--accent);stroke-width:1.5}
+.plot .outz{fill:var(--warn);fill-opacity:.10}
+.plot .zr{fill:none;stroke:var(--fg);stroke-width:1.8}
+.plot .px{stroke-width:2.5;fill:none}
+.plot .blk{fill:var(--surface);stroke:var(--fg);stroke-width:1.4}
+.plot .wire{stroke:var(--fg);stroke-width:1.4;fill:none}
+.plot .ahd{fill:var(--fg)}
+.plot .bt{fill:var(--fg);font-family:var(--body);font-size:13px}
+.ctrl{display:flex;flex-wrap:wrap;gap:10px 22px;align-items:center;font-size:14px;margin:4px 0 10px}
+.ctrl label{display:flex;gap:8px;align-items:center}
+.ctrl input[type=range]{width:190px;max-width:60vw;accent-color:var(--accent)}
+.ctrl output{font-family:var(--mono);font-size:13px;min-width:5ch}
+.pill{font-family:var(--mono);font-size:12px;padding:2px 10px;border-radius:999px;background:var(--accent-soft);color:var(--accent)}
+.pill.bad{background:var(--warn-soft);color:var(--warn)}
+.figrow{display:grid;grid-template-columns:minmax(0,250px) minmax(0,1fr);gap:16px;align-items:center}
+@media (max-width:640px){.figrow{grid-template-columns:minmax(0,1fr)}}
+.fig3{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px}
+.fig3 p{margin:0;font-size:13px;color:var(--muted);text-align:center}
+.fcards{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:16px}
+.fcards .box{margin:0}
+.fcards ul{padding-left:18px;margin:0}.fcards li{margin:5px 0}
+dl.gl{display:grid;grid-template-columns:minmax(0,1fr);gap:0;margin:8px 0}
+dl.gl div{padding:10px 0;border-bottom:1px solid var(--line)}
+dl.gl dt{font-weight:600}
+dl.gl div{border-left:3px solid color-mix(in srgb,var(--tc,var(--accent)) 35%,transparent);padding-left:12px}
+dl.gl dd{margin:2px 0 0 0;max-width:72ch}
+dl.gl .tt{font-family:var(--mono);font-size:12px;color:var(--accent);margin-left:6px;font-weight:400}
+
+.ctrl[hidden]{display:none!important}
+.zero{background:var(--accent-soft);border:1px solid var(--line);border-radius:8px;padding:16px 20px;margin:16px 0}
+.zero > :first-child{margin-top:0}.zero > :last-child{margin-bottom:0}
+.zero .ft{font-family:var(--mono);font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--accent);margin:0 0 6px}
+.zero ol,.zero ul{padding-left:20px}
+.map{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:12px 0}
+.map a{display:inline-block;padding:8px 12px;border:1px solid var(--line);border-radius:6px;background:var(--surface);color:var(--fg);text-decoration:none;font-size:14px}
+.map a:hover,.map a:focus-visible{border-color:var(--accent);outline:none}
+.map a b{color:var(--accent);font-family:var(--mono);font-weight:500;margin-right:4px}
+.map span{color:var(--muted);font-family:var(--mono)}
+.ctrl label{flex-wrap:wrap;min-width:0;max-width:100%}
+.ctrl select{max-width:100%;min-width:0}
+.ctrl select,.ctrl input[type=text]{font:inherit;font-size:14px;padding:4px 8px;border:1px solid var(--line);border-radius:6px;background:var(--surface);color:var(--fg)}
+.ctrl input[type=text]{width:220px;max-width:70vw;font-family:var(--mono)}
+.ctrl input[type=checkbox]{accent-color:var(--accent);width:16px;height:16px}
+.ctrl button{font:inherit;font-size:14px;padding:5px 12px;border:1px solid var(--accent);border-radius:6px;background:var(--surface);color:var(--accent);cursor:pointer}
+.ctrl button[aria-pressed="true"]{background:var(--accent);color:var(--surface)}
+.readout{font-family:var(--mono);font-size:13px;background:var(--bg);border:1px solid var(--line);border-radius:6px;padding:8px 12px;margin:8px 0;overflow-x:auto;white-space:pre-wrap}
+.props{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:8px;margin:8px 0}
+.props div{border:1px solid var(--line);border-radius:6px;padding:8px 10px;font-size:13px;background:var(--surface)}
+.props b{display:block;font-size:12px;font-family:var(--mono);text-transform:uppercase;letter-spacing:.05em}
+.props .y b{color:var(--accent)} .props .n b{color:var(--warn)}
+
+/* ===== Rediseño visual ===== */
+:root{
+  --c0:#1d5fb8; --c0s:#e1ebf9;
+  --c1:#4652c4; --c1s:#e6e8f8;
+  --c2:#0b7f93; --c2s:#dff1f4;
+  --c3:#7d45c9; --c3s:#efe7f9;
+  --c4:#b8730c; --c4s:#f7ecda;
+  --c5:#c43d63; --c5s:#f8e3e9;
+  --c6:#2c8a52; --c6s:#e1f2e8;
+  --c7:#4b5b70; --c7s:#e6eaef;
+  --c8:#c25a1c; --c8s:#f8e7dc;
+  --shadow:0 1px 2px rgba(20,30,52,.06),0 6px 24px rgba(20,30,52,.06);
+}
+@media (prefers-color-scheme: dark){ :root:not([data-theme="light"]){
+  --c0:#6ea8f2; --c0s:#162a49; --c1:#8f98ff; --c1s:#1f2240; --c2:#4cc6d9; --c2s:#13303a; --c3:#c09bff; --c3s:#2a1f3d;
+  --c4:#f0b252; --c4s:#3a2b12; --c5:#ff8aa8; --c5s:#3d1c27; --c6:#6fd39a; --c6s:#163322; --c7:#a9b6c8; --c7s:#232a33; --c8:#ff9e66; --c8s:#3a2316;
+  --shadow:0 1px 2px rgba(0,0,0,.3),0 8px 28px rgba(0,0,0,.25); } }
+:root[data-theme="dark"]{
+  --c0:#6ea8f2; --c0s:#162a49; --c1:#8f98ff; --c1s:#1f2240; --c2:#4cc6d9; --c2s:#13303a; --c3:#c09bff; --c3s:#2a1f3d;
+  --c4:#f0b252; --c4s:#3a2b12; --c5:#ff8aa8; --c5s:#3d1c27; --c6:#6fd39a; --c6s:#163322; --c7:#a9b6c8; --c7s:#232a33; --c8:#ff9e66; --c8s:#3a2316;
+  --shadow:0 1px 2px rgba(0,0,0,.3),0 8px 28px rgba(0,0,0,.25); }
+
+body{line-height:1.65}
+/* portada */
+header.hero{display:block;max-width:none;border:0;margin:0 calc(-1*max(16px, env(safe-area-inset-left, 0px))) 36px;padding-block:0;
+  background:linear-gradient(135deg,var(--accent-soft),var(--bg) 70%);border-bottom:1px solid var(--line)}
+.hero-in{max-width:1180px;margin:0 auto;display:grid;grid-template-columns:minmax(0,1fr) 300px;gap:40px;align-items:center;
+  padding:48px max(16px, env(safe-area-inset-right, 0px)) 44px max(16px, env(safe-area-inset-left, 0px))}
+@media (max-width:760px){.hero-in{grid-template-columns:minmax(0,1fr);padding-block:32px 28px}.hero-art{display:none}}
+header.hero h1{font-size:clamp(38px,6.4vw,64px);line-height:1.02;margin:10px 0 4px;letter-spacing:-.01em}
+header.hero h1 span{color:var(--accent)}
+header.hero .sub{font-family:var(--display);font-size:clamp(20px,2.6vw,26px);font-weight:500;color:var(--muted);margin:0 0 14px}
+.stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin:22px 0 18px;max-width:640px}
+@media (max-width:520px){.stats{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.stats div{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:10px 12px;box-shadow:var(--shadow)}
+.stats b{display:block;font-family:var(--display);font-size:28px;line-height:1.1;color:var(--accent);font-variant-numeric:tabular-nums}
+.stats span{font-size:12.5px;color:var(--muted);line-height:1.3;display:block}
+.cta{display:flex;flex-wrap:wrap;gap:8px}
+.btn{display:inline-block;padding:9px 16px;border-radius:999px;border:1px solid var(--line);background:var(--surface);color:var(--fg);text-decoration:none;font-weight:600;font-size:14px}
+.btn:hover,.btn:focus-visible{border-color:var(--accent);outline:none}
+.btn.pri{background:var(--accent);border-color:var(--accent);color:var(--surface)}
+.zart{width:100%;height:auto;max-width:300px}
+.orbit{transform-origin:0 0;animation:orb 9s linear infinite}
+@keyframes orb{from{transform:rotate(0)}to{transform:rotate(-360deg)}}
+@media (prefers-reduced-motion:reduce){.orbit{animation:none;transform:rotate(-40deg)}}
+.art-cap{font-size:13px;color:var(--muted);text-align:center;margin:6px 0 0}
+
+/* rejilla general */
+.wrap{max-width:1180px;gap:40px;grid-template-columns:230px minmax(0,1fr)}
+main{display:flex;flex-direction:column;gap:28px}
+
+/* tarjetas de sección */
+section.sec{background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:8px 32px 30px;box-shadow:var(--shadow);position:relative;overflow:hidden;min-width:0}
+section.sec::before{content:"";position:absolute;inset:0 0 auto 0;height:6px;background:var(--tc)}
+@media (max-width:640px){section.sec{padding:6px 18px 22px;border-radius:14px}}
+.sh{display:flex;gap:16px;align-items:center;margin:24px 0 10px}
+.badge{flex:none;min-width:58px;height:58px;padding:0 10px;border-radius:16px;background:var(--tc);color:var(--surface);display:flex;align-items:center;justify-content:center;
+  font-family:var(--display);font-weight:700;font-size:22px;letter-spacing:-.01em;box-shadow:0 4px 14px color-mix(in srgb,var(--tc) 35%,transparent)}
+.shx{min-width:0}
+.kick{margin:0;font-family:var(--mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--tc)}
+.sh h2{margin:2px 0 0;font-size:clamp(24px,3.2vw,32px)}
+.tags{margin-top:6px}
+section.sec h2{scroll-margin-top:70px}
+section.sec h3{font-size:21px;margin:34px 0 10px;padding-left:12px;border-left:4px solid var(--tc)}
+section.sec h4{color:var(--tc)}
+
+/* cajas */
+.box{border-radius:12px;padding:18px 22px}
+.box.key{border-left:4px solid var(--tc,var(--accent));background:color-mix(in srgb,var(--tcs,var(--accent-soft)) 45%,var(--surface))}
+.box.trap{border-left:4px solid var(--warn);background:color-mix(in srgb,var(--warn-soft) 55%,var(--surface))}
+.zero{background:var(--tcs,var(--accent-soft));border:0;border-radius:14px;padding:20px 24px;position:relative}
+.zero .ft{color:var(--tc,var(--accent))}
+.zero::after{content:"";position:absolute;right:18px;top:16px;width:34px;height:34px;border-radius:50%;border:3px solid var(--tc,var(--accent));opacity:.25}
+.grid2{gap:18px}
+
+/* figuras / simuladores */
+figure.fig{border-radius:14px;padding:18px 20px;border:1px solid var(--line);background:linear-gradient(180deg,var(--tcs,var(--accent-soft)) 0,var(--surface) 64px);margin:24px 0}
+figure.fig .ft{display:inline-block;background:var(--tc,var(--accent));color:var(--surface);padding:3px 10px;border-radius:999px;font-size:11.5px;margin-bottom:12px}
+figure.fig figcaption{font-size:14.5px}
+.ctrl input[type=range]{accent-color:var(--tc,var(--accent))}
+.readout{border-radius:10px}
+
+/* desplegables */
+details{border-radius:12px;transition:box-shadow .2s}
+details[open]{box-shadow:var(--shadow);border-color:color-mix(in srgb,var(--tc,var(--accent)) 45%,var(--line))}
+details>summary{padding:14px 18px;border-radius:12px}
+details>summary::before{content:"";width:9px;height:9px;flex:none;border-right:2.5px solid var(--tc,var(--accent));border-bottom:2.5px solid var(--tc,var(--accent));transform:rotate(-45deg);margin:0 4px 0 2px;transition:transform .2s;align-self:center}
+details[open]>summary::before{content:"";transform:rotate(45deg)}
+details>summary:hover{background:var(--tcs,var(--accent-soft))}
+@media (prefers-reduced-motion:reduce){details>summary::before,details{transition:none}}
+.tag{border-radius:999px;padding:2px 10px;background:var(--tcs,var(--accent-soft));color:var(--tc,var(--accent))}
+.tag.w{background:var(--warn-soft);color:var(--warn)}
+
+/* tablas */
+.tw{border:1px solid var(--line);border-radius:12px}
+.tw table{margin:0}
+.tw th{background:var(--tcs,var(--accent-soft))}
+.tw tr:last-child td{border-bottom:0}
+
+/* mapa de temas como tarjetas */
+.map{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px}
+.map span{display:none}
+.map a{padding:14px;border-radius:12px;font-weight:600;line-height:1.3;border-top:4px solid var(--accent)}
+.map a b{display:block;font-family:var(--display);font-size:24px;margin-bottom:4px}
+.map a:nth-of-type(1){border-top-color:var(--c1)}.map a:nth-of-type(1) b{color:var(--c1)}
+.map a:nth-of-type(2){border-top-color:var(--c2)}.map a:nth-of-type(2) b{color:var(--c2)}
+.map a:nth-of-type(3){border-top-color:var(--c3)}.map a:nth-of-type(3) b{color:var(--c3)}
+.map a:nth-of-type(4){border-top-color:var(--c4)}.map a:nth-of-type(4) b{color:var(--c4)}
+.map a:nth-of-type(5){border-top-color:var(--c5)}.map a:nth-of-type(5) b{color:var(--c5)}
+.map a:nth-of-type(6){border-top-color:var(--c6)}.map a:nth-of-type(6) b{color:var(--c6)}
+
+/* índice */
+.toc{padding-top:4px;top:16px}
+.toc a{border-left:3px solid color-mix(in srgb,var(--tc,var(--line)) 30%,transparent);border-radius:0 6px 6px 0;padding:5px 10px;margin:1px 0;transition:background .15s}
+.toc a:hover{background:var(--surface)}
+.toc a.on{border-left-color:var(--tc);color:var(--fg);background:var(--surface);font-weight:600}
+@media (max-width:860px){
+  .toc{display:flex;position:sticky;top:env(safe-area-inset-top,0px);z-index:20;overflow-x:auto;gap:6px;max-height:none;padding:10px 0;margin:0 0 6px;
+    background:color-mix(in srgb,var(--bg) 92%,transparent);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);scrollbar-width:none}
+  .toc::-webkit-scrollbar{display:none}
+  .toc .grp{display:none}
+  .toc a{flex:none;border:1px solid var(--line);border-radius:999px;padding:6px 12px;background:var(--surface);font-size:13px;white-space:nowrap}
+  .toc a.on{border-color:var(--tc);color:var(--tc)}
+  body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:21;background:var(--bg)}
+}
+@media (max-width:860px){.wrap{grid-template-columns:minmax(0,1fr);gap:0}}
+/* volver arriba */
+.totop{position:fixed;right:calc(18px + env(safe-area-inset-right,0px));bottom:calc(18px + env(safe-area-inset-bottom,0px));width:44px;height:44px;border-radius:50%;
+  background:var(--accent);color:var(--surface);display:flex;align-items:center;justify-content:center;text-decoration:none;font-size:20px;font-weight:700;box-shadow:var(--shadow);z-index:30;opacity:0;pointer-events:none;transition:opacity .2s}
+.totop.show{opacity:1;pointer-events:auto}
+@media (prefers-reduced-motion:reduce){.totop{transition:none}}
+
+details.nom{border:1px dashed color-mix(in srgb,var(--tc,var(--accent)) 55%,var(--line));background:var(--surface)}
+details.nom>summary{font-weight:600}
+.nom-ic{display:inline-flex;align-items:center;justify-content:center;width:30px;height:30px;border-radius:8px;background:var(--tcs,var(--accent-soft));color:var(--tc,var(--accent));font-family:var(--display);font-weight:700;font-size:14px;flex:none}
+details.nom td.sym{white-space:nowrap;font-size:16px;width:1%}
+details.nom td.u{color:var(--muted);font-size:14px}
+details.nom .inner{padding-top:14px}
+
+/* ===== bloques nuevos ===== */
+.srch-card{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:14px 18px;box-shadow:var(--shadow)}
+.srch-lab{display:block;font-family:var(--mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--accent);margin-bottom:6px}
+#srch{width:100%;font:inherit;font-size:16px;padding:10px 14px;border:1px solid var(--line);border-radius:10px;background:var(--bg);color:var(--fg)}
+#srch:focus{outline:2px solid var(--accent);outline-offset:1px}
+.srch-out{display:grid;gap:6px;margin-top:10px;max-height:420px;overflow:auto}
+.sres{display:block;text-align:left;font:inherit;font-size:14px;color:var(--fg);background:var(--bg);border:1px solid var(--line);border-left:4px solid var(--tc,var(--accent));border-radius:8px;padding:8px 12px;cursor:pointer}
+.sres:hover,.sres:focus-visible{border-color:var(--tc,var(--accent));outline:none}
+.sres-t{display:block;font-family:var(--mono);font-size:11px;text-transform:uppercase;letter-spacing:.06em;color:var(--tc,var(--accent));margin-bottom:2px}
+.sres mark{background:var(--accent-soft);color:inherit;padding:0 2px;border-radius:3px}
+.flash{animation:fl 1.8s ease}
+@keyframes fl{0%,40%{background:var(--accent-soft)}100%{background:transparent}}
+@media (prefers-reduced-motion:reduce){.flash{animation:none;outline:2px solid var(--accent)}}
+.timer .tm-row{display:flex;flex-wrap:wrap;gap:12px;align-items:center}
+.tm-lab{font-family:var(--mono);font-size:12px;text-transform:uppercase;letter-spacing:.08em;color:var(--tc)}
+.tm-o{font-family:var(--display);font-size:34px;font-weight:700;font-variant-numeric:tabular-nums;min-width:5ch}
+.tm-o.low{color:var(--warn)}
+.quiz-tabs{gap:6px}
+.qt{font:inherit;font-size:13px;padding:6px 12px;border-radius:999px;border:1px solid var(--line);background:var(--surface);color:var(--fg);cursor:pointer}
+.qt[aria-pressed="true"]{background:var(--tc);border-color:var(--tc);color:var(--surface)}
+.qp{font-weight:600;font-size:17px;margin:0 0 12px}
+.qops{display:grid;gap:8px}
+.qo{font:inherit;text-align:left;padding:10px 14px;border:1px solid var(--line);border-radius:10px;background:var(--bg);color:var(--fg);cursor:pointer}
+.qo:hover:not(:disabled){border-color:var(--tc,var(--accent))}
+.qo.ok{border-color:var(--c6);background:var(--c6s)}
+.qo.ko{border-color:var(--warn);background:var(--warn-soft)}
+.qo:disabled{cursor:default}
+.qex{margin:10px 0 0;font-size:14.5px;color:var(--muted)}
+.qnav{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-top:14px}
+.qnav span{margin-right:auto;font-size:13px}
+.qnav .btn:disabled{opacity:.45;cursor:default}
+.qscore{margin:8px 0 0;font-weight:600;color:var(--tc,var(--accent))}
+.gq{font-weight:600;font-size:16px;margin:0 0 8px}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:10px}
+.card{font:inherit;min-height:96px;padding:14px;border-radius:12px;border:1px solid var(--line);background:var(--surface);color:var(--fg);cursor:pointer;text-align:left;display:flex;align-items:center;box-shadow:var(--shadow)}
+.card .cf{font-weight:600}
+.card.flip{background:var(--tcs,var(--accent-soft));border-color:var(--tc,var(--accent))}
+
+.prob{margin:22px 0 26px}
+.prob .ph{margin:18px 0 6px;font-size:17px}
+.enun{background:var(--tcs,var(--accent-soft));border-left:4px solid var(--tc,var(--accent));border-radius:10px;padding:10px 16px;margin:8px 0 12px}
+.enun .et{margin:0 0 2px;font:700 12px/1.4 var(--mono,monospace);letter-spacing:.06em;text-transform:uppercase;color:var(--tc,var(--accent))}
+.enun p{margin:4px 0}
+.pasos-t{margin:10px 0 4px;font-weight:700;font-size:14px}
+.pasos-t span{font-weight:400;color:var(--muted)}
+details.paso{margin:6px 0;border-radius:10px;box-shadow:none}
+details.paso>summary{padding:9px 14px;font-weight:600;font-size:15px;align-items:center}
+details.paso .pn{display:inline-grid;place-items:center;min-width:24px;height:24px;border-radius:7px;background:var(--tc,var(--accent));color:#fff;font:700 13px/1 var(--mono,monospace);flex:none}
+details.paso .inner{padding:4px 16px 10px}
+details.paso[open]{box-shadow:none}
+.ojo{border-left:3px solid var(--warn,#b4232f);padding-left:10px}
+.box mjx-container[display="true"]{overflow-x:auto;overflow-y:hidden;max-width:100%}
+
+mjx-container[display="true"]{max-width:100%;overflow-x:auto;overflow-y:hidden}
+
+/* ===== Más espaciado y más visual (capa final) ===== */
+body{line-height:1.75;font-size:16.5px}
+main{gap:44px}
+.sec{padding:14px 40px 40px}
+.sec>p,.sec .inner>p,.box p{margin:0 0 14px}
+.sec>p{max-width:72ch}
+.sh{margin-bottom:22px;padding-bottom:16px;border-bottom:1px dashed color-mix(in srgb,var(--tc) 35%,var(--line))}
+.badge{transform:scale(1.08)}
+h3{font-size:23px;margin:56px 0 16px;padding:6px 0 6px 14px;border-left:5px solid var(--tc);background:linear-gradient(90deg,var(--tcs),transparent 70%);border-radius:0 10px 10px 0}
+h4{margin:6px 0 12px}
+ul,ol{padding-left:22px}
+li{margin:8px 0}
+li::marker{color:var(--tc)}
+.box,.zero{padding:22px 26px;margin:22px 0}
+.box.key{position:relative;padding-top:42px}
+.box.key::before{content:"★  Lo esencial";position:absolute;top:12px;left:24px;font:700 11.5px/1 var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--tc,var(--accent))}
+.box.key>p+p{border-top:1px dashed color-mix(in srgb,var(--tc,var(--accent)) 30%,var(--line));padding-top:14px;margin-top:14px}
+.box.trap h4::before{content:"⚠  "}
+.zero .ft::before{content:"◎  "}
+.grid2{gap:22px}
+.grid2 .box{margin:0}
+mjx-container[display="true"]{margin:16px 0!important;padding:12px 10px;border-radius:12px;background:color-mix(in srgb,var(--tcs,var(--accent-soft)) 55%,transparent)}
+.box mjx-container[display="true"],.zero mjx-container[display="true"],.enun mjx-container[display="true"]{background:color-mix(in srgb,var(--surface) 55%,transparent)}
+figure.fig{margin:34px 0}
+details{margin:16px 0}
+details>summary{padding:16px 20px}
+details .inner{padding:6px 24px 20px}
+details .inner>p{margin:12px 0}
+th,td{padding:11px 14px}
+.tw tr:nth-child(even) td{background:color-mix(in srgb,var(--tcs,var(--accent-soft)) 40%,transparent)}
+.tw{border-radius:12px;overflow:auto;border:1px solid var(--line);margin:18px 0}
+ol.steps li{margin:12px 0;padding-left:4px}
+.prob{margin:34px 0 40px;padding-top:6px}
+.prob+.prob{border-top:1px dashed var(--line);padding-top:30px}
+.enun{padding:16px 20px;margin:12px 0 18px}
+details.paso{margin:10px 0}
+details.paso>summary{padding:12px 16px}
+details.paso .inner{padding:8px 20px 14px}
+.pasos-t{margin:18px 0 8px}
+@media (max-width:860px){
+  body{font-size:16px}
+  main{gap:28px}
+  .sec{padding:8px 18px 26px}
+  h3{font-size:20px;margin:40px 0 12px}
+  .box,.zero{padding:18px 18px}
+  .box.key{padding-top:38px}
+  .box.key::before{left:18px}
+  details .inner{padding:4px 16px 16px}
+}
+/*exnav*/.lede-ex{font-size:17px;margin:6px 0 14px}
+.exnav{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin:10px 0 18px}
+.exn{display:flex;flex-direction:column;gap:4px;padding:16px 16px 14px;border:1px solid var(--line);border-radius:14px;background:var(--surface);text-decoration:none;color:var(--fg);box-shadow:var(--shadow);transition:transform .15s,border-color .15s}
+.exn:hover{transform:translateY(-2px);border-color:var(--tc)}
+.exn b{font-size:16px}
+.exn small{color:var(--muted);font-size:13px;line-height:1.4}
+.exn-n{display:inline-grid;place-items:center;width:28px;height:28px;border-radius:8px;background:var(--tc);color:#fff;font:700 14px/1 var(--mono);margin-bottom:4px}
+details.nota-ex>summary{font-size:15px}
+.exrec{list-style:none;counter-reset:r;padding:0;margin:10px 0 18px;display:grid;gap:8px}
+.exrec li{counter-increment:r}
+.exrec a{display:flex;gap:12px;align-items:baseline;padding:12px 16px;border:1px solid var(--line);border-radius:12px;background:var(--surface);text-decoration:none;color:var(--fg)}
+.exrec a::before{content:counter(r);display:inline-grid;place-items:center;min-width:26px;height:26px;border-radius:50%;background:var(--tcs);color:var(--tc);font:700 13px/1 var(--mono);flex:none;align-self:center}
+.exrec a:hover{border-color:var(--tc)}
+.exrec span{color:var(--muted);font-size:14px}
+.extemas{display:grid;gap:8px;margin:10px 0 20px}
+details.extema{margin:0}
+details.extema>summary{align-items:center;flex-wrap:wrap}
+.xt{display:inline-block;font:700 12px/1 var(--mono);padding:5px 8px;border-radius:6px;background:var(--tcs);color:var(--tc);min-width:76px;text-align:center}
+.exlist{margin:4px 0 6px;padding-left:20px;columns:2;column-gap:28px}
+.exlist li{break-inside:avoid;margin:0 0 6px;font-size:14.5px}
+.exlist .src{display:block;font-size:12px}
+.exfil{position:sticky;top:0;z-index:5;background:var(--bg);padding:10px 0 6px;margin:6px 0 4px;border-bottom:1px solid var(--line)}
+.exchips{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:8px}
+.exf{font:600 13px/1 var(--body,inherit);padding:8px 12px;border-radius:999px;border:1px solid var(--line);background:var(--surface);color:var(--fg);cursor:pointer}
+.exf.on{background:var(--tc);border-color:var(--tc);color:#fff}
+.exq{width:100%;box-sizing:border-box;padding:10px 12px;border:1px solid var(--line);border-radius:10px;background:var(--surface);color:var(--fg);font-size:15px}
+.exres{margin:6px 0 0;font-size:13px;min-height:1em}
+details.exgrupo{margin:12px 0}
+details.exgrupo>summary{font-size:17px}
+details.exgrupo>.inner{padding-top:4px}
+details.exd>summary{flex-wrap:wrap;align-items:center;row-gap:6px}
+.xc{display:inline-block;font:600 11.5px/1 var(--mono);padding:4px 7px;border-radius:5px;background:var(--accent-soft);color:var(--accent);margin-right:4px}
+.xc.p1{background:var(--c2s);color:var(--c2)}
+.xc.p2{background:var(--c5s);color:var(--c5)}
+.xc.p12{background:var(--c3s);color:var(--c3)}
+.prob:target{outline:2px solid var(--tc);outline-offset:6px;border-radius:8px}
+@media (max-width:720px){.exnav{grid-template-columns:1fr}.exlist{columns:1}.exrec a{flex-direction:column;gap:2px}.exrec a::before{align-self:flex-start}}
+.xn{display:flex;flex-direction:column;gap:3px;flex:1;min-width:0}
+.xn .src{margin:0;font-size:12px}
+.idea{border:1px solid var(--line);border-left:4px solid var(--c1);background:var(--c1s);border-radius:10px;padding:10px 16px;margin:8px 0 12px}
+.idea .et,.resul .et{margin:0 0 4px;font:700 12px/1.4 var(--mono,monospace);letter-spacing:.06em;text-transform:uppercase;color:var(--c1)}
+.idea p,.resul p{margin:5px 0}
+details.resul{border:1px solid var(--c6);background:var(--c6s);margin:12px 0 4px}
+details.resul>summary{color:var(--c6);font-size:14px}
+details.resul .inner{padding:0 16px 10px}
+details.paso .inner p{margin:6px 0}
+
+/* ===== Diapositivas con explicación ===== */
+figure.slide{margin:20px 0;padding:0;border:1px solid var(--line);border-radius:14px;overflow:hidden;background:var(--surface);box-shadow:var(--shadow)}
+figure.slide img{display:block;width:100%;height:auto;max-width:100%;background:#fff;border-bottom:1px solid var(--line)}
+figure.slide figcaption{padding:12px 18px 14px;font-size:15px;line-height:1.65;border-left:4px solid var(--tc,var(--accent))}
+figure.slide figcaption b.n{font-family:var(--mono);font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--tc,var(--accent));display:block;margin-bottom:2px}
+dl.gloss{display:grid;grid-template-columns:minmax(140px,220px) 1fr;gap:8px 18px;margin:0}
+dl.gloss dt{font-weight:700;color:var(--tc,var(--accent))}
+dl.gloss dd{margin:0}
+@media (max-width:640px){dl.gloss{grid-template-columns:1fr}dl.gloss dd{margin-bottom:6px}}
+.sec .quiz-tabs{margin-bottom:10px}
+figure.slide.nota{max-width:720px;margin-left:auto;margin-right:auto}
+details.nt{margin:14px 0 4px;border:1px solid var(--line);border-radius:10px;background:var(--surface);padding:0 14px}
+details.nt>summary{padding:12px 0;font-weight:600}
+details.nt>summary:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:6px}
+details.nt[open]{padding-bottom:6px}
+
+/* ---- sitio de varias páginas ---- */
+.sitenav{max-width:1180px;margin:0 auto;padding:10px 16px 2px;display:flex;gap:6px;overflow-x:auto;scrollbar-width:thin}
+.sitenav a{flex:0 0 auto;font:600 13.5px/1 var(--body);padding:9px 13px;border-radius:99px;border:1px solid var(--line);background:var(--surface);color:var(--fg);text-decoration:none;white-space:nowrap}
+.sitenav a:hover,.sitenav a:focus-visible{border-color:var(--accent);outline:none}
+.sitenav a[aria-current=page]{background:var(--accent);border-color:var(--accent);color:#fff}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .sitenav a[aria-current=page]{color:#0e131d}}
+:root[data-theme="dark"] .sitenav a[aria-current=page]{color:#0e131d}
+.phead{max-width:1180px;margin:0 auto;padding-block:26px 12px}
+.phead h1{margin:6px 0 8px}
+.phead .lede{color:var(--muted);margin:0;max-width:62ch}
+.pager{max-width:1180px;margin:36px auto 0;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:12px}
+.pager a{display:block;padding:14px 16px;border:1px solid var(--line);border-radius:12px;background:var(--surface);color:var(--fg);text-decoration:none;font-weight:600;line-height:1.3}
+.pager a small{display:block;font:500 12px/1.4 var(--mono);letter-spacing:.06em;text-transform:uppercase;color:var(--accent);margin-bottom:4px}
+.pager a:hover,.pager a:focus-visible{border-color:var(--accent);outline:none}
+.pager a.nx{text-align:right;grid-column:2}
+.sres-p{font:500 11px/1 var(--mono);letter-spacing:.05em;text-transform:uppercase;color:var(--muted);margin-left:8px}
+</style></head><body data-page="examenes">
+
+<div class="hub-bar" style="max-width:1180px;margin:0 auto;padding:10px 16px 0"><a href="https://helionacon-ui.github.io/GIEIA-UPCT/" style="display:inline-flex;align-items:center;gap:6px;font:600 13.5px/1 system-ui,sans-serif;padding:8px 12px;border-radius:999px;border:1px solid var(--line,#d3dcdf);background:var(--surface,var(--card,#fff));color:var(--fg,#18232b);text-decoration:none">← Todas las guías GIEyA</a></div>
+<nav class="sitenav" aria-label="Páginas de la guía"><a href="index.html">Inicio</a><a href="operacionales.html">Operacionales</a><a href="bode.html">Bode y filtros</a><a href="transistores.html">Transistores</a><a href="examenes.html" aria-current="page">Exámenes</a><a href="fuen.html">Apuntes de Fuen</a><a href="practica.html">Practicar</a><a href="referencia.html">Referencia</a></nav>
+<header class="phead"><div class="eyebrow">UPCT · GIEyA · Electrónica Analógica</div><h1>Exámenes</h1><p class="lede">Seis exámenes de otros años resueltos desde cero</p></header>
+
+<a href="#top" class="totop" id="totop" aria-label="Volver arriba">↑</a>
+<div class="wrap" id="top">
+<nav class="toc" aria-label="Índice de esta página">
+  <div class="grp">Exámenes</div>
+  <a href="#exa-indice" style="--tc:var(--c8)">Índice de exámenes</a>
+  <a href="#x13" style="--tc:var(--c1)">Feb 2013</a>
+  <a href="#x16" style="--tc:var(--c2)">Jul 2016</a>
+  <a href="#x20a" style="--tc:var(--c3)">Feb 2020</a>
+  <a href="#x20b" style="--tc:var(--c4)">Sep 2020</a>
+  <a href="#x23a" style="--tc:var(--c5)">P1 Nov 2023</a>
+  <a href="#x24a" style="--tc:var(--c6)">Final P1 Ene 2024</a>
+</nav>
+
+<main>
+<div class="srch-card" id="srch-card"><label for="srch" class="srch-lab">Buscar en la guía</label>
+<input type="search" id="srch" placeholder="Por ejemplo: slew rate, Schmitt, Miller, CMRR…" autocomplete="off" spellcheck="false">
+<div id="srch-out" class="srch-out" hidden></div></div>
+
+<section class="sec" style="--tc:var(--c8);--tcs:var(--c8s)">
+<div class="sh"><span class="badge" aria-hidden="true">✎</span><div class="shx"><p class="kick">Exámenes</p><h2 id="exa-indice">Exámenes de otros años, resueltos desde cero</h2></div></div>
+<div class="zero">
+<p class="ft">Cómo usar esta página</p>
+<p>Cada examen trae el enunciado (solo el circuito y los datos), la solución paso a paso y, cuando toca, una gráfica. Haz el ejercicio con papel y <b>abre solo el paso en el que te atascas</b>. Todos los números están recalculados aquí con un programa y coinciden con las soluciones del aula virtual, salvo dos casos en los que la solución publicada tiene un error de signo (se explican en el examen de noviembre de 2023 y en el de enero de 2024).</p>
+</div>
+<div class="tw"><table>
+<tr><th>Examen</th><th>Ejercicio</th><th>Tema</th><th>Dificultad</th></tr>
+<tr><td>Feb 2013</td><td><a href="#x13">Dos etapas con RC</a></td><td>Función de transferencia y Bode con 5 factores</td><td>●●●</td></tr>
+<tr><td>Jul 2016</td><td><a href="#x16">Impedancia de entrada con dos AO</a></td><td>Girador: un condensador que parece una bobina</td><td>●●●</td></tr>
+<tr><td>Feb 2020</td><td><a href="#x20a">Comparador con referencia</a></td><td>Schmitt no inversor y ciclo de histéresis</td><td>●●</td></tr>
+<tr><td>Sep 2020</td><td><a href="#x20b">Filtro pasa banda con tres AO</a></td><td>Ganancia, $G(j\omega)$ y Bode</td><td>●●</td></tr>
+<tr><td>P1 Nov 2023</td><td><a href="#x23a">Sallen-Key con ganancia 2,9</a>, <a href="#x23b">red en T</a>, <a href="#x23c">inversor real</a></td><td>Bode de segundo orden, saturación, slew rate, tolerancias, corriente máxima</td><td>●●●</td></tr>
+<tr><td>Final P1 Ene 2024</td><td><a href="#x24a">Howland</a>, <a href="#x24b">Sallen-Key</a>, <a href="#x24c">zéner</a>, <a href="#x24d">diferencial</a></td><td>Fuente de corriente, Bode, comparador con zéner, CMRR</td><td>●●●</td></tr>
+</table></div>
+<p class="muted" style="font-size:14px">El patrón es siempre el mismo: un circuito con operacionales ideales que se resuelve con Kirchhoff en un nudo, un Bode y un problema largo con el operacional real. Si dominas los seis exámenes de aquí, dominas el primer parcial.</p>
+</section>
+
+<section class="sec tema" style="--tc:var(--c1);--tcs:var(--c1s)">
+<div class="sh"><span class="badge" aria-hidden="true">13</span><div class="shx"><p class="kick">Examen · febrero de 2013</p><h2 id="x13">Dos etapas inversoras con RC y diagrama de Bode</h2></div></div>
+<div class="prob">
+<h3 class="ph">Ejercicio 1 · 2,5 puntos</h3>
+<div class="enun"><p class="et">Enunciado</p>
+<p>Dado el circuito de la figura, obtén (a) la función de transferencia $G(j\omega)=U_s/U_e$ y (b) su diagrama de Bode. Datos: $R_1=1\,\text{M}\Omega$, $R_2=R_4=5\,\text{k}\Omega$, $R_3=R_5=45\,\text{k}\Omega$, $C_1=C_3=100$ nF, $C_2=10$ nF, $C_4=55{,}5$ nF.</p></div>
+<figure class="slide nota"><img src="img/ex-f13.jpg" alt="Circuito del examen de febrero de 2013: dos amplificadores operacionales inversores en cascada. El primero tiene a la entrada R1 en paralelo con la serie R2 y C1, y un condensador C2 en la realimentación. El segundo tiene R3 en serie con C3 en paralelo con R4 a la entrada, y R5 en paralelo con C4 en la realimentación." loading="lazy" width="1116" height="778"><figcaption><b class="n">Enunciado · febrero de 2013</b>Dos inversores en cascada. En cada etapa la ganancia es $-Z_{realim}/Z_{ent}$, con impedancias que mezclan resistencias y condensadores.</figcaption></figure>
+<details class="paso" open><summary><span class="pn">0</span>La idea, desde cero</summary><div class="inner">
+<p>Un inversor con operacional ideal tiene ganancia $G=-\dfrac{Z_f}{Z_i}$, donde $Z_f$ es la impedancia entre la salida y el nudo inversor y $Z_i$ la de la entrada. Esa fórmula vale aunque $Z$ lleve condensadores, siempre que escribas $Z_C=\dfrac1{j\omega C}$. Dos etapas en cascada se <b>multiplican</b>, porque la salida del primer operacional es ideal (impedancia de salida nula) y no se carga.</p>
+<p>El truco del examen: calcula primero tres impedancias paralelo, cada una es «una resistencia en paralelo con una resistencia en serie con un condensador». Después juntas.</p></div></details>
+<details class="paso"><summary><span class="pn">1</span>Impedancia de entrada de la etapa 1</summary><div class="inner">
+<p>$Z_{e1}=R_1\parallel\left(R_2+\dfrac1{j\omega C_1}\right)$. Con $Z_1=R_2+\dfrac1{j\omega C_1}=\dfrac{1+j\omega C_1R_2}{j\omega C_1}$:</p>
+<p>$Z_{e1}=\dfrac{R_1Z_1}{R_1+Z_1}=\dfrac{R_1(1+j\omega C_1R_2)}{1+j\omega C_1(R_1+R_2)}$.</p></div></details>
+<details class="paso"><summary><span class="pn">2</span>Ganancia de la etapa 1</summary><div class="inner">
+<p>La realimentación es solo $C_2$, luego $Z_f=\dfrac1{j\omega C_2}$ y</p>
+<p>$G_1=-\dfrac{1/(j\omega C_2)}{Z_{e1}}=-\dfrac{1+j\omega C_1(R_1+R_2)}{j\omega C_2R_1\,(1+j\omega C_1R_2)}$.</p></div></details>
+<details class="paso"><summary><span class="pn">3</span>Etapa 2: entrada y realimentación</summary><div class="inner">
+<p>Entrada: $Z_{e2}=R_3\parallel\left(R_4+\dfrac1{j\omega C_3}\right)=\dfrac{R_3(1+j\omega C_3R_4)}{1+j\omega C_3(R_3+R_4)}$, con el mismo cálculo que antes.</p>
+<p>Realimentación: $Z_{f2}=R_5\parallel\dfrac1{j\omega C_4}=\dfrac{R_5}{1+j\omega R_5C_4}$.</p>
+<p>$G_2=-\dfrac{Z_{f2}}{Z_{e2}}=-\dfrac{R_5\,[1+j\omega C_3(R_3+R_4)]}{R_3\,(1+j\omega C_3R_4)(1+j\omega R_5C_4)}$.</p></div></details>
+<details class="paso"><summary><span class="pn">4</span>Producto de las dos etapas</summary><div class="inner">
+<p>Los dos signos menos se cancelan:</p>
+<p>$G=\dfrac{R_5}{R_3}\cdot\dfrac{[1+j\omega C_1(R_1+R_2)]\,[1+j\omega C_3(R_3+R_4)]}{j\omega C_2R_1\,(1+j\omega C_1R_2)(1+j\omega C_3R_4)(1+j\omega R_5C_4)}$.</p></div></details>
+<details class="paso"><summary><span class="pn">5</span>Sustituir números</summary><div class="inner">
+<p>$R_5/R_3=1$. Constantes de tiempo: $C_1(R_1+R_2)=0{,}1005$ s, $C_3(R_3+R_4)=0{,}005$ s, $C_2R_1=0{,}01$ s, $C_1R_2=C_3R_4=0{,}0005$ s, $R_5C_4=0{,}0025$ s.</p>
+<p>$G=\dfrac{(1+j\omega\,0{,}1005)(1+j\omega\,0{,}005)}{j\omega\,0{,}01\,(1+j\omega\,0{,}0005)^2(1+j\omega\,0{,}0025)}$.</p>
+<p>Cada factor $(1+j\omega\tau)$ tiene su frecuencia de corte en $\omega=1/\tau$. Fíjate en que $C_1R_2$ y $C_3R_4$ coinciden y por eso sale un <b>polo doble</b>.</p></div></details>
+<details class="paso"><summary><span class="pn">6</span>Tabla de quiebros y pendientes</summary><div class="inner">
+<div class="tw"><table>
+<tr><th>Factor</th><th>$\omega=1/\tau$ (rad/s)</th><th>Efecto</th></tr>
+<tr><td>$\dfrac1{j\omega\,0{,}01}$</td><td>cruza 0 dB en 100</td><td>pendiente $-20$ dB/dec desde el principio</td></tr>
+<tr><td>$1+j\omega\,0{,}1005$</td><td>9,95</td><td>cero: sube $+20$ dB/dec</td></tr>
+<tr><td>$1+j\omega\,0{,}005$</td><td>200</td><td>cero: sube $+20$ dB/dec</td></tr>
+<tr><td>$1+j\omega\,0{,}0025$</td><td>400</td><td>polo: baja $-20$ dB/dec</td></tr>
+<tr><td>$(1+j\omega\,0{,}0005)^2$</td><td>2000</td><td>polo doble: baja $-40$ dB/dec</td></tr>
+</table></div>
+<p>Recorre el eje de izquierda a derecha sumando pendientes. Antes de 9,95: $-20$. Entre 9,95 y 200: $-20+20=0$ (tramo plano). Entre 200 y 400: $+20$. Entre 400 y 2000: $+20-20=0$ (plano). Después de 2000: $0-40=-40$.</p></div></details>
+<details class="paso"><summary><span class="pn">7</span>Niveles en dB</summary><div class="inner">
+<p>En $\omega=1$ rad/s el integrador vale $1/0{,}01=100\to40$ dB. Bajando $-20$ dB/dec hasta 9,95 rad/s (casi una década): $40-20\log9{,}95=20{,}04$ dB. Tramo plano a <b>20,04 dB</b> hasta 200. De 200 a 400 sube $20\log2=6{,}02$ dB y llega a <b>26,06 dB</b>, que se mantiene hasta 2000 rad/s. Luego cae $-40$ dB/dec.</p>
+<p>Valores exactos: $|G(j105)|=20{,}8$ dB y $|G(j1200)|=23{,}06$ dB. En 1200 rad/s la asíntota dice 26,06 dB y el módulo real es 23,06 dB: entre quiebros tan próximos (400 y 2000 rad/s) la aproximación asintótica puede quedarse hasta 3 dB por encima del valor real.</p></div></details>
+<figure class="fig"><p class="ft">Bode de la función de transferencia · febrero de 2013</p>
+<div id="fig-x13"></div>
+<p class="muted" style="font-size:13px;margin:4px 0 0">Línea discontinua: aproximación asintótica. Línea azul: módulo exacto. Líneas verticales rojas: frecuencias de los ceros y polos.</p></figure>
+<details class="resul"><summary>Resultado</summary><div class="inner"><p class="et">Solución</p><p>$G=\dfrac{(1+j\omega\,0{,}1005)(1+j\omega\,0{,}005)}{j\omega\,0{,}01\,(1+j\omega\,0{,}0005)^2(1+j\omega\,0{,}0025)}$. Bode: $-20$ dB/dec hasta 9,95 rad/s, plano a 20,04 dB hasta 200, $+20$ dB/dec hasta 400, plano a 26,06 dB hasta 2000, $-40$ dB/dec después. Es un filtro paso banda con ganancia máxima de unos 26 dB.</p></div></details>
+</div>
+</section>
+
+<section class="sec tema" style="--tc:var(--c2);--tcs:var(--c2s)">
+<div class="sh"><span class="badge" aria-hidden="true">16</span><div class="shx"><p class="kick">Examen · julio de 2016</p><h2 id="x16">Impedancia de entrada con dos operacionales: un condensador que se comporta como bobina</h2></div></div>
+<div class="prob">
+<h3 class="ph">Ejercicio 1 · 2,5 puntos</h3>
+<div class="enun"><p class="et">Enunciado</p>
+<p>Considerando ideales los operacionales del circuito, (a) obtén la impedancia de entrada $Z_{in}=V_i/I_i$ solo con resistencias y capacidades y (b) identifica si es resistiva, capacitiva o inductiva en régimen senoidal.</p></div>
+<figure class="slide nota"><img src="img/ex-j16.jpg" alt="Circuito del examen de julio de 2016: una columna de R1, C2, R3, R4 y R5 en serie hacia masa, con dos amplificadores operacionales que llevan nudos de la columna a otros nudos." loading="lazy" width="1207" height="663"><figcaption><b class="n">Enunciado · julio de 2016</b>Una cadena $R_1$, $C_2$, $R_3$, $R_4$, $R_5$ con dos operacionales que obligan a que ciertos nudos tengan la misma tensión.</figcaption></figure>
+<details class="paso" open><summary><span class="pn">0</span>La idea, desde cero</summary><div class="inner">
+<p>Con operacionales ideales, la tensión en la entrada $-$ es igual a la de la $+$ y no entra corriente. Cada operacional obliga a que dos nudos tengan la <b>misma tensión</b> sin consumir corriente de ellos, y eso sirve para «copiar» una tensión de un nudo a otro. El problema se resuelve con la ley de Ohm tramo a tramo, empezando por abajo, donde las corrientes son más fáciles.</p></div></details>
+<details class="paso"><summary><span class="pn">1</span>Nudos con la misma tensión</summary><div class="inner">
+<p>Llama $V_1,\dots,V_5$ a las tensiones de los nudos de arriba abajo, con $V_5$ entre $R_4$ y $R_5$. Los dos operacionales imponen $V_1=V_3=V_5=V_i$. Es decir, el nudo de entrada, el de la mitad y el de abajo valen todos $V_i$.</p></div></details>
+<details class="paso"><summary><span class="pn">2</span>Corriente por $R_5$ y tensión $V_4$</summary><div class="inner">
+<p>$R_5$ va de $V_5=V_i$ a masa, luego $I_5=\dfrac{V_i}{R_5}$. Al operacional no entra corriente y por eso $I_4=I_5$. Entonces $V_4=(R_4+R_5)I_5=\left(1+\dfrac{R_4}{R_5}\right)V_i$.</p></div></details>
+<details class="paso"><summary><span class="pn">3</span>Corriente por $R_3$ y $C_2$</summary><div class="inner">
+<p>$I_3=\dfrac{V_3-V_4}{R_3}=\dfrac{V_i-\left(1+\frac{R_4}{R_5}\right)V_i}{R_3}=-\dfrac{R_4}{R_3R_5}V_i$. Por el otro operacional tampoco entra corriente, así que $I_2=I_3$.</p></div></details>
+<details class="paso"><summary><span class="pn">4</span>Tensión $V_2$ y corriente de entrada</summary><div class="inner">
+<p>$V_2=V_3+Z_{C_2}I_2=V_i-\dfrac{Z_{C_2}R_4}{R_3R_5}V_i$. Y la corriente de entrada es la de $R_1$: $I_i=\dfrac{V_1-V_2}{R_1}=\dfrac{V_i-V_2}{R_1}=\dfrac{Z_{C_2}R_4}{R_1R_3R_5}V_i$.</p></div></details>
+<details class="paso"><summary><span class="pn">5</span>Impedancia de entrada</summary><div class="inner">
+<p>$Z_{in}=\dfrac{V_i}{I_i}=\dfrac{R_1R_3R_5}{R_4\,Z_{C_2}}=\dfrac{R_1R_3R_5}{R_4}\,j\omega C_2$.</p>
+<p>Es de la forma $j\omega L$: una <b>bobina</b> de valor $L=\dfrac{R_1R_3R_5}{R_4}C_2$. Este circuito se llama girador (o simulador de inductancia).</p></div></details>
+<details class="paso"><summary><span class="pn">6</span>Un valor numérico para quedarte con la idea</summary><div class="inner">
+<p>Con las cuatro resistencias de 10 kΩ y $C_2=100$ nF: $L=\dfrac{10^4\cdot10^4\cdot10^4}{10^4}\cdot10^{-7}=10$ H. Una bobina real de 10 H pesaría kilos. Con dos operacionales y un condensador pequeño la tienes en un chip.</p></div></details>
+<details class="resul"><summary>Resultado</summary><div class="inner"><p class="et">Solución</p><p>$Z_{in}=\dfrac{R_1R_3R_5}{R_4}\,j\omega C_2$. Se comporta como una bobina de $L=\dfrac{R_1R_3R_5C_2}{R_4}$.</p></div></details>
+</div>
+</section>
+
+<section class="sec tema" style="--tc:var(--c3);--tcs:var(--c3s)">
+<div class="sh"><span class="badge" aria-hidden="true">20</span><div class="shx"><p class="kick">Examen · febrero de 2020</p><h2 id="x20a">Comparador con referencia: Schmitt no inversor</h2></div></div>
+<div class="prob">
+<h3 class="ph">Ejercicio 1 · 2,5 puntos</h3>
+<div class="enun"><p class="et">Enunciado</p>
+<p>Obtén la relación entre la tensión de salida y la de entrada del circuito, represéntala y di qué tipo de circuito es. Datos: $R_1=2$ kΩ, $R_2=1$ kΩ, $R_3=R_4=2$ kΩ, alimentación del operacional de 0 a +12 V.</p></div>
+<figure class="slide nota"><img src="img/ex-e20.jpg" alt="Circuito del examen de febrero de 2020: un amplificador operacional 741 con la entrada V_in aplicada a la entrada positiva a través de R2. R1 lleva la salida a la entrada positiva. La entrada negativa recibe V_ref de un divisor R4 y R3 alimentado a +12 V." loading="lazy" width="1108" height="775"><figcaption><b class="n">Enunciado · febrero de 2020</b>La entrada positiva recibe $V_{in}$ por $R_2$ y la salida por $R_1$. La negativa recibe una referencia fija.</figcaption></figure>
+<details class="paso" open><summary><span class="pn">0</span>La idea, desde cero</summary><div class="inner">
+<p>No hay realimentación negativa: la salida solo vuelve a la entrada positiva. Entonces el operacional <b>no</b> cumple $V^+=V^-$. Se comporta como un comparador: si $V^+>V^-$ la salida satura arriba y si $V^+&lt;V^-$ satura abajo. Aquí «arriba» es +12 V y «abajo» es 0 V. Lo único que hay que hacer es calcular $V^+$ y $V^-$ y ver cuándo se igualan.</p></div></details>
+<details class="paso"><summary><span class="pn">1</span>Tensión de referencia en $V^-$</summary><div class="inner">
+<p>Divisor de tensión sin corriente al operacional: $V_{ref}=V^-=\dfrac{R_3}{R_3+R_4}\,12=\dfrac{2}{4}\cdot12=6$ V.</p></div></details>
+<details class="paso"><summary><span class="pn">2</span>Tensión en $V^+$</summary><div class="inner">
+<p>Por la entrada positiva no entra corriente. La que sale de $V_{in}$ por $R_2$ es la misma que llega a la salida por $R_1$: $\dfrac{V_{in}-V^+}{R_2}=\dfrac{V^+-V_o}{R_1}$. Despejando:</p>
+<p>$V^+=\dfrac{R_1}{R_1+R_2}V_{in}+\dfrac{R_2}{R_1+R_2}V_o=\dfrac23V_{in}+\dfrac13V_o$.</p></div></details>
+<details class="paso"><summary><span class="pn">3</span>Condición de conmutación</summary><div class="inner">
+<p>La salida está en $+12$ V si $V^+>V^-$, es decir, $\dfrac23V_{in}+\dfrac13V_o>6$, o sea $V_{in}>9-\dfrac{V_o}2$. Esa desigualdad depende de la salida actual, y de ahí sale la histéresis.</p></div></details>
+<details class="paso"><summary><span class="pn">4</span>Los dos umbrales</summary><div class="inner">
+<p><b>Si la salida está en 0 V:</b> para pasar a 12 V hace falta $V_{in}>9-0=9$ V. Umbral superior $V_{TH}=9$ V.</p>
+<p><b>Si la salida está en 12 V:</b> se mantiene mientras $V_{in}>9-6=3$ V. Cuando $V_{in}$ baja de 3 V cae a 0 V. Umbral inferior $V_{TL}=3$ V.</p>
+<p>Anchura del ciclo de histéresis: $9-3=6$ V. Entre 3 V y 9 V la salida conserva el estado anterior.</p></div></details>
+<figure class="fig"><p class="ft">Característica de transferencia · febrero de 2020</p>
+<div id="fig-x20a"></div>
+<p class="muted" style="font-size:13px;margin:4px 0 0">Al subir la entrada, la salida sube en 9 V (rama inferior hacia arriba). Al bajarla, la salida cae en 3 V. La salida y la entrada van en el mismo sentido: es no inversor.</p></figure>
+<details class="resul"><summary>Resultado</summary><div class="inner"><p class="et">Solución</p><p>Disparador de Schmitt <b>no inversor</b> con $V_{TH}=9$ V, $V_{TL}=3$ V, salida entre 0 y 12 V e histéresis de 6 V.</p></div></details>
+</div>
+</section>
+
+<section class="sec tema" style="--tc:var(--c4);--tcs:var(--c4s)">
+<div class="sh"><span class="badge" aria-hidden="true">20</span><div class="shx"><p class="kick">Examen · septiembre de 2020</p><h2 id="x20b">Pasa altos, amplificador y pasa bajos en cascada</h2></div></div>
+<div class="prob">
+<h3 class="ph">Ejercicio 2 (tipo A) · 2,5 puntos</h3>
+<div class="enun"><p class="et">Enunciado</p>
+<p>Datos: $R_1=R=10$ kΩ, $C_1=1{,}59$ µF, $C_2=1{,}59$ nF, alimentación ±12 V. Se pide (a) el valor de $R_2$ para que $V_2/V_1=2$, (b) $G(j\omega)=V_o/V_i$ y (c) su diagrama de Bode.</p></div>
+<figure class="slide nota"><img src="img/ex-s20.jpg" alt="Circuito del examen de septiembre de 2020: la entrada V_i pasa por C1 a un nudo con R a masa, que va a la entrada positiva del primer operacional. Este está realimentado por R2 y R1 a masa. Su salida V2 pasa por R y C2 a la entrada positiva del segundo operacional, que es un seguidor." loading="lazy" width="991" height="816"><figcaption><b class="n">Enunciado · septiembre de 2020</b>Tres bloques: $C_1$ con $R$ (filtro), no inversor con $R_1$ y $R_2$ (amplificador) y $R$ con $C_2$ más seguidor (filtro).</figcaption></figure>
+<details class="paso" open><summary><span class="pn">0</span>La idea, desde cero</summary><div class="inner">
+<p>Los tres bloques no se cargan entre sí porque cada operacional ideal tiene entrada de corriente nula. Entonces la ganancia total es el <b>producto</b> de las tres ganancias. Resuelve cada una por separado.</p></div></details>
+<details class="paso"><summary><span class="pn">1</span>Apartado (a): la ganancia del amplificador</summary><div class="inner">
+<p>El primer operacional es un no inversor: $V_2=\left(1+\dfrac{R_2}{R_1}\right)V^-$ y con $V^-=V^+=V_1$ queda $\dfrac{V_2}{V_1}=1+\dfrac{R_2}{R_1}$. Si debe valer 2, $\dfrac{R_2}{R_1}=1$ y $R_2=R_1=10$ kΩ.</p></div></details>
+<details class="paso"><summary><span class="pn">2</span>Primer bloque: pasa altos</summary><div class="inner">
+<p>La entrada positiva no consume corriente. Así que $C_1$ y $R$ forman un divisor: $V_1=\dfrac{R}{R+\frac1{j\omega C_1}}V_i=\dfrac{j\omega RC_1}{1+j\omega RC_1}V_i$.</p></div></details>
+<details class="paso"><summary><span class="pn">3</span>Tercer bloque: pasa bajos y seguidor</summary><div class="inner">
+<p>$R$ y $C_2$ forman otro divisor, esta vez tomando la tensión en el condensador. El seguidor la copia a la salida: $V_o=\dfrac{1/(j\omega C_2)}{R+1/(j\omega C_2)}V_2=\dfrac1{1+j\omega RC_2}V_2$.</p></div></details>
+<details class="paso"><summary><span class="pn">4</span>Apartado (b): juntar</summary><div class="inner">
+<p>$G(j\omega)=\dfrac{V_o}{V_i}=2\cdot\dfrac{j\omega RC_1}{(1+j\omega RC_1)(1+j\omega RC_2)}$ con $RC_1=10^4\cdot1{,}59\cdot10^{-6}=1{,}59\cdot10^{-2}$ s y $RC_2=1{,}59\cdot10^{-5}$ s.</p></div></details>
+<details class="paso"><summary><span class="pn">5</span>Apartado (c): el Bode</summary><div class="inner">
+<p>Frecuencias de corte: $\omega_1=\dfrac1{RC_1}=62{,}9$ rad/s (10 Hz) y $\omega_2=\dfrac1{RC_2}=62\,893$ rad/s (10 kHz). La ganancia en banda es $2\to6{,}02$ dB.</p>
+<p>Por debajo de 62,9 rad/s sube $+20$ dB/dec (el pasa altos). Entre 62,9 y 62 893 rad/s está plano a 6,02 dB. Por encima baja $-20$ dB/dec. Es un filtro <b>pasa banda</b> de 10 Hz a 10 kHz.</p>
+<p>En las frecuencias de corte el módulo exacto vale 3,01 dB, es decir, 3 dB menos que la banda de paso. Eso es lo que significa «frecuencia de corte».</p></div></details>
+<figure class="fig"><p class="ft">Bode · septiembre de 2020</p>
+<div id="fig-x20b"></div>
+<p class="muted" style="font-size:13px;margin:4px 0 0">La fase va de +90° a 0° en el pasa altos y de 0° a −90° en el pasa bajos. En la banda de paso es casi 0°.</p></figure>
+<details class="resul"><summary>Resultado</summary><div class="inner"><p class="et">Solución</p><p>$R_2=10$ kΩ. $G=2\dfrac{j\omega\,0{,}0159}{(1+j\omega\,0{,}0159)(1+j\omega\,1{,}59\cdot10^{-5})}$. Pasa banda con 6,02 dB entre 62,9 y 62 893 rad/s.</p></div></details>
+</div>
+</section>
+
+<section class="sec tema" style="--tc:var(--c5);--tcs:var(--c5s)">
+<div class="sh"><span class="badge" aria-hidden="true">23</span><div class="shx"><p class="kick">Examen · primer parcial, noviembre de 2023</p><h2 id="x23a">Sallen-Key con ganancia 2,9 y resonancia</h2></div></div>
+<div class="prob">
+<h3 class="ph">Ejercicio 1 · 2,5 puntos</h3>
+<div class="enun"><p class="et">Enunciado</p>
+<p>Obtén (a) $G(j\omega)$ y (b) su diagrama de Bode. Datos: $R=15{,}8$ kΩ, $R_A=10$ kΩ, $R_B=19$ kΩ, $C=10$ nF. Pista del enunciado: un polinomio $ax^2+bx+c$ se factoriza con sus raíces.</p></div>
+<figure class="slide nota"><img src="img/ex-n1.jpg" alt="Circuito del examen de noviembre de 2023: Vi entra por dos resistencias R en serie a la entrada positiva del operacional. Un condensador C lleva la salida al nudo entre las dos R y otro C va de la entrada positiva a masa. Un divisor RB y RA entre la salida y masa alimenta la entrada negativa." loading="lazy" width="630" height="430"><figcaption><b class="n">Enunciado · noviembre de 2023</b>Es la estructura de Sallen-Key: dos $R$ en serie, un $C$ a masa, un $C$ de realimentación y ganancia fijada por $R_A$ y $R_B$.</figcaption></figure>
+<details class="paso" open><summary><span class="pn">0</span>La idea, desde cero</summary><div class="inner">
+<p>Hay dos condensadores, así que el denominador será un polinomio de segundo grado en $j\omega$. Con realimentación negativa $V^+=V^-$. El operacional con $R_A$ y $R_B$ es un no inversor de ganancia $K=1+\dfrac{R_B}{R_A}=\dfrac{R_A+R_B}{R_A}=2{,}9$, así que $V^+=\dfrac{V_o}{K}$. Escribe Kirchhoff en el nudo entre las dos $R$ (lo llamo A) y sustituye.</p></div></details>
+<details class="paso"><summary><span class="pn">1</span>Kirchhoff en el nudo A</summary><div class="inner">
+<p>No entra corriente en $V^+$. La corriente que llega por la primera $R$ se reparte entre la segunda $R$ y el condensador de realimentación:</p>
+<p>$\dfrac{V_i-V_A}{R}=\dfrac{V_A-V^+}{R}+\dfrac{V_A-V_o}{Z_C}$, con $Z_C=\dfrac1{j\omega C}$.</p></div></details>
+<details class="paso"><summary><span class="pn">2</span>Relación entre $V_A$ y $V^+$</summary><div class="inner">
+<p>La segunda $R$ y el condensador a masa son un divisor: $V^+=\dfrac{Z_C}{R+Z_C}V_A$, luego $V_A=(1+j\omega RC)\,V^+=(1+x)\dfrac{V_o}{K}$ con $x=j\omega RC$.</p></div></details>
+<details class="paso"><summary><span class="pn">3</span>Sustituir y despejar</summary><div class="inner">
+<p>Multiplica el nudo A por $R$: $V_i-V_A=V_A-V^++x\,(V_A-V_o)$, es decir, $V_i=(2+x)V_A-V^+-xV_o$. Sustituyendo $V_A$ y $V^+$:</p>
+<p>$V_i=\dfrac{(2+x)(1+x)-1}{K}V_o-xV_o=\dfrac{1+3x+x^2-Kx}{K}V_o$.</p></div></details>
+<details class="paso"><summary><span class="pn">4</span>Resultado en forma estándar</summary><div class="inner">
+<p>$G(j\omega)=\dfrac{K}{1+(3-K)\,x+x^2}$ con $x=j\omega RC$. Aquí $K=2{,}9$ y $RC=15{,}8\cdot10^3\cdot10^{-8}=1{,}58\cdot10^{-4}$ s. Entonces</p>
+<p>$G(j\omega)=\dfrac{2{,}9}{1+0{,}1\,(j\omega\,1{,}58\cdot10^{-4})+(j\omega\,1{,}58\cdot10^{-4})^2}$.</p></div></details>
+<details class="paso"><summary><span class="pn">5</span>Polos y factor de calidad</summary><div class="inner">
+<p>Compara con $1+\dfrac{x}{Q}+x^2$: la frecuencia natural es $\omega_0=\dfrac1{RC}=6329$ rad/s ($f_0=1007$ Hz) y $\dfrac1Q=3-K=0{,}1$, luego $Q=10$. Las raíces del denominador son complejas: $s=-316\pm j\,6321$ rad/s. Al tener parte real pequeña, el polo está casi sobre el eje imaginario y el circuito resuena.</p></div></details>
+<details class="paso"><summary><span class="pn">6</span>Bode</summary><div class="inner">
+<p>Asíntota baja: $K=2{,}9\to9{,}25$ dB, plana. En $\omega_0=6329$ rad/s empieza a caer $-40$ dB/dec. Como $Q=10$, hay un <b>pico de resonancia</b> en $\omega_0$ de valor $KQ=29$, es decir, $29{,}25$ dB (20 dB por encima de la asíntota). La fase baja de 0° a −180° y en $\omega_0$ vale −90°.</p></div></details>
+<figure class="fig"><p class="ft">Bode · noviembre de 2023, ejercicio 1</p>
+<div id="fig-x23a"></div>
+<p class="muted" style="font-size:13px;margin:4px 0 0">Línea discontinua: aproximación asintótica. Azul: módulo exacto, con el pico de 20 dB que sobresale de la asíntota.</p></figure>
+<div class="box trap"><h4>Ojo: la solución del aula virtual de este ejercicio tiene un error de signo</h4><p>La solución publicada llega a $1+j\omega RC\left(4+\dfrac{R_B}{R_A}\right)+(j\omega RC)^2$, con raíces reales de −1102 y −36 272 rad/s. Al pasar el término $-(R_A+R_B)\,j\omega RC$ al otro lado cambia su signo, y por eso aparece un $+$ donde debe ir un $-$. Comprobado de dos formas: resolviendo las ecuaciones del nudo con un programa, $|G(j\,6329)|=29$ (29,3 dB), y con la fórmula de aquí. Si el profesor te pide la solución oficial, pregúntale. Lo importante para el examen es el método.</p></div>
+<details class="resul"><summary>Resultado</summary><div class="inner"><p class="et">Solución</p><p>$G=\dfrac{K}{1+(3-K)x+x^2}$ con $K=2{,}9$, $x=j\omega\,1{,}58\cdot10^{-4}$. Pasa bajos de segundo orden con $\omega_0=6329$ rad/s, $Q=10$, ganancia 9,25 dB y pico de 29,25 dB.</p></div></details>
+</div>
+
+<div class="prob" id="x23b">
+<h3 class="ph">Ejercicio 2 · 2 puntos · red en T</h3>
+<div class="enun"><p class="et">Enunciado</p>
+<p>Calcula (a) la ganancia del circuito y (b) la tensión de salida teórica con entradas de 21 V y de 30 V. Datos: $R_1=R_5=3$ kΩ, $R_2=6$ kΩ, $R_3=8$ kΩ, $R_4=5$ kΩ, $\pm V_{cc}=\pm12$ V.</p></div>
+<figure class="slide nota"><img src="img/ex-n2.jpg" alt="Circuito: Vi entra por R1 a un nudo con R2 a masa, R3 hacia la salida y R5 hacia la entrada negativa. De la entrada negativa sale R4 hacia la salida. La entrada positiva está a masa." loading="lazy" width="500" height="360"><figcaption><b class="n">Enunciado · noviembre de 2023</b>Inversor con una red en T ($R_2$, $R_3$ y $R_5$) en lugar de una sola resistencia de realimentación.</figcaption></figure>
+<details class="paso"><summary><span class="pn">1</span>Idea</summary><div class="inner"><p>La entrada positiva está a masa, luego $V^-=0$ (masa virtual). Hay dos nudos con corrientes que calcular: el nudo A (entre $R_1$, $R_2$, $R_3$ y $R_5$) y la entrada negativa.</p></div></details>
+<details class="paso"><summary><span class="pn">2</span>Entrada negativa</summary><div class="inner"><p>Sin corriente al operacional, la que viene de A por $R_5$ sale por $R_4$ hacia la salida: $\dfrac{V_A}{R_5}+\dfrac{V_o}{R_4}=0\Rightarrow V_A=-\dfrac{R_5}{R_4}V_o=-0{,}6\,V_o$.</p></div></details>
+<details class="paso"><summary><span class="pn">3</span>Nudo A</summary><div class="inner"><p>$\dfrac{V_i-V_A}{R_1}=\dfrac{V_A}{R_2}+\dfrac{V_A-V_o}{R_3}+\dfrac{V_A}{R_5}$. Con $V_A=-0{,}6V_o$ y las resistencias en kΩ: $\dfrac{V_i}{3}=-0{,}6V_o\left(\dfrac13+\dfrac16+\dfrac18+\dfrac13\right)-\dfrac{V_o}{8}=-0{,}575V_o-0{,}125V_o=-0{,}7V_o$.</p>
+<p>Por tanto $\dfrac{V_o}{V_i}=-\dfrac{1/3}{0{,}7}=-0{,}476$.</p></div></details>
+<details class="paso"><summary><span class="pn">4</span>Con 21 V y 30 V</summary><div class="inner"><p>Con 21 V: $V_o=-0{,}476\cdot21=-10$ V, dentro del rango de ±12 V. Con 30 V saldría $-14{,}29$ V, pero el operacional <b>satura</b> y se queda en $-12$ V.</p></div></details>
+<details class="resul"><summary>Resultado</summary><div class="inner"><p class="et">Solución</p><p>Ganancia $-0{,}476$. Salida $-10$ V con 21 V y $-12$ V (saturación) con 30 V.</p></div></details>
+</div>
+
+<div class="prob" id="x23c">
+<h3 class="ph">Problema · 5,5 puntos · inversor con operacional real</h3>
+<div class="enun"><p class="et">Enunciado</p>
+<p>Un inversor de ganancia $-K$ recibe $V_i=A\sin\omega t$ con $A=1$ V. Datos del operacional: $SR=0{,}5$ V/µs, $\pm V_{SAT}=\pm14$ V, $f_0=1$ MHz (frecuencia de ganancia 1) e $I_{OS}=25$ mA. Se pide: (a) frecuencia máxima aplicable. (b) Con $A$ máxima sin saturar, limitación por velocidad. (c) Comparar $K=10$ y $K=1$ con la propiedad ganancia por ancho de banda constante, y decir qué limita. (d) Ganancia con $A_{AO}$ finita. (e) Rango con tolerancias del 5 %. (f) Con $K=10$, $R_1=1$ kΩ y $R_2=10$ kΩ, $R_L$ mínima sin distorsión.</p></div>
+<figure class="slide nota"><img src="img/ex-n3.jpg" alt="Inversor: Vi entra por R1 a la entrada negativa, R2 une la salida a la entrada negativa y la entrada positiva está a masa." loading="lazy" width="440" height="360"><figcaption><b class="n">Enunciado · noviembre de 2023</b>Inversor básico con $R_1$ y $R_2$; $K=R_2/R_1$.</figcaption></figure>
+<details class="paso"><summary><span class="pn">a</span>Frecuencia máxima con $A=1$ V</summary><div class="inner">
+<p>La salida es $V_o=-KA\sin\omega t$ y su pendiente máxima vale $KA\omega=2\pi f\,KA$. El operacional no puede cambiar más rápido que el $SR$: $2\pi f\,KA&lt;0{,}5\cdot10^6$ V/s, luego $f&lt;\dfrac{0{,}5\cdot10^6}{2\pi KA}$.</p>
+<p>$K=10$: $f_{max}=7{,}96$ kHz. $K=1$: $f_{max}=79{,}6$ kHz.</p></div></details>
+<details class="paso"><summary><span class="pn">b</span>Con la amplitud máxima sin saturar</summary><div class="inner">
+<p>La salida no puede pasar de 14 V, luego $KA=14$ V, es decir, $A=14/K$: $K=1\to14$ V, $K=10\to1{,}4$ V. Ahora $KA=14$ V en ambos casos y $f_{max}=\dfrac{0{,}5\cdot10^6}{2\pi\cdot14}=5{,}68$ kHz <b>para los dos</b>.</p></div></details>
+<details class="paso"><summary><span class="pn">c</span>Comparación con el producto ganancia por ancho de banda</summary><div class="inner">
+<p>En lazo cerrado el ancho de banda vale $f_c=\dfrac{f_0}K$: 100 kHz para $K=10$ y 1 MHz para $K=1$. Esos valores son <b>mucho mayores</b> que 7,96 kHz y 79,6 kHz. En ambos casos limita el <b>slew rate</b>, no el ancho de banda.</p></div></details>
+<details class="paso"><summary><span class="pn">d</span>Ganancia finita $A_{AO}$</summary><div class="inner">
+<p>$V_o=A_{AO}(V^+-V^-)=-A_{AO}V^-$. Kirchhoff en la entrada negativa (sin corriente al operacional): $\dfrac{V_i-V^-}{R_1}=\dfrac{V^--V_o}{R_2}$, luego $V^-=\dfrac{R_1R_2}{R_1+R_2}\left(\dfrac{V_i}{R_1}+\dfrac{V_o}{R_2}\right)$. Sustituyendo $V^-=-V_o/A_{AO}$ y despejando:</p>
+<p>$\dfrac{V_o}{V_i}=-\dfrac{R_2}{R_1+\dfrac{R_1+R_2}{A_{AO}}}$. Si $A_{AO}\to\infty$ vuelve a $-R_2/R_1$.</p></div></details>
+<details class="paso"><summary><span class="pn">e</span>Tolerancias del 5 %</summary><div class="inner">
+<p>La ganancia máxima en valor absoluto sale con $R_2$ al $+5\,\%$ y $R_1$ al $-5\,\%$: $\dfrac{1{,}05}{0{,}95}=1{,}105$ veces la ideal. La mínima, con $R_2$ al $-5\,\%$ y $R_1$ al $+5\,\%$: $\dfrac{0{,}95}{1{,}05}=0{,}905$. Así que la ganancia queda entre $0{,}905\,G_{ideal}$ y $1{,}105\,G_{ideal}$.</p></div></details>
+<details class="paso"><summary><span class="pn">f</span>Resistencia de carga mínima</summary><div class="inner">
+<p>La salida del operacional entrega la corriente de la carga y la de $R_2$ (que va a la masa virtual): $I_{os}=\dfrac{V_o}{R_L}+\dfrac{V_o}{R_2}&lt;25$ mA. Con el peor caso $V_o=14$ V: $\dfrac{14}{R_L}&lt;0{,}025-\dfrac{14}{10^4}=0{,}0236$ A, así que $R_L>\dfrac{14}{0{,}0236}=593$ Ω.</p></div></details>
+<details class="resul"><summary>Resultado</summary><div class="inner"><p class="et">Solución</p><p>a) 7,96 kHz y 79,6 kHz. b) 5,68 kHz en ambos. c) Limita el slew rate ($f_c$ de 100 kHz y 1 MHz). d) $-R_2/\left[R_1+(R_1+R_2)/A_{AO}\right]$. e) $0{,}905\,G$ a $1{,}105\,G$. f) $R_L>593$ Ω.</p></div></details>
+</div>
+</section>
+
+<section class="sec tema" style="--tc:var(--c6);--tcs:var(--c6s)">
+<div class="sh"><span class="badge" aria-hidden="true">24</span><div class="shx"><p class="kick">Examen · final del primer parcial, enero de 2024</p><h2 id="x24a">Fuente de corriente controlada por tensión (Howland)</h2></div></div>
+<div class="prob">
+<h3 class="ph">Ejercicio 1 · 2 puntos</h3>
+<div class="enun"><p class="et">Enunciado</p>
+<p>Halla la relación que deben cumplir las resistencias para que el circuito sea una fuente de corriente controlada por tensión $I_L=f(V_i)$ y la expresión de la corriente por la carga $Z_L$ cuando se cumple.</p></div>
+<figure class="slide nota"><img src="img/ex-e1.jpg" alt="Dos operacionales. El primero recibe Vi en la entrada positiva, tiene R de la salida a la entrada negativa y R2 desde la salida final hasta esa entrada. El segundo es un inversor con R de entrada y R de realimentación. La salida del segundo pasa por R1 a la carga ZL." loading="lazy" width="640" height="440"><figcaption><b class="n">Enunciado · enero de 2024</b>El segundo operacional es un inversor de ganancia $-1$. $R_1$ y $R_2$ cierran la realimentación hacia la carga.</figcaption></figure>
+<details class="paso" open><summary><span class="pn">0</span>La idea, desde cero</summary><div class="inner"><p>Una fuente de corriente entrega la misma corriente aunque cambie la carga. Eso significa que $I_L$ <b>no puede depender de $V_o$</b> (la tensión en la carga). El método es obtener $I_L$ en función de $V_i$ y $V_o$ y ver qué condición anula el término de $V_o$.</p></div></details>
+<details class="paso"><summary><span class="pn">1</span>El segundo operacional</summary><div class="inner"><p>Es un inversor con dos $R$ iguales: $V_{o2}=-V_{o1}$.</p></div></details>
+<details class="paso"><summary><span class="pn">2</span>Nudo de la entrada negativa del primero</summary><div class="inner"><p>$V^-=V^+=V_i$. Sin corriente en el operacional: $\dfrac{V_i-V_{o1}}{R}+\dfrac{V_i-V_o}{R_2}=0$, luego $V_{o1}=\dfrac{(R+R_2)V_i-RV_o}{R_2}$.</p></div></details>
+<details class="paso"><summary><span class="pn">3</span>Corriente por la carga</summary><div class="inner"><p>Al nudo de salida $B$ llegan dos corrientes: la de $R_2$, que vale $\dfrac{V_i-V_o}{R_2}$ porque $V^-=V_i$, y la de $R_1$, que vale $\dfrac{V_{o2}-V_o}{R_1}$. Su suma es la corriente de la carga: $I_L=\dfrac{V_i-V_o}{R_2}+\dfrac{V_{o2}-V_o}{R_1}$. Sustituye $V_{o2}=-V_{o1}$:</p>
+<p>$I_L=V_i\,\dfrac{R_1-R-R_2}{R_1R_2}+V_o\,\dfrac{R-R_1-R_2}{R_1R_2}$.</p></div></details>
+<details class="paso"><summary><span class="pn">4</span>Condición</summary><div class="inner"><p>Anulas el término de $V_o$: <b>$R=R_1+R_2$</b>. Entonces $I_L=V_i\,\dfrac{R_1-R_1-2R_2}{R_1R_2}=-\dfrac{2V_i}{R_1}$. El signo menos solo indica que la corriente circula de masa hacia el nudo $B$ a través de $Z_L$. En módulo, $I_L=\dfrac{2V_i}{R_1}$ y no depende de $Z_L$.</p></div></details>
+<div class="box trap"><h4>Ojo: la solución del aula virtual de este ejercicio plantea mal el nudo de salida</h4><p>La solución publicada escribe $i_{R_2}=i_{R_1}+i_L$, con las dos corrientes entrando al nudo $B$, y llega a $R=R_2-R_1$. Con las dos entrando, la ecuación correcta es $i_{R_2}+i_{R_1}=i_L$ y da $R=R_1+R_2$. Lo he comprobado simulando el circuito: con $R_1=1$ kΩ, $R_2=3$ kΩ y $R=4$ kΩ la corriente vale $-2$ mA para $V_i=1$ V con cargas de 100 Ω, 1 kΩ y 5 kΩ, mientras que con $R=2$ kΩ ($=R_2-R_1$) cambia con la carga (−1,25, −0,8 y −0,31 mA). La magnitud $2V_i/R_1$ coincide con la publicada.</p></div>
+<details class="resul"><summary>Resultado</summary><div class="inner"><p class="et">Solución</p><p>Condición $R=R_1+R_2$. Corriente $|I_L|=\dfrac{2V_i}{R_1}$, independiente de $Z_L$.</p></div></details>
+</div>
+
+<div class="prob" id="x24b">
+<h3 class="ph">Ejercicio 2 · 2,5 puntos · Sallen-Key de ganancia 2</h3>
+<div class="enun"><p class="et">Enunciado</p>
+<p>Obtén (a) $G(j\omega)$ y (b) el diagrama de Bode. Datos: $R=R_a=R_b=10$ kΩ, $C=10$ nF.</p></div>
+<figure class="slide nota"><img src="img/ex-e2.jpg" alt="Sallen-Key: dos R en serie, un C de realimentación desde la salida hasta el nudo entre las R y otro C a masa en la entrada positiva. Ra y Rb forman la ganancia." loading="lazy" width="580" height="410"><figcaption><b class="n">Enunciado · enero de 2024</b>Misma estructura que el ejercicio de noviembre de 2023, pero con $R_a=R_b$, es decir $K=2$.</figcaption></figure>
+<details class="paso"><summary><span class="pn">1</span>Aplica la fórmula del Sallen-Key</summary><div class="inner"><p>Es la misma topología que el ejercicio 1 de noviembre de 2023, y tienes la deducción allí: $G(j\omega)=\dfrac{K}{1+(3-K)x+x^2}$, con $x=j\omega RC$ y $K=1+\dfrac{R_b}{R_a}=2$.</p></div></details>
+<details class="paso"><summary><span class="pn">2</span>Números</summary><div class="inner"><p>$RC=10^4\cdot10^{-8}=10^{-4}$ s, así que $\omega_0=10^4$ rad/s. $G(j\omega)=\dfrac{2}{1+j\omega10^{-4}+(j\omega10^{-4})^2}$ y $Q=\dfrac1{3-K}=1$.</p></div></details>
+<details class="paso"><summary><span class="pn">3</span>Bode</summary><div class="inner"><p>Plano a $20\log2=6{,}02$ dB hasta $10^4$ rad/s y después $-40$ dB/dec. Con $Q=1$ hay un abultamiento pequeño: máximo de 7,27 dB hacia 7071 rad/s, y en $\omega_0$ el módulo vale exactamente 2 (6,02 dB). La fase baja de 0° a −180° y vale −90° en $\omega_0$.</p></div></details>
+<figure class="fig"><p class="ft">Bode · enero de 2024, ejercicio 2</p>
+<div id="fig-x24b"></div></figure>
+<details class="resul"><summary>Resultado</summary><div class="inner"><p class="et">Solución</p><p>$G=\dfrac{2}{1+j\omega10^{-4}+(j\omega10^{-4})^2}$. Pasa bajos de segundo orden, 6,02 dB, $\omega_0=10^4$ rad/s, $Q=1$.</p></div></details>
+</div>
+
+<div class="prob" id="x24c">
+<h3 class="ph">Problema · 5,5 puntos · parte I · comparador con zéneres</h3>
+<div class="enun"><p class="et">Enunciado</p>
+<p>Los diodos zéner son ideales con $V_{Z1}=10$ V y $V_{Z2}=5$ V. El operacional es ideal, pero con alimentación de ±15 V satura en $\pm13{,}6$ V. En $V_{ref}$ hay $-5$ V y $R=10$ kΩ. (a) Obtén la función de transferencia ideal. (b) Dibuja $V_i$ y $V_o$ para una triangular de 20 V de pico a pico, valor medio nulo y 100 Hz.</p></div>
+<figure class="slide nota"><img src="img/ex-e3.jpg" alt="El operacional recibe Vi en la entrada negativa. La salida pasa por dos zéneres en serie y opuestos hasta Vo. De Vo sale R hacia la entrada positiva, que también recibe Vref por otra R." loading="lazy" width="630" height="280"><figcaption><b class="n">Enunciado · enero de 2024</b>La salida del operacional pasa por dos zéneres en oposición hasta $V_o$, y de ahí vuelve a la entrada positiva (realimentación positiva).</figcaption></figure>
+<details class="paso" open><summary><span class="pn">0</span>La idea, desde cero</summary><div class="inner"><p>La realimentación es positiva, así que el operacional satura siempre (+13,6 V o −13,6 V). Los zéneres recortan esa salida: con dos en serie y en oposición, uno conduce como diodo normal (0 V, ideal) y el otro en ruptura (su $V_Z$). Cuál es cuál depende del signo. Después, igual que en un Schmitt, se mira cuándo se igualan $V^+$ y $V^-$ con cada nivel de salida.</p></div></details>
+<details class="paso"><summary><span class="pn">1</span>Nivel de salida con la salida del AO en +13,6 V</summary><div class="inner"><p>Conduce $D_{Z2}$ como diodo y $D_{Z1}$ en ruptura (10 V): $V_o=13{,}6-10=\mathbf{3{,}6}$ V.</p></div></details>
+<details class="paso"><summary><span class="pn">2</span>Nivel de salida con la salida del AO en −13,6 V</summary><div class="inner"><p>Ahora $D_{Z1}$ conduce y $D_{Z2}$ está en ruptura (5 V): $V_o=-13{,}6+5=\mathbf{-8{,}6}$ V.</p></div></details>
+<details class="paso"><summary><span class="pn">3</span>Tensión en la entrada positiva</summary><div class="inner"><p>Las dos $R$ iguales forman un divisor entre $V_{ref}$ y $V_o$: $V^+=\dfrac{V_{ref}+V_o}{2}$. La tensión diferencial es $V_d=V^+-V^-=\dfrac{V_{ref}+V_o}2-V_i$.</p></div></details>
+<details class="paso"><summary><span class="pn">4</span>Umbrales</summary><div class="inner"><p>Con $V_o=3{,}6$ V: $V_d=-0{,}7-V_i$. Pasa a la salida baja cuando $V_d&lt;0$, es decir, <b>$V_i>-0{,}7$ V</b>.</p>
+<p>Con $V_o=-8{,}6$ V: $V_d=-6{,}8-V_i$. Vuelve a la salida alta cuando $V_d>0$, es decir, <b>$V_i&lt;-6{,}8$ V</b>.</p>
+<p>Es un Schmitt <b>inversor</b>: salida 3,6 V para entradas bajas y −8,6 V para altas, con histéresis de 6,1 V.</p></div></details>
+<details class="paso"><summary><span class="pn">5</span>Triangular de 20 Vpp a 100 Hz</summary><div class="inner"><p>Periodo de 10 ms. La entrada va de −10 V a +10 V en 5 ms, con pendiente 4 V/ms. Empezando en −10 V (salida alta, 3,6 V) cruza −0,7 V en $t=\dfrac{9{,}3}{4}=2{,}325$ ms y la salida cae a −8,6 V. Al bajar desde +10 V (en $t=5$ ms) cruza −6,8 V en $t=5+\dfrac{16{,}8}{4}=9{,}2$ ms y la salida vuelve a 3,6 V.</p></div></details>
+<figure class="fig"><p class="ft">Entrada y salida durante un periodo · enero de 2024</p>
+<div id="fig-x24c"></div>
+<p class="muted" style="font-size:13px;margin:4px 0 0">Azul: entrada triangular. Rojo: salida cuadrada, con los cambios en 2,325 ms y 9,2 ms.</p></figure>
+<details class="resul"><summary>Resultado</summary><div class="inner"><p class="et">Solución</p><p>Salida de 3,6 V a −8,6 V con umbrales de −0,7 V (baja) y −6,8 V (sube). Schmitt inversor.</p></div></details>
+</div>
+
+<div class="prob" id="x24d">
+<h3 class="ph">Problema · parte II · amplificador diferencial y CMRR</h3>
+<div class="enun"><p class="et">Enunciado</p>
+<p>(a) Ganancia diferencial $A_d$ y de modo común $A_{cm}$. (b) Relación entre resistencias que minimiza $A_{cm}$. (c) Con $R_1=R_4=10$ kΩ y $R_2=R_3=1$ kΩ, el CMRR a 200 Hz es de 70 dB. Si se acopla un armónico de red de 200 Hz con 100 mV de amplitud, ¿qué interferencia aparece en la salida?</p></div>
+<figure class="slide nota"><img src="img/ex-e4.jpg" alt="Dos operacionales. El primero recibe V1 en la entrada positiva y tiene R1 a masa y R2 a su salida Vo1. El segundo recibe V2 en la entrada positiva, R3 de Vo1 a su entrada negativa y R4 a la salida Vo." loading="lazy" width="660" height="345"><figcaption><b class="n">Enunciado · enero de 2024</b>Amplificador de instrumentación de dos operacionales.</figcaption></figure>
+<details class="paso"><summary><span class="pn">1</span>Salida de cada operacional</summary><div class="inner"><p>AO1 es un no inversor: $V_{o1}=\left(1+\dfrac{R_2}{R_1}\right)V_1$. AO2 combina un no inversor para $V_2$ y un inversor para $V_{o1}$: $V_o=\left(1+\dfrac{R_4}{R_3}\right)V_2-\dfrac{R_4}{R_3}V_{o1}$ (superposición).</p></div></details>
+<details class="paso"><summary><span class="pn">2</span>(a) Ganancias</summary><div class="inner"><p>$V_o=\left(1+\dfrac{R_4}{R_3}\right)V_2-\dfrac{R_4}{R_3}\left(1+\dfrac{R_2}{R_1}\right)V_1$. Con $V_d=V_2-V_1$ y $V_c=\dfrac{V_1+V_2}2$: $A_d=\dfrac12\left[\left(1+\dfrac{R_4}{R_3}\right)+\dfrac{R_4}{R_3}\left(1+\dfrac{R_2}{R_1}\right)\right]$ y $A_{cm}=1-\dfrac{R_2R_4}{R_1R_3}$.</p></div></details>
+<details class="paso"><summary><span class="pn">3</span>(b) Minimizar $A_{cm}$</summary><div class="inner"><p>$A_{cm}=0$ cuando $R_2R_4=R_1R_3$. Entonces las dos ramas se cancelan para una entrada común a $V_1$ y $V_2$.</p></div></details>
+<details class="paso"><summary><span class="pn">4</span>(c) Interferencia</summary><div class="inner"><p>Con los valores dados, $R_4/R_3=10$ y $1+R_2/R_1=1{,}1$. $A_d=\dfrac12(11+11)=11$. Se cumple $R_2R_4=R_1R_3=10^7$, luego $A_{cm}=0$ en teoría. En la práctica el CMRR es de 70 dB $=3162$. $A_{cm}=\dfrac{A_d}{CMRR}=\dfrac{11}{3162}=3{,}48\cdot10^{-3}$. Con 100 mV de modo común: $V_{o,int}=3{,}48\cdot10^{-3}\cdot0{,}1=0{,}348$ mV.</p></div></details>
+<details class="resul"><summary>Resultado</summary><div class="inner"><p class="et">Solución</p><p>$A_d=11$, $A_{cm}=1-R_2R_4/(R_1R_3)=0$ con la condición $R_2R_4=R_1R_3$. Interferencia a la salida: 0,35 mV.</p></div></details>
+</div>
+</section>
+
+</main>
+</div>
+<div class="pager"><a href="transistores.html"><small>← Anterior</small>Transistores</a><a class="nx" href="fuen.html"><small>Siguiente →</small>Apuntes de Fuen</a></div>
+<script>
+const $=id=>document.getElementById(id);
+const fmt=v=>{const a=Math.abs(v);if(a===0)return '0';if(a>=1e6)return (v/1e6).toPrecision(3).replace(/\.?0+$/,'')+'M';if(a>=1e4)return (v/1e3).toPrecision(3).replace(/\.?0+$/,'')+'k';if(a>=100)return String(Math.round(v));if(a>=1)return v.toPrecision(3).replace(/\.?0+$/,'');return v.toPrecision(2).replace(/\.?0+$/,'')};
+const es=v=>String(v).replace('.',',');
+const num=(v,d=2)=>es((+v).toFixed(d));
+const rng=(a,b,n)=>Array.from({length:n},(_,i)=>a+(b-a)*i/(n-1));
+const val=id=>parseFloat($(id).value);
+function bind(ids,fn){ids.forEach(i=>$(i).addEventListener('input',fn));fn();}
+function out(id,t){const e=$(id+'-o');if(e)e.textContent=t;}
+function freq(f){return f>=1e6?num(f/1e6,3)+' MHz':f>=1e3?num(f/1e3,3)+' kHz':num(f,2)+' Hz';}
+function plotSVG(o,items){
+  const W=o.w||640,H=o.h||210,m={l:40,r:14,t:14,b:28};
+  const X=x=>+(m.l+(x-o.x0)/(o.x1-o.x0)*(W-m.l-m.r)).toFixed(2);
+  const cl=y=>Math.max(o.y0,Math.min(o.y1,y));
+  const Y=y=>+(H-m.b-(cl(y)-o.y0)/(o.y1-o.y0)*(H-m.t-m.b)).toFixed(2);
+  let s=`<svg viewBox="0 0 ${W} ${H}" class="plot" role="img" aria-label="${o.label||'gráfica'}">`;
+  for(const v of (o.yt||[])) s+=`<line class="grid" x1="${m.l}" x2="${W-m.r}" y1="${Y(v)}" y2="${Y(v)}"/><text class="tk" x="${m.l-6}" y="${Y(v)+4}" text-anchor="end">${o.ytf?o.ytf(v):fmt(v)}</text>`;
+  for(const v of (o.xt||[])) s+=`<text class="tk" x="${X(v)}" y="${H-9}" text-anchor="middle">${o.xtf?o.xtf(v):fmt(v)}</text>`;
+  const base=(o.y0<=0&&o.y1>=0)?0:o.y0;
+  s+=`<line class="ax" x1="${m.l}" x2="${W-m.r}" y1="${Y(base)}" y2="${Y(base)}"/>`;
+  if(o.x0<=0&&o.x1>=0) s+=`<line class="ax" x1="${X(0)}" x2="${X(0)}" y1="${m.t}" y2="${H-m.b}"/>`;
+  if(o.xl) s+=`<text class="lb" x="${W-m.r}" y="${Y(base)-6}" text-anchor="end">${o.xl}</text>`;
+  if(o.yl) s+=`<text class="lb" x="${m.l+6}" y="${m.t+10}">${o.yl}</text>`;
+  for(const it of items){
+    const c=it.c||'s1';
+    if(it.t==='stem'){ it.n.forEach((n,i)=>{ if(n<o.x0||n>o.x1) return; const yy=it.y[i]; s+=`<line class="st ${c}" x1="${X(n)}" x2="${X(n)}" y1="${Y(base)}" y2="${Y(yy)}"/><circle class="${c}" cx="${X(n)}" cy="${Y(yy)}" r="${it.hl===n?6:(it.r||3.5)}"/>`; }); }
+    else if(it.t==='line'||it.t==='step'){ let d=''; it.x.forEach((x,i)=>{ if(it.t==='step'&&i>0) d+=`L${X(x)},${Y(it.y[i-1])}`; d+=(i?'L':'M')+X(x)+','+Y(it.y[i]); }); s+=`<path class="ln ${c}" d="${d}"${it.dash?' stroke-dasharray="5 4"':''}${it.w?` stroke-width="${it.w}"`:''}/>`; }
+    else if(it.t==='area'){ let d=`M${X(it.x[0])},${Y(base)}`; it.x.forEach((x,i)=>{d+=`L${X(x)},${Y(it.y[i])}`}); d+=`L${X(it.x[it.x.length-1])},${Y(base)}Z`; s+=`<path class="ar ${c}" d="${d}"/>`; }
+    else if(it.t==='poly'){ const d=it.pts.map((p,i)=>(i?'L':'M')+X(p[0])+','+Y(p[1])).join('')+'Z'; s+=`<path class="ar ${c}" d="${d}"/>`; }
+    else if(it.t==='pt'){ s+=`<circle class="${c}" cx="${X(it.x)}" cy="${Y(it.y)}" r="${it.r||5}"/>`; }
+    else if(it.t==='vline'){ s+=`<line class="vl ${c}" x1="${X(it.x)}" x2="${X(it.x)}" y1="${m.t}" y2="${H-m.b}" stroke-dasharray="3 4"/>`; }
+    else if(it.t==='text'){ s+=`<text class="lb ${c}" x="${X(it.x)}" y="${Y(it.y)}" text-anchor="${it.a||'middle'}">${it.s}</text>`; }
+  }
+  return s+'</svg>';
+}
+
+
+/* ---------- exámenes: gráficas ---------- */
+(function(){
+  if(!$('fig-x13'))return;
+  const lw=rng(0,6,400);
+  const lab=v=>{const w=Math.round(Math.pow(10,v));return w>=1e6?(w/1e6)+'M':w>=1e3?(w/1e3)+'k':String(w);};
+  // G = K (jw)^p prod (1+jw/w0)^n ; terms: [w0,n]
+  function bode(id,K,p,terms,o,label,extra){
+    const mag=l=>{const w=Math.pow(10,l);let g=Math.log10(K)+p*l;for(const [w0,n] of terms)g+=n*0.5*Math.log10(1+(w/w0)*(w/w0));return 20*g;};
+    const asy=l=>{let g=20*Math.log10(K)+20*p*l;for(const [w0,n] of terms)g+=20*n*Math.max(0,l-Math.log10(w0));return g;};
+    const x=rng(o.x0,o.x1,400);
+    const vl=terms.map(t=>({t:'vline',x:Math.log10(t[0]),c:'s2'}));
+    $(id).innerHTML=plotSVG(Object.assign({label,yl:'|G| dB',xl:'ω rad/s',xt:o.xt,xtf:lab},o),[
+      {t:'line',x,y:x.map(asy),c:'s3',dash:1,w:1.6},{t:'line',x,y:x.map(mag),c:'s1'}].concat(vl,extra||[]));
+    return {mag,asy};
+  }
+  // Feb 2013
+  // el integrador 1/(jw 0.01): K=100, p=-1
+  bode('fig-x13',100,-1,[[1/0.1005,1],[200,1],[400,-1],[2000,-2]],
+    {x0:0,x1:4,xt:[0,1,2,3,4],y0:-10,y1:50,yt:[0,10,20,30,40,50]},'Bode de la función de transferencia de febrero de 2013');
+  // Sep 2020
+  bode('fig-x20b',2*0.0159,1,[[1/0.0159,-1],[1/1.59e-5,-1]],
+    {x0:0,x1:6,xt:[0,1,2,3,4,5,6],y0:-40,y1:10,yt:[-40,-30,-20,-10,0,10]},'Bode del filtro pasa banda de septiembre de 2020');
+  // Nov 2023 Ej1: Sallen-Key K=2.9, Q=10, w0=6329
+  (function(){
+    const K=2.9,w0=1/(15.8e3*10e-9),Q=10;
+    const x=rng(2.5,5.5,500);
+    const mag=l=>{const w=Math.pow(10,l)/w0;const re=1-w*w,im=w/Q;return 20*Math.log10(K/Math.hypot(re,im));};
+    const asy=l=>20*Math.log10(K)-40*Math.max(0,l-Math.log10(w0));
+    $('fig-x23a').innerHTML=plotSVG({x0:2.5,x1:5.5,y0:-60,y1:40,yt:[-60,-40,-20,0,20,40],xt:[3,4,5],xtf:lab,label:'Bode del Sallen-Key de noviembre de 2023',yl:'|G| dB',xl:'ω rad/s'},[
+      {t:'line',x,y:x.map(asy),c:'s3',dash:1,w:1.6},{t:'line',x,y:x.map(mag),c:'s1'},{t:'vline',x:Math.log10(w0),c:'s2'}]);
+  })();
+  // Ene 2024 Ej2: K=2, Q=1, w0=1e4
+  (function(){
+    const K=2,w0=1e4,Q=1;
+    const x=rng(2.5,5.5,500);
+    const mag=l=>{const w=Math.pow(10,l)/w0;return 20*Math.log10(K/Math.hypot(1-w*w,w/Q));};
+    const asy=l=>20*Math.log10(K)-40*Math.max(0,l-Math.log10(w0));
+    $('fig-x24b').innerHTML=plotSVG({x0:2.5,x1:5.5,y0:-60,y1:20,yt:[-60,-40,-20,0,20],xt:[3,4,5],xtf:lab,label:'Bode del Sallen-Key de enero de 2024',yl:'|G| dB',xl:'ω rad/s'},[
+      {t:'line',x,y:x.map(asy),c:'s3',dash:1,w:1.6},{t:'line',x,y:x.map(mag),c:'s1'},{t:'vline',x:4,c:'s2'}]);
+  })();
+  // Feb 2020: histéresis
+  $('fig-x20a').innerHTML=plotSVG({x0:0,x1:12,y0:-1,y1:14,xt:[0,3,6,9,12],yt:[0,6,12],xtf:v=>v+' V',ytf:v=>v+' V',label:'Característica de transferencia del Schmitt no inversor',yl:'Vo',xl:'Vin'},[
+    {t:'line',x:[0,9,9,12],y:[0,0,12,12],c:'s1',w:2.4},
+    {t:'line',x:[12,3,3,0],y:[12,12,0,0],c:'s2',w:2.4,dash:1},
+    {t:'vline',x:3,c:'s2'},{t:'vline',x:9,c:'s1'},
+    {t:'text',x:9.2,y:6,s:'sube en 9 V',a:'start',c:'s1'},{t:'text',x:2.8,y:6,s:'baja en 3 V',a:'end',c:'s2'}]);
+  // Ene 2024: temporal
+  (function(){
+    const t=[0,5,10],vi=[-10,10,-10];
+    $('fig-x24c').innerHTML=plotSVG({x0:0,x1:10,y0:-12,y1:12,xt:[0,2,4,6,8,10],yt:[-10,-5,0,5,10],xtf:v=>v+' ms',ytf:v=>v+' V',label:'Entrada triangular y salida del comparador con zéneres',yl:'V',xl:'t'},[
+      {t:'line',x:t,y:vi,c:'s1',w:2},
+      {t:'line',x:[0,2.325,2.325,9.2,9.2,10],y:[3.6,3.6,-8.6,-8.6,3.6,3.6],c:'s2',w:2.4},
+      {t:'vline',x:2.325,c:'s3'},{t:'vline',x:9.2,c:'s3'},
+      {t:'text',x:1.1,y:5.6,s:'3,6 V',c:'s2'},{t:'text',x:6,y:-10.5,s:'−8,6 V',c:'s2'}]);
+  })();
+})();
+/* ---------- búsqueda en todo el sitio ---------- */
+(function(){
+  const norm=s=>s.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'');
+  const PG=document.body.dataset.page;
+  const NAMES={"index": "Inicio", "operacionales": "Operacionales", "bode": "Bode y filtros", "transistores": "Transistores", "examenes": "Exámenes", "fuen": "Apuntes de Fuen", "practica": "Practicar", "referencia": "Referencia"};
+  const idx=[];
+  document.querySelectorAll('main section').forEach(sec=>{
+    const h=sec.querySelector('h2');const title=h?h.textContent:'';const tc=sec.getAttribute('style')||'';
+    sec.querySelectorAll('h3,h4,p,li,figcaption,summary,dt,dd,td').forEach(el=>{
+      const t=el.textContent.replace(/\s+/g,' ').trim();if(t.length<12)return;idx.push({el,title,t,n:norm(t),tc,p:PG});
+    });
+  });
+  let remote=null,loading=false;
+  function load(cb){
+    if(remote){cb();return;} if(loading)return; loading=true;
+    fetch('buscar.json').then(r=>r.json()).then(j=>{remote=j.filter(e=>e.p!==PG).map(e=>Object.assign(e,{n:norm(e.t)}));cb();}).catch(()=>{remote=[];});
+  }
+  const inp=$('srch'),box=$('srch-out');
+  function open_(el){let d=el.closest('details');while(d){d.open=true;d=d.parentElement.closest('details');}
+    el.scrollIntoView({behavior:'smooth',block:'center'});el.classList.add('flash');setTimeout(()=>el.classList.remove('flash'),1900);}
+  function show(){
+    const q=norm(inp.value.trim());if(q.length<2){box.hidden=true;box.innerHTML='';return;}
+    const w=q.split(/\s+/);
+    const loc=idx.filter(e=>w.every(x=>e.n.includes(x))).slice(0,6);
+    const rem=(remote||[]).filter(e=>w.every(x=>e.n.includes(x))).slice(0,6);
+    box.hidden=false;box.innerHTML='';
+    if(!loc.length&&!rem.length){box.textContent='Sin resultados. Prueba con otra palabra, por ejemplo «Miller» o «slew».';return;}
+    const add=(r,here)=>{
+      const b=document.createElement('button');b.type='button';b.className='sres';b.setAttribute('style',r.tc);
+      const s=document.createElement('span');s.className='sres-t';s.textContent=r.title;
+      if(!here){const pp=document.createElement('span');pp.className='sres-p';pp.textContent=NAMES[r.p]||r.p;s.appendChild(pp);}
+      b.appendChild(s);
+      const i=r.n.indexOf(w[0]);const a=Math.max(0,i-50);const sn=r.t.slice(a,a+150);
+      b.appendChild(document.createTextNode((a>0?'… ':'')+sn+(a+150<r.t.length?' …':'')));
+      b.addEventListener('click',()=>{ if(here)open_(r.el); else location.href=r.p+'.html#'+r.id; });
+      box.appendChild(b);
+    };
+    loc.forEach(r=>add(r,true)); rem.forEach(r=>add(r,false));
+  }
+  inp.addEventListener('input',()=>{show();load(show);});
+})();
+/* ---------- ir a un ancla y abrir los desplegables que la contienen ---------- */
+(function(){
+  function go(){
+    const h=decodeURIComponent(location.hash.slice(1));if(!h)return;
+    const el=document.getElementById(h);if(!el)return;
+    let d=el.closest('details');while(d){d.open=true;d=d.parentElement.closest('details');}
+    setTimeout(()=>el.scrollIntoView({block:'start'}),60);
+    setTimeout(()=>el.scrollIntoView({block:'start'}),900);
+  }
+  addEventListener('hashchange',go);addEventListener('load',go);
+})();
+/* ---------- índice lateral y botón de subir ---------- */
+(function(){
+  const links=[...document.querySelectorAll('.toc a')];
+  const map=new Map(links.map(a=>[a.getAttribute('href').slice(1),a]));
+  const heads=[...map.keys()].map(i=>$(i)).filter(Boolean);
+  if('IntersectionObserver' in window){
+    const io=new IntersectionObserver(es_=>{es_.forEach(e=>{if(e.isIntersecting){links.forEach(a=>a.classList.remove('on'));const a=map.get(e.target.id);if(a){a.classList.add('on');if(getComputedStyle(a.parentElement).display==='flex'){a.scrollIntoView({block:'nearest',inline:'center'});}}}});},{rootMargin:'-20% 0px -70% 0px'});
+    heads.forEach(h=>io.observe(h));
+  }
+  const t=$('totop');const f=()=>t.classList.toggle('show',window.scrollY>600);addEventListener('scroll',f,{passive:true});f();
+})();
+
+</script>
+</body>
+</html>

@@ -1,0 +1,945 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="description" content="Electrónica Analógica (UPCT): U6: diagramas de Bode a fondo, polos complejos y filtros activos.">
+<title>Electrónica Analógica · Bode y filtros</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=IBM+Plex+Sans:ital,wght@0,400;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<script>
+window.MathJax = { tex: { inlineMath: [['$','$']], displayMath: [['$$','$$']] }, svg: { fontCache: 'global' } };
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-svg.js"></script>
+<style>
+/* Layout: columna de lectura con índice lateral fijo; el triángulo del operacional y la recta de −20 dB/década como motivo */
+/* Layout: columna de lectura con índice lateral fijo en escritorio; el disco unidad del plano z como motivo */
+:root{
+  --bg:#f3f5fa; --surface:#ffffff; --fg:#141b2b; --muted:#566178; --line:#d6dce9;
+  --accent:#1d5fb8; --accent-soft:#e1ebf9; --warn:#b2482a; --warn-soft:#f7e6df;
+  --display:"Bricolage Grotesque", "Segoe UI", system-ui, sans-serif;
+  --body:"IBM Plex Sans", "Segoe UI", system-ui, sans-serif;
+  --mono:"IBM Plex Mono", ui-monospace, Consolas, monospace;
+}
+@media (prefers-color-scheme: dark){ :root:not([data-theme="light"]){
+  --bg:#0e131d; --surface:#161d2b; --fg:#e4e9f3; --muted:#9aa6bb; --line:#2a3445;
+  --accent:#6ea8f2; --accent-soft:#162a49; --warn:#ef8a68; --warn-soft:#3a221a; color-scheme:dark; } }
+:root[data-theme="dark"]{
+  --bg:#0e131d; --surface:#161d2b; --fg:#e4e9f3; --muted:#9aa6bb; --line:#2a3445;
+  --accent:#6ea8f2; --accent-soft:#162a49; --warn:#ef8a68; --warn-soft:#3a221a; color-scheme:dark; }
+
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--fg);font-family:var(--body);font-size:16px;line-height:1.6;
+  padding-left:max(16px, env(safe-area-inset-left, 0px));padding-right:max(16px, env(safe-area-inset-right, 0px));padding-block:0 64px}
+.wrap{max-width:1120px;margin:0 auto;display:grid;grid-template-columns:220px minmax(0,1fr);gap:48px}
+@media (max-width:860px){.wrap{grid-template-columns:minmax(0,1fr);gap:0}.toc{display:none}}
+header.hero{max-width:1120px;margin:0 auto;padding-block:40px 28px;display:grid;grid-template-columns:minmax(0,1fr) 180px;gap:32px;align-items:center;border-bottom:1px solid var(--line);margin-bottom:32px}
+@media (max-width:600px){header.hero{grid-template-columns:minmax(0,1fr)}header.hero svg{display:none}}
+.eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--accent)}
+h1{font-family:var(--display);font-weight:700;font-size:clamp(32px,5vw,48px);line-height:1.08;margin:8px 0 12px;text-wrap:balance}
+.lede{color:var(--muted);max-width:62ch;margin:0}
+h2{font-family:var(--display);font-weight:700;font-size:28px;line-height:1.2;margin:56px 0 8px;text-wrap:balance;scroll-margin-top:16px}
+h3{font-family:var(--display);font-weight:500;font-size:20px;margin:32px 0 8px;text-wrap:balance}
+h4{font-size:13px;font-family:var(--mono);text-transform:uppercase;letter-spacing:.07em;color:var(--muted);margin:24px 0 6px;font-weight:500}
+p,li{max-width:70ch}
+main{min-width:0}
+.toc{position:sticky;top:env(safe-area-inset-top,0px);align-self:start;padding-top:8px;max-height:100vh;overflow:auto}
+.toc a{display:block;color:var(--muted);text-decoration:none;font-size:14px;padding:4px 0 4px 10px;border-left:2px solid var(--line)}
+.toc a:hover,.toc a:focus-visible{color:var(--fg);border-left-color:var(--accent);outline:none}
+.toc .grp{font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--accent);margin:18px 0 6px}
+.tag{display:inline-block;font-family:var(--mono);font-size:12px;padding:2px 8px;border-radius:4px;background:var(--accent-soft);color:var(--accent);margin-right:6px}
+.tag.w{background:var(--warn-soft);color:var(--warn)}
+.box{background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:16px 20px;margin:16px 0}
+.box.key{border-left:3px solid var(--accent)}
+.box.trap{border-left:3px solid var(--warn)}
+.box > :first-child{margin-top:0}.box > :last-child{margin-bottom:0}
+.math{overflow-x:auto;overflow-y:hidden;max-width:100%}
+mjx-container[display="true"]{overflow-x:auto;overflow-y:hidden;max-width:100%;padding:2px 0}
+ol.steps{padding-left:22px}ol.steps li{margin:6px 0}
+details{background:var(--surface);border:1px solid var(--line);border-radius:8px;margin:14px 0}
+details>summary{cursor:pointer;padding:12px 18px;font-weight:600;list-style:none;display:flex;gap:10px;align-items:baseline}
+details>summary::-webkit-details-marker{display:none}
+details>summary::before{content:"+";font-family:var(--mono);color:var(--accent);width:1ch}
+details[open]>summary::before{content:"−"}
+details>summary:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:8px}
+details .inner{padding:0 20px 16px;border-top:1px solid var(--line)}
+.src{font-family:var(--mono);font-size:12px;color:var(--muted);font-weight:400}
+table{border-collapse:collapse;width:100%;font-size:15px}
+.tw{overflow-x:auto;margin:12px 0}
+th,td{text-align:left;padding:8px 10px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-family:var(--mono);font-size:12px;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);font-weight:500}
+pre{background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:14px 16px;overflow-x:auto;font-family:var(--mono);font-size:13.5px;line-height:1.5}
+code{font-family:var(--mono);font-size:.92em}
+.grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px}
+.grid2 .box{margin:0}
+.check{display:flex;gap:10px;align-items:flex-start;padding:8px 0;border-bottom:1px solid var(--line)}
+.check input{margin-top:5px;accent-color:var(--accent);width:16px;height:16px;flex:none}
+.check label{cursor:pointer}
+.bar{height:6px;background:var(--line);border-radius:3px;overflow:hidden;margin:8px 0 4px;max-width:420px}
+.bar i{display:block;height:100%;background:var(--accent);width:0;transition:width .3s}
+@media (prefers-reduced-motion:reduce){.bar i{transition:none}}
+.muted{color:var(--muted)}
+a{color:var(--accent)}
+
+figure.fig{margin:20px 0;background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:14px 16px}
+figure.fig figcaption{font-size:14px;color:var(--muted);margin-top:8px;max-width:70ch}
+figure.fig .ft{font-family:var(--mono);font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--accent);margin:0 0 6px}
+.plot{width:100%;height:auto;display:block}
+.plot .grid{stroke:var(--line);stroke-width:1}
+.plot .ax{stroke:var(--muted);stroke-width:1}
+.plot .tk,.plot .lb{fill:var(--muted);font-family:var(--mono);font-size:11px;stroke:none}
+.plot .lb.s1{fill:var(--accent)} .plot .lb.s2{fill:var(--warn)} .plot .lb.s3{fill:var(--fg)}
+.s1{stroke:var(--accent);fill:var(--accent)} .s2{stroke:var(--warn);fill:var(--warn)} .s3{stroke:var(--fg);fill:var(--fg)}
+.plot .st{stroke-width:1.6}
+.plot .ln{fill:none;stroke-width:2}
+.plot .ar{stroke:none}
+.plot .ar.area{fill:var(--accent);fill-opacity:.18}
+.plot .ar.areaw{fill:var(--warn);fill-opacity:.22}
+.plot .vl{stroke-width:1.2}
+.plot .dbg{fill:var(--surface)}
+details .inner{overflow-x:auto}
+main{overflow-wrap:break-word}
+.plot .disk{fill:var(--accent);fill-opacity:.12;stroke:var(--accent);stroke-width:1.5}
+.plot .outz{fill:var(--warn);fill-opacity:.10}
+.plot .zr{fill:none;stroke:var(--fg);stroke-width:1.8}
+.plot .px{stroke-width:2.5;fill:none}
+.plot .blk{fill:var(--surface);stroke:var(--fg);stroke-width:1.4}
+.plot .wire{stroke:var(--fg);stroke-width:1.4;fill:none}
+.plot .ahd{fill:var(--fg)}
+.plot .bt{fill:var(--fg);font-family:var(--body);font-size:13px}
+.ctrl{display:flex;flex-wrap:wrap;gap:10px 22px;align-items:center;font-size:14px;margin:4px 0 10px}
+.ctrl label{display:flex;gap:8px;align-items:center}
+.ctrl input[type=range]{width:190px;max-width:60vw;accent-color:var(--accent)}
+.ctrl output{font-family:var(--mono);font-size:13px;min-width:5ch}
+.pill{font-family:var(--mono);font-size:12px;padding:2px 10px;border-radius:999px;background:var(--accent-soft);color:var(--accent)}
+.pill.bad{background:var(--warn-soft);color:var(--warn)}
+.figrow{display:grid;grid-template-columns:minmax(0,250px) minmax(0,1fr);gap:16px;align-items:center}
+@media (max-width:640px){.figrow{grid-template-columns:minmax(0,1fr)}}
+.fig3{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px}
+.fig3 p{margin:0;font-size:13px;color:var(--muted);text-align:center}
+.fcards{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:16px}
+.fcards .box{margin:0}
+.fcards ul{padding-left:18px;margin:0}.fcards li{margin:5px 0}
+dl.gl{display:grid;grid-template-columns:minmax(0,1fr);gap:0;margin:8px 0}
+dl.gl div{padding:10px 0;border-bottom:1px solid var(--line)}
+dl.gl dt{font-weight:600}
+dl.gl div{border-left:3px solid color-mix(in srgb,var(--tc,var(--accent)) 35%,transparent);padding-left:12px}
+dl.gl dd{margin:2px 0 0 0;max-width:72ch}
+dl.gl .tt{font-family:var(--mono);font-size:12px;color:var(--accent);margin-left:6px;font-weight:400}
+
+.ctrl[hidden]{display:none!important}
+.zero{background:var(--accent-soft);border:1px solid var(--line);border-radius:8px;padding:16px 20px;margin:16px 0}
+.zero > :first-child{margin-top:0}.zero > :last-child{margin-bottom:0}
+.zero .ft{font-family:var(--mono);font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--accent);margin:0 0 6px}
+.zero ol,.zero ul{padding-left:20px}
+.map{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:12px 0}
+.map a{display:inline-block;padding:8px 12px;border:1px solid var(--line);border-radius:6px;background:var(--surface);color:var(--fg);text-decoration:none;font-size:14px}
+.map a:hover,.map a:focus-visible{border-color:var(--accent);outline:none}
+.map a b{color:var(--accent);font-family:var(--mono);font-weight:500;margin-right:4px}
+.map span{color:var(--muted);font-family:var(--mono)}
+.ctrl label{flex-wrap:wrap;min-width:0;max-width:100%}
+.ctrl select{max-width:100%;min-width:0}
+.ctrl select,.ctrl input[type=text]{font:inherit;font-size:14px;padding:4px 8px;border:1px solid var(--line);border-radius:6px;background:var(--surface);color:var(--fg)}
+.ctrl input[type=text]{width:220px;max-width:70vw;font-family:var(--mono)}
+.ctrl input[type=checkbox]{accent-color:var(--accent);width:16px;height:16px}
+.ctrl button{font:inherit;font-size:14px;padding:5px 12px;border:1px solid var(--accent);border-radius:6px;background:var(--surface);color:var(--accent);cursor:pointer}
+.ctrl button[aria-pressed="true"]{background:var(--accent);color:var(--surface)}
+.readout{font-family:var(--mono);font-size:13px;background:var(--bg);border:1px solid var(--line);border-radius:6px;padding:8px 12px;margin:8px 0;overflow-x:auto;white-space:pre-wrap}
+.props{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:8px;margin:8px 0}
+.props div{border:1px solid var(--line);border-radius:6px;padding:8px 10px;font-size:13px;background:var(--surface)}
+.props b{display:block;font-size:12px;font-family:var(--mono);text-transform:uppercase;letter-spacing:.05em}
+.props .y b{color:var(--accent)} .props .n b{color:var(--warn)}
+
+/* ===== Rediseño visual ===== */
+:root{
+  --c0:#1d5fb8; --c0s:#e1ebf9;
+  --c1:#4652c4; --c1s:#e6e8f8;
+  --c2:#0b7f93; --c2s:#dff1f4;
+  --c3:#7d45c9; --c3s:#efe7f9;
+  --c4:#b8730c; --c4s:#f7ecda;
+  --c5:#c43d63; --c5s:#f8e3e9;
+  --c6:#2c8a52; --c6s:#e1f2e8;
+  --c7:#4b5b70; --c7s:#e6eaef;
+  --c8:#c25a1c; --c8s:#f8e7dc;
+  --shadow:0 1px 2px rgba(20,30,52,.06),0 6px 24px rgba(20,30,52,.06);
+}
+@media (prefers-color-scheme: dark){ :root:not([data-theme="light"]){
+  --c0:#6ea8f2; --c0s:#162a49; --c1:#8f98ff; --c1s:#1f2240; --c2:#4cc6d9; --c2s:#13303a; --c3:#c09bff; --c3s:#2a1f3d;
+  --c4:#f0b252; --c4s:#3a2b12; --c5:#ff8aa8; --c5s:#3d1c27; --c6:#6fd39a; --c6s:#163322; --c7:#a9b6c8; --c7s:#232a33; --c8:#ff9e66; --c8s:#3a2316;
+  --shadow:0 1px 2px rgba(0,0,0,.3),0 8px 28px rgba(0,0,0,.25); } }
+:root[data-theme="dark"]{
+  --c0:#6ea8f2; --c0s:#162a49; --c1:#8f98ff; --c1s:#1f2240; --c2:#4cc6d9; --c2s:#13303a; --c3:#c09bff; --c3s:#2a1f3d;
+  --c4:#f0b252; --c4s:#3a2b12; --c5:#ff8aa8; --c5s:#3d1c27; --c6:#6fd39a; --c6s:#163322; --c7:#a9b6c8; --c7s:#232a33; --c8:#ff9e66; --c8s:#3a2316;
+  --shadow:0 1px 2px rgba(0,0,0,.3),0 8px 28px rgba(0,0,0,.25); }
+
+body{line-height:1.65}
+/* portada */
+header.hero{display:block;max-width:none;border:0;margin:0 calc(-1*max(16px, env(safe-area-inset-left, 0px))) 36px;padding-block:0;
+  background:linear-gradient(135deg,var(--accent-soft),var(--bg) 70%);border-bottom:1px solid var(--line)}
+.hero-in{max-width:1180px;margin:0 auto;display:grid;grid-template-columns:minmax(0,1fr) 300px;gap:40px;align-items:center;
+  padding:48px max(16px, env(safe-area-inset-right, 0px)) 44px max(16px, env(safe-area-inset-left, 0px))}
+@media (max-width:760px){.hero-in{grid-template-columns:minmax(0,1fr);padding-block:32px 28px}.hero-art{display:none}}
+header.hero h1{font-size:clamp(38px,6.4vw,64px);line-height:1.02;margin:10px 0 4px;letter-spacing:-.01em}
+header.hero h1 span{color:var(--accent)}
+header.hero .sub{font-family:var(--display);font-size:clamp(20px,2.6vw,26px);font-weight:500;color:var(--muted);margin:0 0 14px}
+.stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin:22px 0 18px;max-width:640px}
+@media (max-width:520px){.stats{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.stats div{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:10px 12px;box-shadow:var(--shadow)}
+.stats b{display:block;font-family:var(--display);font-size:28px;line-height:1.1;color:var(--accent);font-variant-numeric:tabular-nums}
+.stats span{font-size:12.5px;color:var(--muted);line-height:1.3;display:block}
+.cta{display:flex;flex-wrap:wrap;gap:8px}
+.btn{display:inline-block;padding:9px 16px;border-radius:999px;border:1px solid var(--line);background:var(--surface);color:var(--fg);text-decoration:none;font-weight:600;font-size:14px}
+.btn:hover,.btn:focus-visible{border-color:var(--accent);outline:none}
+.btn.pri{background:var(--accent);border-color:var(--accent);color:var(--surface)}
+.zart{width:100%;height:auto;max-width:300px}
+.orbit{transform-origin:0 0;animation:orb 9s linear infinite}
+@keyframes orb{from{transform:rotate(0)}to{transform:rotate(-360deg)}}
+@media (prefers-reduced-motion:reduce){.orbit{animation:none;transform:rotate(-40deg)}}
+.art-cap{font-size:13px;color:var(--muted);text-align:center;margin:6px 0 0}
+
+/* rejilla general */
+.wrap{max-width:1180px;gap:40px;grid-template-columns:230px minmax(0,1fr)}
+main{display:flex;flex-direction:column;gap:28px}
+
+/* tarjetas de sección */
+section.sec{background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:8px 32px 30px;box-shadow:var(--shadow);position:relative;overflow:hidden;min-width:0}
+section.sec::before{content:"";position:absolute;inset:0 0 auto 0;height:6px;background:var(--tc)}
+@media (max-width:640px){section.sec{padding:6px 18px 22px;border-radius:14px}}
+.sh{display:flex;gap:16px;align-items:center;margin:24px 0 10px}
+.badge{flex:none;min-width:58px;height:58px;padding:0 10px;border-radius:16px;background:var(--tc);color:var(--surface);display:flex;align-items:center;justify-content:center;
+  font-family:var(--display);font-weight:700;font-size:22px;letter-spacing:-.01em;box-shadow:0 4px 14px color-mix(in srgb,var(--tc) 35%,transparent)}
+.shx{min-width:0}
+.kick{margin:0;font-family:var(--mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--tc)}
+.sh h2{margin:2px 0 0;font-size:clamp(24px,3.2vw,32px)}
+.tags{margin-top:6px}
+section.sec h2{scroll-margin-top:70px}
+section.sec h3{font-size:21px;margin:34px 0 10px;padding-left:12px;border-left:4px solid var(--tc)}
+section.sec h4{color:var(--tc)}
+
+/* cajas */
+.box{border-radius:12px;padding:18px 22px}
+.box.key{border-left:4px solid var(--tc,var(--accent));background:color-mix(in srgb,var(--tcs,var(--accent-soft)) 45%,var(--surface))}
+.box.trap{border-left:4px solid var(--warn);background:color-mix(in srgb,var(--warn-soft) 55%,var(--surface))}
+.zero{background:var(--tcs,var(--accent-soft));border:0;border-radius:14px;padding:20px 24px;position:relative}
+.zero .ft{color:var(--tc,var(--accent))}
+.zero::after{content:"";position:absolute;right:18px;top:16px;width:34px;height:34px;border-radius:50%;border:3px solid var(--tc,var(--accent));opacity:.25}
+.grid2{gap:18px}
+
+/* figuras / simuladores */
+figure.fig{border-radius:14px;padding:18px 20px;border:1px solid var(--line);background:linear-gradient(180deg,var(--tcs,var(--accent-soft)) 0,var(--surface) 64px);margin:24px 0}
+figure.fig .ft{display:inline-block;background:var(--tc,var(--accent));color:var(--surface);padding:3px 10px;border-radius:999px;font-size:11.5px;margin-bottom:12px}
+figure.fig figcaption{font-size:14.5px}
+.ctrl input[type=range]{accent-color:var(--tc,var(--accent))}
+.readout{border-radius:10px}
+
+/* desplegables */
+details{border-radius:12px;transition:box-shadow .2s}
+details[open]{box-shadow:var(--shadow);border-color:color-mix(in srgb,var(--tc,var(--accent)) 45%,var(--line))}
+details>summary{padding:14px 18px;border-radius:12px}
+details>summary::before{content:"";width:9px;height:9px;flex:none;border-right:2.5px solid var(--tc,var(--accent));border-bottom:2.5px solid var(--tc,var(--accent));transform:rotate(-45deg);margin:0 4px 0 2px;transition:transform .2s;align-self:center}
+details[open]>summary::before{content:"";transform:rotate(45deg)}
+details>summary:hover{background:var(--tcs,var(--accent-soft))}
+@media (prefers-reduced-motion:reduce){details>summary::before,details{transition:none}}
+.tag{border-radius:999px;padding:2px 10px;background:var(--tcs,var(--accent-soft));color:var(--tc,var(--accent))}
+.tag.w{background:var(--warn-soft);color:var(--warn)}
+
+/* tablas */
+.tw{border:1px solid var(--line);border-radius:12px}
+.tw table{margin:0}
+.tw th{background:var(--tcs,var(--accent-soft))}
+.tw tr:last-child td{border-bottom:0}
+
+/* mapa de temas como tarjetas */
+.map{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px}
+.map span{display:none}
+.map a{padding:14px;border-radius:12px;font-weight:600;line-height:1.3;border-top:4px solid var(--accent)}
+.map a b{display:block;font-family:var(--display);font-size:24px;margin-bottom:4px}
+.map a:nth-of-type(1){border-top-color:var(--c1)}.map a:nth-of-type(1) b{color:var(--c1)}
+.map a:nth-of-type(2){border-top-color:var(--c2)}.map a:nth-of-type(2) b{color:var(--c2)}
+.map a:nth-of-type(3){border-top-color:var(--c3)}.map a:nth-of-type(3) b{color:var(--c3)}
+.map a:nth-of-type(4){border-top-color:var(--c4)}.map a:nth-of-type(4) b{color:var(--c4)}
+.map a:nth-of-type(5){border-top-color:var(--c5)}.map a:nth-of-type(5) b{color:var(--c5)}
+.map a:nth-of-type(6){border-top-color:var(--c6)}.map a:nth-of-type(6) b{color:var(--c6)}
+
+/* índice */
+.toc{padding-top:4px;top:16px}
+.toc a{border-left:3px solid color-mix(in srgb,var(--tc,var(--line)) 30%,transparent);border-radius:0 6px 6px 0;padding:5px 10px;margin:1px 0;transition:background .15s}
+.toc a:hover{background:var(--surface)}
+.toc a.on{border-left-color:var(--tc);color:var(--fg);background:var(--surface);font-weight:600}
+@media (max-width:860px){
+  .toc{display:flex;position:sticky;top:env(safe-area-inset-top,0px);z-index:20;overflow-x:auto;gap:6px;max-height:none;padding:10px 0;margin:0 0 6px;
+    background:color-mix(in srgb,var(--bg) 92%,transparent);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);scrollbar-width:none}
+  .toc::-webkit-scrollbar{display:none}
+  .toc .grp{display:none}
+  .toc a{flex:none;border:1px solid var(--line);border-radius:999px;padding:6px 12px;background:var(--surface);font-size:13px;white-space:nowrap}
+  .toc a.on{border-color:var(--tc);color:var(--tc)}
+  body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:21;background:var(--bg)}
+}
+@media (max-width:860px){.wrap{grid-template-columns:minmax(0,1fr);gap:0}}
+/* volver arriba */
+.totop{position:fixed;right:calc(18px + env(safe-area-inset-right,0px));bottom:calc(18px + env(safe-area-inset-bottom,0px));width:44px;height:44px;border-radius:50%;
+  background:var(--accent);color:var(--surface);display:flex;align-items:center;justify-content:center;text-decoration:none;font-size:20px;font-weight:700;box-shadow:var(--shadow);z-index:30;opacity:0;pointer-events:none;transition:opacity .2s}
+.totop.show{opacity:1;pointer-events:auto}
+@media (prefers-reduced-motion:reduce){.totop{transition:none}}
+
+details.nom{border:1px dashed color-mix(in srgb,var(--tc,var(--accent)) 55%,var(--line));background:var(--surface)}
+details.nom>summary{font-weight:600}
+.nom-ic{display:inline-flex;align-items:center;justify-content:center;width:30px;height:30px;border-radius:8px;background:var(--tcs,var(--accent-soft));color:var(--tc,var(--accent));font-family:var(--display);font-weight:700;font-size:14px;flex:none}
+details.nom td.sym{white-space:nowrap;font-size:16px;width:1%}
+details.nom td.u{color:var(--muted);font-size:14px}
+details.nom .inner{padding-top:14px}
+
+/* ===== bloques nuevos ===== */
+.srch-card{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:14px 18px;box-shadow:var(--shadow)}
+.srch-lab{display:block;font-family:var(--mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--accent);margin-bottom:6px}
+#srch{width:100%;font:inherit;font-size:16px;padding:10px 14px;border:1px solid var(--line);border-radius:10px;background:var(--bg);color:var(--fg)}
+#srch:focus{outline:2px solid var(--accent);outline-offset:1px}
+.srch-out{display:grid;gap:6px;margin-top:10px;max-height:420px;overflow:auto}
+.sres{display:block;text-align:left;font:inherit;font-size:14px;color:var(--fg);background:var(--bg);border:1px solid var(--line);border-left:4px solid var(--tc,var(--accent));border-radius:8px;padding:8px 12px;cursor:pointer}
+.sres:hover,.sres:focus-visible{border-color:var(--tc,var(--accent));outline:none}
+.sres-t{display:block;font-family:var(--mono);font-size:11px;text-transform:uppercase;letter-spacing:.06em;color:var(--tc,var(--accent));margin-bottom:2px}
+.sres mark{background:var(--accent-soft);color:inherit;padding:0 2px;border-radius:3px}
+.flash{animation:fl 1.8s ease}
+@keyframes fl{0%,40%{background:var(--accent-soft)}100%{background:transparent}}
+@media (prefers-reduced-motion:reduce){.flash{animation:none;outline:2px solid var(--accent)}}
+.timer .tm-row{display:flex;flex-wrap:wrap;gap:12px;align-items:center}
+.tm-lab{font-family:var(--mono);font-size:12px;text-transform:uppercase;letter-spacing:.08em;color:var(--tc)}
+.tm-o{font-family:var(--display);font-size:34px;font-weight:700;font-variant-numeric:tabular-nums;min-width:5ch}
+.tm-o.low{color:var(--warn)}
+.quiz-tabs{gap:6px}
+.qt{font:inherit;font-size:13px;padding:6px 12px;border-radius:999px;border:1px solid var(--line);background:var(--surface);color:var(--fg);cursor:pointer}
+.qt[aria-pressed="true"]{background:var(--tc);border-color:var(--tc);color:var(--surface)}
+.qp{font-weight:600;font-size:17px;margin:0 0 12px}
+.qops{display:grid;gap:8px}
+.qo{font:inherit;text-align:left;padding:10px 14px;border:1px solid var(--line);border-radius:10px;background:var(--bg);color:var(--fg);cursor:pointer}
+.qo:hover:not(:disabled){border-color:var(--tc,var(--accent))}
+.qo.ok{border-color:var(--c6);background:var(--c6s)}
+.qo.ko{border-color:var(--warn);background:var(--warn-soft)}
+.qo:disabled{cursor:default}
+.qex{margin:10px 0 0;font-size:14.5px;color:var(--muted)}
+.qnav{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-top:14px}
+.qnav span{margin-right:auto;font-size:13px}
+.qnav .btn:disabled{opacity:.45;cursor:default}
+.qscore{margin:8px 0 0;font-weight:600;color:var(--tc,var(--accent))}
+.gq{font-weight:600;font-size:16px;margin:0 0 8px}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:10px}
+.card{font:inherit;min-height:96px;padding:14px;border-radius:12px;border:1px solid var(--line);background:var(--surface);color:var(--fg);cursor:pointer;text-align:left;display:flex;align-items:center;box-shadow:var(--shadow)}
+.card .cf{font-weight:600}
+.card.flip{background:var(--tcs,var(--accent-soft));border-color:var(--tc,var(--accent))}
+
+.prob{margin:22px 0 26px}
+.prob .ph{margin:18px 0 6px;font-size:17px}
+.enun{background:var(--tcs,var(--accent-soft));border-left:4px solid var(--tc,var(--accent));border-radius:10px;padding:10px 16px;margin:8px 0 12px}
+.enun .et{margin:0 0 2px;font:700 12px/1.4 var(--mono,monospace);letter-spacing:.06em;text-transform:uppercase;color:var(--tc,var(--accent))}
+.enun p{margin:4px 0}
+.pasos-t{margin:10px 0 4px;font-weight:700;font-size:14px}
+.pasos-t span{font-weight:400;color:var(--muted)}
+details.paso{margin:6px 0;border-radius:10px;box-shadow:none}
+details.paso>summary{padding:9px 14px;font-weight:600;font-size:15px;align-items:center}
+details.paso .pn{display:inline-grid;place-items:center;min-width:24px;height:24px;border-radius:7px;background:var(--tc,var(--accent));color:#fff;font:700 13px/1 var(--mono,monospace);flex:none}
+details.paso .inner{padding:4px 16px 10px}
+details.paso[open]{box-shadow:none}
+.ojo{border-left:3px solid var(--warn,#b4232f);padding-left:10px}
+.box mjx-container[display="true"]{overflow-x:auto;overflow-y:hidden;max-width:100%}
+
+mjx-container[display="true"]{max-width:100%;overflow-x:auto;overflow-y:hidden}
+
+/* ===== Más espaciado y más visual (capa final) ===== */
+body{line-height:1.75;font-size:16.5px}
+main{gap:44px}
+.sec{padding:14px 40px 40px}
+.sec>p,.sec .inner>p,.box p{margin:0 0 14px}
+.sec>p{max-width:72ch}
+.sh{margin-bottom:22px;padding-bottom:16px;border-bottom:1px dashed color-mix(in srgb,var(--tc) 35%,var(--line))}
+.badge{transform:scale(1.08)}
+h3{font-size:23px;margin:56px 0 16px;padding:6px 0 6px 14px;border-left:5px solid var(--tc);background:linear-gradient(90deg,var(--tcs),transparent 70%);border-radius:0 10px 10px 0}
+h4{margin:6px 0 12px}
+ul,ol{padding-left:22px}
+li{margin:8px 0}
+li::marker{color:var(--tc)}
+.box,.zero{padding:22px 26px;margin:22px 0}
+.box.key{position:relative;padding-top:42px}
+.box.key::before{content:"★  Lo esencial";position:absolute;top:12px;left:24px;font:700 11.5px/1 var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--tc,var(--accent))}
+.box.key>p+p{border-top:1px dashed color-mix(in srgb,var(--tc,var(--accent)) 30%,var(--line));padding-top:14px;margin-top:14px}
+.box.trap h4::before{content:"⚠  "}
+.zero .ft::before{content:"◎  "}
+.grid2{gap:22px}
+.grid2 .box{margin:0}
+mjx-container[display="true"]{margin:16px 0!important;padding:12px 10px;border-radius:12px;background:color-mix(in srgb,var(--tcs,var(--accent-soft)) 55%,transparent)}
+.box mjx-container[display="true"],.zero mjx-container[display="true"],.enun mjx-container[display="true"]{background:color-mix(in srgb,var(--surface) 55%,transparent)}
+figure.fig{margin:34px 0}
+details{margin:16px 0}
+details>summary{padding:16px 20px}
+details .inner{padding:6px 24px 20px}
+details .inner>p{margin:12px 0}
+th,td{padding:11px 14px}
+.tw tr:nth-child(even) td{background:color-mix(in srgb,var(--tcs,var(--accent-soft)) 40%,transparent)}
+.tw{border-radius:12px;overflow:auto;border:1px solid var(--line);margin:18px 0}
+ol.steps li{margin:12px 0;padding-left:4px}
+.prob{margin:34px 0 40px;padding-top:6px}
+.prob+.prob{border-top:1px dashed var(--line);padding-top:30px}
+.enun{padding:16px 20px;margin:12px 0 18px}
+details.paso{margin:10px 0}
+details.paso>summary{padding:12px 16px}
+details.paso .inner{padding:8px 20px 14px}
+.pasos-t{margin:18px 0 8px}
+@media (max-width:860px){
+  body{font-size:16px}
+  main{gap:28px}
+  .sec{padding:8px 18px 26px}
+  h3{font-size:20px;margin:40px 0 12px}
+  .box,.zero{padding:18px 18px}
+  .box.key{padding-top:38px}
+  .box.key::before{left:18px}
+  details .inner{padding:4px 16px 16px}
+}
+/*exnav*/.lede-ex{font-size:17px;margin:6px 0 14px}
+.exnav{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin:10px 0 18px}
+.exn{display:flex;flex-direction:column;gap:4px;padding:16px 16px 14px;border:1px solid var(--line);border-radius:14px;background:var(--surface);text-decoration:none;color:var(--fg);box-shadow:var(--shadow);transition:transform .15s,border-color .15s}
+.exn:hover{transform:translateY(-2px);border-color:var(--tc)}
+.exn b{font-size:16px}
+.exn small{color:var(--muted);font-size:13px;line-height:1.4}
+.exn-n{display:inline-grid;place-items:center;width:28px;height:28px;border-radius:8px;background:var(--tc);color:#fff;font:700 14px/1 var(--mono);margin-bottom:4px}
+details.nota-ex>summary{font-size:15px}
+.exrec{list-style:none;counter-reset:r;padding:0;margin:10px 0 18px;display:grid;gap:8px}
+.exrec li{counter-increment:r}
+.exrec a{display:flex;gap:12px;align-items:baseline;padding:12px 16px;border:1px solid var(--line);border-radius:12px;background:var(--surface);text-decoration:none;color:var(--fg)}
+.exrec a::before{content:counter(r);display:inline-grid;place-items:center;min-width:26px;height:26px;border-radius:50%;background:var(--tcs);color:var(--tc);font:700 13px/1 var(--mono);flex:none;align-self:center}
+.exrec a:hover{border-color:var(--tc)}
+.exrec span{color:var(--muted);font-size:14px}
+.extemas{display:grid;gap:8px;margin:10px 0 20px}
+details.extema{margin:0}
+details.extema>summary{align-items:center;flex-wrap:wrap}
+.xt{display:inline-block;font:700 12px/1 var(--mono);padding:5px 8px;border-radius:6px;background:var(--tcs);color:var(--tc);min-width:76px;text-align:center}
+.exlist{margin:4px 0 6px;padding-left:20px;columns:2;column-gap:28px}
+.exlist li{break-inside:avoid;margin:0 0 6px;font-size:14.5px}
+.exlist .src{display:block;font-size:12px}
+.exfil{position:sticky;top:0;z-index:5;background:var(--bg);padding:10px 0 6px;margin:6px 0 4px;border-bottom:1px solid var(--line)}
+.exchips{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:8px}
+.exf{font:600 13px/1 var(--body,inherit);padding:8px 12px;border-radius:999px;border:1px solid var(--line);background:var(--surface);color:var(--fg);cursor:pointer}
+.exf.on{background:var(--tc);border-color:var(--tc);color:#fff}
+.exq{width:100%;box-sizing:border-box;padding:10px 12px;border:1px solid var(--line);border-radius:10px;background:var(--surface);color:var(--fg);font-size:15px}
+.exres{margin:6px 0 0;font-size:13px;min-height:1em}
+details.exgrupo{margin:12px 0}
+details.exgrupo>summary{font-size:17px}
+details.exgrupo>.inner{padding-top:4px}
+details.exd>summary{flex-wrap:wrap;align-items:center;row-gap:6px}
+.xc{display:inline-block;font:600 11.5px/1 var(--mono);padding:4px 7px;border-radius:5px;background:var(--accent-soft);color:var(--accent);margin-right:4px}
+.xc.p1{background:var(--c2s);color:var(--c2)}
+.xc.p2{background:var(--c5s);color:var(--c5)}
+.xc.p12{background:var(--c3s);color:var(--c3)}
+.prob:target{outline:2px solid var(--tc);outline-offset:6px;border-radius:8px}
+@media (max-width:720px){.exnav{grid-template-columns:1fr}.exlist{columns:1}.exrec a{flex-direction:column;gap:2px}.exrec a::before{align-self:flex-start}}
+.xn{display:flex;flex-direction:column;gap:3px;flex:1;min-width:0}
+.xn .src{margin:0;font-size:12px}
+.idea{border:1px solid var(--line);border-left:4px solid var(--c1);background:var(--c1s);border-radius:10px;padding:10px 16px;margin:8px 0 12px}
+.idea .et,.resul .et{margin:0 0 4px;font:700 12px/1.4 var(--mono,monospace);letter-spacing:.06em;text-transform:uppercase;color:var(--c1)}
+.idea p,.resul p{margin:5px 0}
+details.resul{border:1px solid var(--c6);background:var(--c6s);margin:12px 0 4px}
+details.resul>summary{color:var(--c6);font-size:14px}
+details.resul .inner{padding:0 16px 10px}
+details.paso .inner p{margin:6px 0}
+
+/* ===== Diapositivas con explicación ===== */
+figure.slide{margin:20px 0;padding:0;border:1px solid var(--line);border-radius:14px;overflow:hidden;background:var(--surface);box-shadow:var(--shadow)}
+figure.slide img{display:block;width:100%;height:auto;max-width:100%;background:#fff;border-bottom:1px solid var(--line)}
+figure.slide figcaption{padding:12px 18px 14px;font-size:15px;line-height:1.65;border-left:4px solid var(--tc,var(--accent))}
+figure.slide figcaption b.n{font-family:var(--mono);font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--tc,var(--accent));display:block;margin-bottom:2px}
+dl.gloss{display:grid;grid-template-columns:minmax(140px,220px) 1fr;gap:8px 18px;margin:0}
+dl.gloss dt{font-weight:700;color:var(--tc,var(--accent))}
+dl.gloss dd{margin:0}
+@media (max-width:640px){dl.gloss{grid-template-columns:1fr}dl.gloss dd{margin-bottom:6px}}
+.sec .quiz-tabs{margin-bottom:10px}
+figure.slide.nota{max-width:720px;margin-left:auto;margin-right:auto}
+details.nt{margin:14px 0 4px;border:1px solid var(--line);border-radius:10px;background:var(--surface);padding:0 14px}
+details.nt>summary{padding:12px 0;font-weight:600}
+details.nt>summary:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:6px}
+details.nt[open]{padding-bottom:6px}
+
+/* ---- sitio de varias páginas ---- */
+.sitenav{max-width:1180px;margin:0 auto;padding:10px 16px 2px;display:flex;gap:6px;overflow-x:auto;scrollbar-width:thin}
+.sitenav a{flex:0 0 auto;font:600 13.5px/1 var(--body);padding:9px 13px;border-radius:99px;border:1px solid var(--line);background:var(--surface);color:var(--fg);text-decoration:none;white-space:nowrap}
+.sitenav a:hover,.sitenav a:focus-visible{border-color:var(--accent);outline:none}
+.sitenav a[aria-current=page]{background:var(--accent);border-color:var(--accent);color:#fff}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .sitenav a[aria-current=page]{color:#0e131d}}
+:root[data-theme="dark"] .sitenav a[aria-current=page]{color:#0e131d}
+.phead{max-width:1180px;margin:0 auto;padding-block:26px 12px}
+.phead h1{margin:6px 0 8px}
+.phead .lede{color:var(--muted);margin:0;max-width:62ch}
+.pager{max-width:1180px;margin:36px auto 0;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:12px}
+.pager a{display:block;padding:14px 16px;border:1px solid var(--line);border-radius:12px;background:var(--surface);color:var(--fg);text-decoration:none;font-weight:600;line-height:1.3}
+.pager a small{display:block;font:500 12px/1.4 var(--mono);letter-spacing:.06em;text-transform:uppercase;color:var(--accent);margin-bottom:4px}
+.pager a:hover,.pager a:focus-visible{border-color:var(--accent);outline:none}
+.pager a.nx{text-align:right;grid-column:2}
+.sres-p{font:500 11px/1 var(--mono);letter-spacing:.05em;text-transform:uppercase;color:var(--muted);margin-left:8px}
+</style></head><body data-page="bode">
+
+<div class="hub-bar" style="max-width:1180px;margin:0 auto;padding:10px 16px 0"><a href="https://helionacon-ui.github.io/GIEIA-UPCT/" style="display:inline-flex;align-items:center;gap:6px;font:600 13.5px/1 system-ui,sans-serif;padding:8px 12px;border-radius:999px;border:1px solid var(--line,#d3dcdf);background:var(--surface,var(--card,#fff));color:var(--fg,#18232b);text-decoration:none">← Todas las guías GIEyA</a></div>
+<nav class="sitenav" aria-label="Páginas de la guía"><a href="index.html">Inicio</a><a href="operacionales.html">Operacionales</a><a href="bode.html" aria-current="page">Bode y filtros</a><a href="transistores.html">Transistores</a><a href="examenes.html">Exámenes</a><a href="fuen.html">Apuntes de Fuen</a><a href="practica.html">Practicar</a><a href="referencia.html">Referencia</a></nav>
+<header class="phead"><div class="eyebrow">UPCT · GIEyA · Electrónica Analógica</div><h1>Bode y filtros</h1><p class="lede">U6: diagramas de Bode a fondo, polos complejos y filtros activos</p></header>
+
+<a href="#top" class="totop" id="totop" aria-label="Volver arriba">↑</a>
+<div class="wrap" id="top">
+<nav class="toc" aria-label="Índice de esta página">
+  <div class="grp">Bode y filtros</div>
+  <a href="#u6" style="--tc:var(--c6)">U6 Bode y filtros básicos</a>
+  <a href="#bode" style="--tc:var(--c6)">Bode a fondo</a>
+  <a href="#filtros" style="--tc:var(--c6)">Filtros activos</a>
+</nav>
+
+<main>
+<div class="srch-card" id="srch-card"><label for="srch" class="srch-lab">Buscar en la guía</label>
+<input type="search" id="srch" placeholder="Por ejemplo: slew rate, Schmitt, Miller, CMRR…" autocomplete="off" spellcheck="false">
+<div id="srch-out" class="srch-out" hidden></div></div>
+
+<section class="sec tema" style="--tc:var(--c6);--tcs:var(--c6s)">
+<div class="sh"><span class="badge" aria-hidden="true">U6</span><div class="shx"><p class="kick">Tema 6 · Diapositivas «Respuesta en frecuencia y filtros»</p><h2 id="u6">Diagramas de Bode y filtros básicos</h2><div class="tags"><span class="tag">Parcial 2</span><span class="tag w">Alta prioridad</span></div></div></div>
+<div class="zero">
+<p class="ft">Desde cero</p>
+<p>Un circuito con condensadores responde distinto según la <b>frecuencia</b> de la señal. Un condensador es un circuito abierto en continua y casi un cortocircuito a frecuencia muy alta, y entre medias hace cosas interesantes. La <b>función de transferencia</b> $G(s)=\dfrac{V_{out}}{V_{in}}$ describe todo eso. Al sustituir $s=j\omega$ obtienes un número complejo que depende de $\omega$: su <b>módulo</b> te dice cuánto amplifica y su <b>fase</b> cuánto retrasa.</p>
+<p>El diagrama de Bode dibuja el módulo en <b>decibelios</b> ($20\log|G|$) y la fase en grados, ambos frente a la frecuencia en escala <b>logarítmica</b>. La gran ventaja de pasar a dB es que los productos se convierten en <b>sumas</b>, así que el diagrama de una función compleja es la suma de los diagramas de sus factores sencillos, todos rectas.</p>
+</div>
+<figure class="slide"><img src="img/t6-19.jpg" alt="Tema 6 · diapositiva 19. Paso 1: escribir G(s) como cociente de polinomios en s y paso 2: descomponer cada polinomio en factores. Cada " loading="lazy" width="1000" height="563"><figcaption><b class="n">Tema 6 · diapositiva 19</b>Paso 1: escribir $G(s)$ como cociente de polinomios en $s$ y paso 2: descomponer cada polinomio en factores. Cada factor es de uno de estos tipos: constante $K$, ceros o polos en el origen, polos reales, ceros reales o pares complejos conjugados.</figcaption></figure>
+<h3>Receta para dibujar un Bode, paso a paso</h3>
+<ol class="steps">
+<li><b>Factoriza</b> numerador y denominador para ver los ceros y los polos.</li>
+<li><b>Normaliza</b>: cada factor debe quedar como $(1+s/\omega_c)$, sacando fuera las constantes. Todas las constantes se juntan en un único término $K$.</li>
+<li><b>Sustituye $s=j\omega$.</b></li>
+<li><b>Dibuja cada factor por separado</b> (tabla de abajo) y <b>súmalos</b>. En dB, el producto es una suma; en fase, también.</li>
+<li><b>Comprueba</b>: la ganancia a baja frecuencia debe ser $20\log K$ (sin factores en el origen) y la pendiente al final debe ser la suma de pendientes.</li>
+</ol>
+<figure class="slide"><img src="img/t6-20.jpg" alt="Tema 6 · diapositiva 20. Pasos 3 y 4: normalizar (que cada polinomio quede como 1+as+bs^2) y aplicar s=j. La constante K recoge la gana" loading="lazy" width="1000" height="563"><figcaption><b class="n">Tema 6 · diapositiva 20</b>Pasos 3 y 4: normalizar (que cada polinomio quede como $1+as+bs^2$) y aplicar $s=j\omega$. La constante $K$ recoge la ganancia que se saca fuera.</figcaption></figure>
+<figure class="slide"><img src="img/t6-21.jpg" alt="Tema 6 · diapositiva 21. Paso 5: aplicar el teorema de superposición. En dB, G(j)_dB=20 K+20|1+j/z_i|-20|1+j/p_i|. Cada término se dibu" loading="lazy" width="1000" height="563"><figcaption><b class="n">Tema 6 · diapositiva 21</b>Paso 5: aplicar el teorema de superposición. En dB, $G(j\omega)_{dB}=20\log K+\sum20\log|1+j\omega/z_i|-\sum20\log|1+j\omega/p_i|$. Cada término se dibuja aparte y al final se suman. La gráfica de la diapositiva es el resultado.</figcaption></figure>
+<h3>Los factores básicos: la tabla que hay que saberse</h3>
+<div class="tw"><table>
+<tr><th>Factor</th><th>Módulo (dB)</th><th>Fase</th></tr>
+<tr><td>Constante $K$</td><td>Recta horizontal en $20\log|K|$</td><td>0° si $K>0$, 180° si $K&lt;0$</td></tr>
+<tr><td>Cero en el origen $j\omega a$</td><td>Pasa por 0 dB en $\omega=1/a$ y sube $+20$ dB/década</td><td>+90°</td></tr>
+<tr><td>Polo en el origen $\dfrac1{j\omega a}$</td><td>Pasa por 0 dB en $\omega=1/a$ y baja $-20$ dB/década</td><td>−90°</td></tr>
+<tr><td>Cero real $1+j\omega a$</td><td>0 dB hasta $\omega_c=1/a$ y luego $+20$ dB/década</td><td>0° → +90°, vale +45° en $\omega_c$</td></tr>
+<tr><td>Polo real $\dfrac1{1+j\omega a}$</td><td>0 dB hasta $\omega_c=1/a$ y luego $-20$ dB/década</td><td>0° → −90°, vale −45° en $\omega_c$</td></tr>
+<tr><td>Polos complejos $\dfrac1{1+2\zeta\frac{j\omega}{\omega_n}+\left(\frac{j\omega}{\omega_n}\right)^2}$</td><td>0 dB hasta $\omega_n$ y luego $-40$ dB/década, con pico si $\zeta&lt;0{,}707$</td><td>0° → −180°</td></tr>
+<tr><td>Elevar a $n$ el factor</td><td>Multiplica pendientes y fases por $n$</td><td>Multiplica por $n$</td></tr>
+</table></div>
+<div class="box trap"><h4>Dos trampas clásicas</h4>
+<ul>
+<li>En $\omega_c$ la curva real está <b>3 dB por debajo</b> (polo) o <b>3 dB por encima</b> (cero) de la asíntota. Es la «frecuencia de corte»: el módulo vale $\sqrt2$ veces el de baja frecuencia, la potencia cae a la mitad.</li>
+<li>La fase de un factor de primer orden no es una recta: vale la mitad de su salto en $\omega_c$ y se aproxima por una recta que empieza una década antes y acaba una década después de $\omega_c$ (−45°/década).</li>
+</ul></div>
+<h4>Cada factor con su diapositiva</h4>
+<figure class="slide"><img src="img/t6-22.jpg" alt="Tema 6 · diapositiva 22. Factor de ganancia G=K: el módulo es 20|K| (recta horizontal) y la fase es 0° si K>0 y 180° si K&lt;0." loading="lazy" width="1000" height="563"><figcaption><b class="n">Tema 6 · diapositiva 22</b>Factor de ganancia $G=K$: el módulo es $20\log|K|$ (recta horizontal) y la fase es 0° si $K>0$ y 180° si $K&lt;0$.</figcaption></figure>
+<figure class="slide"><img src="img/t6-24.jpg" alt="Tema 6 · diapositiva 24. Cero en el origen G=aj: |G|_dB=20(a). En =1/a vale 0 dB; una década más allá (=10/a) vale +20 dB. Es una recta" loading="lazy" width="1000" height="563"><figcaption><b class="n">Tema 6 · diapositiva 24</b>Cero en el origen $G=aj\omega$: $|G|_{dB}=20\log(a\omega)$. En $\omega=1/a$ vale 0 dB; una década más allá ($\omega=10/a$) vale +20 dB. Es una recta de pendiente +20 dB/década y fase constante de +90°.</figcaption></figure>
+<figure class="slide"><img src="img/t6-25.jpg" alt="Tema 6 · diapositiva 25. Polo en el origen G=1aj: la misma recta pero con pendiente −20 dB/década y fase −90°." loading="lazy" width="1000" height="563"><figcaption><b class="n">Tema 6 · diapositiva 25</b>Polo en el origen $G=\dfrac1{aj\omega}$: la misma recta pero con pendiente −20 dB/década y fase −90°.</figcaption></figure>
+<figure class="slide"><img src="img/t6-31.jpg" alt="Tema 6 · diapositiva 31. Frecuencia de corte de un factor 1+j a. Es el punto de paso de baja a alta frecuencia: _c=1/a. Ahí |G|=2, es d" loading="lazy" width="1000" height="563"><figcaption><b class="n">Tema 6 · diapositiva 31</b>Frecuencia de corte de un factor $1+j\omega a$. Es el punto de paso de baja a alta frecuencia: $\omega_c=1/a$. Ahí $|G|=\sqrt2$, es decir +3 dB: la potencia es el 50 % y la tensión 1,414 veces.</figcaption></figure>
+<figure class="slide"><img src="img/t6-32.jpg" alt="Tema 6 · diapositiva 32. Cero real 1+aj: en baja frecuencia |G|1 (0 dB); en alta, |G| a (pendiente +20 dB/década). Entre las dos asínto" loading="lazy" width="1000" height="563"><figcaption><b class="n">Tema 6 · diapositiva 32</b>Cero real $1+aj\omega$: en baja frecuencia $|G|\approx1$ (0 dB); en alta, $|G|\approx a\omega$ (pendiente +20 dB/década). Entre las dos asíntotas, 3 dB de separación en $\omega_c=1/a$.</figcaption></figure>
+<figure class="slide"><img src="img/t6-33.jpg" alt="Tema 6 · diapositiva 33. Fase del cero real: =(a), de 0° a +90°. La gráfica real coincide con la función arco tangente y la aproximació" loading="lazy" width="1000" height="563"><figcaption><b class="n">Tema 6 · diapositiva 33</b>Fase del cero real: $\varphi=\arctan(a\omega)$, de 0° a +90°. La gráfica real coincide con la función arco tangente y la aproximación asintótica es una recta de +45°/década entre $\omega_c/10$ y $10\omega_c$.</figcaption></figure>
+<figure class="slide"><img src="img/t6-35.jpg" alt="Tema 6 · diapositiva 35. Polo real 11+aj: la pendiente en alta frecuencia es -20 dB/década y la curva real queda 3 dB por debajo de la " loading="lazy" width="1000" height="563"><figcaption><b class="n">Tema 6 · diapositiva 35</b>Polo real $\dfrac{1}{1+aj\omega}$: la pendiente en alta frecuencia es $-20$ dB/década y la curva real queda 3 dB por debajo de la asíntota en $\omega_c=1/a$.</figcaption></figure>
+<figure class="slide"><img src="img/t6-36.jpg" alt="Tema 6 · diapositiva 36. Fase del polo real: =-(a), de 0° a −90°, con pendiente −45°/década y −45° en _c." loading="lazy" width="1000" height="563"><figcaption><b class="n">Tema 6 · diapositiva 36</b>Fase del polo real: $\varphi=-\arctan(a\omega)$, de 0° a −90°, con pendiente −45°/década y −45° en $\omega_c$.</figcaption></figure>
+<figure class="slide"><img src="img/t6-44.jpg" alt="Tema 6 · diapositiva 44. Cero complejo conjugado: dos ceros en un solo factor de segundo orden. Pendiente +40 dB/década a alta frecuenc" loading="lazy" width="1000" height="563"><figcaption><b class="n">Tema 6 · diapositiva 44</b>Cero complejo conjugado: dos ceros en un solo factor de segundo orden. Pendiente +40 dB/década a alta frecuencia, frecuencia de corte $\omega_n$ y un «valle» (pico de resonancia hacia abajo) cerca de $\omega_n$ cuando el amortiguamiento es pequeño.</figcaption></figure>
+<figure class="slide"><img src="img/t6-46.jpg" alt="Tema 6 · diapositiva 46. Polos complejos conjugados: 0 dB a baja frecuencia, pendiente -40 dB/década por encima de _n y un <b>pico de r" loading="lazy" width="1000" height="563"><figcaption><b class="n">Tema 6 · diapositiva 46</b>Polos complejos conjugados: 0 dB a baja frecuencia, pendiente $-40$ dB/década por encima de $\omega_n$ y un <b>pico de resonancia</b> cerca de $\omega_n$ si $\zeta&lt;0{,}707$. Cuanto menor es $\zeta$, mayor es el pico.</figcaption></figure>
+<h3>Ejemplo completo de la clase, desde cero</h3>
+<p>Dibuja el Bode de $G(s)=\dfrac{10^4(s+40)}{s^2+410s+4000}$.</p>
+<figure class="slide"><img src="img/t6-47.jpg" alt="Tema 6 · diapositiva 47. Enunciado y primeros pasos: el denominador se factoriza como s^2+410s+4000=(s+10)(s+400). Se normalizan los fa" loading="lazy" width="1000" height="563"><figcaption><b class="n">Tema 6 · diapositiva 47</b>Enunciado y primeros pasos: el denominador se factoriza como $s^2+410s+4000=(s+10)(s+400)$. Se normalizan los factores y queda $G(s)=100\cdot\dfrac{1+\frac{s}{40}}{\left(1+\frac{s}{10}\right)\left(1+\frac{s}{400}\right)}$.</figcaption></figure>
+<ol class="steps">
+<li>Factoriza: $(s+10)(s+400)=s^2+410s+4000$ ✓. Hay un cero en 40 rad/s y polos en 10 y 400 rad/s.</li>
+<li>Normaliza: $\dfrac{10^4(s+40)}{(s+10)(s+400)}=\dfrac{10^4\cdot40\,(1+s/40)}{10\cdot400\,(1+s/10)(1+s/400)}=100\,\dfrac{1+s/40}{(1+s/10)(1+s/400)}$.</li>
+<li>Ganancia constante: $K=100\Rightarrow20\log100=40$ dB.</li>
+<li>Dibuja los cuatro factores: recta de 40 dB, polo en 10 rad/s ($-20$ dB/dec), cero en 40 rad/s ($+20$ dB/dec) y polo en 400 rad/s ($-20$ dB/dec).</li>
+<li>Suma las pendientes por tramos: hasta 10 rad/s, 0; de 10 a 40, $-20$; de 40 a 400, $0$ (el cero cancela el polo); desde 400, $-20$ dB/década.</li>
+</ol>
+<figure class="slide"><img src="img/t6-48.jpg" alt="Tema 6 · diapositiva 48. Los cuatro factores dibujados cada uno con su color: la constante de 40 dB en azul, el polo en 10 rad/s en roj" loading="lazy" width="1000" height="563"><figcaption><b class="n">Tema 6 · diapositiva 48</b>Los cuatro factores dibujados cada uno con su color: la constante de 40 dB en azul, el polo en 10 rad/s en rojo, el cero en 40 rad/s en verde y el polo en 400 rad/s en rosa.</figcaption></figure>
+<figure class="slide"><img src="img/t6-50.jpg" alt="Tema 6 · diapositiva 50. Resultado de la superposición, en negro. Cada frecuencia de corte (10, 40 y 400 rad/s) separa regiones distint" loading="lazy" width="1000" height="563"><figcaption><b class="n">Tema 6 · diapositiva 50</b>Resultado de la superposición, en negro. Cada frecuencia de corte (10, 40 y 400 rad/s) separa regiones distintas de pendiente.</figcaption></figure>
+<figure class="slide"><img src="img/t6-51.jpg" alt="Tema 6 · diapositiva 51. Resultado final en dB: ganancia de 40 dB hasta 10 rad/s, tramo llano de unos 28,3 dB entre 40 y 400 rad/s y ca" loading="lazy" width="1000" height="563"><figcaption><b class="n">Tema 6 · diapositiva 51</b>Resultado final en dB: ganancia de 40 dB hasta 10 rad/s, tramo llano de unos 28,3 dB entre 40 y 400 rad/s y caída de $-20$ dB/década después. Para comprobar el nivel del tramo llano, se evalúa $G(j100)$: $|G|=26$, es decir 28,3 dB. Es el valor de la zona intermedia, ya con el cero compensando el primer polo.</figcaption></figure>
+<div class="box key"><h4>Qué pasa si añades un factor $j\omega$</h4>
+<p>Multiplicar por $j\omega$ añade un cero en el origen: toda la curva se inclina $+20$ dB/década y se desplaza para pasar por el punto $(\omega=1$ rad/s, $20\log K)$. En el ejemplo, $G(s)\cdot j\omega$ sube con +20 dB/década hasta 10 rad/s, se aplana entre 10 y 40, vuelve a subir entre 40 y 400 y se aplana a partir de ahí en 80 dB.</p></div>
+<figure class="slide"><img src="img/t6-52.jpg" alt="Tema 6 · diapositiva 52. Ahora el término j pasa por 0 dB en =1 rad/s. Los puntos de paso por cero de los términos a\,j (imaginarios pu" loading="lazy" width="1000" height="563"><figcaption><b class="n">Tema 6 · diapositiva 52</b>Pregunta de la clase: ¿qué pasaría si a la función anterior le añadimos un término $j\omega$? Se multiplica por $j\omega$, es decir, se añade un <b>cero en el origen</b>. Con $\omega=100$ rad/s, el nuevo $G(j100)$ se calcula igual, y los puntos de paso por cero de $a\,j\omega$ (imaginarios puros) no separan regiones.</figcaption></figure>
+<figure class="slide"><img src="img/t6-56.jpg" alt="Tema 6 · diapositiva 56. Resultado: pendiente +20 dB/década desde las frecuencias bajas hasta 10 rad/s, tramo de 60 dB entre 10 y 40, v" loading="lazy" width="1000" height="563"><figcaption><b class="n">Tema 6 · diapositiva 56</b>Resultado: pendiente +20 dB/década desde las frecuencias bajas hasta 10 rad/s, tramo de 60 dB entre 10 y 40, vuelta a subir hasta 400 y meseta de 80 dB en alta frecuencia (el límite es $|G|=10\,000=80$ dB).</figcaption></figure>
+<h4>Bode builder</h4>
+<p>Prueba tú: mueve las frecuencias del cero y de los polos y observa cómo se construye el diagrama.</p>
+<figure class="fig">
+<p class="ft">Simulador · constructor de Bode</p>
+<div class="ctrl"><label for="bd-pre">Ejemplo <select id="bd-pre"><option value="ej">Ejemplo de la clase</option><option value="rc">Filtro RC paso bajo</option><option value="rc2">Dos polos separados</option><option value="int">Con integrador</option><option value="free">Libre</option></select></label>
+<label for="bd-k">$K$ <input type="range" id="bd-k" min="-20" max="60" step="1" value="40"></label><output id="bd-k-o"></output></div>
+<div class="ctrl"><label for="bd-z">Cero en <input type="range" id="bd-z" min="-1" max="4" step="0.05" value="1.6"></label><output id="bd-z-o"></output>
+<label for="bd-p1">Polo 1 <input type="range" id="bd-p1" min="-1" max="4" step="0.05" value="1"></label><output id="bd-p1-o"></output>
+<label for="bd-p2">Polo 2 <input type="range" id="bd-p2" min="-1" max="4" step="0.05" value="2.6"></label><output id="bd-p2-o"></output></div>
+<div class="ctrl"><label><input type="checkbox" id="bd-ez" checked> Cero</label><label><input type="checkbox" id="bd-e1" checked> Polo 1</label><label><input type="checkbox" id="bd-e2" checked> Polo 2</label><label><input type="checkbox" id="bd-i"> Integrador $1/(j\omega)$</label></div>
+<div id="fig-bd"></div><div id="fig-bdp"></div>
+<div class="readout" id="bd-txt"></div>
+<figcaption>Los controles de frecuencia están en escala logarítmica y se muestran en rad/s. Línea negra discontinua: aproximación asintótica. Línea azul continua: curva exacta. Con los valores del ejemplo, la meseta intermedia ronda 28 dB. Con integrador, $K$ es la ganancia a 1 rad/s.</figcaption>
+</figure>
+<h3>6.5 Filtros básicos de primer orden</h3>
+<p>El filtro más simple es una red RC. La frecuencia de corte es la frecuencia a la que la ganancia cae 3 dB, y su fórmula es $\omega_c=\dfrac1{RC}$, o $f_c=\dfrac1{2\pi RC}$.</p>
+<figure class="slide"><img src="img/t6-57.jpg" alt="Tema 6 · diapositiva 57. Filtro <b>paso bajo</b>: la salida se toma en el condensador y U_sU_e=Z_CR+Z_C=11+j RC. Deja pasar las bajas f" loading="lazy" width="1000" height="563"><figcaption><b class="n">Tema 6 · diapositiva 57</b>Filtro <b>paso bajo</b>: la salida se toma en el condensador y $\dfrac{U_s}{U_e}=\dfrac{Z_C}{R+Z_C}=\dfrac1{1+j\omega RC}$. Deja pasar las bajas frecuencias y atenúa las altas con $-20$ dB/década. $\omega_c=\dfrac1{RC}$, $f_c=\dfrac1{2\pi RC}$.</figcaption></figure>
+<figure class="slide"><img src="img/t6-58.jpg" alt="Tema 6 · diapositiva 58. Filtro <b>paso alto</b>: se intercambian R y C y la salida se toma en la resistencia. U_sU_e=j RC1+j RC. Sube " loading="lazy" width="1000" height="563"><figcaption><b class="n">Tema 6 · diapositiva 58</b>Filtro <b>paso alto</b>: se intercambian $R$ y $C$ y la salida se toma en la resistencia. $\dfrac{U_s}{U_e}=\dfrac{j\omega RC}{1+j\omega RC}$. Sube a $+20$ dB/década hasta $f_c$ y se aplana en 0 dB. La $f_c$ es la misma fórmula.</figcaption></figure>
+<div class="box key"><h4>Cómo reconocerlos sin calcular</h4>
+<p>Pregunta qué hace el condensador a cada extremo. Si en <b>alta frecuencia</b> el condensador es un cortocircuito y está <b>a masa</b> (paso bajo) o <b>en serie con la señal</b> (paso alto), ya sabes qué pasa. A baja frecuencia es un circuito abierto: en el paso alto bloquea la señal; en el paso bajo no pasa nada y la salida iguala a la entrada.</p></div>
+</section>
+
+<section class="sec tema" style="--tc:var(--c6);--tcs:var(--c6s)">
+<div class="sh"><span class="badge" aria-hidden="true">dB</span><div class="shx"><p class="kick">Tema 6 · Para dominar el examen</p><h2 id="bode">Bode a fondo: dibuja cualquier diagrama sin dudar</h2><div class="tags"><span class="tag">Parcial 2</span><span class="tag w">Lo más preguntado</span></div></div></div>
+<div class="zero">
+<p class="ft">Desde cero</p>
+<p>Hay <b>una sola idea</b> detrás de todo Bode: cada factor de la función de transferencia dobla la gráfica en un punto concreto, y en ese punto cambia la pendiente en $\pm20$ dB por década. Un <b>polo</b> la baja 20 dB/década, un <b>cero</b> la sube 20 dB/década. Si sabes dónde están los polos y los ceros, y de dónde parte la gráfica, la dibujas sin calcular nada más. La fase sigue la misma lógica: cada polo resta 90° (repartidos en dos décadas, de $\omega_c/10$ a $10\,\omega_c$), cada cero los suma.</p>
+</div>
+<div class="box key"><h4>Tarjeta de repaso: lo que cambia en cada punto</h4>
+<div class="tw"><table>
+<tr><th>Factor</th><th>Pendiente del módulo</th><th>Fase total que aporta</th><th>Dónde actúa</th></tr>
+<tr><td>Polo real $\dfrac1{1+j\omega/p}$</td><td>baja 20 dB/dec</td><td>−90°</td><td>$\omega=p$ (fase: de $p/10$ a $10p$)</td></tr>
+<tr><td>Cero real $1+j\omega/z$</td><td>sube 20 dB/dec</td><td>+90°</td><td>$\omega=z$</td></tr>
+<tr><td>Integrador $\dfrac1{j\omega}$</td><td>−20 dB/dec desde el principio</td><td>−90° siempre</td><td>pasa por 0 dB (si $K=1$) en $\omega=1$</td></tr>
+<tr><td>Derivador $j\omega$</td><td>+20 dB/dec desde el principio</td><td>+90° siempre</td><td>pasa por 0 dB (si $K=1$) en $\omega=1$</td></tr>
+<tr><td>Polos complejos ($\zeta$, $\omega_n$)</td><td>baja 40 dB/dec</td><td>−180°</td><td>$\omega=\omega_n$, con pico si $\zeta&lt;0{,}707$</td></tr>
+<tr><td>Constante $K$</td><td>nada, sólo sube o baja todo</td><td>0° ($K>0$) o 180° ($K&lt;0$)</td><td>—</td></tr>
+</table></div></div>
+<h3>Receta de 6 pasos, sin saltarse ninguno</h3>
+<ol class="steps">
+<li><b>Normaliza.</b> Que cada factor sea $(1+s/\omega_c)$ o $s$ (o $1/s$). Las constantes salen fuera y se multiplican en una sola $K$. Ejemplo: $s+10=10\,(1+s/10)$.</li>
+<li><b>Haz una lista ordenada</b> de todas las frecuencias de corte, de menor a mayor, anotando si es polo (↓) o cero (↑).</li>
+<li><b>Punto de partida.</b> Si no hay factores en el origen: la gráfica empieza plana en $20\log|K|$. Si hay $n$ integradores: empieza con pendiente $-20n$ y pasa por el punto $(\omega=1,\ 20\log|K|)$. Si hay $n$ derivadores: pendiente $+20n$ y el mismo punto.</li>
+<li><b>Recorre la lista.</b> En cada frecuencia, suma $-20$ (polo) o $+20$ (cero) a la pendiente. Para saber el valor, multiplica la pendiente por el número de décadas del tramo: $\Delta\text{dB}=\text{pendiente}\times\log_{10}\dfrac{\omega_2}{\omega_1}$.</li>
+<li><b>Suaviza.</b> En cada frecuencia de corte, la curva real queda 3 dB por debajo (polo) o por encima (cero) de la asíntota, si las frecuencias están separadas. Si dos están muy cerca, los efectos se suman.</li>
+<li><b>Fase.</b> Dibuja por separado la fase de cada factor (rampa de ±90° en dos décadas, centrada en $\omega_c$) y súmalas. Comprueba que el valor final es $90°\times(\#\text{ceros}-\#\text{polos})$.</li>
+</ol>
+<div class="box trap"><h4>Los cinco errores que más puntos cuestan</h4>
+<ul>
+<li>Olvidar normalizar: $\dfrac{10}{s+10}$ vale 1 (0 dB) en continua, no 10 (20 dB).</li>
+<li>Dibujar la pendiente en dB/octava o en dB/década equivocada. En el examen se pide <b>por década</b>.</li>
+<li>Poner la frecuencia de corte en $\omega=a$ y no en $\omega=1/a$ para el factor $1+aj\omega$.</li>
+<li>Dibujar la fase de $K/(j\omega)$ como 0°: el integrador aporta −90° desde el principio.</li>
+<li>Olvidar que un factor repetido, $(1+j\omega/p)^n$, multiplica por $n$ la pendiente y la fase.</li>
+</ul></div>
+<h3>Factores repetidos: la misma idea, multiplicada por $n$</h3>
+<p>Si un factor está elevado a la $n$, todo lo que aporta se multiplica por $n$: la pendiente pasa a ser $\pm20n$ dB/década, y la fase total $\pm90n$°. Las diapositivas lo muestran con $n=2$ (pendiente de 40 dB/década y fase de 180°).</p>
+<figure class="slide"><img src="img/t6-27.jpg" alt="Tema 6 · diapositiva 27. Cero múltiple en el origen (aj)^n: una recta de pendiente +20n dB/década que pasa por 0 dB en =1/a, con fase c" loading="lazy" width="1000" height="563"><figcaption><b class="n">Tema 6 · diapositiva 27</b>Cero múltiple en el origen $(aj\omega)^n$: una recta de pendiente $+20n$ dB/década que pasa por 0 dB en $\omega=1/a$, con fase constante de $(90\cdot n)°$.</figcaption></figure>
+<figure class="slide"><img src="img/t6-29.jpg" alt="Tema 6 · diapositiva 29. Polo múltiple en el origen 1(aj)^n: recta de pendiente -20n dB/década y fase constante de -(90 n)°." loading="lazy" width="1000" height="563"><figcaption><b class="n">Tema 6 · diapositiva 29</b>Polo múltiple en el origen $\dfrac{1}{(aj\omega)^n}$: recta de pendiente $-20n$ dB/década y fase constante de $-(90\cdot n)°$.</figcaption></figure>
+<figure class="slide"><img src="img/t6-38.jpg" alt="Tema 6 · diapositiva 38. Cero real múltiple (1+aj)^n: plano en 0 dB hasta _c=1/a y después pendiente +20n dB/década." loading="lazy" width="1000" height="563"><figcaption><b class="n">Tema 6 · diapositiva 38</b>Cero real múltiple $(1+aj\omega)^n$: plano en 0 dB hasta $\omega_c=1/a$ y después pendiente $+20n$ dB/década.</figcaption></figure>
+<figure class="slide"><img src="img/t6-39.jpg" alt="Tema 6 · diapositiva 39. Su fase es n(a): va de 0° a +90n° con pendiente +n45°/década (en la gráfica, n=2)." loading="lazy" width="1000" height="563"><figcaption><b class="n">Tema 6 · diapositiva 39</b>Su fase es $n\cdot\arctan(a\omega)$: va de 0° a $+90n$° con pendiente $+n\cdot45$°/década (en la gráfica, $n=2$).</figcaption></figure>
+<figure class="slide"><img src="img/t6-41.jpg" alt="Tema 6 · diapositiva 41. Polo real múltiple 1(1+aj)^n: pendiente -20n dB/década a partir de _c=1/a." loading="lazy" width="1000" height="563"><figcaption><b class="n">Tema 6 · diapositiva 41</b>Polo real múltiple $\dfrac1{(1+aj\omega)^n}$: pendiente $-20n$ dB/década a partir de $\omega_c=1/a$.</figcaption></figure>
+<figure class="slide"><img src="img/t6-42.jpg" alt="Tema 6 · diapositiva 42. Fase del polo múltiple: -n(a), de 0° a -90n°. En la gráfica, con n=2, termina en −180°." loading="lazy" width="1000" height="563"><figcaption><b class="n">Tema 6 · diapositiva 42</b>Fase del polo múltiple: $-n\cdot\arctan(a\omega)$, de 0° a $-90n$°. En la gráfica, con $n=2$, termina en −180°.</figcaption></figure>
+<h3>Cómo se suma todo: el ejemplo de la clase, con la fase incluida</h3>
+<p>En el ejemplo $G(s)=\dfrac{10^4(s+40)}{s^2+410s+4000}$ ya viste el módulo. Estos dos pasos de la clase muestran la idea de «las frecuencias de corte separan regiones».</p>
+<figure class="slide"><img src="img/t6-49.jpg" alt="Tema 6 · diapositiva 49. Las frecuencias de corte (10, 40 y 400 rad/s) dividen el eje en regiones. En cada región, la pendiente de la s" loading="lazy" width="1000" height="563"><figcaption><b class="n">Tema 6 · diapositiva 49</b>Las frecuencias de corte (10, 40 y 400 rad/s) dividen el eje en regiones. En cada región, la pendiente de la suma es la suma de las pendientes de los factores activos.</figcaption></figure>
+<p>¿Y si multiplicas la función por $j\omega$? Aparece un cero en el origen: toda la gráfica se inclina +20 dB/década y el nivel de cada tramo cambia.</p>
+<figure class="slide"><img src="img/t6-53.jpg" alt="Tema 6 · diapositiva 53. Con el término j (recta roja), que pasa por 0 dB en =1 rad/s. Los puntos de paso por cero de los términos a\,j" loading="lazy" width="1000" height="563"><figcaption><b class="n">Tema 6 · diapositiva 53</b>Con el término $j\omega$ (recta roja), que pasa por 0 dB en $\omega=1$ rad/s. Los puntos de paso por cero de los términos $a\,j\omega$ no separan regiones: las frecuencias de corte de los demás factores siguen siendo las que dividen el eje.</figcaption></figure>
+<figure class="slide"><img src="img/t6-55.jpg" alt="Tema 6 · diapositiva 55. Suma de todos los términos con j incluido (línea negra discontinua): sube con +20 dB/dec, se aplana entre 10 y" loading="lazy" width="1000" height="563"><figcaption><b class="n">Tema 6 · diapositiva 55</b>Suma de todos los términos con $j\omega$ incluido (línea negra discontinua): sube con +20 dB/dec, se aplana entre 10 y 40 rad/s (el polo de 10 rad/s compensa al cero del origen), vuelve a subir entre 40 y 400 y se aplana en 80 dB.</figcaption></figure>
+<h3>Polos complejos: el efecto del factor de amortiguamiento $\zeta$</h3>
+<p>Un factor de segundo orden $\dfrac{1}{1+2\zeta\frac{s}{\omega_n}+\frac{s^2}{\omega_n^2}}$ tiene dos polos que pueden ser reales ($\zeta\ge1$) o complejos ($\zeta&lt;1$). El parámetro $\zeta$ decide si la curva real tiene <b>pico de resonancia</b> o no. Para $\zeta&lt;0{,}707$ el módulo sube por encima de 0 dB antes de caer:</p>
+$$M_r=\frac{1}{2\zeta\sqrt{1-\zeta^2}}\ \text{ en }\ \omega_r=\omega_n\sqrt{1-2\zeta^2},\qquad |G(j\omega_n)|=\frac1{2\zeta}$$
+<figure class="fig">
+<p class="ft">Simulador · polos complejos y factor de amortiguamiento</p>
+<div class="ctrl"><label for="bz-z">$\zeta$ <input type="range" id="bz-z" min="0.05" max="1.5" step="0.05" value="0.3"></label><output id="bz-z-o"></output></div>
+<div id="fig-bz"></div><div id="fig-bzp"></div>
+<div class="readout" id="bz-txt"></div>
+<figcaption>Frecuencia normalizada, $\omega/\omega_n$. La línea negra discontinua es la asíntota: 0 dB y luego −40 dB/década. Baja $\zeta$ y el pico crece; con $\zeta=0{,}707$ desaparece; con $\zeta=1$ hay un polo doble real, 6 dB por debajo de la asíntota en $\omega_n$. La fase siempre pasa por −90° en $\omega_n$ y cuanto menor es $\zeta$, más brusco es el salto.</figcaption>
+</figure>
+<h3>Leer un Bode al revés: de la gráfica a $G(s)$</h3>
+<p>Es el ejercicio inverso y aparece mucho. El método es el de la receta, al revés:</p>
+<ol class="steps">
+<li><b>Nivel inicial.</b> Si la gráfica empieza plana a $L$ dB, entonces $K=10^{L/20}$. Si empieza con pendiente $\pm20n$, hay $n$ integradores o derivadores.</li>
+<li><b>Cada cambio de pendiente</b> es una frecuencia de corte. Si la pendiente baja 20, hay un polo ahí; si sube 20, un cero; si baja 40, dos polos coincidentes o un par complejo.</li>
+<li><b>Escribe cada factor</b> $(1+s/\omega_c)$ en el numerador (cero) o el denominador (polo).</li>
+<li><b>Comprueba con la fase final:</b> $90°\times(\#\text{ceros}-\#\text{polos})$.</li>
+</ol>
+<h3>Generador de ejercicios: practica sin parar</h3>
+<p>Pulsa «Nuevo ejercicio»: aparece una función. Dibuja en papel el módulo y la fase, y después pulsa «Ver solución» para comparar.</p>
+<figure class="fig">
+<p class="ft">Práctica · dibuja el Bode de esta función</p>
+<div class="ctrl"><button type="button" id="bg-new">Nuevo ejercicio</button><button type="button" id="bg-show" aria-pressed="false">Ver solución</button></div>
+<div class="readout" id="bg-fun" style="font-size:15px"></div>
+<div id="bg-sol" hidden></div>
+<figcaption>Los ejercicios mezclan una constante, un integrador opcional, un cero opcional y uno o dos polos reales, en frecuencias separadas por al menos una década para que la aproximación asintótica sea fiable.</figcaption>
+</figure>
+<h3>Problemas de Bode resueltos</h3>
+<div class="prob" id="p-bode2">
+<h3 class="ph">A. Con integrador: $G(s)=\dfrac{1000}{s(s+10)(s+100)}$</h3>
+<div class="enun"><p class="et">Enunciado</p><p>Dibuja el módulo asintótico, da los valores de cada tramo y calcula la fase final.</p></div>
+<details class="paso"><summary><span class="pn">1</span>Normaliza</summary><div class="inner"><p>$s+10=10(1+s/10)$ y $s+100=100(1+s/100)$. La constante: $\dfrac{1000}{10\cdot100}=1$. Queda $G(j\omega)=\dfrac{1}{j\omega\,(1+j\omega/10)(1+j\omega/100)}$, con $K=1$ (0 dB).</p></div></details>
+<details class="paso"><summary><span class="pn">2</span>Lista de frecuencias y pendientes</summary><div class="inner"><p>Hay un integrador (pendiente inicial $-20$) y polos en 10 y 100 rad/s. Pendientes: hasta 10 rad/s, $-20$; de 10 a 100, $-40$; más allá de 100, $-60$ dB/década.</p></div></details>
+<details class="paso"><summary><span class="pn">3</span>Valores del módulo</summary><div class="inner"><p>Parte del punto $(1\ \text{rad/s},\ 0\ \text{dB})$. En 10 rad/s: $0-20\cdot1=-20$ dB. En 100 rad/s: $-20-40\cdot1=-60$ dB. Con la curva real, en $\omega=10$: $|G|=\dfrac{1}{10\sqrt2\sqrt{1{,}01}}=0{,}070$, es decir $-23{,}1$ dB (3 dB por debajo de la asíntota).</p></div></details>
+<details class="paso"><summary><span class="pn">4</span>Fase</summary><div class="inner"><p>$\varphi=-90°-\arctan\dfrac\omega{10}-\arctan\dfrac\omega{100}$. En $\omega\to0$: −90°. En $\omega=10$: $-90-45-5{,}7=-140{,}7°$. En $\omega=100$: $-90-84{,}3-45=-219{,}3°$. Final: $-90-90-90=-270°$ (tres polos, ningún cero: $-90\cdot3$).</p></div></details>
+<details class="resul"><summary>Resultado</summary><div class="inner"><p class="et">Solución</p><p>Módulo: $-20$ dB/dec hasta 10, $-40$ hasta 100 y $-60$ después, con $0$ dB en 1 rad/s, $-20$ dB en 10 y $-60$ dB en 100. Fase de −90° a −270°.</p></div></details>
+</div>
+<div class="prob" id="p-bode3">
+<h3 class="ph">B. Derivador con polo: $G(s)=\dfrac{10\,s}{s+100}$</h3>
+<div class="enun"><p class="et">Enunciado</p><p>Calcula el módulo asintótico y di qué tipo de filtro es.</p></div>
+<details class="paso"><summary><span class="pn">1</span>Normaliza</summary><div class="inner"><p>$\dfrac{10s}{100(1+s/100)}=\dfrac{0{,}1\,s}{1+s/100}$, con $K=0{,}1$ ($-20$ dB), un cero en el origen y un polo en 100 rad/s.</p></div></details>
+<details class="paso"><summary><span class="pn">2</span>Módulo</summary><div class="inner"><p>La parte $0{,}1\,j\omega$ vale $0{,}1$ en $\omega=1$: pasa por $(1,\ -20\ \text{dB})$ con $+20$ dB/dec. En $\omega=100$ vale $-20+40=+20$ dB. Desde 100, el polo cancela la pendiente: queda plano en $+20$ dB, que es $|G|=10$, el valor de $s\to\infty$.</p></div></details>
+<details class="paso"><summary><span class="pn">3</span>Fase</summary><div class="inner"><p>Empieza en $+90°$ (cero en el origen), vale $+45°$ en 100 rad/s y termina en $0°$ (un cero y un polo: $90-90$).</p></div></details>
+<details class="paso"><summary><span class="pn">4</span>Tipo de filtro</summary><div class="inner"><p>Atenúa las bajas frecuencias y deja pasar las altas con ganancia 10: es un <b>paso alto</b>. En $\omega_c=100$ la curva real vale $\dfrac{10\cdot100}{\sqrt{100^2+100^2}}=7{,}07$, es decir $17$ dB (3 dB bajo la asíntota).</p></div></details>
+<details class="resul"><summary>Resultado</summary><div class="inner"><p class="et">Solución</p><p>Paso alto: +20 dB/dec desde $-20$ dB en 1 rad/s hasta 100 rad/s, y plano en 20 dB. Fase de +90° a 0°.</p></div></details>
+</div>
+<div class="prob" id="p-bode4">
+<h3 class="ph">C. De la gráfica a la función</h3>
+<div class="enun"><p class="et">Enunciado</p><p>Un diagrama de Bode del módulo empieza plano en 20 dB, a partir de 100 rad/s cae 20 dB/década y a partir de 10 000 rad/s cae 40 dB/década. ¿Cuál es $G(s)$ y cuál es la fase final?</p></div>
+<details class="paso"><summary><span class="pn">1</span>Constante</summary><div class="inner"><p>20 dB es $K=10^{20/20}=10$.</p></div></details>
+<details class="paso"><summary><span class="pn">2</span>Frecuencias de corte</summary><div class="inner"><p>En 100 rad/s la pendiente baja 20 dB/dec: un polo. En $10^4$ rad/s la pendiente pasa de −20 a −40: otro polo.</p></div></details>
+<details class="paso"><summary><span class="pn">3</span>Función</summary><div class="inner"><p>$G(s)=\dfrac{10}{\left(1+\frac{s}{100}\right)\left(1+\frac{s}{10^4}\right)}=\dfrac{10^7}{(s+100)(s+10^4)}$. Comprobación del segundo término: $(s+100)(s+10^4)$ vale $10^6$ en $s=0$, y $10^7/10^6=10$ ✓.</p></div></details>
+<details class="paso"><summary><span class="pn">4</span>Fase</summary><div class="inner"><p>Dos polos y ningún cero: la fase final es $-90\cdot2=-180°$, y en 100 rad/s vale cerca de $-45°$.</p></div></details>
+<details class="resul"><summary>Resultado</summary><div class="inner"><p class="et">Solución</p><p>$G(s)=\dfrac{10^7}{(s+100)(s+10^4)}$, fase final −180°. Valor en $\omega=10^4$ (asíntota): $20-20\cdot2=-20$ dB.</p></div></details>
+</div>
+<div class="prob" id="p-bode5">
+<h3 class="ph">D. Segundo orden con pico: $G(s)=\dfrac{100}{s^2+10s+100}$</h3>
+<div class="enun"><p class="et">Enunciado</p><p>Calcula $\omega_n$, $\zeta$, el pico de resonancia y la fase en $\omega_n$.</p></div>
+<details class="paso"><summary><span class="pn">1</span>Normaliza</summary><div class="inner"><p>Se divide por 100: $G=\dfrac1{1+0{,}1\,s+\dfrac{s^2}{100}}$, con $K=1$ (0 dB).</p></div></details>
+<details class="paso"><summary><span class="pn">2</span>Identifica $\omega_n$ y $\zeta$</summary><div class="inner"><p>$\dfrac{s^2}{\omega_n^2}=\dfrac{s^2}{100}\Rightarrow\omega_n=10$ rad/s. $\dfrac{2\zeta}{\omega_n}=0{,}1\Rightarrow\zeta=\dfrac{0{,}1\cdot10}{2}=0{,}5$.</p></div></details>
+<details class="paso"><summary><span class="pn">3</span>Pico</summary><div class="inner"><p>$\zeta=0{,}5&lt;0{,}707$, así que hay pico: $M_r=\dfrac1{2\cdot0{,}5\sqrt{1-0{,}25}}=1{,}155$, es decir $1{,}25$ dB, en $\omega_r=10\sqrt{1-2\cdot0{,}25}=7{,}07$ rad/s.</p></div></details>
+<details class="paso"><summary><span class="pn">4</span>En $\omega_n$</summary><div class="inner"><p>$|G(j10)|=\dfrac1{2\zeta}=1$, es decir 0 dB, y la fase es exactamente −90°. A partir de ahí, −40 dB/década: en $\omega=100$ vale $-40$ dB.</p></div></details>
+<details class="resul"><summary>Resultado</summary><div class="inner"><p class="et">Solución</p><p>$\omega_n=10$ rad/s, $\zeta=0{,}5$, pico de 1,25 dB en 7,07 rad/s, fase −90° en $\omega_n$ y −180° final.</p></div></details>
+</div>
+</section>
+
+<section class="sec tema" style="--tc:var(--c6);--tcs:var(--c6s)">
+<div class="sh"><span class="badge" aria-hidden="true">F</span><div class="shx"><p class="kick">Tema 6 · Filtros activos</p><h2 id="filtros">Filtros activos: orden, Butterworth y Chebyshev</h2><div class="tags"><span class="tag">Parcial 2</span></div></div></div>
+<div class="zero">
+<p class="ft">Desde cero</p>
+<p>Un filtro RC pasivo tiene una caída lenta, de $-20$ dB por década, y además carga a la fuente y pierde señal. Un <b>filtro activo</b> usa operacionales para dar ganancia, aislar etapas y conseguir pendientes mucho más fuertes poniendo varias etapas en cascada. El <b>orden</b> $n$ del filtro es el número de polos, y la pendiente final es $-20n$ dB por década. Un filtro de orden 4 cae a $-80$ dB por década.</p>
+</div>
+<p>El orden fija la pendiente. Lo que hay que elegir es la <b>forma</b> de la curva cerca de la frecuencia de corte. Hay dos aproximaciones que se estudian:</p>
+<div class="grid2">
+<div class="box"><h4>Butterworth</h4><p>La respuesta más plana posible en la banda de paso, sin rizado. Módulo: $|H|=\dfrac1{\sqrt{1+(f/f_c)^{2n}}}$. Siempre vale $-3$ dB en $f_c$. Es el filtro «de propósito general».</p></div>
+<div class="box"><h4>Chebyshev (tipo I)</h4><p>Cae más rápido que Butterworth del mismo orden, pero con un <b>rizado</b> constante en la banda de paso (por ejemplo 1 dB). Módulo: $|H|=\dfrac1{\sqrt{1+\varepsilon^2T_n^2(f/f_c)}}$, con $\varepsilon=\sqrt{10^{r_p/10}-1}$.</p></div>
+</div>
+<figure class="fig">
+<p class="ft">Simulador · respuesta de un paso bajo de orden $n$</p>
+<div class="ctrl"><label for="fl-t">Tipo <select id="fl-t"><option value="b">Butterworth</option><option value="c">Chebyshev</option><option value="r">RC en cascada (1.er orden repetido)</option></select></label>
+<label for="fl-n">Orden $n$ <input type="range" id="fl-n" min="1" max="8" step="1" value="4"></label><output id="fl-n-o"></output></div>
+<div class="ctrl"><label for="fl-r">Rizado Chebyshev <input type="range" id="fl-r" min="0.1" max="3" step="0.1" value="1"></label><output id="fl-r-o"></output></div>
+<div id="fig-fl"></div>
+<div class="readout" id="fl-txt"></div>
+<figcaption>Frecuencia en el eje horizontal normalizada a $f_c=1$. Prueba el mismo orden con Butterworth y con Chebyshev: Chebyshev baja antes pero tiene rizado. Y compara con el RC repetido, que a $f_c$ cae mucho más de 3 dB.</figcaption>
+</figure>
+<h3>La celda de segundo orden: Sallen–Key</h3>
+<p>Los filtros de orden alto se construyen en cascada de celdas de <b>segundo orden</b> (y una de primer orden si $n$ es impar). La celda más usada es la de Sallen–Key, de ganancia unidad. Una celda de segundo orden se caracteriza por dos números: la frecuencia $\omega_0$ y el factor de calidad $Q$.</p>
+$$\omega_0=\frac{1}{\sqrt{R_1R_2C_1C_2}},\qquad Q=\frac{\sqrt{R_1R_2C_1C_2}}{C_2\,(R_1+R_2)}$$
+<p>En el paso bajo de ganancia unidad, $C_1$ va del nudo intermedio a la salida y $C_2$ de la entrada $+$ a masa. Con $R_1=R_2=R$ queda $Q=\tfrac12\sqrt{C_1/C_2}$. Para Butterworth ($Q=0{,}707$) hace falta $C_1=2C_2$. $Q$ mayor da pico de resonancia, igual que los polos complejos del Bode.</p>
+<details><summary>Ejemplo: Sallen–Key Butterworth de 1 kHz <span class="src">comprobado</span></summary><div class="inner">
+<p>Elige $R_1=R_2=R=10$ kΩ y $C_1=2C_2$. Frecuencia: $\omega_0=\dfrac1{R\sqrt{C_1C_2}}=\dfrac1{R\,C_2\sqrt2}$. Para $f_0=1$ kHz, $\omega_0=6283$ rad/s, y despejando $C_2=\dfrac1{R\,\omega_0\sqrt2}=\dfrac1{10^4\cdot6283\cdot1{,}414}=11{,}25$ nF y $C_1=22{,}5$ nF.</p>
+<p>Con valores comerciales, $C_2=10$ nF y $C_1=22$ nF ($Q=\tfrac12\sqrt{2{,}2}=0{,}74$) da $f_0\approx1{,}07$ kHz: un error del 7 %. Para ajustarlo, cambia $R$.</p>
+</div></details>
+</section>
+
+</main>
+</div>
+<div class="pager"><a href="operacionales.html"><small>← Anterior</small>Operacionales</a><a class="nx" href="transistores.html"><small>Siguiente →</small>Transistores</a></div>
+<script>
+const $=id=>document.getElementById(id);
+const fmt=v=>{const a=Math.abs(v);if(a===0)return '0';if(a>=1e6)return (v/1e6).toPrecision(3).replace(/\.?0+$/,'')+'M';if(a>=1e4)return (v/1e3).toPrecision(3).replace(/\.?0+$/,'')+'k';if(a>=100)return String(Math.round(v));if(a>=1)return v.toPrecision(3).replace(/\.?0+$/,'');return v.toPrecision(2).replace(/\.?0+$/,'')};
+const es=v=>String(v).replace('.',',');
+const num=(v,d=2)=>es((+v).toFixed(d));
+const rng=(a,b,n)=>Array.from({length:n},(_,i)=>a+(b-a)*i/(n-1));
+const val=id=>parseFloat($(id).value);
+function bind(ids,fn){ids.forEach(i=>$(i).addEventListener('input',fn));fn();}
+function out(id,t){const e=$(id+'-o');if(e)e.textContent=t;}
+function freq(f){return f>=1e6?num(f/1e6,3)+' MHz':f>=1e3?num(f/1e3,3)+' kHz':num(f,2)+' Hz';}
+function plotSVG(o,items){
+  const W=o.w||640,H=o.h||210,m={l:40,r:14,t:14,b:28};
+  const X=x=>+(m.l+(x-o.x0)/(o.x1-o.x0)*(W-m.l-m.r)).toFixed(2);
+  const cl=y=>Math.max(o.y0,Math.min(o.y1,y));
+  const Y=y=>+(H-m.b-(cl(y)-o.y0)/(o.y1-o.y0)*(H-m.t-m.b)).toFixed(2);
+  let s=`<svg viewBox="0 0 ${W} ${H}" class="plot" role="img" aria-label="${o.label||'gráfica'}">`;
+  for(const v of (o.yt||[])) s+=`<line class="grid" x1="${m.l}" x2="${W-m.r}" y1="${Y(v)}" y2="${Y(v)}"/><text class="tk" x="${m.l-6}" y="${Y(v)+4}" text-anchor="end">${o.ytf?o.ytf(v):fmt(v)}</text>`;
+  for(const v of (o.xt||[])) s+=`<text class="tk" x="${X(v)}" y="${H-9}" text-anchor="middle">${o.xtf?o.xtf(v):fmt(v)}</text>`;
+  const base=(o.y0<=0&&o.y1>=0)?0:o.y0;
+  s+=`<line class="ax" x1="${m.l}" x2="${W-m.r}" y1="${Y(base)}" y2="${Y(base)}"/>`;
+  if(o.x0<=0&&o.x1>=0) s+=`<line class="ax" x1="${X(0)}" x2="${X(0)}" y1="${m.t}" y2="${H-m.b}"/>`;
+  if(o.xl) s+=`<text class="lb" x="${W-m.r}" y="${Y(base)-6}" text-anchor="end">${o.xl}</text>`;
+  if(o.yl) s+=`<text class="lb" x="${m.l+6}" y="${m.t+10}">${o.yl}</text>`;
+  for(const it of items){
+    const c=it.c||'s1';
+    if(it.t==='stem'){ it.n.forEach((n,i)=>{ if(n<o.x0||n>o.x1) return; const yy=it.y[i]; s+=`<line class="st ${c}" x1="${X(n)}" x2="${X(n)}" y1="${Y(base)}" y2="${Y(yy)}"/><circle class="${c}" cx="${X(n)}" cy="${Y(yy)}" r="${it.hl===n?6:(it.r||3.5)}"/>`; }); }
+    else if(it.t==='line'||it.t==='step'){ let d=''; it.x.forEach((x,i)=>{ if(it.t==='step'&&i>0) d+=`L${X(x)},${Y(it.y[i-1])}`; d+=(i?'L':'M')+X(x)+','+Y(it.y[i]); }); s+=`<path class="ln ${c}" d="${d}"${it.dash?' stroke-dasharray="5 4"':''}${it.w?` stroke-width="${it.w}"`:''}/>`; }
+    else if(it.t==='area'){ let d=`M${X(it.x[0])},${Y(base)}`; it.x.forEach((x,i)=>{d+=`L${X(x)},${Y(it.y[i])}`}); d+=`L${X(it.x[it.x.length-1])},${Y(base)}Z`; s+=`<path class="ar ${c}" d="${d}"/>`; }
+    else if(it.t==='poly'){ const d=it.pts.map((p,i)=>(i?'L':'M')+X(p[0])+','+Y(p[1])).join('')+'Z'; s+=`<path class="ar ${c}" d="${d}"/>`; }
+    else if(it.t==='pt'){ s+=`<circle class="${c}" cx="${X(it.x)}" cy="${Y(it.y)}" r="${it.r||5}"/>`; }
+    else if(it.t==='vline'){ s+=`<line class="vl ${c}" x1="${X(it.x)}" x2="${X(it.x)}" y1="${m.t}" y2="${H-m.b}" stroke-dasharray="3 4"/>`; }
+    else if(it.t==='text'){ s+=`<text class="lb ${c}" x="${X(it.x)}" y="${Y(it.y)}" text-anchor="${it.a||'middle'}">${it.s}</text>`; }
+  }
+  return s+'</svg>';
+}
+
+
+/* ---------- U6: Bode ---------- */
+(function(){
+  if(!$('bd-k'))return;
+  const lg=v=>Math.pow(10,v);const rad=v=>num(lg(v),lg(v)<10?2:0)+' rad/s';
+  const presets={ej:{k:40,z:Math.log10(40),p1:1,p2:Math.log10(400),ez:1,e1:1,e2:1,i:0},rc:{k:0,z:2,p1:3,p2:3,ez:0,e1:1,e2:0,i:0},rc2:{k:0,z:2,p1:1,p2:3,ez:0,e1:1,e2:1,i:0},int:{k:20,z:2,p1:2,p2:3,ez:0,e1:1,e2:0,i:1}};
+  const set=p=>{$('bd-k').value=p.k;$('bd-z').value=p.z;$('bd-p1').value=p.p1;$('bd-p2').value=p.p2;$('bd-ez').checked=!!p.ez;$('bd-e1').checked=!!p.e1;$('bd-e2').checked=!!p.e2;$('bd-i').checked=!!p.i;};
+  const draw=()=>{
+    const K=val('bd-k'),z=lg(val('bd-z')),p1=lg(val('bd-p1')),p2=lg(val('bd-p2'));
+    const ez=$('bd-ez').checked,e1=$('bd-e1').checked,e2=$('bd-e2').checked,I=$('bd-i').checked;
+    out('bd-k',num(K,0)+' dB');out('bd-z',rad(val('bd-z')));out('bd-p1',rad(val('bd-p1')));out('bd-p2',rad(val('bd-p2')));
+    const lw=rng(-1,4,260);const M=[],A=[],P=[];
+    lw.forEach(l=>{const w=lg(l);let m=K,a=K,ph=0;
+      if(ez){m+=10*Math.log10(1+(w/z)**2);a+=20*Math.log10(Math.max(1,w/z));ph+=Math.atan(w/z)*180/Math.PI;}
+      [[e1,p1],[e2,p2]].forEach(([e,p])=>{if(e){m-=10*Math.log10(1+(w/p)**2);a-=20*Math.log10(Math.max(1,w/p));ph-=Math.atan(w/p)*180/Math.PI;}});
+      if(I){m-=20*l;a-=20*l;ph-=90;}
+      M.push(m);A.push(a);P.push(ph);});
+    const lo=Math.floor((Math.min(...M,...A)-10)/20)*20,hi=Math.ceil((Math.max(...M,...A)+10)/20)*20;
+    const yt=[];for(let v=lo;v<=hi;v+=20)yt.push(v);
+    const xo={x0:-1,x1:4,xt:[-1,0,1,2,3,4],xtf:v=>fmt(Math.pow(10,v))};
+    $('fig-bd').innerHTML=plotSVG(Object.assign({y0:lo,y1:hi,yt,label:'Módulo en dB',yl:'|G| dB',xl:'ω rad/s'},xo),[{t:'line',x:lw,y:A,c:'s3',dash:1,w:1.6},{t:'line',x:lw,y:M,c:'s1'}]);
+    const pl=Math.floor((Math.min(...P)-10)/45)*45,ph_=Math.ceil((Math.max(...P)+10)/45)*45;const pt=[];for(let v=pl;v<=ph_;v+=45)pt.push(v);
+    $('fig-bdp').innerHTML=plotSVG(Object.assign({y0:pl,y1:ph_,yt:pt,label:'Fase',yl:'fase °',xl:'ω rad/s'},xo),[{t:'line',x:lw,y:P,c:'s2'}]);
+    $('bd-txt').textContent='Gráfica superior: continua = exacta, discontinua = asintótica · Pendiente final: '+(20*((ez?1:0)-(e1?1:0)-(e2?1:0)-(I?1:0)))+' dB/década · Fase final: '+num(P[P.length-1],0)+'°';
+  };
+  bind(['bd-k','bd-z','bd-p1','bd-p2'],draw);
+  ['bd-ez','bd-e1','bd-e2','bd-i'].forEach(i=>$(i).addEventListener('change',draw));
+  $('bd-pre').addEventListener('change',()=>{const p=presets[$('bd-pre').value];if(p){set(p);draw();}});
+  set(presets.ej);draw();
+})();
+
+/* ---------- filtros ---------- */
+(function(){
+  if(!$('fl-t'))return;
+  const H=(type,n,r,x)=>{
+    if(type==='b')return -10*Math.log10(1+Math.pow(x,2*n));
+    if(type==='r')return -n*10*Math.log10(1+x*x);
+    const e2=Math.pow(10,r/10)-1;const Tn=x<=1?Math.cos(n*Math.acos(x)):Math.cosh(n*Math.acosh(x));
+    return -10*Math.log10(1+e2*Tn*Tn);};
+  const fn=()=>{
+    const type=$('fl-t').value,n=val('fl-n'),r=val('fl-r');out('fl-n',String(n));out('fl-r',num(r,1)+' dB');
+    $('fl-r').disabled=type!=='c';
+    const lx=rng(-1,1,300);const y=lx.map(l=>H(type,n,r,Math.pow(10,l)));
+    $('fig-fl').innerHTML=plotSVG({x0:-1,x1:1,y0:-100,y1:6,xt:[-1,-0.5,0,0.5,1],xtf:v=>num(Math.pow(10,v),2),yt:[0,-20,-40,-60,-80,-100],label:'Respuesta del filtro',xl:'f / fc',yl:'dB'},[
+      {t:'line',x:lx,y:y,c:'s1'},{t:'line',x:[-1,1],y:[-3,-3],c:'s3',dash:1,w:1},{t:'vline',x:0,c:'s2'}]);
+    const a1=H(type,n,r,1),a2=H(type,n,r,2),a10=H(type,n,r,10);
+    $('fl-txt').textContent='En fc: '+num(a1,2)+' dB · en 2·fc: '+num(a2,1)+' dB · en 10·fc: '+num(a10,0)+' dB · pendiente asintótica = −'+(20*n)+' dB/década';
+  };
+  ['fl-t','fl-n','fl-r'].forEach(i=>$(i).addEventListener('input',fn));fn();
+})();
+
+/* ---------- Bode: polos complejos y generador ---------- */
+(function(){
+  if($('bz-z')){
+    bind(['bz-z'],()=>{
+      const z=val('bz-z');out('bz-z',num(z,2));
+      const lu=rng(-1,1,300);
+      const M=lu.map(l=>{const u=Math.pow(10,l);return -10*Math.log10(Math.pow(1-u*u,2)+Math.pow(2*z*u,2));});
+      const A=lu.map(l=>l>0?-40*l:0);
+      const P=lu.map(l=>{const u=Math.pow(10,l);return -Math.atan2(2*z*u,1-u*u)*180/Math.PI;});
+      const hi=Math.max(10,Math.ceil((Math.max(...M)+2)/10)*10);const yt=[];for(let v=-60;v<=hi;v+=20)yt.push(v);
+      const xo={x0:-1,x1:1,xt:[-1,-0.5,0,0.5,1],xtf:v=>num(Math.pow(10,v),2)};
+      $('fig-bz').innerHTML=plotSVG(Object.assign({y0:-60,y1:hi,yt,label:'Módulo de un par de polos complejos',yl:'|G| dB',xl:'ω/ωn'},xo),[{t:'line',x:lu,y:A,c:'s3',dash:1,w:1.5},{t:'line',x:lu,y:M,c:'s1'},{t:'vline',x:0,c:'s2'}]);
+      $('fig-bzp').innerHTML=plotSVG(Object.assign({y0:-180,y1:0,yt:[0,-45,-90,-135,-180],label:'Fase',yl:'fase °',xl:'ω/ωn'},xo),[{t:'line',x:lu,y:P,c:'s2'},{t:'vline',x:0,c:'s3'}]);
+      let t='En ω = ωn: |G| = 1/(2ζ) = '+num(20*Math.log10(1/(2*z)),2)+' dB y fase −90° · ';
+      if(z<Math.SQRT1_2){const mr=1/(2*z*Math.sqrt(1-z*z));t+='pico M_r = '+num(mr,3)+' ('+num(20*Math.log10(mr),2)+' dB) en ω/ωn = '+num(Math.sqrt(1-2*z*z),3);}
+      else t+='sin pico de resonancia (ζ ≥ 0,707)';
+      $('bz-txt').textContent=t;
+    });
+  }
+  if($('bg-new')){
+    const pick=a=>a[Math.floor(Math.random()*a.length)];
+    const w3=Math.log10;let cur=null;
+    const fw=x=>{const a=Math.abs(x);return a>=1000?String(x/1000)+'k':String(x);};
+    function gen(){
+      const m=pick([1,2,5]),nc=pick([2,2,3,3]);
+      const ex=[0,1,2,3,4].sort(()=>Math.random()-.5).slice(0,nc).sort((a,b)=>a-b);
+      const fr=ex.map(e=>m*Math.pow(10,e));
+      const I=Math.random()<.3?1:0,Kdb=pick([-20,0,20,40]);
+      let types=fr.map(()=>'p');
+      const zi=Math.random()<.55?Math.floor(Math.random()*nc):-1;
+      if(zi>=0&&nc>1)types[zi]='z';
+      if(types.every(t=>t==='z'))types[0]='p';
+      cur={I,Kdb,cs:fr.map((f,i)=>({f,t:types[i]}))};
+      const K=Math.pow(10,Kdb/20);
+      const num_=cur.cs.filter(c=>c.t==='z').map(c=>'(1 + jω/'+c.f+')').join(' · ');
+      const den=(I?['(jω)']:[]).concat(cur.cs.filter(c=>c.t==='p').map(c=>'(1 + jω/'+c.f+')')).join(' · ');
+      $('bg-fun').textContent='G(jω) = '+es(String(K))+(num_?' · '+num_:'')+(den?'  /  [ '+den+' ]':'');
+      $('bg-show').setAttribute('aria-pressed','false');$('bg-sol').hidden=true;$('bg-sol').innerHTML='';
+    }
+    function show(){
+      const {I,Kdb,cs}=cur;const lw=rng(-1,5,300);
+      const A=[],M=[],P=[];
+      lw.forEach(l=>{const w=Math.pow(10,l);let a=Kdb-20*I*l,m=Kdb-20*I*l,ph=-90*I;
+        cs.forEach(c=>{const s=c.t==='z'?1:-1;a+=s*20*Math.log10(Math.max(1,w/c.f));m+=s*10*Math.log10(1+(w/c.f)**2);ph+=s*Math.atan(w/c.f)*180/Math.PI;});
+        A.push(a);M.push(m);P.push(ph);});
+      const lo=Math.floor((Math.min(...M,...A)-10)/20)*20,hi=Math.ceil((Math.max(...M,...A)+10)/20)*20;const yt=[];for(let v=lo;v<=hi;v+=20)yt.push(v);
+      const pl=Math.floor((Math.min(...P)-10)/45)*45,ph_=Math.ceil((Math.max(...P)+10)/45)*45;const pt=[];for(let v=pl;v<=ph_;v+=45)pt.push(v);
+      const xo={x0:-1,x1:5,xt:[-1,0,1,2,3,4,5],xtf:v=>fmt(Math.pow(10,v))};
+      let sl=-20*I;const li=[];
+      li.push('<li>Constante: $20\\log K='+Kdb+'$ dB'+(I?'. Con integrador, la gráfica pasa por (1 rad/s, '+Kdb+' dB) con pendiente −20 dB/dec.':'. La gráfica empieza plana en '+Kdb+' dB.')+'</li>');
+      cs.forEach(c=>{const prev=sl;sl+=c.t==='z'?20:-20;li.push('<li>En '+c.f+' rad/s hay un '+(c.t==='z'?'cero':'polo')+': la pendiente pasa de '+prev+' a '+sl+' dB/dec (valor de la asíntota: '+num(Kdb-20*I*w3(c.f)+cs.filter(d=>d.f<c.f).reduce((s,d)=>s+(d.t==='z'?1:-1)*20*w3(c.f/d.f),0),1)+' dB).</li>');});
+      const nz=cs.filter(c=>c.t==='z').length,np=cs.length-nz+I;
+      li.push('<li>Pendiente final: '+sl+' dB/dec. Fase final: '+(90*(nz-np))+'°.</li>');
+      $('bg-sol').innerHTML='<ol class="steps">'+li.join('')+'</ol>'+plotSVG(Object.assign({y0:lo,y1:hi,yt,label:'Módulo del ejercicio',yl:'|G| dB',xl:'ω rad/s'},xo),[{t:'line',x:lw,y:A,c:'s3',dash:1,w:1.6},{t:'line',x:lw,y:M,c:'s1'}])+plotSVG(Object.assign({y0:pl,y1:ph_,yt:pt,label:'Fase del ejercicio',yl:'fase °',xl:'ω rad/s'},xo),[{t:'line',x:lw,y:P,c:'s2'}]);
+      $('bg-sol').hidden=false;$('bg-show').setAttribute('aria-pressed','true');
+      if(window.MathJax&&MathJax.typesetPromise)MathJax.typesetPromise([$('bg-sol')]).catch(()=>{});
+    }
+    $('bg-new').addEventListener('click',gen);
+    $('bg-show').addEventListener('click',()=>{if($('bg-sol').hidden)show();else{$('bg-sol').hidden=true;$('bg-show').setAttribute('aria-pressed','false');}});
+    gen();
+  }
+})();
+
+
+
+/* ---------- búsqueda en todo el sitio ---------- */
+(function(){
+  const norm=s=>s.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'');
+  const PG=document.body.dataset.page;
+  const NAMES={"index": "Inicio", "operacionales": "Operacionales", "bode": "Bode y filtros", "transistores": "Transistores", "examenes": "Exámenes", "fuen": "Apuntes de Fuen", "practica": "Practicar", "referencia": "Referencia"};
+  const idx=[];
+  document.querySelectorAll('main section').forEach(sec=>{
+    const h=sec.querySelector('h2');const title=h?h.textContent:'';const tc=sec.getAttribute('style')||'';
+    sec.querySelectorAll('h3,h4,p,li,figcaption,summary,dt,dd,td').forEach(el=>{
+      const t=el.textContent.replace(/\s+/g,' ').trim();if(t.length<12)return;idx.push({el,title,t,n:norm(t),tc,p:PG});
+    });
+  });
+  let remote=null,loading=false;
+  function load(cb){
+    if(remote){cb();return;} if(loading)return; loading=true;
+    fetch('buscar.json').then(r=>r.json()).then(j=>{remote=j.filter(e=>e.p!==PG).map(e=>Object.assign(e,{n:norm(e.t)}));cb();}).catch(()=>{remote=[];});
+  }
+  const inp=$('srch'),box=$('srch-out');
+  function open_(el){let d=el.closest('details');while(d){d.open=true;d=d.parentElement.closest('details');}
+    el.scrollIntoView({behavior:'smooth',block:'center'});el.classList.add('flash');setTimeout(()=>el.classList.remove('flash'),1900);}
+  function show(){
+    const q=norm(inp.value.trim());if(q.length<2){box.hidden=true;box.innerHTML='';return;}
+    const w=q.split(/\s+/);
+    const loc=idx.filter(e=>w.every(x=>e.n.includes(x))).slice(0,6);
+    const rem=(remote||[]).filter(e=>w.every(x=>e.n.includes(x))).slice(0,6);
+    box.hidden=false;box.innerHTML='';
+    if(!loc.length&&!rem.length){box.textContent='Sin resultados. Prueba con otra palabra, por ejemplo «Miller» o «slew».';return;}
+    const add=(r,here)=>{
+      const b=document.createElement('button');b.type='button';b.className='sres';b.setAttribute('style',r.tc);
+      const s=document.createElement('span');s.className='sres-t';s.textContent=r.title;
+      if(!here){const pp=document.createElement('span');pp.className='sres-p';pp.textContent=NAMES[r.p]||r.p;s.appendChild(pp);}
+      b.appendChild(s);
+      const i=r.n.indexOf(w[0]);const a=Math.max(0,i-50);const sn=r.t.slice(a,a+150);
+      b.appendChild(document.createTextNode((a>0?'… ':'')+sn+(a+150<r.t.length?' …':'')));
+      b.addEventListener('click',()=>{ if(here)open_(r.el); else location.href=r.p+'.html#'+r.id; });
+      box.appendChild(b);
+    };
+    loc.forEach(r=>add(r,true)); rem.forEach(r=>add(r,false));
+  }
+  inp.addEventListener('input',()=>{show();load(show);});
+})();
+/* ---------- ir a un ancla y abrir los desplegables que la contienen ---------- */
+(function(){
+  function go(){
+    const h=decodeURIComponent(location.hash.slice(1));if(!h)return;
+    const el=document.getElementById(h);if(!el)return;
+    let d=el.closest('details');while(d){d.open=true;d=d.parentElement.closest('details');}
+    setTimeout(()=>el.scrollIntoView({block:'start'}),60);
+    setTimeout(()=>el.scrollIntoView({block:'start'}),900);
+  }
+  addEventListener('hashchange',go);addEventListener('load',go);
+})();
+/* ---------- índice lateral y botón de subir ---------- */
+(function(){
+  const links=[...document.querySelectorAll('.toc a')];
+  const map=new Map(links.map(a=>[a.getAttribute('href').slice(1),a]));
+  const heads=[...map.keys()].map(i=>$(i)).filter(Boolean);
+  if('IntersectionObserver' in window){
+    const io=new IntersectionObserver(es_=>{es_.forEach(e=>{if(e.isIntersecting){links.forEach(a=>a.classList.remove('on'));const a=map.get(e.target.id);if(a){a.classList.add('on');if(getComputedStyle(a.parentElement).display==='flex'){a.scrollIntoView({block:'nearest',inline:'center'});}}}});},{rootMargin:'-20% 0px -70% 0px'});
+    heads.forEach(h=>io.observe(h));
+  }
+  const t=$('totop');const f=()=>t.classList.toggle('show',window.scrollY>600);addEventListener('scroll',f,{passive:true});f();
+})();
+
+</script>
+</body>
+</html>
