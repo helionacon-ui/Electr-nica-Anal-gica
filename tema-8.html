@@ -1,0 +1,189 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="description" content="Electrónica Analógica (UPCT): Emisor común, capacidades y efecto Miller.">
+<title>Electrónica Analógica · T8 Transistores en frecuencia</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=IBM+Plex+Sans:ital,wght@0,400;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<script>
+window.MathJax = { tex: { inlineMath: [['$','$']], displayMath: [['$$','$$']] }, svg: { fontCache: 'global' } };
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-svg.js"></script>
+<link rel="manifest" href="manifest.webmanifest"><meta name="theme-color" content="#1d5fb8">
+<link rel="icon" type="image/png" sizes="192x192" href="icon-192.png"><link rel="apple-touch-icon" href="apple-touch-icon.png">
+<meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="Analógica">
+<link rel="stylesheet" href="style.css?v=1"></head><body data-page="tema-8">
+
+<div class="hub-bar" style="max-width:1180px;margin:0 auto;padding:10px 16px 0"><a href="https://helionacon-ui.github.io/GIEIA-UPCT/" style="display:inline-flex;align-items:center;gap:6px;font:600 13.5px/1 system-ui,sans-serif;padding:8px 12px;border-radius:999px;border:1px solid var(--line,#d3dcdf);background:var(--surface,var(--card,#fff));color:var(--fg,#18232b);text-decoration:none">← Todas las guías GIEyA</a></div>
+<header class="phead"><div class="eyebrow">UPCT · GIEyA · Electrónica Analógica · Parcial 2</div><h1>T8 Transistores en frecuencia</h1><p class="lede">Emisor común, capacidades y efecto Miller</p></header>
+
+<a href="#top" class="totop" id="totop" aria-label="Volver arriba">↑</a>
+<div class="wrap" id="top">
+<nav class="toc" aria-label="Índice">
+<a href="index.html" style="--tc:var(--c0)">Portada</a>
+<div class="grp">Empezar</div>
+<a href="empezar.html" style="--tc:var(--c0)">Cómo es el examen</a>
+<div class="grp">Parcial 1</div>
+<a href="tema-1-2.html" style="--tc:var(--c1)">T1–2 Amplificadores y AO ideal</a>
+<a href="tema-3.html" style="--tc:var(--c3)">T3 Aplicaciones lineales</a>
+<a href="tema-4.html" style="--tc:var(--c4)">T4 Aplicaciones no lineales</a>
+<a href="tema-5.html" style="--tc:var(--c5)">T5 AO real</a>
+<a href="tema-6.html" style="--tc:var(--c6)">T6 Bode y filtros</a>
+<div class="grp">Parcial 2</div>
+<a href="tema-7.html" style="--tc:var(--c7)">T7 Cuadripolos</a>
+<a href="tema-8.html" aria-current="page" class="cur" style="--tc:var(--c8)">T8 Transistores en frecuencia</a>
+<a href="realimentacion.html" style="--tc:var(--c1)">Realimentación y osciladores</a>
+<a href="potencia.html" style="--tc:var(--c3)">Amplificadores de potencia</a>
+<div class="grp">Practicar</div>
+<a href="examen-2025-26.html" style="--tc:var(--c3)">P1 curso 25-26 resuelto</a>
+<a href="examenes.html" style="--tc:var(--c8)">Exámenes resueltos</a>
+<a href="fuen.html" style="--tc:var(--c0)">Apuntes de Fuen</a>
+<a href="problemas.html" style="--tc:var(--c8)">Problemas resueltos</a>
+<a href="calculadoras.html" style="--tc:var(--c8)">Calculadoras de bolsillo</a>
+<a href="autoevaluacion.html" style="--tc:var(--c8)">Autoevaluación</a>
+<div class="grp">Repasar</div>
+<a href="formulario.html" style="--tc:var(--c0)">Formulario</a>
+<a href="glosario.html" style="--tc:var(--c0)">Glosario</a>
+<a href="plan.html" style="--tc:var(--c0)">Plan de estudio</a>
+<div class="grp">Todo en uno</div>
+<a href="guia-completa.html" style="--tc:var(--c0)">Guía completa</a>
+</nav>
+
+<main>
+<div class="srch-card" id="srch-card"><label for="srch" class="srch-lab">Buscar en la guía</label>
+<input type="search" id="srch" placeholder="Por ejemplo: slew rate, Schmitt, Miller, CMRR…" autocomplete="off" spellcheck="false">
+<div id="srch-out" class="srch-out" hidden></div></div>
+
+
+
+<section class="sec tema" style="--tc:var(--c8);--tcs:var(--c8s)">
+<div class="sh"><span class="badge" aria-hidden="true">U8</span><div class="shx"><p class="kick">Tema 8 · Diapositivas «Respuesta en frecuencia de amplificadores con transistores»</p><h2 id="u8">Transistores en frecuencia: bajas y altas frecuencias</h2><div class="tags"><span class="tag">Parcial 2</span><span class="tag w">Alta prioridad</span></div></div></div>
+<div class="zero">
+<p class="ft">Desde cero</p>
+<p>Un amplificador con transistor no amplifica igual a todas las frecuencias. Tiene tres zonas: <b>frecuencias medias</b>, donde la ganancia es la máxima $A_v(fm)$ y constante; <b>bajas frecuencias</b>, donde la ganancia cae porque los condensadores de <b>acoplo</b> y <b>desacoplo</b> (los que pones tú) empiezan a ser una impedancia que estorba; y <b>altas frecuencias</b>, donde la ganancia cae porque aparecen <b>capacidades parásitas</b> dentro del transistor. El ancho de banda va desde $f_{ci}$ (corte inferior) hasta $f_{cs}$ (corte superior).</p>
+<p>El método para calcular cada una es sencillo y siempre igual: <b>se analiza un condensador cada vez</b> y el resto se sustituyen por su valor límite (en bajas, los demás condensadores son cortocircuitos; en altas, los condensadores de acoplo son cortocircuitos y los parásitos que no estudias, circuitos abiertos).</p>
+</div>
+<h3>8.2 El transistor como cuadripolo híbrido</h3>
+<p>En baja frecuencia y pequeña señal, el bipolar en emisor común se sustituye por el modelo $h$ de la unidad 7. Entrada: $h_{ie}$ entre base y emisor. Salida: fuente de corriente $h_{fe}\,i_b$ en paralelo con $1/h_{oe}$. Normalmente se toma $h_{re}\approx0$ y $h_{oe}\approx0$.</p>
+<figure class="slide"><img src="img/t8-08.jpg" alt="Tema 8 · diapositiva 8. El emisor común como cuadripolo en parámetros híbridos: h_ie (input) a la entrada, la fuente h_reV_2 (reverse)" loading="lazy" width="1000" height="563"><figcaption><b class="n">Tema 8 · diapositiva 8</b>El emisor común como cuadripolo en parámetros híbridos: $h_{ie}$ (input) a la entrada, la fuente $h_{re}V_2$ (reverse), la fuente $h_{fe}i_1$ (forward) y la admitancia $h_{oe}$ (output) en la salida.</figcaption></figure>
+<figure class="slide"><img src="img/t8-10.jpg" alt="Tema 8 · diapositiva 10. Tres configuraciones del bipolar según qué terminal sea común: emisor común (EC, V_1=V_BE, V_2=V_CE), base com" loading="lazy" width="1000" height="563"><figcaption><b class="n">Tema 8 · diapositiva 10</b>Tres configuraciones del bipolar según qué terminal sea común: emisor común (EC, $V_1=V_{BE}$, $V_2=V_{CE}$), base común (BC) y colector común (CC). Cada una tiene su propio juego de parámetros $h$.</figcaption></figure>
+<h3>8.3 Respuesta en frecuencia de un amplificador</h3>
+<figure class="slide"><img src="img/t8-15.jpg" alt="Tema 8 · diapositiva 15. La ganancia frente a la frecuencia tiene forma de «campana plana». Entre f_ci y f_cs está la zona de frecuenci" loading="lazy" width="1000" height="563"><figcaption><b class="n">Tema 8 · diapositiva 15</b>La ganancia frente a la frecuencia tiene forma de «campana plana». Entre $f_{ci}$ y $f_{cs}$ está la zona de frecuencias medias. $f_{ci}$ es la frecuencia de corte inferior, $f_{cs}$ la superior, y el ancho de banda es la diferencia. En $f_c$ la ganancia cae 3 dB, es decir a $1/\sqrt2$ del valor de frecuencias medias.</figcaption></figure>
+<figure class="slide"><img src="img/t8-16.jpg" alt="Tema 8 · diapositiva 16. Condensadores de acoplo en serie con la señal: dejan pasar la señal de una etapa a otra pero bloquean la conti" loading="lazy" width="1000" height="563"><figcaption><b class="n">Tema 8 · diapositiva 16</b>Condensadores de acoplo en serie con la señal: dejan pasar la señal de una etapa a otra pero bloquean la continua. Forman un filtro paso alto con la resistencia vista, con $f_c=\dfrac1{2\pi C(R_1+R_2)}$.</figcaption></figure>
+<figure class="slide"><img src="img/t8-17.jpg" alt="Tema 8 · diapositiva 17. Capacidades parásitas en paralelo con la señal (entre pistas, y dentro de los transistores). Forman un filtro " loading="lazy" width="1000" height="563"><figcaption><b class="n">Tema 8 · diapositiva 17</b>Capacidades parásitas en paralelo con la señal (entre pistas, y dentro de los transistores). Forman un filtro paso bajo con $f_c=\dfrac{1}{2\pi C\,(R_1\parallel R_2)}$. Los condensadores en paralelo producen efecto paso bajo.</figcaption></figure>
+<figure class="slide"><img src="img/t8-18.jpg" alt="Tema 8 · diapositiva 18. Efectos combinados de los condensadores de acoplo (bajas frecuencias) y de las capacidades parásitas (altas). " loading="lazy" width="1000" height="563"><figcaption><b class="n">Tema 8 · diapositiva 18</b>Efectos combinados de los condensadores de acoplo (bajas frecuencias) y de las capacidades parásitas (altas). Abajo, la regla para varias frecuencias de corte iguales: con $n$ frecuencias inferiores iguales, $f_{ci}=\dfrac{f_c}{\sqrt{2^{1/n}-1}}$ y con $n$ superiores iguales, $f_{cs}=f_c\sqrt{2^{1/n}-1}$. Es decir, cada condensador añadido estrecha un poco más el ancho de banda.</figcaption></figure>
+<h3>8.4 Respuesta en baja frecuencia, paso a paso</h3>
+<p>Circuito: un transistor en emisor común con divisor de polarización $R_1$, $R_2$, resistencia de colector $R_C$, de emisor $R_E$ con su condensador de desacoplo $C_E$, condensador de acoplo de entrada $C_1$ y de salida $C_2$, generador $R_g$ y carga $R_L$.</p>
+<figure class="slide"><img src="img/t8-21.jpg" alt="Tema 8 · diapositiva 21. El circuito de una etapa en emisor común con sus tres condensadores señalados: C_c1 (acoplo de entrada), C_c2 " loading="lazy" width="1000" height="563"><figcaption><b class="n">Tema 8 · diapositiva 21</b>El circuito de una etapa en emisor común con sus tres condensadores señalados: $C_{c1}$ (acoplo de entrada), $C_{c2}$ (acoplo de salida) y $C_E$ (desacoplo de emisor), más la fuente de continua ($V_{CC}$) que polariza el transistor. La nota importante: <i>en baja frecuencia los condensadores de alta frecuencia (capacidades parásitas) se comportan como circuito abierto</i>.</figcaption></figure>
+<ol class="steps">
+<li><b>Apaga la continua</b> ($V_{CC}$ a masa) y deja solo la señal. $R_1\parallel R_2=R_b$ queda entre base y masa.</li>
+<li><b>Sustituye el transistor</b> por su modelo en $h$: $h_{ie}$ entre base y emisor y la fuente $h_{fe}\,i_b$ de colector a emisor.</li>
+<li><b>Frecuencias medias</b>: todos los condensadores son cortocircuitos y se calcula $A_v(fm)$.</li>
+<li><b>Para cada condensador</b>: cortocircuita los otros dos, apaga las fuentes independientes y busca la resistencia vista por los terminales del condensador, $Z_{th}(C_k)$. La frecuencia de corte es $f_c(C_k)=\dfrac{1}{2\pi C_k Z_{th}(C_k)}$.</li>
+<li><b>Combina</b> las frecuencias de corte para obtener $f_{ci}$.</li>
+</ol>
+<figure class="slide"><img src="img/t8-22.jpg" alt="Tema 8 · diapositiva 22. El circuito equivalente de pequeña señal: se apaga la continua (las fuentes de alimentación pasan a masa), así" loading="lazy" width="1000" height="563"><figcaption><b class="n">Tema 8 · diapositiva 22</b>El circuito equivalente de pequeña señal: se apaga la continua (las fuentes de alimentación pasan a masa), así que $R_1$ y $R_2$ quedan en paralelo como $R_b=R_1\parallel R_2$, y el transistor se sustituye por su modelo en $h$ (marcado «Modelo en h»).</figcaption></figure>
+<figure class="slide"><img src="img/t8-23.jpg" alt="Tema 8 · diapositiva 23. Frecuencias medias: todos los condensadores como cortocircuito. La ganancia es A_v(fm)=-h_fe\,(R_C R_L)h_ieR_b" loading="lazy" width="1000" height="563"><figcaption><b class="n">Tema 8 · diapositiva 23</b>Frecuencias medias: todos los condensadores como cortocircuito. La ganancia es $A_v(fm)=\dfrac{-h_{fe}\,(R_C\parallel R_L)}{h_{ie}}\cdot\dfrac{R_b\parallel h_{ie}}{R_b\parallel h_{ie}+R_g}$. El primer factor es la ganancia del transistor y el segundo, el divisor de entrada con el generador.</figcaption></figure>
+<h4>Efecto del condensador de entrada $C_1$</h4>
+<figure class="slide"><img src="img/t8-24.jpg" alt="Tema 8 · diapositiva 24. Se deja C_1 con su impedancia Z_C1=1/(j C_1) y los otros dos como cortocircuitos (Z_CC2=0, Z_CE=0). Ahora el d" loading="lazy" width="1000" height="563"><figcaption><b class="n">Tema 8 · diapositiva 24</b>Se deja $C_1$ con su impedancia $Z_{C1}=1/(j\omega C_1)$ y los otros dos como cortocircuitos ($Z_{CC2}=0$, $Z_{CE}=0$). Ahora el divisor de entrada incluye $Z_{C1}$.</figcaption></figure>
+<figure class="slide"><img src="img/t8-25.jpg" alt="Tema 8 · diapositiva 25. El resultado tiene la forma de A_v(C_1)=A_v(fm)11+1j\,Z_thC_1, un filtro paso alto con Z_th la resistencia de " loading="lazy" width="1000" height="563"><figcaption><b class="n">Tema 8 · diapositiva 25</b>El resultado tiene la forma de $A_v(C_1)=A_v(fm)\cdot\dfrac{1}{1+\dfrac1{j\omega\,Z_{th}C_1}}$, un filtro paso alto con $Z_{th}$ la resistencia de Thévenin vista desde el condensador. La frecuencia de corte es $\omega_c(C_1)=\dfrac1{Z_{th}C_1}$, es decir $f_c=\dfrac1{2\pi Z_{th}C_1}$.</figcaption></figure>
+<figure class="slide"><img src="img/t8-35.jpg" alt="Tema 8 · diapositiva 35. A mano, con el circuito equivalente: se calcula Z_th(C_1) apagando V_g y mirando desde los terminales de C_1." loading="lazy" width="1000" height="563"><figcaption><b class="n">Tema 8 · diapositiva 35</b>A mano, con el circuito equivalente: se calcula $Z_{th}(C_1)$ apagando $V_g$ y mirando desde los terminales de $C_1$.</figcaption></figure>
+<figure class="slide"><img src="img/t8-36.jpg" alt="Tema 8 · diapositiva 36. Resultado: Z_th(C_1)=R_g+R_b h_ie y f_c(C_1)=12 C_1Z_th(C_1). Es la resistencia del generador más lo que ve la" loading="lazy" width="1000" height="563"><figcaption><b class="n">Tema 8 · diapositiva 36</b>Resultado: $Z_{th}(C_1)=R_g+R_b\parallel h_{ie}$ y $f_c(C_1)=\dfrac1{2\pi C_1Z_{th}(C_1)}$. Es la resistencia del generador más lo que ve la base del transistor.</figcaption></figure>
+<h4>Efecto del condensador de salida $C_2$</h4>
+<figure class="slide"><img src="img/t8-26.jpg" alt="Tema 8 · diapositiva 26. Se deja C_2 y se cortocircuita C_1 y C_E. El condensador de salida forma un divisor con R_L y la resistencia v" loading="lazy" width="1000" height="563"><figcaption><b class="n">Tema 8 · diapositiva 26</b>Se deja $C_2$ y se cortocircuita $C_1$ y $C_E$. El condensador de salida forma un divisor con $R_L$ y la resistencia vista desde el colector.</figcaption></figure>
+<figure class="slide"><img src="img/t8-38.jpg" alt="Tema 8 · diapositiva 38. Con C_2: se apaga el generador (V_g=0, así que i_b=0 y la fuente h_fei_b desaparece). Desde los terminales de " loading="lazy" width="1000" height="563"><figcaption><b class="n">Tema 8 · diapositiva 38</b>Con $C_2$: se apaga el generador ($V_g=0$, así que $i_b=0$ y la fuente $h_{fe}i_b$ desaparece). Desde los terminales de $C_2$ solo se ve $R_C$ en serie con $R_L$.</figcaption></figure>
+<figure class="slide"><img src="img/t8-40.jpg" alt="Tema 8 · diapositiva 40. Resultado: Z_th(C_2)=R_C+R_L y f_c(C_2)=12 C_2(R_C+R_L)." loading="lazy" width="1000" height="563"><figcaption><b class="n">Tema 8 · diapositiva 40</b>Resultado: $Z_{th}(C_2)=R_C+R_L$ y $f_c(C_2)=\dfrac1{2\pi C_2(R_C+R_L)}$.</figcaption></figure>
+<h4>Efecto del condensador de desacoplo $C_E$</h4>
+<p>Este es el más delicado, porque $C_E$ está en el emisor y la resistencia que ve incluye la corriente de base multiplicada por $(1+h_{fe})$. Se aplica el «truco de reflejar a la base»: una impedancia en el emisor se ve desde la base multiplicada por $(1+h_{fe})$, y al revés, una impedancia en la base se ve desde el emisor dividida por $(1+h_{fe})$.</p>
+<figure class="slide"><img src="img/t8-28.jpg" alt="Tema 8 · diapositiva 28. Con C_E se deja su impedancia 1/(j C_E) en el emisor. La tensión V^* en la base es V^*=h_iei_b+(1+h_fe)i_b Z_e" loading="lazy" width="1000" height="563"><figcaption><b class="n">Tema 8 · diapositiva 28</b>Con $C_E$ se deja su impedancia $1/(j\omega C_E)$ en el emisor. La tensión $V^*$ en la base es $V^*=h_{ie}i_b+(1+h_{fe})i_b Z_{eq}$, donde $Z_{eq}$ es $R_E\parallel\dfrac1{j\omega C_E}$.</figcaption></figure>
+<figure class="slide"><img src="img/t8-29.jpg" alt="Tema 8 · diapositiva 29. Se resuelve la corriente de base y se llega a A_v(C_E)=A_v(fm)11+(1+h_fe)Z_eq(R_b R_g)+h_ie." loading="lazy" width="1000" height="563"><figcaption><b class="n">Tema 8 · diapositiva 29</b>Se resuelve la corriente de base y se llega a $A_v(C_E)=A_v(fm)\cdot\dfrac{1}{1+\dfrac{(1+h_{fe})Z_{eq}}{(R_b\parallel R_g)+h_{ie}}}$.</figcaption></figure>
+<figure class="slide"><img src="img/t8-30.jpg" alt="Tema 8 · diapositiva 30. Se desarrolla Z_eq y se agrupa para dejar la expresión como un filtro paso alto, con Z_th(C_E) la resistencia " loading="lazy" width="1000" height="563"><figcaption><b class="n">Tema 8 · diapositiva 30</b>Se desarrolla $Z_{eq}$ y se agrupa para dejar la expresión como un filtro paso alto, con $Z_{th}(C_E)$ la resistencia de Thévenin vista desde los terminales de $C_E$.</figcaption></figure>
+<figure class="slide"><img src="img/t8-31.jpg" alt="Tema 8 · diapositiva 31. Resultado: A_v(C_E)=A_v(fm)11+1j\,Z_thC_E y f_c(C_E)=12 Z_th(C_E)C_E." loading="lazy" width="1000" height="563"><figcaption><b class="n">Tema 8 · diapositiva 31</b>Resultado: $A_v(C_E)=A_v(fm)\cdot\dfrac{1}{1+\dfrac{1}{j\omega\,Z_{th}C_E}}$ y $f_c(C_E)=\dfrac1{2\pi Z_{th}(C_E)C_E}$.</figcaption></figure>
+<figure class="slide"><img src="img/t8-41.jpg" alt="Tema 8 · diapositiva 41. El resultado final para C_E: Z_th(C_E)=R_Eh_ie+R_g R_b1+h_fe. La resistencia de la rama de base se «refleja» a" loading="lazy" width="1000" height="563"><figcaption><b class="n">Tema 8 · diapositiva 41</b>El resultado final para $C_E$: $Z_{th}(C_E)=R_E\parallel\dfrac{h_{ie}+R_g\parallel R_b}{1+h_{fe}}$. La resistencia de la rama de base se «refleja» al emisor dividiéndola por $(1+h_{fe})$, así que $Z_{th}(C_E)$ es muy pequeña y $f_c(C_E)$ sale alta: es casi siempre el <b>condensador dominante</b> en baja frecuencia.</figcaption></figure>
+<h3>8.5 Frecuencia de corte inferior: el método aproximado</h3>
+<p>Cada condensador aporta una frecuencia de corte «candidata». ¿Cuál manda? Depende de si están separadas.</p>
+<figure class="slide"><img src="img/t8-42.jpg" alt="Tema 8 · diapositiva 42. <b>Polo dominante:</b> si la mayor de las frecuencias candidatas dista de las demás <b>al menos una década</b>" loading="lazy" width="1000" height="563"><figcaption><b class="n">Tema 8 · diapositiva 42</b><b>Polo dominante:</b> si la mayor de las frecuencias candidatas dista de las demás <b>al menos una década</b> (un factor 10), esa es la $f_{ci}$ del circuito y se ignoran las demás. Ejemplo de la diapositiva: ratio $\dfrac{1000/2\pi}{50/2\pi}=20>10$, así que $f_{ci}=\dfrac{1000}{2\pi}=159{,}15$ Hz.</figcaption></figure>
+<figure class="slide"><img src="img/t8-43.jpg" alt="Tema 8 · diapositiva 43. <b>Constantes de tiempo en cortocircuito:</b> si no hay una frecuencia claramente dominante, la estimación es " loading="lazy" width="1000" height="563"><figcaption><b class="n">Tema 8 · diapositiva 43</b><b>Constantes de tiempo en cortocircuito:</b> si no hay una frecuencia claramente dominante, la estimación es $f_{ci}=\sum_{k=1}^{N}f_{ck}=\dfrac1{2\pi}\sum_k\dfrac{1}{C_k\,Z_{th}(C_k)}$. Es la suma de las frecuencias de corte individuales.</figcaption></figure>
+<figure class="fig">
+<p class="ft">Simulador · amplificador en emisor común: respuesta en baja frecuencia</p>
+<div class="ctrl"><label for="ec-rg">$R_g$ <input type="range" id="ec-rg" min="0.1" max="5" step="0.1" value="1"></label><output id="ec-rg-o"></output>
+<label for="ec-rb">$R_b=R_1\parallel R_2$ <input type="range" id="ec-rb" min="1" max="50" step="1" value="10"></label><output id="ec-rb-o"></output>
+<label for="ec-hie">$h_{ie}$ <input type="range" id="ec-hie" min="0.5" max="5" step="0.1" value="2"></label><output id="ec-hie-o"></output>
+<label for="ec-hfe">$h_{fe}$ <input type="range" id="ec-hfe" min="20" max="300" step="5" value="100"></label><output id="ec-hfe-o"></output></div>
+<div class="ctrl"><label for="ec-rc">$R_C$ <input type="range" id="ec-rc" min="0.5" max="10" step="0.1" value="4.7"></label><output id="ec-rc-o"></output>
+<label for="ec-rl">$R_L$ <input type="range" id="ec-rl" min="0.5" max="20" step="0.5" value="10"></label><output id="ec-rl-o"></output>
+<label for="ec-re">$R_E$ <input type="range" id="ec-re" min="0.05" max="2" step="0.05" value="1"></label><output id="ec-re-o"></output></div>
+<div class="ctrl"><label for="ec-c1">$C_1$ <input type="range" id="ec-c1" min="1" max="47" step="1" value="10"></label><output id="ec-c1-o"></output>
+<label for="ec-c2">$C_2$ <input type="range" id="ec-c2" min="1" max="47" step="1" value="10"></label><output id="ec-c2-o"></output>
+<label for="ec-ce">$C_E$ <input type="range" id="ec-ce" min="10" max="470" step="10" value="100"></label><output id="ec-ce-o"></output></div>
+<div id="fig-ec"></div>
+<div class="readout" id="ec-txt"></div>
+<figcaption>Resistencias en kΩ, $C_1$ y $C_2$ en µF y $C_E$ en µF. Con los valores iniciales sale $A_v(fm)=-99{,}9$ (40 dB), $f_c(C_1)=5{,}97$ Hz, $f_c(C_2)=1{,}08$ Hz y $f_c(C_E)=56{,}8$ Hz. Como $56{,}8$ no está una década por encima de $5{,}97$, se usa la suma: $f_{ci}\approx63{,}9$ Hz. Sube $C_E$ y verás cómo su frecuencia de corte baja hasta dejar de dominar.</figcaption>
+</figure>
+<h3>8.6 Modelos del transistor en alta frecuencia</h3>
+<p>A frecuencias altas, el transistor deja de ser solo resistencias y fuentes: tiene <b>capacidades</b> entre sus terminales, por la propia física de las uniones. El modelo de pequeña señal y alta frecuencia más usado es el <b>modelo en $\pi$</b> (híbrido-$\pi$).</p>
+<figure class="slide"><img src="img/t8-47.jpg" alt="Tema 8 · diapositiva 47. A la izquierda, el modelo en parámetros h (baja frecuencia). A la derecha, el modelo en : una resistencia r_ e" loading="lazy" width="1000" height="563"><figcaption><b class="n">Tema 8 · diapositiva 47</b>A la izquierda, el modelo en parámetros $h$ (baja frecuencia). A la derecha, el modelo en $\pi$: una resistencia $r_\pi$ entre base y emisor, una fuente $g_mv_{be}$ entre colector y emisor y una resistencia de salida $r_o$. La relación entre ambos es $r_\pi\approx h_{ie}$ y $g_m=h_{fe}/h_{ie}$ aproximadamente.</figcaption></figure>
+<figure class="slide"><img src="img/t8-49.jpg" alt="Tema 8 · diapositiva 49. El modelo en  simplificado del bipolar: r_, la capacidad base-emisor C_ en paralelo con ella, la capacidad bas" loading="lazy" width="1000" height="563"><figcaption><b class="n">Tema 8 · diapositiva 49</b>El modelo en $\pi$ simplificado del bipolar: $r_\pi$, la capacidad base-emisor $C_\pi$ en paralelo con ella, la capacidad base-colector $C_\mu$ entre base y colector, la fuente $g_mv_{be}$ y $r_o$.</figcaption></figure>
+<div class="box key"><h4>Qué es $g_m$</h4>
+<p>La <b>transconductancia</b> $g_m=\dfrac{I_C}{V_T}$ (con $V_T\approx25$ mV a temperatura ambiente) mide cuántos amperios de colector produce cada voltio de $v_{be}$. Por ejemplo, con $I_C=1$ mA, $g_m=40$ mS. Relaciona los dos modelos: $r_\pi=\dfrac{h_{fe}}{g_m}$.</p></div>
+<h3>8.7 El teorema de Miller</h3>
+<p>El condensador $C_\mu$ (o $C_{gd}$ en un FET) conecta la <b>entrada</b> con la <b>salida</b> del amplificador, y eso complica mucho el análisis: no se puede estudiar la entrada y la salida por separado. El teorema de Miller resuelve esto: sustituye una impedancia $Z$ entre dos nudos $X$ e $Y$ por <b>dos impedancias a masa</b>, una en cada nudo.</p>
+<figure class="slide"><img src="img/t8-50.jpg" alt="Tema 8 · diapositiva 50. El inconveniente del análisis en frecuencia: el condensador C_ (marcado en rojo) que une base y colector compl" loading="lazy" width="1000" height="563"><figcaption><b class="n">Tema 8 · diapositiva 50</b>El inconveniente del análisis en frecuencia: el condensador $C_\mu$ (marcado en rojo) que une base y colector complica mucho el desarrollo, porque conecta la red de entrada con la de salida.</figcaption></figure>
+<figure class="slide"><img src="img/t8-51.jpg" alt="Tema 8 · diapositiva 51. Enunciado del teorema de Miller. La impedancia Z entre X e Y con tensiones V_X y V_Y se sustituye por Z_1 en X" loading="lazy" width="1000" height="563"><figcaption><b class="n">Tema 8 · diapositiva 51</b>Enunciado del teorema de Miller. La impedancia $Z$ entre $X$ e $Y$ con tensiones $V_X$ y $V_Y$ se sustituye por $Z_1$ en $X$ y $Z_2$ en $Y$, ambas a masa. Se define la ganancia $A=V_Y/V_X$ y se impone que circule la misma corriente por $Z$ que por cada impedancia equivalente.</figcaption></figure>
+<figure class="slide"><img src="img/t8-53.jpg" alt="Tema 8 · diapositiva 53. Resultado: Z_1=Z1-A y Z_2=Z1-1/A. Si Z es un condensador C, Z=1j C, entonces C_1=C(1-A) y C_2=C(1-1A). El cond" loading="lazy" width="1000" height="563"><figcaption><b class="n">Tema 8 · diapositiva 53</b>Resultado: $Z_1=\dfrac{Z}{1-A}$ y $Z_2=\dfrac{Z}{1-1/A}$. Si $Z$ es un condensador $C$, $Z=\dfrac1{j\omega C}$, entonces $C_1=C(1-A)$ y $C_2=C\left(1-\dfrac1A\right)$. El condensador de entrada se «multiplica» por $(1-A)$, que es un número grande porque $A$ es la ganancia del amplificador (negativa y de módulo alto).</figcaption></figure>
+<figure class="slide"><img src="img/t8-54.jpg" alt="Tema 8 · diapositiva 54. Aplicación: primero se sustituye el transistor por su modelo equivalente en alta frecuencia. Aquí, un FET con " loading="lazy" width="1000" height="563"><figcaption><b class="n">Tema 8 · diapositiva 54</b>Aplicación: primero se sustituye el transistor por su modelo equivalente en alta frecuencia. Aquí, un FET con $C_{gs}$ y $C_{gd}$, la fuente $g_mV_{gs}$, $r_o$ y la carga $R_L$. $R_L'=r_o\parallel R_L$ es la resistencia de carga efectiva.</figcaption></figure>
+<figure class="slide"><img src="img/t8-56.jpg" alt="Tema 8 · diapositiva 56. Se aplica Miller a C_gd: en la entrada aparece C_gd(1+g_mR_L') en paralelo con C_gs y en la salida C_gd(1+1g_m" loading="lazy" width="1000" height="563"><figcaption><b class="n">Tema 8 · diapositiva 56</b>Se aplica Miller a $C_{gd}$: en la entrada aparece $C_{gd}(1+g_mR_L')$ en paralelo con $C_{gs}$ y en la salida $C_{gd}\left(1+\dfrac1{g_mR_L'}\right)$. Con $A=-g_mR_L'$. La nota de la diapositiva: la capacidad de entrada se multiplica por un término con la transconductancia, que suele ser elevada. <b>Esta nueva capacidad suele ser la que genera la frecuencia de corte superior.</b></figcaption></figure>
+<div class="box key"><h4>El efecto Miller en una frase</h4>
+<p>Un condensador pequeño entre entrada y salida de un amplificador inversor de ganancia $-A$ se ve desde la entrada como un condensador $(1+A)$ veces mayor. Por eso un $C_\mu$ de 2 pF con ganancia $-100$ actúa como 202 pF en la entrada.</p></div>
+<h3>8.8 y 8.9 Frecuencia de corte superior</h3>
+<figure class="slide"><img src="img/t8-57.jpg" alt="Tema 8 · diapositiva 57. Método del polo dominante en alta frecuencia: se analizan los condensadores por separado y la frecuencia más &lt;" loading="lazy" width="1000" height="563"><figcaption><b class="n">Tema 8 · diapositiva 57</b>Método del polo dominante en alta frecuencia: se analizan los condensadores por separado y la frecuencia más <b>baja</b> de las candidatas, si dista una década o más de las demás, es la $f_{cs}$. Ejemplo: $\dfrac{10^8/2\pi}{10^6/2\pi}=100>10$, así que $f_{cs}=\dfrac{10^6}{2\pi}=159{,}15$ kHz.</figcaption></figure>
+<figure class="slide"><img src="img/t8-59.jpg" alt="Tema 8 · diapositiva 59. <b>Constantes de tiempo en circuito abierto:</b> si no hay un polo dominante claro, la frecuencia de corte sup" loading="lazy" width="1000" height="563"><figcaption><b class="n">Tema 8 · diapositiva 59</b><b>Constantes de tiempo en circuito abierto:</b> si no hay un polo dominante claro, la frecuencia de corte superior se estima con $f_{cs}=\dfrac1{2\pi\sum_{k}C_kZ_{th}(C_k)}=\dfrac1{2\pi\sum\tau_k}$, donde cada $Z_{th}(C_k)$ se calcula con los demás condensadores abiertos. Atención: en alta frecuencia se suman <b>tiempos</b>, mientras que en baja se sumaban <b>frecuencias</b>.</figcaption></figure>
+<figure class="slide"><img src="img/t8-60.jpg" alt="Tema 8 · diapositiva 60. Ejemplo de aplicación: se calculan por separado el efecto de C_gs, con R_gs=R_s' visto desde sus terminales (_" loading="lazy" width="1000" height="563"><figcaption><b class="n">Tema 8 · diapositiva 60</b>Ejemplo de aplicación: se calculan por separado el efecto de $C_{gs}$, con $R_{gs}=R_s'$ visto desde sus terminales ($\tau_{gs}=R_sC_{gs}$), y el de $C_{gd}$, cuya resistencia vista incluye el efecto de la ganancia de la etapa ($\tau_{gd}$ con $g_mR_L'$). La frecuencia de corte superior es $f_{cs}=\dfrac1{2\pi(\tau_{gs}+\tau_{gd})}$.</figcaption></figure>
+<figure class="slide"><img src="img/t8-61.jpg" alt="Tema 8 · diapositiva 61. Visión conjunta: baja frecuencia (condensadores de acoplo y desacoplo), frecuencias medias (zona plana de gana" loading="lazy" width="1000" height="563"><figcaption><b class="n">Tema 8 · diapositiva 61</b>Visión conjunta: baja frecuencia (condensadores de acoplo y desacoplo), frecuencias medias (zona plana de ganancia $A(fm)$) y alta frecuencia (capacidades del transistor y parásitas). En el modelo de polo dominante, $\omega_L=\sum\dfrac{1}{\tau_k}$ en baja y $\omega_H=\dfrac1{\sum\tau_k}$ en alta, con $\tau_k=C_kZ_{th}(C_k)$.</figcaption></figure>
+<h3>8.10 Producto ganancia por ancho de banda</h3>
+<figure class="slide"><img src="img/t8-62.jpg" alt="Tema 8 · diapositiva 62. |A_(f\,medias)| AnchoBanda=|A(fm)|(f_cs-f_ci)|A(fm)| f_cs, porque f_cs f_ci. El producto depende de las resist" loading="lazy" width="1000" height="563"><figcaption><b class="n">Tema 8 · diapositiva 62</b>$|A_{(f\,medias)}|\cdot AnchoBanda=|A(fm)|\cdot(f_{cs}-f_{ci})\approx|A(fm)|\cdot f_{cs}$, porque $f_{cs}\gg f_{ci}$. El producto depende de las resistencias de carga y generador y es constante: <b>no se puede reducir la ganancia para aumentar el ancho de banda</b>, porque ambos dependen de las mismas resistencias.</figcaption></figure>
+<div class="box trap"><h4>Cuidado con tres confusiones habituales</h4>
+<ul>
+<li>En <b>baja</b> frecuencia manda el condensador con la <b>mayor</b> $f_c$; en <b>alta</b> frecuencia manda el condensador con la <b>menor</b> $f_c$.</li>
+<li>En baja se suman <b>frecuencias de corte</b> ($f_{ci}=\sum f_{ck}$) y en alta se suman <b>constantes de tiempo</b> ($\tau_s=\sum\tau_k$).</li>
+<li>Para $Z_{th}(C_k)$ siempre se apagan las fuentes independientes pero <b>no</b> las dependientes. Si hay una fuente controlada, hay que reflejarla o resolver con una fuente de prueba.</li>
+</ul></div>
+<details class="vids"><summary><span class="pn">▶</span>Vídeos para reforzar este tema</summary><div class="inner"><ul class="vlist"><li data-yt="duMFqK1eKkk"><a href="https://www.youtube.com/watch?v=duMFqK1eKkk" target="_blank" rel="noopener">Clase 9 EEB: Transistor BJT, respuesta en alta y baja frecuencia</a><span class="vnote"> Respuesta en frecuencia del BJT.</span></li><li data-yt="wbWxF4jSzxE"><a href="https://www.youtube.com/watch?v=wbWxF4jSzxE" target="_blank" rel="noopener">Efecto Miller Y Diagrama BoDe</a><span class="vnote"> El efecto Miller y su Bode.</span></li></ul><p class="muted" style="font-size:13px;margin:8px 0 0">Los he elegido por su título y su tema, sin haberlos visto: comprueba que el enfoque coincide con el de tu profesor. Se abren en YouTube.</p></div></details>
+</section>
+
+</main>
+</div>
+<nav class="pager" aria-label="Páginas"><a href="tema-7.html"><small>← Anterior</small>T7 Cuadripolos</a><a class="nx" href="realimentacion.html"><small>Siguiente →</small>Realimentación y osciladores</a></nav>
+<script src="app.js?v=1"></script>
+<script>
+/* ---------- U8: emisor común ---------- */
+(function(){
+  if(!$('ec-rg'))return;
+  const ids=['ec-rg','ec-rb','ec-hie','ec-hfe','ec-rc','ec-rl','ec-re','ec-c1','ec-c2','ec-ce'];
+  bind(ids,()=>{
+    const rg=val('ec-rg')*1e3,rb=val('ec-rb')*1e3,hie=val('ec-hie')*1e3,hfe=val('ec-hfe'),rc=val('ec-rc')*1e3,rl=val('ec-rl')*1e3,re=val('ec-re')*1e3;
+    const c1=val('ec-c1')*1e-6,c2=val('ec-c2')*1e-6,ce=val('ec-ce')*1e-6;
+    ['rg','rb','hie','rc','rl','re'].forEach(k=>out('ec-'+k,num(val('ec-'+k),k==='re'?2:1)+' kΩ'));out('ec-hfe',num(hfe,0));out('ec-c1',num(val('ec-c1'),0)+' µF');out('ec-c2',num(val('ec-c2'),0)+' µF');out('ec-ce',num(val('ec-ce'),0)+' µF');
+    const par=(a,b)=>a*b/(a+b);
+    const rbi=par(rb,hie),rcl=par(rc,rl);
+    const Am=-hfe*rcl/hie*rbi/(rbi+rg);
+    const z1=rg+rbi,z2=rc+rl,zE=par(re,(hie+par(rg,rb))/(1+hfe));
+    const f1=1/(2*Math.PI*c1*z1),f2=1/(2*Math.PI*c2*z2),fE=1/(2*Math.PI*ce*zE);
+    const fs=[f1,f2,fE].sort((a,b)=>b-a);const dom=fs[0]/fs[1]>=10;const fci=dom?fs[0]:f1+f2+fE;
+    const AdB=20*Math.log10(Math.abs(Am));
+    const lf=rng(-1,3,260);const y=lf.map(l=>{const f=Math.pow(10,l);return AdB+[f1,f2,fE].reduce((s,fk)=>s+10*Math.log10(f*f/(f*f+fk*fk)),0);});
+    const lo=Math.floor((AdB-60)/20)*20,hi=Math.ceil((AdB+6)/20)*20;const yt=[];for(let v=lo;v<=hi;v+=20)yt.push(v);
+    $('fig-ec').innerHTML=plotSVG({x0:-1,x1:3,y0:lo,y1:hi,xt:[-1,0,1,2,3],xtf:v=>fmt(Math.pow(10,v)),yt,label:'Respuesta en baja frecuencia',xl:'f Hz',yl:'|A_v| dB'},[
+      {t:'line',x:[-1,3],y:[AdB,AdB],c:'s3',dash:1,w:1},{t:'line',x:lf,y:y,c:'s1'},{t:'vline',x:Math.log10(fci),c:'s2'}]);
+    $('ec-txt').textContent='A_v(fm) = '+num(Am,1)+' ('+num(AdB,1)+' dB) · fc(C1) = '+num(f1,2)+' Hz · fc(C2) = '+num(f2,2)+' Hz · fc(CE) = '+num(fE,1)+' Hz · '+(dom?'polo dominante: ':'suma de frecuencias: ')+'f_ci ≈ '+num(fci,1)+' Hz';
+  });
+})();
+
+
+</script>
+</body>
+</html>

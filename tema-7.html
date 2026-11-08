@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="description" content="Electrónica Analógica (UPCT): Parámetros z, y, h y g.">
+<title>Electrónica Analógica · T7 Cuadripolos</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=IBM+Plex+Sans:ital,wght@0,400;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<script>
+window.MathJax = { tex: { inlineMath: [['$','$']], displayMath: [['$$','$$']] }, svg: { fontCache: 'global' } };
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-svg.js"></script>
+<link rel="manifest" href="manifest.webmanifest"><meta name="theme-color" content="#1d5fb8">
+<link rel="icon" type="image/png" sizes="192x192" href="icon-192.png"><link rel="apple-touch-icon" href="apple-touch-icon.png">
+<meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="Analógica">
+<link rel="stylesheet" href="style.css?v=1"></head><body data-page="tema-7">
+
+<div class="hub-bar" style="max-width:1180px;margin:0 auto;padding:10px 16px 0"><a href="https://helionacon-ui.github.io/GIEIA-UPCT/" style="display:inline-flex;align-items:center;gap:6px;font:600 13.5px/1 system-ui,sans-serif;padding:8px 12px;border-radius:999px;border:1px solid var(--line,#d3dcdf);background:var(--surface,var(--card,#fff));color:var(--fg,#18232b);text-decoration:none">← Todas las guías GIEyA</a></div>
+<header class="phead"><div class="eyebrow">UPCT · GIEyA · Electrónica Analógica · Parcial 2</div><h1>T7 Cuadripolos</h1><p class="lede">Parámetros z, y, h y g</p></header>
+
+<a href="#top" class="totop" id="totop" aria-label="Volver arriba">↑</a>
+<div class="wrap" id="top">
+<nav class="toc" aria-label="Índice">
+<a href="index.html" style="--tc:var(--c0)">Portada</a>
+<div class="grp">Empezar</div>
+<a href="empezar.html" style="--tc:var(--c0)">Cómo es el examen</a>
+<div class="grp">Parcial 1</div>
+<a href="tema-1-2.html" style="--tc:var(--c1)">T1–2 Amplificadores y AO ideal</a>
+<a href="tema-3.html" style="--tc:var(--c3)">T3 Aplicaciones lineales</a>
+<a href="tema-4.html" style="--tc:var(--c4)">T4 Aplicaciones no lineales</a>
+<a href="tema-5.html" style="--tc:var(--c5)">T5 AO real</a>
+<a href="tema-6.html" style="--tc:var(--c6)">T6 Bode y filtros</a>
+<div class="grp">Parcial 2</div>
+<a href="tema-7.html" aria-current="page" class="cur" style="--tc:var(--c7)">T7 Cuadripolos</a>
+<a href="tema-8.html" style="--tc:var(--c8)">T8 Transistores en frecuencia</a>
+<a href="realimentacion.html" style="--tc:var(--c1)">Realimentación y osciladores</a>
+<a href="potencia.html" style="--tc:var(--c3)">Amplificadores de potencia</a>
+<div class="grp">Practicar</div>
+<a href="examen-2025-26.html" style="--tc:var(--c3)">P1 curso 25-26 resuelto</a>
+<a href="examenes.html" style="--tc:var(--c8)">Exámenes resueltos</a>
+<a href="fuen.html" style="--tc:var(--c0)">Apuntes de Fuen</a>
+<a href="problemas.html" style="--tc:var(--c8)">Problemas resueltos</a>
+<a href="calculadoras.html" style="--tc:var(--c8)">Calculadoras de bolsillo</a>
+<a href="autoevaluacion.html" style="--tc:var(--c8)">Autoevaluación</a>
+<div class="grp">Repasar</div>
+<a href="formulario.html" style="--tc:var(--c0)">Formulario</a>
+<a href="glosario.html" style="--tc:var(--c0)">Glosario</a>
+<a href="plan.html" style="--tc:var(--c0)">Plan de estudio</a>
+<div class="grp">Todo en uno</div>
+<a href="guia-completa.html" style="--tc:var(--c0)">Guía completa</a>
+</nav>
+
+<main>
+<div class="srch-card" id="srch-card"><label for="srch" class="srch-lab">Buscar en la guía</label>
+<input type="search" id="srch" placeholder="Por ejemplo: slew rate, Schmitt, Miller, CMRR…" autocomplete="off" spellcheck="false">
+<div id="srch-out" class="srch-out" hidden></div></div>
+
+
+
+<section class="sec tema" style="--tc:var(--c7);--tcs:var(--c7s)">
+<div class="sh"><span class="badge" aria-hidden="true">U7</span><div class="shx"><p class="kick">Tema 7 · Diapositivas «Cuadripolos»</p><h2 id="u7">Cuadripolos: parámetros z, y, h y g</h2><div class="tags"><span class="tag">Parcial 2</span></div></div></div>
+<div class="zero">
+<p class="ft">Desde cero</p>
+<p>Un <b>cuadripolo</b> es cualquier circuito con dos puertos: dos terminales de entrada ($v_1$, $i_1$) y dos de salida ($v_2$, $i_2$). Lo que hay dentro no importa. Lo que importa es la relación entre las cuatro variables, y como son lineales, dos de ellas se pueden expresar en función de las otras dos mediante <b>cuatro parámetros</b>. Según qué dos variables elijas como «datos», salen cuatro familias: $z$, $y$, $h$ y $g$. Los transistores bipolares se modelan casi siempre con parámetros <b>$h$</b>, y por eso son los más importantes.</p>
+</div>
+<p>El truco para calcular cualquier parámetro es siempre el mismo: <b>anula una variable</b> (cortocircuito para una tensión, circuito abierto para una corriente) y divide.</p>
+<div class="tw"><table>
+<tr><th>Familia</th><th>Ecuaciones</th><th>Cómo se obtiene cada parámetro</th></tr>
+<tr><td>$z$ (impedancias)</td><td>$v_1=z_{11}i_1+z_{12}i_2$<br>$v_2=z_{21}i_1+z_{22}i_2$</td><td>Circuito abierto: $z_{11}=\dfrac{v_1}{i_1}\Big|_{i_2=0}$, $z_{21}=\dfrac{v_2}{i_1}\Big|_{i_2=0}$, $z_{12}=\dfrac{v_1}{i_2}\Big|_{i_1=0}$, $z_{22}=\dfrac{v_2}{i_2}\Big|_{i_1=0}$. Todos en Ω.</td></tr>
+<tr><td>$y$ (admitancias)</td><td>$i_1=y_{11}v_1+y_{12}v_2$<br>$i_2=y_{21}v_1+y_{22}v_2$</td><td>Cortocircuito: $y_{11}=\dfrac{i_1}{v_1}\Big|_{v_2=0}$, $y_{21}=\dfrac{i_2}{v_1}\Big|_{v_2=0}$, $y_{12}=\dfrac{i_1}{v_2}\Big|_{v_1=0}$, $y_{22}=\dfrac{i_2}{v_2}\Big|_{v_1=0}$. Todos en siemens.</td></tr>
+<tr><td>$h$ (híbridos)</td><td>$v_1=h_{11}i_1+h_{12}v_2$<br>$i_2=h_{21}i_1+h_{22}v_2$</td><td>$h_{11}=\dfrac{v_1}{i_1}\Big|_{v_2=0}$ (Ω), $h_{21}=\dfrac{i_2}{i_1}\Big|_{v_2=0}$ (adimensional), $h_{12}=\dfrac{v_1}{v_2}\Big|_{i_1=0}$ (adimensional), $h_{22}=\dfrac{i_2}{v_2}\Big|_{i_1=0}$ (S).</td></tr>
+<tr><td>$g$ (híbridos inversos)</td><td>$i_1=g_{11}v_1+g_{12}i_2$<br>$v_2=g_{21}v_1+g_{22}i_2$</td><td>$g_{11}=\dfrac{i_1}{v_1}\Big|_{i_2=0}$ (S), $g_{21}=\dfrac{v_2}{v_1}\Big|_{i_2=0}$, $g_{12}=\dfrac{i_1}{i_2}\Big|_{v_1=0}$, $g_{22}=\dfrac{v_2}{i_2}\Big|_{v_1=0}$ (Ω).</td></tr>
+</table></div>
+<h3>Cada familia, con las diapositivas</h3>
+<h4>Parámetros $z$: se miden con puertos en abierto</h4>
+<figure class="slide"><img src="img/t7-05.jpg" alt="Tema 7 · diapositiva 5. Un cuadripolo z se dibuja con una resistencia z_11 a la entrada, otra z_22 a la salida y dos fuentes de tensió" loading="lazy" width="1000" height="563"><figcaption><b class="n">Tema 7 · diapositiva 5</b>Un cuadripolo $z$ se dibuja con una resistencia $z_{11}$ a la entrada, otra $z_{22}$ a la salida y dos fuentes de tensión controladas por corriente: $z_{12}i_2$ en la entrada y $z_{21}i_1$ en la salida.</figcaption></figure>
+<figure class="slide"><img src="img/t7-06.jpg" alt="Tema 7 · diapositiva 6. Situación 1, i_2=0 (salida en circuito abierto, se aplica una fuente a la entrada): en las ecuaciones desapare" loading="lazy" width="1000" height="563"><figcaption><b class="n">Tema 7 · diapositiva 6</b>Situación 1, $i_2=0$ (salida en circuito abierto, se aplica una fuente a la entrada): en las ecuaciones desaparece el término con $i_2$, y se obtienen $z_{11}=v_1/i_1$ y $z_{21}=v_2/i_1$.</figcaption></figure>
+<figure class="slide"><img src="img/t7-07.jpg" alt="Tema 7 · diapositiva 7. Situación 2, i_1=0 (entrada en circuito abierto, se aplica una fuente a la salida): z_12=v_1/i_2 y z_22=v_2/i_" loading="lazy" width="1000" height="563"><figcaption><b class="n">Tema 7 · diapositiva 7</b>Situación 2, $i_1=0$ (entrada en circuito abierto, se aplica una fuente a la salida): $z_{12}=v_1/i_2$ y $z_{22}=v_2/i_2$. Los cuatro tienen dimensiones de impedancia.</figcaption></figure>
+<h4>Parámetros $y$: se miden con puertos en cortocircuito</h4>
+<figure class="slide"><img src="img/t7-08.jpg" alt="Tema 7 · diapositiva 8. El circuito equivalente y: dos admitancias y_11 e y_22 en paralelo con las fuentes de corriente controladas po" loading="lazy" width="1000" height="563"><figcaption><b class="n">Tema 7 · diapositiva 8</b>El circuito equivalente $y$: dos admitancias $y_{11}$ e $y_{22}$ en paralelo con las fuentes de corriente controladas por tensión $y_{12}v_2$ e $y_{21}v_1$.</figcaption></figure>
+<figure class="slide"><img src="img/t7-09.jpg" alt="Tema 7 · diapositiva 9. Situación 1, v_2=0 (salida en cortocircuito): y_11=i_1/v_1 e y_21=i_2/v_1. Dimensiones de admitancia (siemens)" loading="lazy" width="1000" height="563"><figcaption><b class="n">Tema 7 · diapositiva 9</b>Situación 1, $v_2=0$ (salida en cortocircuito): $y_{11}=i_1/v_1$ e $y_{21}=i_2/v_1$. Dimensiones de admitancia (siemens).</figcaption></figure>
+<h4>Parámetros $h$: los del transistor bipolar</h4>
+<figure class="slide"><img src="img/t7-11.jpg" alt="Tema 7 · diapositiva 11. El modelo h mezcla una impedancia, una fuente de tensión y una de corriente: h_11 en serie con h_12v_2 a la en" loading="lazy" width="1000" height="563"><figcaption><b class="n">Tema 7 · diapositiva 11</b>El modelo $h$ mezcla una impedancia, una fuente de tensión y una de corriente: $h_{11}$ en serie con $h_{12}v_2$ a la entrada, y $h_{21}i_1$ en paralelo con $h_{22}$ a la salida.</figcaption></figure>
+<figure class="slide"><img src="img/t7-12.jpg" alt="Tema 7 · diapositiva 12. Situación 1, v_2=0: h_11=h_i=h_input=v_1/i_1 (impedancia de entrada con salida en cortocircuito, en Ω) y h_21=" loading="lazy" width="1000" height="563"><figcaption><b class="n">Tema 7 · diapositiva 12</b>Situación 1, $v_2=0$: $h_{11}=h_i=h_{input}=v_1/i_1$ (impedancia de entrada con salida en cortocircuito, en Ω) y $h_{21}=h_f=h_{forward}=i_2/i_1$ (ganancia de corriente, adimensional).</figcaption></figure>
+<figure class="slide"><img src="img/t7-13.jpg" alt="Tema 7 · diapositiva 13. Situación 2, i_1=0: h_12=h_r=h_reverse=v_1/v_2 (ganancia inversa de tensión, adimensional) y h_22=h_o=h_output" loading="lazy" width="1000" height="563"><figcaption><b class="n">Tema 7 · diapositiva 13</b>Situación 2, $i_1=0$: $h_{12}=h_r=h_{reverse}=v_1/v_2$ (ganancia inversa de tensión, adimensional) y $h_{22}=h_o=h_{output}=i_2/v_2$ (admitancia de salida, en S).</figcaption></figure>
+<h4>Parámetros $g$</h4>
+<figure class="slide"><img src="img/t7-14.jpg" alt="Tema 7 · diapositiva 14. Los parámetros g son los inversos de los h: i_1=g_11v_1+g_12i_2 y v_2=g_21v_1+g_22i_2." loading="lazy" width="1000" height="563"><figcaption><b class="n">Tema 7 · diapositiva 14</b>Los parámetros $g$ son los inversos de los $h$: $i_1=g_{11}v_1+g_{12}i_2$ y $v_2=g_{21}v_1+g_{22}i_2$.</figcaption></figure>
+<figure class="slide"><img src="img/t7-15.jpg" alt="Tema 7 · diapositiva 15. Situación i_2=0 (salida abierta): g_11=i_1/v_1 en siemens y g_21=v_2/v_1, ganancia de tensión adimensional." loading="lazy" width="1000" height="563"><figcaption><b class="n">Tema 7 · diapositiva 15</b>Situación $i_2=0$ (salida abierta): $g_{11}=i_1/v_1$ en siemens y $g_{21}=v_2/v_1$, ganancia de tensión adimensional.</figcaption></figure>
+<figure class="slide"><img src="img/t7-16.jpg" alt="Tema 7 · diapositiva 16. Situación v_1=0: g_12=i_1/i_2, ganancia de corriente, y g_22=v_2/i_2, impedancia en ohmios." loading="lazy" width="1000" height="563"><figcaption><b class="n">Tema 7 · diapositiva 16</b>Situación $v_1=0$: $g_{12}=i_1/i_2$, ganancia de corriente, y $g_{22}=v_2/i_2$, impedancia en ohmios.</figcaption></figure>
+<h3>Amplificador con parámetros $h$</h3>
+<p>Si el cuadripolo $h$ (un transistor) se conecta a un generador con $R_g$ y a una carga $R_L$, con $i_2$ entrando al cuadripolo y $v_2=-R_Li_2$, se llega a las fórmulas de un amplificador. Con $\Delta h=h_{11}h_{22}-h_{12}h_{21}$:</p>
+<div class="tw"><table>
+<tr><th>Magnitud</th><th>Fórmula</th></tr>
+<tr><td>Ganancia de corriente</td><td>$A_i=\dfrac{-h_{21}}{1+h_{22}R_L}$</td></tr>
+<tr><td>Impedancia de entrada</td><td>$Z_{in}=h_{11}-\dfrac{h_{12}h_{21}R_L}{1+h_{22}R_L}$</td></tr>
+<tr><td>Ganancia de tensión</td><td>$A_v=\dfrac{-h_{21}R_L}{h_{11}+\Delta h\,R_L}$</td></tr>
+<tr><td>Impedancia de salida (con el generador)</td><td>$Z_{out}=\dfrac{1}{h_{22}-\dfrac{h_{12}h_{21}}{h_{11}+R_g}}$</td></tr>
+</table></div>
+<p>En un transistor en emisor común $h_{11}=h_{ie}$, $h_{12}=h_{re}$, $h_{21}=h_{fe}$, $h_{22}=h_{oe}$. Como $h_{re}$ y $h_{oe}$ son muy pequeños, a menudo se simplifica con $h_{re}\approx0$ y $h_{oe}\approx0$: $A_i\approx-h_{fe}$ y $A_v\approx-\dfrac{h_{fe}R_L}{h_{ie}}$.</p>
+<figure class="fig">
+<p class="ft">Calculadora · amplificador con parámetros $h$</p>
+<div class="ctrl"><label for="hp-h11">$h_{11}$ <input type="range" id="hp-h11" min="0.3" max="6" step="0.1" value="1.1"></label><output id="hp-h11-o"></output>
+<label for="hp-h12">$h_{12}$ <input type="range" id="hp-h12" min="0" max="10" step="0.5" value="2.5"></label><output id="hp-h12-o"></output></div>
+<div class="ctrl"><label for="hp-h21">$h_{21}$ <input type="range" id="hp-h21" min="10" max="400" step="5" value="50"></label><output id="hp-h21-o"></output>
+<label for="hp-h22">$h_{22}$ <input type="range" id="hp-h22" min="0" max="100" step="1" value="25"></label><output id="hp-h22-o"></output></div>
+<div class="ctrl"><label for="hp-rg">$R_g$ <input type="range" id="hp-rg" min="0.1" max="10" step="0.1" value="1"></label><output id="hp-rg-o"></output>
+<label for="hp-rl">$R_L$ <input type="range" id="hp-rl" min="0.1" max="20" step="0.1" value="1"></label><output id="hp-rl-o"></output></div>
+<div class="readout" id="hp-txt"></div>
+<figcaption>$h_{11}$ en kΩ, $h_{12}$ en $10^{-4}$, $h_{22}$ en µS. $R_g$ y $R_L$ en kΩ. Con los valores iniciales sale $A_i=-48{,}8$, $Z_{in}=1{,}088$ kΩ y $A_v=-44{,}8$. Comprueba que $h_{12}$ y $h_{22}$ casi no cambian nada: por eso se desprecian.</figcaption>
+</figure>
+</section>
+
+</main>
+</div>
+<nav class="pager" aria-label="Páginas"><a href="tema-6.html"><small>← Anterior</small>T6 Bode y filtros</a><a class="nx" href="tema-8.html"><small>Siguiente →</small>T8 Transistores en frecuencia</a></nav>
+<script src="app.js?v=1"></script>
+<script>
+/* ---------- U7: parámetros h ---------- */
+(function(){
+  if(!$('hp-h11'))return;
+  bind(['hp-h11','hp-h12','hp-h21','hp-h22','hp-rg','hp-rl'],()=>{
+    const h11=val('hp-h11')*1e3,h12=val('hp-h12')*1e-4,h21=val('hp-h21'),h22=val('hp-h22')*1e-6,rg=val('hp-rg')*1e3,rl=val('hp-rl')*1e3;
+    out('hp-h11',num(val('hp-h11'),1)+' kΩ');out('hp-h12',num(val('hp-h12'),1)+'·10⁻⁴');out('hp-h21',num(h21,0));out('hp-h22',num(val('hp-h22'),0)+' µS');out('hp-rg',num(val('hp-rg'),1)+' kΩ');out('hp-rl',num(val('hp-rl'),1)+' kΩ');
+    const D=h11*h22-h12*h21;
+    const Ai=-h21/(1+h22*rl),Zin=h11-h12*h21*rl/(1+h22*rl),Av=-h21*rl/(h11+D*rl),Zo=1/(h22-h12*h21/(h11+rg)),Avs=Av*Zin/(Zin+rg);
+    $('hp-txt').innerHTML='A_i = '+num(Ai,1)+' · Z_in = '+num(Zin/1e3,3)+' kΩ · A_v = '+num(Av,1)+' ('+num(20*Math.log10(Math.abs(Av)),1)+' dB) · Z_out = '+num(Zo/1e3,1)+' kΩ · A_vs = '+num(Avs,1)+'<br>Aproximación con h₁₂=h₂₂=0: A_i = '+num(-h21,1)+' · A_v = '+num(-h21*rl/h11,1);
+  });
+})();
+
+
+</script>
+</body>
+</html>

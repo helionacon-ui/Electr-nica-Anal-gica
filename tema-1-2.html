@@ -1,0 +1,220 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="description" content="Electrónica Analógica (UPCT): Modelo de amplificador, impedancias y el operacional ideal.">
+<title>Electrónica Analógica · T1–2 Amplificadores y AO ideal</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=IBM+Plex+Sans:ital,wght@0,400;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<script>
+window.MathJax = { tex: { inlineMath: [['$','$']], displayMath: [['$$','$$']] }, svg: { fontCache: 'global' } };
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-svg.js"></script>
+<link rel="manifest" href="manifest.webmanifest"><meta name="theme-color" content="#1d5fb8">
+<link rel="icon" type="image/png" sizes="192x192" href="icon-192.png"><link rel="apple-touch-icon" href="apple-touch-icon.png">
+<meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="Analógica">
+<link rel="stylesheet" href="style.css?v=1"></head><body data-page="tema-1-2">
+
+<div class="hub-bar" style="max-width:1180px;margin:0 auto;padding:10px 16px 0"><a href="https://helionacon-ui.github.io/GIEIA-UPCT/" style="display:inline-flex;align-items:center;gap:6px;font:600 13.5px/1 system-ui,sans-serif;padding:8px 12px;border-radius:999px;border:1px solid var(--line,#d3dcdf);background:var(--surface,var(--card,#fff));color:var(--fg,#18232b);text-decoration:none">← Todas las guías GIEyA</a></div>
+<header class="phead"><div class="eyebrow">UPCT · GIEyA · Electrónica Analógica · Parcial 1</div><h1>T1–2 Amplificadores y AO ideal</h1><p class="lede">Modelo de amplificador, impedancias y el operacional ideal</p></header>
+
+<a href="#top" class="totop" id="totop" aria-label="Volver arriba">↑</a>
+<div class="wrap" id="top">
+<nav class="toc" aria-label="Índice">
+<a href="index.html" style="--tc:var(--c0)">Portada</a>
+<div class="grp">Empezar</div>
+<a href="empezar.html" style="--tc:var(--c0)">Cómo es el examen</a>
+<div class="grp">Parcial 1</div>
+<a href="tema-1-2.html" aria-current="page" class="cur" style="--tc:var(--c1)">T1–2 Amplificadores y AO ideal</a>
+<a class="sub" href="#u1" style="--tc:var(--c1)">U1 Amplificadores</a>
+<a class="sub" href="#u2" style="--tc:var(--c2)">U2 AO ideal</a>
+<a href="tema-3.html" style="--tc:var(--c3)">T3 Aplicaciones lineales</a>
+<a href="tema-4.html" style="--tc:var(--c4)">T4 Aplicaciones no lineales</a>
+<a href="tema-5.html" style="--tc:var(--c5)">T5 AO real</a>
+<a href="tema-6.html" style="--tc:var(--c6)">T6 Bode y filtros</a>
+<div class="grp">Parcial 2</div>
+<a href="tema-7.html" style="--tc:var(--c7)">T7 Cuadripolos</a>
+<a href="tema-8.html" style="--tc:var(--c8)">T8 Transistores en frecuencia</a>
+<a href="realimentacion.html" style="--tc:var(--c1)">Realimentación y osciladores</a>
+<a href="potencia.html" style="--tc:var(--c3)">Amplificadores de potencia</a>
+<div class="grp">Practicar</div>
+<a href="examen-2025-26.html" style="--tc:var(--c3)">P1 curso 25-26 resuelto</a>
+<a href="examenes.html" style="--tc:var(--c8)">Exámenes resueltos</a>
+<a href="fuen.html" style="--tc:var(--c0)">Apuntes de Fuen</a>
+<a href="problemas.html" style="--tc:var(--c8)">Problemas resueltos</a>
+<a href="calculadoras.html" style="--tc:var(--c8)">Calculadoras de bolsillo</a>
+<a href="autoevaluacion.html" style="--tc:var(--c8)">Autoevaluación</a>
+<div class="grp">Repasar</div>
+<a href="formulario.html" style="--tc:var(--c0)">Formulario</a>
+<a href="glosario.html" style="--tc:var(--c0)">Glosario</a>
+<a href="plan.html" style="--tc:var(--c0)">Plan de estudio</a>
+<div class="grp">Todo en uno</div>
+<a href="guia-completa.html" style="--tc:var(--c0)">Guía completa</a>
+</nav>
+
+<main>
+<div class="srch-card" id="srch-card"><label for="srch" class="srch-lab">Buscar en la guía</label>
+<input type="search" id="srch" placeholder="Por ejemplo: slew rate, Schmitt, Miller, CMRR…" autocomplete="off" spellcheck="false">
+<div id="srch-out" class="srch-out" hidden></div></div>
+
+<nav class="onthispage" aria-label="En esta página" style="--tc:var(--c1);--tcs:var(--c1s)"><span>En esta página</span><a href="#u1">U1 Amplificadores</a><a href="#u2">U2 AO ideal</a></nav>
+
+<section class="sec tema" style="--tc:var(--c1);--tcs:var(--c1s)">
+<div class="sh"><span class="badge" aria-hidden="true">U1</span><div class="shx"><p class="kick">Tema 1 · Diapositivas «Introducción a los amplificadores»</p><h2 id="u1">Amplificadores y sus parámetros</h2><div class="tags"><span class="tag">Base de todo</span><span class="tag">Parcial 1</span></div></div></div>
+<div class="zero">
+<p class="ft">Desde cero</p>
+<p>Un amplificador es una caja con una entrada y una salida. Lo que le importa a quien lo usa son tres números: <b>cuánto multiplica</b> la señal (ganancia), <b>cuánta carga le supone</b> a la fuente que lo alimenta (impedancia de entrada) y <b>cuánto se hunde su salida</b> cuando le conectas una carga (impedancia de salida). Si la fuente tiene resistencia interna y la carga es finita, parte de la señal se pierde en dos divisores de tensión, uno a la entrada y otro a la salida.</p>
+</div>
+<h3>Cómo se modela cualquier amplificador</h3>
+<p>Desde fuera, un amplificador se describe con <b>tres números</b>: ganancia, impedancia de entrada e impedancia de salida. Lo que hay dentro (transistores, resistencias) da igual. Se dibuja siempre igual: a la izquierda una resistencia $Z_{in}$ que representa lo que «consume» de la fuente, y a la derecha una fuente controlada $A\cdot v_e$ en serie con $Z_o$ (equivalente de Thévenin, para señales de tensión) o en paralelo (Norton, para señales de corriente).</p>
+<figure class="slide"><img src="img/t1-08.jpg" alt="Tema 1 · diapositiva 8. Izquierda: modelo de Thévenin, con Z_in a la entrada y la fuente A u_e en serie con Z_o a la salida. Derecha: " loading="lazy" width="1000" height="563"><figcaption><b class="n">Tema 1 · diapositiva 8</b>Izquierda: modelo de Thévenin, con $Z_{in}$ a la entrada y la fuente $A\cdot u_e$ en serie con $Z_o$ a la salida. Derecha: modelo de Norton, con la fuente de corriente $A\cdot I_e$ en paralelo con $Z_o$. Usa Thévenin cuando la señal es una tensión y Norton cuando es una corriente.</figcaption></figure>
+<h3>Los cuatro tipos de amplificador</h3>
+<p>Según qué magnitud entra y cuál sale hay cuatro modelos. Para señales de tensión se usa la representación de Thévenin y para señales de corriente, la de Norton.</p>
+<div class="tw"><table>
+<tr><th>Tipo</th><th>Entrada → salida</th><th>Ganancia</th><th>$Z_{in}$ ideal</th><th>$Z_{out}$ ideal</th></tr>
+<tr><td>Tensión</td><td>tensión → tensión</td><td>$A_v=\dfrac{v_o}{v_i}$</td><td>$\infty$</td><td>0</td></tr>
+<tr><td>Corriente</td><td>corriente → corriente</td><td>$A_i=\dfrac{i_o}{i_i}$</td><td>0</td><td>$\infty$</td></tr>
+<tr><td>Transimpedancia</td><td>corriente → tensión</td><td>$R_m=\dfrac{v_o}{i_i}$ (Ω)</td><td>0</td><td>0</td></tr>
+<tr><td>Transadmitancia</td><td>tensión → corriente</td><td>$G_m=\dfrac{i_o}{v_i}$ (S)</td><td>$\infty$</td><td>$\infty$</td></tr>
+</table></div>
+<div class="box key">
+<p><b>Ganancia real con fuente y carga (amplificador de tensión).</b> Con $A_{v0}$ la ganancia en vacío:</p>
+$$\frac{v_o}{v_s}=\underbrace{\frac{Z_{in}}{R_s+Z_{in}}}_{\text{divisor de entrada}}\cdot A_{v0}\cdot\underbrace{\frac{R_L}{Z_{out}+R_L}}_{\text{divisor de salida}}$$
+<p>Para que casi nada se pierda necesitas $Z_{in}\gg R_s$ y $Z_{out}\ll R_L$. Por eso el amplificador de tensión ideal tiene $Z_{in}=\infty$ y $Z_{out}=0$.</p>
+</div>
+<figure class="fig">
+<p class="ft">Simulador · cuánta señal se pierde en los divisores</p>
+<div class="ctrl"><label for="ld-a">$A_{v0}$ <input type="range" id="ld-a" min="1" max="200" step="1" value="100"></label><output id="ld-a-o"></output></div>
+<div class="ctrl"><label for="ld-rs">$R_s$ <input type="range" id="ld-rs" min="0" max="20" step="0.5" value="1"></label><output id="ld-rs-o"></output>
+<label for="ld-zi">$Z_{in}$ <input type="range" id="ld-zi" min="0.5" max="100" step="0.5" value="9"></label><output id="ld-zi-o"></output></div>
+<div class="ctrl"><label for="ld-zo">$Z_{out}$ <input type="range" id="ld-zo" min="0" max="10" step="0.1" value="1"></label><output id="ld-zo-o"></output>
+<label for="ld-rl">$R_L$ <input type="range" id="ld-rl" min="0.1" max="50" step="0.1" value="3"></label><output id="ld-rl-o"></output></div>
+<div id="fig-ld"></div>
+<div class="readout" id="ld-txt"></div>
+<figcaption>Resistencias en kΩ. Con los valores iniciales sale $100\cdot0{,}9\cdot0{,}75=67{,}5$, es decir, 36,6 dB en vez de los 40 dB de la ganancia en vacío. Sube $Z_{in}$ y baja $R_s$ para recuperar el divisor de entrada, y baja $Z_{out}$ o sube $R_L$ para recuperar el de salida.</figcaption>
+</figure>
+<h3>Cómo se calcula una impedancia de entrada y una de salida, paso a paso</h3>
+<p>La impedancia de entrada mide cuánta corriente toma el circuito de la fuente: $Z_{in}=\dfrac{u_e}{i_e}$. La de salida es la <b>impedancia de Thévenin</b> vista desde los terminales de la carga. Se calcula así:</p>
+<ol class="steps">
+<li>Dibuja el circuito y marca los dos terminales de salida donde se conecta la carga. Quita la carga.</li>
+<li>Apaga las fuentes independientes (tensión a cortocircuito, corriente a circuito abierto). Las fuentes controladas no se apagan.</li>
+<li>Simplifica las resistencias que quedan, mirando desde los terminales hacia dentro.</li>
+</ol>
+<figure class="slide"><img src="img/t1-12.jpg" alt="Tema 1 · diapositiva 12. El circuito de arriba es una fuente V_g con resistencia R_g en serie, dos resistencias R_1 y R_L y la salida m" loading="lazy" width="1000" height="563"><figcaption><b class="n">Tema 1 · diapositiva 12</b>El circuito de arriba es una fuente $V_g$ con resistencia $R_g$ en serie, dos resistencias $R_1$ y $R_L$ y la salida marcada en $R_L$. Debajo, el equivalente con la fuente apagada.</figcaption></figure>
+<figure class="slide"><img src="img/t1-13.jpg" alt="Tema 1 · diapositiva 13. Con la fuente V_g apagada, R_g queda en paralelo con R_1. El resultado es Z_th=R_g R_1. Las dos formas de lleg" loading="lazy" width="1000" height="563"><figcaption><b class="n">Tema 1 · diapositiva 13</b>Con la fuente $V_g$ apagada, $R_g$ queda en paralelo con $R_1$. El resultado es $Z_{th}=R_g\parallel R_1$. Las dos formas de llegar (apagar la fuente, o dividir $V_{th}$ entre $i_{th}$) dan lo mismo.</figcaption></figure>
+<p>Ejercicio de la clase (diapositivas 14 a 16): calcular $Z_o$ vista desde los terminales de $R_L$ en el modelo del transistor bipolar. La fuente de corriente $h_{fe}\,i_b$ depende de $i_b$, pero al apagar la fuente $V_g$ la corriente $i_b$ vale 0 y la fuente controlada queda como circuito abierto. Lo que queda visible desde la salida es $R_C$ en serie con $R_D$.</p>
+<figure class="slide"><img src="img/t1-16.jpg" alt="Tema 1 · diapositiva 16. solución del ejercicio: con i_b=0 la fuente controlada desaparece (circuito abierto) y Z_th=R_C+R_D." loading="lazy" width="1000" height="563"><figcaption><b class="n">Tema 1 · diapositiva 16</b>solución del ejercicio: con $i_b=0$ la fuente controlada desaparece (circuito abierto) y $Z_{th}=R_C+R_D$.</figcaption></figure>
+<h3>Cómo se calcula $Z_{out}$</h3>
+<ol class="steps">
+<li>Apaga las fuentes independientes de la señal de entrada (las de tensión en cortocircuito, las de corriente en circuito abierto). Las fuentes controladas se quedan.</li>
+<li>Quita la carga y conecta una fuente de prueba $v_t$ en los terminales de salida.</li>
+<li>Calcula la corriente $i_t$ que entra y haz $Z_{out}=\dfrac{v_t}{i_t}$.</li>
+</ol>
+<p>La alternativa es medir la tensión en vacío $v_{oc}$ y la corriente en cortocircuito $i_{sc}$ y dividir: $Z_{out}=\dfrac{v_{oc}}{i_{sc}}$.</p>
+<details><summary>Ejemplo: ganancia total de un amplificador con fuente y carga <span class="src">comprobado</span></summary><div class="inner">
+<p>Datos: $R_s=1$ kΩ, $Z_{in}=9$ kΩ, $A_{v0}=100$, $Z_{out}=1$ kΩ, $R_L=3$ kΩ.</p>
+$$\frac{v_o}{v_s}=\frac{9}{1+9}\cdot100\cdot\frac{3}{1+3}=0{,}9\cdot100\cdot0{,}75=67{,}5\quad(36{,}6\ \text{dB})$$
+<p>Se pierde el 10 % a la entrada y el 25 % a la salida. Con la carga de 3 kΩ, bajar $Z_{out}$ a 100 Ω subiría la ganancia a $0{,}9\cdot100\cdot0{,}968=87{,}1$.</p>
+</div></details>
+<h3>Cómo se calcula un amplificador de tensión completo</h3>
+<p>El método de la asignatura es siempre el mismo: dibujar el amplificador como tres bloques, <b>fuente</b> (con su $R_g$), <b>modelo del amplificador</b> ($Z_{in}$, $A_u\cdot V_{in}$, $Z_o$) y <b>carga</b> ($R_L$). Después aplicar dos divisores de tensión, uno en la entrada y otro en la salida. Es la fórmula del recuadro de arriba.</p>
+<figure class="slide"><img src="img/t1-17.jpg" alt="Tema 1 · diapositiva 17. El amplificador de tensión: señal de entrada u_e y de salida u_s en voltios, con ganancia adimensional A_u=u_s" loading="lazy" width="1000" height="563"><figcaption><b class="n">Tema 1 · diapositiva 17</b>El amplificador de tensión: señal de entrada $u_e$ y de salida $u_s$ en voltios, con ganancia adimensional $A_u=u_s/u_e$. Se distinguen los tres bloques: fuente, modelo equivalente del amplificador y carga.</figcaption></figure>
+<figure class="slide"><img src="img/t1-18.jpg" alt="Tema 1 · diapositiva 18. Ganancia total A_TOTAL=V_s/V_g. No es lo mismo que A_u: es A_u multiplicada por las dos pérdidas de los diviso" loading="lazy" width="1000" height="563"><figcaption><b class="n">Tema 1 · diapositiva 18</b>Ganancia total $A_{TOTAL}=V_s/V_g$. No es lo mismo que $A_u$: es $A_u$ multiplicada por las dos pérdidas de los divisores. Si $Z_{in}$ es mucho mayor que $R_g$ y $Z_o$ mucho menor que $R_L$, las dos pérdidas son casi 1.</figcaption></figure>
+<details class="vids"><summary><span class="pn">▶</span>Vídeos para reforzar este tema</summary><div class="inner"><ul class="vlist"><li data-yt="4hhc7O_YBE0"><a href="https://www.youtube.com/watch?v=4hhc7O_YBE0" target="_blank" rel="noopener">Clase 7 Electrónica I: Modelo de circuito de un amplificador</a><span class="vnote"> El modelo con resistencia de entrada, de salida y fuente dependiente.</span></li><li data-yt="mhaa4QElSOw"><a href="https://www.youtube.com/watch?v=mhaa4QElSOw" target="_blank" rel="noopener">Como saber la Impedancia entrada y salida amplificador no inversor (Clase 62.2)</a><span class="vnote"> Cómo sacar $Z_i$ y $Z_o$ de un no inversor.</span></li></ul><p class="muted" style="font-size:13px;margin:8px 0 0">Los he elegido por su título y su tema, sin haberlos visto: comprueba que el enfoque coincide con el de tu profesor. Se abren en YouTube.</p></div></details>
+</section>
+
+<section class="sec tema" style="--tc:var(--c2);--tcs:var(--c2s)">
+<div class="sh"><span class="badge" aria-hidden="true">U2</span><div class="shx"><p class="kick">Tema 2 · AO ideal</p><h2 id="u2">El amplificador operacional ideal</h2><div class="tags"><span class="tag">Parcial 1</span><span class="tag w">Alta prioridad</span></div></div></div>
+<div class="zero">
+<p class="ft">Desde cero</p>
+<p>El <b>amplificador operacional</b> (AO) es un amplificador diferencial con una ganancia enorme: $v_o=A_{OL}(V^+-V^-)$. Con $A_{OL}$ de 100 000 o más, cualquier diferencia mínima entre las dos entradas llevaría la salida a la saturación. Por eso casi siempre se usa con <b>realimentación negativa</b>: se devuelve parte de la salida a la entrada inversora y el propio circuito se encarga de mantener $V^-\approx V^+$. De ese truco salen las dos reglas que resuelven el 90 % de los problemas.</p>
+</div>
+<div class="grid2">
+<div class="box key"><h4>Las dos reglas del AO ideal con realimentación negativa</h4>
+<ol>
+<li><b>Corrientes de entrada nulas:</b> $i^+=i^-=0$ (impedancia de entrada infinita).</li>
+<li><b>Entradas a la misma tensión:</b> $V^+=V^-$ (ganancia infinita). Si $V^+$ está a masa, $V^-$ es una <b>tierra virtual</b>: está a 0 V sin que fluya corriente a tierra.</li>
+</ol>
+<p>Y a la salida, $Z_{out}=0$: da la tensión que haga falta, hasta saturar en $\pm V_{sat}$.</p></div>
+<div class="box trap"><h4>Cuándo NO valen</h4>
+<p>Sin realimentación, o con realimentación <b>positiva</b> (hacia la entrada no inversora), el AO no mantiene $V^+=V^-$. La salida salta a $+V_{sat}$ o $-V_{sat}$ según el signo de $V^+-V^-$. Es el caso de los comparadores (unidad 4). Antes de aplicar la regla 2, mira siempre a qué entrada llega la realimentación.</p></div>
+</div>
+<h3>Los terminales del operacional real, para saber qué estás mirando</h3>
+<p>Un AO como el 741 es un chip de 8 patillas. Para el examen te bastan cinco: dos entradas (patillas 2 y 3), la salida (6) y las dos alimentaciones (7 y 4, típicamente +15 V y −15 V). La alimentación fija el máximo de la salida.</p>
+<figure class="slide"><img src="img/t2-15.jpg" alt="Tema 2 · diapositiva 15. Terminales de entrada: patilla 2 inversora (-) y patilla 3 no inversora (+). La tensión diferencial es E_d=V_(" loading="lazy" width="1000" height="563"><figcaption><b class="n">Tema 2 · diapositiva 15</b>Terminales de entrada: patilla 2 inversora ($-$) y patilla 3 no inversora ($+$). La tensión diferencial es $E_d=V_{(+)}-V_{(-)}$.</figcaption></figure>
+<h3>Qué significa «ideal» y qué se deduce</h3>
+<p>Ideal significa tres cosas: impedancia de entrada infinita, impedancia de salida nula y ganancia infinita. De ahí salen las dos reglas del recuadro «Desde cero».</p>
+<figure class="slide"><img src="img/t2-17.jpg" alt="Tema 2 · diapositiva 17. Del AO ideal se deduce: (1) Z_in=, por las patillas + y - no entra corriente; (2) Z_out=0, la salida vale A_OL" loading="lazy" width="1000" height="563"><figcaption><b class="n">Tema 2 · diapositiva 17</b>Del AO ideal se deduce: (1) $Z_{in}=\infty$, por las patillas $+$ y $-$ no entra corriente; (2) $Z_{out}=0$, la salida vale $A_{OL}\cdot E_d$ sea cual sea la carga; (3) $A_{OL}=\infty$, así que $V^+=V^-$. Si $V^+$ está a masa, $V^-$ es una tierra virtual.</figcaption></figure>
+<figure class="slide"><img src="img/t2-18.jpg" alt="Tema 2 · diapositiva 18. a mano. Si A_OL y la salida u_s es finita, u_d=u_s/A_OL0, es decir u^+=u^-. Esa es la demostración del princip" loading="lazy" width="1000" height="563"><figcaption><b class="n">Tema 2 · diapositiva 18</b>a mano. Si $A_{OL}\to\infty$ y la salida $u_s$ es finita, $u_d=u_s/A_{OL}\to0$, es decir $u^+=u^-$. Esa es la demostración del principio de tierra virtual.</figcaption></figure>
+<h3>Procedimiento para cualquier circuito</h3>
+<ol class="steps">
+<li>Comprueba que hay realimentación negativa. Si es así, iguala $V^+=V^-$.</li>
+<li>Escribe la ecuación de corrientes (Kirchhoff) en el nudo de la entrada inversora, con $i^-=0$.</li>
+<li>Despeja $V_o/V_i$.</li>
+<li>Comprueba que el resultado no supera $\pm V_{sat}$. Si lo supera, la salida es $\pm V_{sat}$.</li>
+</ol>
+<h3>Modo diferencial y modo común</h3>
+<p>Dos señales idénticas aplicadas a las dos entradas son <b>modo común</b>. Un AO ideal las cancela. Una señal que se aplica entre las entradas es <b>modo diferencial</b> y es la que se amplifica. Definiciones: $V_d=V^+-V^-$ y $V_c=\dfrac{V^++V^-}2$. En un AO real queda un pequeño $A_c$ (unidad 5).</p>
+<figure class="fig">
+<p class="ft">Simulador · inversor y no inversor con saturación</p>
+<div class="ctrl"><label for="ao-m">Circuito <select id="ao-m"><option value="inv">Inversor</option><option value="ni">No inversor</option></select></label>
+<label for="ao-r1">$R_1$ <input type="range" id="ao-r1" min="1" max="20" step="0.5" value="2"></label><output id="ao-r1-o"></output>
+<label for="ao-r2">$R_2$ <input type="range" id="ao-r2" min="1" max="100" step="1" value="10"></label><output id="ao-r2-o"></output></div>
+<div class="ctrl"><label for="ao-a">Amplitud de entrada <input type="range" id="ao-a" min="0.1" max="5" step="0.1" value="1"></label><output id="ao-a-o"></output>
+<label for="ao-v">$V_{sat}$ <input type="range" id="ao-v" min="5" max="15" step="0.5" value="13"></label><output id="ao-v-o"></output><span class="pill" id="ao-p"></span></div>
+<div id="fig-ao"></div>
+<div class="readout" id="ao-txt"></div>
+<figcaption>Resistencias en kΩ. El inversor tiene $G=-R_2/R_1$ y el no inversor $G=1+R_2/R_1$. Sube la amplitud hasta que la salida se aplane: ahí el AO deja de ser lineal y la ecuación de ganancia ya no vale. El desfase de 180° del inversor se ve al comparar las dos trazas.</figcaption>
+</figure>
+<h3>Realimentación negativa: por qué funciona</h3>
+<p>Sin realimentación (lazo abierto) el AO es un comparador: si $V^->V^+$ la salida va a $-V_{CC}$ y si $V^-&lt;V^+$ va a $+V_{CC}$. Al llevar una fracción de la salida a la entrada inversora, el circuito se «autocorrige» hasta que $V^-=V^+$. Con realimentación positiva ocurre lo contrario, el error se agranda y la salida satura.</p>
+<figure class="slide"><img src="img/t2-22.jpg" alt="Tema 2 · diapositiva 22. Tres casos: en bucle abierto, comparador; con realimentación positiva, el efecto se magnifica y satura; con re" loading="lazy" width="1000" height="563"><figcaption><b class="n">Tema 2 · diapositiva 22</b>Tres casos: en bucle abierto, comparador; con realimentación positiva, el efecto se magnifica y satura; con realimentación negativa, $u_-$ y $u_+$ se igualan en un equilibrio estable. Para el examen: si la resistencia de realimentación va a la entrada $-$, estás en zona lineal.</figcaption></figure>
+<details class="vids"><summary><span class="pn">▶</span>Vídeos para reforzar este tema</summary><div class="inner"><ul class="vlist"><li data-yt="4E1nLTI4_WE"><a href="https://www.youtube.com/watch?v=4E1nLTI4_WE" target="_blank" rel="noopener">Funcionamiento de un amplificador operacional «inversor y no inversor»</a><span class="vnote"> Los dos montajes básicos.</span></li><li data-yt="0--MwqCc_IM"><a href="https://www.youtube.com/watch?v=0--MwqCc_IM" target="_blank" rel="noopener">Explicación amplificador operacional no inversor (realimentación negativa)</a><span class="vnote"> Por qué con realimentación negativa $V^+=V^-$.</span></li></ul><p class="muted" style="font-size:13px;margin:8px 0 0">Los he elegido por su título y su tema, sin haberlos visto: comprueba que el enfoque coincide con el de tu profesor. Se abren en YouTube.</p></div></details>
+</section>
+
+</main>
+</div>
+<nav class="pager" aria-label="Páginas"><a href="empezar.html"><small>← Anterior</small>Cómo es el examen</a><a class="nx" href="tema-3.html"><small>Siguiente →</small>T3 Aplicaciones lineales</a></nav>
+<script src="app.js?v=1"></script>
+<script>
+/* ---------- U1: carga ---------- */
+(function(){
+  if(!$('ld-a'))return;
+  bind(['ld-a','ld-rs','ld-zi','ld-zo','ld-rl'],()=>{
+    const a=val('ld-a'),rs=val('ld-rs'),zi=val('ld-zi'),zo=val('ld-zo'),rl=val('ld-rl');
+    out('ld-a',num(a,0));out('ld-rs',num(rs,1)+' kΩ');out('ld-zi',num(zi,1)+' kΩ');out('ld-zo',num(zo,1)+' kΩ');out('ld-rl',num(rl,1)+' kΩ');
+    const d1=zi/(rs+zi),d2=rl/(zo+rl),g=a*d1*d2;
+    const W=640,H=200,m=40,mx=Math.max(a,1)*1.1,Y=v=>H-28-(v/mx)*(H-50);
+    const bars=[['Sin pérdidas',a,'area'],['Tras el divisor de entrada',a*d1,'area'],['Tras el divisor de salida',g,'areaw']];
+    let s='<svg viewBox="0 0 '+W+' '+H+'" class="plot" role="img" aria-label="Ganancia en cada etapa">';
+    bars.forEach((b,i)=>{const x=60+i*190,y=Y(b[1]);s+='<rect class="ar '+b[2]+'" x="'+x+'" y="'+y+'" width="130" height="'+(H-28-y)+'"/><text class="lb s3" x="'+(x+65)+'" y="'+(y-6)+'" text-anchor="middle">'+num(b[1],1)+'</text><text class="tk" x="'+(x+65)+'" y="'+(H-10)+'" text-anchor="middle">'+b[0]+'</text>';});
+    s+='<line class="ax" x1="40" x2="'+(W-10)+'" y1="'+(H-28)+'" y2="'+(H-28)+'"/></svg>';
+    $('fig-ld').innerHTML=s;
+    $('ld-txt').textContent='Entrada '+num(d1,3)+' · Salida '+num(d2,3)+' · Total = '+num(g,1)+' ('+num(20*Math.log10(Math.abs(g)||1e-9),1)+' dB) · Pérdida respecto a $A_{v0}$: '.replace(/\$A_\{v0\}\$/,'la ganancia en vacío')+num((1-d1*d2)*100,1)+' %';
+  });
+})();
+
+/* ---------- U2: inversor / no inversor ---------- */
+(function(){
+  if(!$('ao-m'))return;
+  const fn=()=>{
+    const m=$('ao-m').value,r1=val('ao-r1'),r2=val('ao-r2'),A=val('ao-a'),vs=val('ao-v');
+    out('ao-r1',num(r1,1)+' kΩ');out('ao-r2',num(r2,0)+' kΩ');out('ao-a',num(A,1)+' V');out('ao-v',num(vs,1)+' V');
+    const G=m==='inv'?-r2/r1:1+r2/r1;
+    const t=rng(0,2,240);const vi=t.map(x=>A*Math.sin(2*Math.PI*x)),vo=vi.map(x=>Math.max(-vs,Math.min(vs,G*x)));
+    const lim=Math.max(A,vs,Math.abs(G*A))*1.05;const L=Math.min(lim,30);
+    $('fig-ao').innerHTML=plotSVG({x0:0,x1:2,y0:-L,y1:L,xt:[0,.5,1,1.5,2],yt:[-L,0,L].map(v=>+v.toFixed(1)),label:'Entrada y salida',xl:'t (periodos)',yl:'V'},[
+      {t:'line',x:t,y:vi,c:'s1'},{t:'line',x:t,y:vo,c:'s2'},{t:'line',x:[0,2],y:[vs,vs],c:'s3',dash:1,w:1},{t:'line',x:[0,2],y:[-vs,-vs],c:'s3',dash:1,w:1}]);
+    const sat=Math.abs(G*A)>vs;const p=$('ao-p');p.textContent=sat?'satura':'lineal';p.className='pill'+(sat?' bad':'');
+    $('ao-txt').textContent='Ganancia '+num(G,2)+' · '+num(20*Math.log10(Math.abs(G)),1)+' dB · entrada máxima sin saturar = '+num(vs/Math.abs(G),2)+' V · azul = entrada, rojo = salida';
+  };
+  ['ao-m','ao-r1','ao-r2','ao-a','ao-v'].forEach(i=>$(i).addEventListener('input',fn));fn();
+})();
+
+
+</script>
+</body>
+</html>

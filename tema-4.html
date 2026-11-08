@@ -1,0 +1,150 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="description" content="Electrónica Analógica (UPCT): Comparadores, Schmitt, rectificadores y osciladores de relajación.">
+<title>Electrónica Analógica · T4 Aplicaciones no lineales</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=IBM+Plex+Sans:ital,wght@0,400;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<script>
+window.MathJax = { tex: { inlineMath: [['$','$']], displayMath: [['$$','$$']] }, svg: { fontCache: 'global' } };
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-svg.js"></script>
+<link rel="manifest" href="manifest.webmanifest"><meta name="theme-color" content="#1d5fb8">
+<link rel="icon" type="image/png" sizes="192x192" href="icon-192.png"><link rel="apple-touch-icon" href="apple-touch-icon.png">
+<meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="Analógica">
+<link rel="stylesheet" href="style.css?v=1"></head><body data-page="tema-4">
+
+<div class="hub-bar" style="max-width:1180px;margin:0 auto;padding:10px 16px 0"><a href="https://helionacon-ui.github.io/GIEIA-UPCT/" style="display:inline-flex;align-items:center;gap:6px;font:600 13.5px/1 system-ui,sans-serif;padding:8px 12px;border-radius:999px;border:1px solid var(--line,#d3dcdf);background:var(--surface,var(--card,#fff));color:var(--fg,#18232b);text-decoration:none">← Todas las guías GIEyA</a></div>
+<header class="phead"><div class="eyebrow">UPCT · GIEyA · Electrónica Analógica · Parcial 1</div><h1>T4 Aplicaciones no lineales</h1><p class="lede">Comparadores, Schmitt, rectificadores y osciladores de relajación</p></header>
+
+<a href="#top" class="totop" id="totop" aria-label="Volver arriba">↑</a>
+<div class="wrap" id="top">
+<nav class="toc" aria-label="Índice">
+<a href="index.html" style="--tc:var(--c0)">Portada</a>
+<div class="grp">Empezar</div>
+<a href="empezar.html" style="--tc:var(--c0)">Cómo es el examen</a>
+<div class="grp">Parcial 1</div>
+<a href="tema-1-2.html" style="--tc:var(--c1)">T1–2 Amplificadores y AO ideal</a>
+<a href="tema-3.html" style="--tc:var(--c3)">T3 Aplicaciones lineales</a>
+<a href="tema-4.html" aria-current="page" class="cur" style="--tc:var(--c4)">T4 Aplicaciones no lineales</a>
+<a href="tema-5.html" style="--tc:var(--c5)">T5 AO real</a>
+<a href="tema-6.html" style="--tc:var(--c6)">T6 Bode y filtros</a>
+<div class="grp">Parcial 2</div>
+<a href="tema-7.html" style="--tc:var(--c7)">T7 Cuadripolos</a>
+<a href="tema-8.html" style="--tc:var(--c8)">T8 Transistores en frecuencia</a>
+<a href="realimentacion.html" style="--tc:var(--c1)">Realimentación y osciladores</a>
+<a href="potencia.html" style="--tc:var(--c3)">Amplificadores de potencia</a>
+<div class="grp">Practicar</div>
+<a href="examen-2025-26.html" style="--tc:var(--c3)">P1 curso 25-26 resuelto</a>
+<a href="examenes.html" style="--tc:var(--c8)">Exámenes resueltos</a>
+<a href="fuen.html" style="--tc:var(--c0)">Apuntes de Fuen</a>
+<a href="problemas.html" style="--tc:var(--c8)">Problemas resueltos</a>
+<a href="calculadoras.html" style="--tc:var(--c8)">Calculadoras de bolsillo</a>
+<a href="autoevaluacion.html" style="--tc:var(--c8)">Autoevaluación</a>
+<div class="grp">Repasar</div>
+<a href="formulario.html" style="--tc:var(--c0)">Formulario</a>
+<a href="glosario.html" style="--tc:var(--c0)">Glosario</a>
+<a href="plan.html" style="--tc:var(--c0)">Plan de estudio</a>
+<div class="grp">Todo en uno</div>
+<a href="guia-completa.html" style="--tc:var(--c0)">Guía completa</a>
+</nav>
+
+<main>
+<div class="srch-card" id="srch-card"><label for="srch" class="srch-lab">Buscar en la guía</label>
+<input type="search" id="srch" placeholder="Por ejemplo: slew rate, Schmitt, Miller, CMRR…" autocomplete="off" spellcheck="false">
+<div id="srch-out" class="srch-out" hidden></div></div>
+
+
+
+<section class="sec tema" style="--tc:var(--c4);--tcs:var(--c4s)">
+<div class="sh"><span class="badge" aria-hidden="true">U4</span><div class="shx"><p class="kick">Tema 4 · Aplicaciones no lineales</p><h2 id="u4">Comparadores, Schmitt y osciladores de relajación</h2><div class="tags"><span class="tag">Parcial 1</span><span class="tag w">Sale en el examen</span></div></div></div>
+<div class="zero">
+<p class="ft">Desde cero</p>
+<p>Hasta ahora el operacional trabajaba en <b>zona lineal</b>: la realimentación negativa lo mantenía con $V^+=V^-$. En las aplicaciones no lineales se hace lo contrario. O no hay realimentación, o la realimentación llega a la entrada <b>no inversora</b> (positiva). Entonces la salida no puede quedarse en un valor intermedio y salta a una de las dos saturaciones, $+V_{sat}$ o $-V_{sat}$. Por eso estos circuitos <b>deciden</b> («¿es mayor o menor?») en vez de amplificar.</p>
+<p>Las diapositivas de la carpeta no incluyen un tema 4 con ese nombre, así que esta unidad está escrita a partir de la guía docente y de los problemas de examen resueltos. Los resultados se han comprobado con las fórmulas de abajo.</p>
+</div>
+<h3>El comparador, el circuito más simple</h3>
+<p>Sin realimentación, la ganancia $A_{OL}$ es tan grande que una diferencia de microvoltios ya satura la salida:</p>
+$$V_o=\begin{cases}+V_{sat}&V^+>V^-\\-V_{sat}&V^+&lt;V^-\end{cases}$$
+<p>Con $V^-$ conectada a una tensión de referencia $V_{ref}$ y la señal en $V^+$, tienes un detector de nivel. Con $V_{ref}=0$ es un <b>detector de paso por cero</b>: convierte una senoidal en una cuadrada.</p>
+<div class="box trap"><h4>El problema del comparador simple</h4>
+<p>Si la señal tiene ruido y está cerca del umbral, la salida «tiembla» entre $+V_{sat}$ y $-V_{sat}$, porque cada pequeño cruce del umbral produce un salto. La solución es la <b>histéresis</b>: dar al comparador <b>dos</b> umbrales distintos, uno para subir y otro para bajar.</p></div>
+<h3>El disparador de Schmitt (comparador con histéresis)</h3>
+<p>Se añade realimentación <b>positiva</b>: una fracción de la salida vuelve a la entrada $+$. Así, cuando la salida salta, también se mueve el umbral. En la configuración <b>inversora</b> la señal entra por $-$ y el divisor $R_1$–$R_2$ está en la rama $+$.</p>
+<ol class="steps">
+<li>Calcula la tensión en $V^+$ para cada estado de la salida. Con $R_1$ entre $V^+$ y la referencia $V_{ref}$ y $R_2$ entre la salida y $V^+$, el divisor da $V^+=V_{ref}+(V_o-V_{ref})\,\beta$, con $\beta=\dfrac{R_1}{R_1+R_2}$.</li>
+<li>Con la salida alta ($V_o=+V_{sat}$): $V_{TH}=V_{ref}(1-\beta)+\beta V_{sat}$. La salida baja cuando $V_i$ <b>supera</b> este umbral.</li>
+<li>Con la salida baja ($V_o=-V_{sat}$): $V_{TL}=V_{ref}(1-\beta)-\beta V_{sat}$. La salida vuelve a subir cuando $V_i$ <b>cae por debajo</b> de este umbral.</li>
+<li>El ancho de la histéresis es $V_H=V_{TH}-V_{TL}=2\beta V_{sat}$, y el centro está en $V_{ref}(1-\beta)$.</li>
+</ol>
+<div class="box key"><h4>Para dibujar la gráfica de entrada y salida</h4>
+<p>Dibuja primero la entrada y las dos líneas horizontales $V_{TH}$ y $V_{TL}$. Cada vez que la entrada <b>sube</b> y cruza $V_{TH}$, la salida baja a $-V_{sat}$ (inversor). Cada vez que la entrada <b>baja</b> y cruza $V_{TL}$, la salida sube a $+V_{sat}$. Entre las dos líneas la salida no cambia.</p></div>
+<figure class="fig">
+<p class="ft">Simulador · Schmitt inversor con referencia</p>
+<div class="ctrl"><label for="sc-r1">$R_1$ <input type="range" id="sc-r1" min="1" max="50" step="1" value="10"></label><output id="sc-r1-o"></output>
+<label for="sc-r2">$R_2$ <input type="range" id="sc-r2" min="1" max="100" step="1" value="30"></label><output id="sc-r2-o"></output></div>
+<div class="ctrl"><label for="sc-vr">$V_{ref}$ <input type="range" id="sc-vr" min="-10" max="10" step="0.5" value="0"></label><output id="sc-vr-o"></output>
+<label for="sc-vs">$V_{sat}$ <input type="range" id="sc-vs" min="5" max="15" step="0.5" value="12"></label><output id="sc-vs-o"></output>
+<label for="sc-a">Amplitud entrada <input type="range" id="sc-a" min="1" max="15" step="0.5" value="8"></label><output id="sc-a-o"></output></div>
+<div id="fig-sc"></div>
+<div class="readout" id="sc-txt"></div>
+<figcaption>Entrada triangular en azul y salida en rojo. Con los valores iniciales $\beta=0{,}25$, así que los umbrales son $\pm3$ V. Sube $V_{ref}$ y verás la ventana desplazarse sin cambiar su ancho. Baja la amplitud de entrada por debajo del umbral y la salida deja de cambiar.</figcaption>
+</figure>
+<details><summary>Ejemplo: umbrales de 3 V y 9 V <span class="src">comprobado</span></summary><div class="inner">
+<p>Queremos $V_{TL}=3$ V y $V_{TH}=9$ V con $V_{sat}=12$ V. El centro es $\dfrac{3+9}{2}=6$ V y la semianchura $\dfrac{9-3}{2}=3$ V.</p>
+<p>Semianchura: $\beta V_{sat}=3\Rightarrow\beta=\dfrac3{12}=0{,}25$, es decir $R_2=3R_1$. Centro: $V_{ref}(1-\beta)=6\Rightarrow V_{ref}=\dfrac{6}{0{,}75}=8$ V.</p>
+<p>Comprobación: $V_{TH}=8\cdot0{,}75+0{,}25\cdot12=6+3=9$ V y $V_{TL}=6-3=3$ V.</p>
+</div></details>
+<h3>Otras variantes que conviene reconocer</h3>
+<div class="grid2">
+<div class="box"><h4>Schmitt no inversor</h4>
+<p>La señal entra por $R_1$ al nudo $+$ y $R_2$ lleva la salida a ese nudo. La salida cambia cuando $V^+=0$ (con $V^-$ a masa), es decir, cuando $V_i\cdot\frac{R_2}{R_1+R_2}+V_o\frac{R_1}{R_1+R_2}=0$. Los umbrales son $V_i=\mp\dfrac{R_1}{R_2}V_{sat}$ y el circuito <b>no invierte</b>: la salida sube cuando la entrada sube.</p></div>
+<div class="box"><h4>Comparador de ventana</h4>
+<p>Dos comparadores con referencias $V_{L}&lt;V_{H}$ y una puerta. La salida indica si $V_i$ está dentro de la ventana $(V_L,V_H)$. Se usa para vigilar que una tensión esté en su rango.</p></div>
+<div class="box"><h4>Rectificador de precisión</h4>
+<p>Un diodo dentro del lazo de realimentación. El operacional compensa la caída del diodo (0,6 V), así que rectifica señales de milivoltios. En media onda inversora, la salida vale $-\dfrac{R_2}{R_1}V_i$ para un semiciclo y 0 en el otro.</p></div>
+<div class="box"><h4>Limitador con zener</h4>
+<p>Dos zeners opuestos en la realimentación fijan la salida en $\pm(V_Z+0{,}7\ \text{V})$ aproximadamente. Es una saturación a un valor que eliges tú, no el de la alimentación.</p></div>
+</div>
+<h3>Oscilador de relajación (multivibrador astable)</h3>
+<p>Es un Schmitt inversor cuya entrada $-$ está conectada a un condensador que se carga a través de una resistencia $R$ desde la propia salida. Sin ninguna señal de entrada, el circuito oscila solo.</p>
+<ol class="steps">
+<li>La salida está en $+V_{sat}$: el condensador se carga hacia $+V_{sat}$ a través de $R$. El umbral en $V^+$ vale $+\beta V_{sat}$.</li>
+<li>Cuando $V_C$ llega a $+\beta V_{sat}$, el Schmitt cambia: la salida pasa a $-V_{sat}$ y el umbral a $-\beta V_{sat}$.</li>
+<li>El condensador se descarga y se carga hacia $-V_{sat}$ hasta llegar a $-\beta V_{sat}$, y vuelve a cambiar.</li>
+</ol>
+<p>Cada semiperiodo es el tiempo que tarda $V_C$ en ir de $-\beta V_{sat}$ a $+\beta V_{sat}$ mientras apunta a $+V_{sat}$: $t=RC\ln\dfrac{V_{sat}+\beta V_{sat}}{V_{sat}-\beta V_{sat}}$. El periodo es el doble:</p>
+$$T=2RC\,\ln\frac{1+\beta}{1-\beta},\qquad \beta=\frac{R_1}{R_1+R_2}$$
+<p>Con $R_1=R_2$ ($\beta=0{,}5$) queda $T=2RC\ln3\approx2{,}2\,RC$. La frecuencia es $f=1/T$. La salida es una cuadrada simétrica de amplitud $\pm V_{sat}$ y $V_C$ es una triangular redondeada entre $\pm\beta V_{sat}$.</p>
+<details class="vids"><summary><span class="pn">▶</span>Vídeos para reforzar este tema</summary><div class="inner"><ul class="vlist"><li data-yt="vx-hHn4rB98"><a href="https://www.youtube.com/watch?v=vx-hHn4rB98" target="_blank" rel="noopener">Comparador con histéresis, Amplificadores Operacionales: cómo calcular la histéresis (Trigger Schmitt)</a><span class="vnote"> Cálculo de los umbrales, como en el examen de febrero de 2020.</span></li><li data-yt="MzCOoWXR0gM"><a href="https://www.youtube.com/watch?v=MzCOoWXR0gM" target="_blank" rel="noopener">Amplificador como comparador: Schmitt trigger inversor</a><span class="vnote"> El Schmitt inversor del P1 de 24-25 y del termómetro.</span></li><li data-yt="QF6Ph0KHeqc"><a href="https://www.youtube.com/watch?v=QF6Ph0KHeqc" target="_blank" rel="noopener">Amplificador como comparador: Disparador Schmitt no inversor</a><span class="vnote"> La versión no inversora.</span></li></ul><p class="muted" style="font-size:13px;margin:8px 0 0">Los he elegido por su título y su tema, sin haberlos visto: comprueba que el enfoque coincide con el de tu profesor. Se abren en YouTube.</p></div></details>
+</section>
+
+</main>
+</div>
+<nav class="pager" aria-label="Páginas"><a href="tema-3.html"><small>← Anterior</small>T3 Aplicaciones lineales</a><a class="nx" href="tema-5.html"><small>Siguiente →</small>T5 AO real</a></nav>
+<script src="app.js?v=1"></script>
+<script>
+/* ---------- U4: Schmitt ---------- */
+(function(){
+  if(!$('sc-r1'))return;
+  bind(['sc-r1','sc-r2','sc-vr','sc-vs','sc-a'],()=>{
+    const r1=val('sc-r1'),r2=val('sc-r2'),vr=val('sc-vr'),vs=val('sc-vs'),A=val('sc-a');
+    out('sc-r1',num(r1,0)+' kΩ');out('sc-r2',num(r2,0)+' kΩ');out('sc-vr',num(vr,1)+' V');out('sc-vs',num(vs,1)+' V');out('sc-a',num(A,1)+' V');
+    const b=r1/(r1+r2),c=vr*(1-b),TH=c+b*vs,TL=c-b*vs;
+    const N=400,t=rng(0,2,N),vi=t.map(x=>{const p=x%1;return A*(p<.25?4*p:p<.75?2-4*p:4*p-4)});
+    let st=vi[0]>TH?-1:vi[0]<TL?1:1;const vo=vi.map(x=>{if(x>TH)st=-1;else if(x<TL)st=1;return st*vs;});
+    const L=Math.max(vs,A,Math.abs(TH),Math.abs(TL))*1.15;
+    $('fig-sc').innerHTML=plotSVG({x0:0,x1:2,y0:-L,y1:L,xt:[0,.5,1,1.5,2],yt:[-L,0,L].map(v=>+v.toFixed(1)),label:'Schmitt inversor',xl:'t (periodos)',yl:'V'},[
+      {t:'line',x:t,y:vi,c:'s1'},{t:'step',x:t,y:vo,c:'s2'},{t:'line',x:[0,2],y:[TH,TH],c:'s3',dash:1,w:1},{t:'line',x:[0,2],y:[TL,TL],c:'s3',dash:1,w:1}]);
+    $('sc-txt').textContent='β = '+num(b,3)+' · V_TH = '+num(TH,2)+' V · V_TL = '+num(TL,2)+' V · histéresis = '+num(TH-TL,2)+' V'+(A<Math.max(Math.abs(TH-0),0)&&(A<TH&&-A>TL)?' · la entrada no llega a ningún umbral':'');
+  });
+})();
+
+
+</script>
+</body>
+</html>

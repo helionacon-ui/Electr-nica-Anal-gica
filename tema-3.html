@@ -1,0 +1,157 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="description" content="Electrónica Analógica (UPCT): Inversor, no inversor, sumador, restador, integrador y derivador.">
+<title>Electrónica Analógica · T3 Aplicaciones lineales</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=IBM+Plex+Sans:ital,wght@0,400;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<script>
+window.MathJax = { tex: { inlineMath: [['$','$']], displayMath: [['$$','$$']] }, svg: { fontCache: 'global' } };
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-svg.js"></script>
+<link rel="manifest" href="manifest.webmanifest"><meta name="theme-color" content="#1d5fb8">
+<link rel="icon" type="image/png" sizes="192x192" href="icon-192.png"><link rel="apple-touch-icon" href="apple-touch-icon.png">
+<meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="Analógica">
+<link rel="stylesheet" href="style.css?v=1"></head><body data-page="tema-3">
+
+<div class="hub-bar" style="max-width:1180px;margin:0 auto;padding:10px 16px 0"><a href="https://helionacon-ui.github.io/GIEIA-UPCT/" style="display:inline-flex;align-items:center;gap:6px;font:600 13.5px/1 system-ui,sans-serif;padding:8px 12px;border-radius:999px;border:1px solid var(--line,#d3dcdf);background:var(--surface,var(--card,#fff));color:var(--fg,#18232b);text-decoration:none">← Todas las guías GIEyA</a></div>
+<header class="phead"><div class="eyebrow">UPCT · GIEyA · Electrónica Analógica · Parcial 1</div><h1>T3 Aplicaciones lineales</h1><p class="lede">Inversor, no inversor, sumador, restador, integrador y derivador</p></header>
+
+<a href="#top" class="totop" id="totop" aria-label="Volver arriba">↑</a>
+<div class="wrap" id="top">
+<nav class="toc" aria-label="Índice">
+<a href="index.html" style="--tc:var(--c0)">Portada</a>
+<div class="grp">Empezar</div>
+<a href="empezar.html" style="--tc:var(--c0)">Cómo es el examen</a>
+<div class="grp">Parcial 1</div>
+<a href="tema-1-2.html" style="--tc:var(--c1)">T1–2 Amplificadores y AO ideal</a>
+<a href="tema-3.html" aria-current="page" class="cur" style="--tc:var(--c3)">T3 Aplicaciones lineales</a>
+<a href="tema-4.html" style="--tc:var(--c4)">T4 Aplicaciones no lineales</a>
+<a href="tema-5.html" style="--tc:var(--c5)">T5 AO real</a>
+<a href="tema-6.html" style="--tc:var(--c6)">T6 Bode y filtros</a>
+<div class="grp">Parcial 2</div>
+<a href="tema-7.html" style="--tc:var(--c7)">T7 Cuadripolos</a>
+<a href="tema-8.html" style="--tc:var(--c8)">T8 Transistores en frecuencia</a>
+<a href="realimentacion.html" style="--tc:var(--c1)">Realimentación y osciladores</a>
+<a href="potencia.html" style="--tc:var(--c3)">Amplificadores de potencia</a>
+<div class="grp">Practicar</div>
+<a href="examen-2025-26.html" style="--tc:var(--c3)">P1 curso 25-26 resuelto</a>
+<a href="examenes.html" style="--tc:var(--c8)">Exámenes resueltos</a>
+<a href="fuen.html" style="--tc:var(--c0)">Apuntes de Fuen</a>
+<a href="problemas.html" style="--tc:var(--c8)">Problemas resueltos</a>
+<a href="calculadoras.html" style="--tc:var(--c8)">Calculadoras de bolsillo</a>
+<a href="autoevaluacion.html" style="--tc:var(--c8)">Autoevaluación</a>
+<div class="grp">Repasar</div>
+<a href="formulario.html" style="--tc:var(--c0)">Formulario</a>
+<a href="glosario.html" style="--tc:var(--c0)">Glosario</a>
+<a href="plan.html" style="--tc:var(--c0)">Plan de estudio</a>
+<div class="grp">Todo en uno</div>
+<a href="guia-completa.html" style="--tc:var(--c0)">Guía completa</a>
+</nav>
+
+<main>
+<div class="srch-card" id="srch-card"><label for="srch" class="srch-lab">Buscar en la guía</label>
+<input type="search" id="srch" placeholder="Por ejemplo: slew rate, Schmitt, Miller, CMRR…" autocomplete="off" spellcheck="false">
+<div id="srch-out" class="srch-out" hidden></div></div>
+
+
+
+<section class="sec tema" style="--tc:var(--c3);--tcs:var(--c3s)">
+<div class="sh"><span class="badge" aria-hidden="true">U3</span><div class="shx"><p class="kick">Tema 3 · Aplicaciones lineales</p><h2 id="u3">Aplicaciones lineales del AO</h2><div class="tags"><span class="tag">Parcial 1</span><span class="tag w">Alta prioridad</span></div></div></div>
+<div class="zero">
+<p class="ft">Desde cero</p>
+<p>Todas las aplicaciones lineales son variaciones de un mismo circuito: una impedancia de entrada $Z_1$ y una impedancia de realimentación $Z_2$ alrededor de un operacional. Con $V^-=0$ (inversor) la ganancia es $-Z_2/Z_1$. Si $Z_1$ y $Z_2$ son resistencias, amplificas; si una es un condensador, integras o derivas. Aprende la receta una vez y las tienes todas.</p>
+</div>
+<div class="tw"><table>
+<tr><th>Circuito</th><th>Ganancia o salida</th><th>Notas</th></tr>
+<tr><td>Inversor</td><td>$\dfrac{V_o}{V_i}=-\dfrac{Z_2}{Z_1}=-\dfrac{R_2}{R_1}$</td><td>$Z_{in}=R_1$. Si $R_2&lt;R_1$ atenúa.</td></tr>
+<tr><td>No inversor</td><td>$\dfrac{V_o}{V_i}=1+\dfrac{Z_2}{Z_1}$</td><td>Siempre ≥ 1 y $Z_{in}$ muy alta.</td></tr>
+<tr><td>Seguidor</td><td>$V_o=V_i$</td><td>$Z_2=0$ o $Z_1=\infty$. Adapta impedancias.</td></tr>
+<tr><td>Sumador inversor</td><td>$V_o=-R_f\left(\dfrac{V_1}{R_1}+\dfrac{V_2}{R_2}+\dots\right)$</td><td>Superposición: cada entrada es un inversor.</td></tr>
+<tr><td>Restador</td><td>$V_o=\dfrac{R_2}{R_1}\,(V_2-V_1)$</td><td>Con $R_2/R_1$ iguales en las dos ramas.</td></tr>
+<tr><td>Integrador</td><td>$V_o(t)=-\dfrac1{RC}\displaystyle\int_0^tV_i\,dt-V_C(0)$</td><td>$\dfrac{V_o}{V_i}=-\dfrac1{j\omega RC}$</td></tr>
+<tr><td>Diferenciador</td><td>$V_o=-RC\,\dfrac{dV_i}{dt}$</td><td>$\dfrac{V_o}{V_i}=-j\omega RC$. Amplifica el ruido.</td></tr>
+<tr><td>Cambiador de fase</td><td>$\dfrac{V_o}{V_i}=\dfrac{1-j\omega RC}{1+j\omega RC}$</td><td>Ganancia 1, desfase $-2\arctan(\omega RC)$.</td></tr>
+<tr><td>Instrumentación</td><td>$V_o=\left(1+\dfrac{2R}{R_g}\right)(V_2-V_1)$</td><td>Con la etapa restadora de ganancia 1. Alta $Z_{in}$ y buen CMRR.</td></tr>
+</table></div>
+<div class="box trap"><h4>El restador y la ganancia diferencial</h4>
+<p>La fórmula $\frac{R_2}{R_1}(V_2-V_1)$ exige que las resistencias de las dos ramas estén <b>emparejadas</b>. Si no lo están, aparece una componente de modo común. Es lo que se pregunta en el problema de CMRR de Enero 2024.</p></div>
+<h3>Cada circuito paso a paso con las diapositivas</h3>
+<p>Para cualquier circuito lineal se hace lo mismo: (1) supón AO ideal con realimentación negativa, así que $V^+=V^-$ y $i^+=i^-=0$; (2) escribe la ecuación de corrientes en el nudo de la entrada $-$ (o en $+$, según el circuito); (3) despeja $V_o/V_i$.</p>
+<h4>Inversor</h4>
+<figure class="slide"><img src="img/t3-04.jpg" alt="Tema 3 · diapositiva 4. Realimentación negativa con AO ideal: (1) Z_in= así que u^+=u^-=0 y (2) A_OL=, tierra virtual. Se aplica Kirch" loading="lazy" width="1000" height="563"><figcaption><b class="n">Tema 3 · diapositiva 4</b>Realimentación negativa con AO ideal: (1) $Z_{in}=\infty$ así que $u^+=u^-=0$ y (2) $A_{OL}=\infty$, tierra virtual. Se aplica Kirchhoff en el nudo de la entrada inversora: $i_1=i_2$ porque no entra corriente al AO.</figcaption></figure>
+<figure class="slide"><img src="img/t3-05.jpg" alt="Tema 3 · diapositiva 5. i_1=V_i-0R_1 e i_2=0-V_oR_2. Igualando, V_o=-R_2R_1V_i. El signo menos es porque la corriente que entra por R_" loading="lazy" width="1000" height="563"><figcaption><b class="n">Tema 3 · diapositiva 5</b>$i_1=\dfrac{V_i-0}{R_1}$ e $i_2=\dfrac{0-V_o}{R_2}$. Igualando, $V_o=-\dfrac{R_2}{R_1}V_i$. El signo menos es porque la corriente que entra por $R_1$ sale por $R_2$ hacia la salida, que debe estar por debajo de masa.</figcaption></figure>
+<figure class="slide"><img src="img/t3-07.jpg" alt="Tema 3 · diapositiva 7. Resultado A_CL=-R_2/R_1 con la forma de onda: la salida es la entrada invertida (desfase 180°). Si R_2>R_1 amp" loading="lazy" width="1000" height="563"><figcaption><b class="n">Tema 3 · diapositiva 7</b>Resultado $A_{CL}=-R_2/R_1$ con la forma de onda: la salida es la entrada invertida (desfase 180°). Si $R_2>R_1$ amplifica, si $R_2=R_1$ es un inversor de tensión y si $R_2&lt;R_1$ atenúa.</figcaption></figure>
+<h4>No inversor</h4>
+<figure class="slide"><img src="img/t3-08.jpg" alt="Tema 3 · diapositiva 8. Aquí V^+=V_e y, por la regla V^-=V^+, el divisor R_1–R_2 ve V_e en el nudo central: 0-V_eR_1=V_e-U_sR_2, de do" loading="lazy" width="1000" height="563"><figcaption><b class="n">Tema 3 · diapositiva 8</b>Aquí $V^+=V_e$ y, por la regla $V^-=V^+$, el divisor $R_1$–$R_2$ ve $V_e$ en el nudo central: $\dfrac{0-V_e}{R_1}=\dfrac{V_e-U_s}{R_2}$, de donde $U_s/U_e=1+R_2/R_1$. La ganancia es siempre mayor o igual que 1 y la salida está en fase.</figcaption></figure>
+<h4>Seguidor de tensión</h4>
+<figure class="slide"><img src="img/t3-13.jpg" alt="Tema 3 · diapositiva 13. Es el no inversor con Z_1= (o Z_2=0): A=1, impedancia de entrada infinita e impedancia de salida nula. Sirve p" loading="lazy" width="1000" height="563"><figcaption><b class="n">Tema 3 · diapositiva 13</b>Es el no inversor con $Z_1=\infty$ (o $Z_2=0$): $A=1$, impedancia de entrada infinita e impedancia de salida nula. Sirve para separar una etapa de alta impedancia de otra de baja impedancia.</figcaption></figure>
+<figure class="slide"><img src="img/t3-14.jpg" alt="Tema 3 · diapositiva 14. Un divisor de R_1=1\,M\Omega y R_2=100\,k\Omega da 0,091\,V. Si lo mides con un voltímetro de 2\,k\Omega, este" loading="lazy" width="1000" height="563"><figcaption><b class="n">Tema 3 · diapositiva 14</b>Un divisor de $R_1=1\,M\Omega$ y $R_2=100\,k\Omega$ da $0{,}091\,V$. Si lo mides con un voltímetro de $2\,k\Omega$, este queda en paralelo con $R_2$ y la medida cae a $0{,}002\,V$ según la diapositiva. Con un seguidor entre el divisor y el medidor, la lectura vuelve al valor teórico.</figcaption></figure>
+<h4>Sumador y restador</h4>
+<figure class="slide"><img src="img/t3-18.jpg" alt="Tema 3 · diapositiva 18. Sumador inversor: cada entrada aporta U_k/R_k al nudo de la entrada -. La salida es U_s=-R_d(U_1R_1+U_2R_2+). " loading="lazy" width="1000" height="563"><figcaption><b class="n">Tema 3 · diapositiva 18</b>Sumador inversor: cada entrada aporta $U_k/R_k$ al nudo de la entrada $-$. La salida es $U_s=-R_d\left(\dfrac{U_1}{R_1}+\dfrac{U_2}{R_2}+\dots\right)$. Es superposición: se puede calcular cada entrada con las demás a 0 y sumar.</figcaption></figure>
+<figure class="slide"><img src="img/t3-20.jpg" alt="Tema 3 · diapositiva 20. Restador: se aplica Kirchhoff en el nudo - y se calcula U_+ con un divisor. Con R_1=R_2 y R_3=R_d queda U_s=R_" loading="lazy" width="1000" height="563"><figcaption><b class="n">Tema 3 · diapositiva 20</b>Restador: se aplica Kirchhoff en el nudo $-$ y se calcula $U_+$ con un divisor. Con $R_1=R_2$ y $R_3=R_d$ queda $U_s=\dfrac{R_d}{R_1}(U_2-U_1)$.</figcaption></figure>
+<figure class="slide"><img src="img/t3-22.jpg" alt="Tema 3 · diapositiva 22. Amplificador de instrumentación: dos amplificadores en la entrada y una etapa restadora, con U_s=(1+2R_3R_1)(U" loading="lazy" width="1000" height="563"><figcaption><b class="n">Tema 3 · diapositiva 22</b>Amplificador de instrumentación: dos amplificadores en la entrada y una etapa restadora, con $U_s=\left(1+\dfrac{2R_3}{R_1}\right)(U_2-U_1)$ según la diapositiva. Alta impedancia de entrada, ganancia ajustable con una sola resistencia y rechazo del modo común, por eso se usa en instrumentación.</figcaption></figure>
+<h4>Integrador, diferenciador y cambiador de fase</h4>
+<figure class="slide"><img src="img/t3-09.jpg" alt="Tema 3 · diapositiva 9. La clave es la ecuación del condensador i_C=C\,dU_C/dt. Con tierra virtual, U_eR=-CdU_sdt, y al integrar queda" loading="lazy" width="1000" height="563"><figcaption><b class="n">Tema 3 · diapositiva 9</b>La clave es la ecuación del condensador $i_C=C\,dU_C/dt$. Con tierra virtual, $\dfrac{U_e}{R}=-C\dfrac{dU_s}{dt}$, y al integrar queda $U_s=-\dfrac1{RC}\int U_e\,dt+U_s(t_0)$.</figcaption></figure>
+<figure class="slide"><img src="img/t3-10.jpg" alt="Tema 3 · diapositiva 10. Formas de onda: una entrada senoidal sale como cosenoidal desfasada 90°, y una cuadrada sale triangular. La co" loading="lazy" width="1000" height="563"><figcaption><b class="n">Tema 3 · diapositiva 10</b>Formas de onda: una entrada senoidal sale como cosenoidal desfasada 90°, y una cuadrada sale triangular. La constante de integración es la tensión inicial del condensador, $V_C(0)$.</figcaption></figure>
+<figure class="slide"><img src="img/t3-12.jpg" alt="Tema 3 · diapositiva 12. El diferenciador intercambia R y C: U_s=-RC\,dU_e/dt. Una entrada triangular sale cuadrada. En la práctica se " loading="lazy" width="1000" height="563"><figcaption><b class="n">Tema 3 · diapositiva 12</b>El diferenciador intercambia $R$ y $C$: $U_s=-RC\,dU_e/dt$. Una entrada triangular sale cuadrada. En la práctica se limita con una resistencia en serie con el condensador, porque amplifica el ruido de alta frecuencia.</figcaption></figure>
+<figure class="slide"><img src="img/t3-17.jpg" alt="Tema 3 · diapositiva 17. Cambiador de fase: ganancia en módulo igual a 1 y fase =-2( RC), que depende de R, C y de la frecuencia. Se us" loading="lazy" width="1000" height="563"><figcaption><b class="n">Tema 3 · diapositiva 17</b>Cambiador de fase: ganancia en módulo igual a 1 y fase $\varphi=-2\arctan(\omega RC)$, que depende de $R$, $C$ y de la frecuencia. Se usa en osciladores (red de desfase) y en ecualizadores.</figcaption></figure>
+<figure class="fig">
+<p class="ft">Simulador · integrador con entrada cuadrada o senoidal</p>
+<div class="ctrl"><label for="in-w">Entrada <select id="in-w"><option value="sq">Cuadrada</option><option value="sin">Senoidal</option></select></label>
+<label for="in-r">$R$ <input type="range" id="in-r" min="1" max="100" step="1" value="10"></label><output id="in-r-o"></output>
+<label for="in-c">$C$ <input type="range" id="in-c" min="1" max="100" step="1" value="10"></label><output id="in-c-o"></output></div>
+<div class="ctrl"><label for="in-f">Frecuencia <input type="range" id="in-f" min="100" max="5000" step="50" value="1000"></label><output id="in-f-o"></output>
+<label for="in-a">Amplitud <input type="range" id="in-a" min="0.2" max="3" step="0.1" value="1"></label><output id="in-a-o"></output></div>
+<div id="fig-in"></div>
+<div class="readout" id="in-txt"></div>
+<figcaption>$R$ en kΩ y $C$ en nF. Con cuadrada, la salida es una triángular con pendiente $-V/(RC)$. Con senoidal, es una cosenoidal desfasada 90°. Parte de $V_C(0)=0$, así que con entrada cuadrada la salida oscila entre 0 y $-V_{pp}$. En un circuito real un offset haría derivar la salida, y por eso se añade una resistencia en paralelo con $C$ o un interruptor de reset. Si la salida pasa de $\pm13$ V, aparece saturada.</figcaption>
+</figure>
+<details><summary>Diseño 1: ganancia de 42 con resistencia de entrada muy grande <span class="src">diapositiva U3, 3.11</span></summary><div class="inner">
+<p>La configuración <b>no inversora</b> tiene $Z_{in}$ muy alta. La ganancia pide $1+\frac{R_2}{R_1}=42\Rightarrow\frac{R_2}{R_1}=41$. Por ejemplo $R_1=1$ kΩ y $R_2=41$ kΩ. Con valores normalizados, 39 kΩ + 2,2 kΩ en serie da $1+41{,}2=42{,}2$, un error del 0,5 %.</p>
+</div></details>
+<details><summary>Diseño 2: convertir 20 a 250 mV en 0 a 5 V <span class="src">diapositiva U3, 3.11</span></summary><div class="inner">
+<p>Hay que restar un desplazamiento y multiplicar: $V_o=G\,(V_i-20\ \text{mV})$, con $G=\dfrac{5\ \text{V}}{250-20\ \text{mV}}=\dfrac{5}{0{,}23}=21{,}7$.</p>
+<p>Con un restador de ganancia $R_2/R_1=21{,}7$ (por ejemplo $R_1=10$ kΩ y $R_2=217$ kΩ, con un ajuste) y una referencia de 20 mV en la otra entrada, sacada de un divisor y un seguidor. Comprobación: $V_i=20$ mV da 0 V y $V_i=250$ mV da $21{,}7\cdot0{,}23=5$ V.</p>
+</div></details>
+<details><summary>Aplicación industrial: regulador PID con operacionales <span class="src">diapositiva U3, 3.12</span></summary><div class="inner">
+<p>El PID continuo $u(t)=K_pe+K_D\frac{de}{dt}+K_I\int e\,dt$ es $U(s)=\left(K_p+K_Ds+\frac{K_I}{s}\right)E(s)$. Se monta con tres ramas en paralelo y un sumador.</p>
+<ul>
+<li><b>Proporcional:</b> inversor, $K_p=\dfrac{R_2}{R_1}$.</li>
+<li><b>Integral:</b> integrador, $K_I=\dfrac1{R_iC_i}$.</li>
+<li><b>Derivativo:</b> diferenciador, $K_D=R_dC_d$.</li>
+</ul>
+<p>Cada rama invierte la señal, y el sumador inversor final la devuelve con el signo correcto.</p>
+</div></details>
+<details class="vids"><summary><span class="pn">▶</span>Vídeos para reforzar este tema</summary><div class="inner"><ul class="vlist"><li data-yt="YGDTaIPfBFs"><a href="https://www.youtube.com/watch?v=YGDTaIPfBFs" target="_blank" rel="noopener">02 Amplificadores Operacionales: Inversor, No Inversor, Sumador, e Integrador</a><span class="vnote"> Inversor, sumador e integrador seguidos.</span></li><li data-yt="jKqmz1-p6i4"><a href="https://www.youtube.com/watch?v=jKqmz1-p6i4" target="_blank" rel="noopener">AMPLIFICADOR DIFERENCIAL CON OPERACIONAL</a><span class="vnote"> El restador, que sale en el pesaje y en el sensor.</span></li><li data-yt="QjyRRkSd7Wc"><a href="https://www.youtube.com/watch?v=QjyRRkSd7Wc" target="_blank" rel="noopener">Derivador e integrador con amplificadores operacionales</a><span class="vnote"> Para el derivador del examen de noviembre de 2021.</span></li></ul><p class="muted" style="font-size:13px;margin:8px 0 0">Los he elegido por su título y su tema, sin haberlos visto: comprueba que el enfoque coincide con el de tu profesor. Se abren en YouTube.</p></div></details>
+</section>
+
+</main>
+</div>
+<nav class="pager" aria-label="Páginas"><a href="tema-1-2.html"><small>← Anterior</small>T1–2 Amplificadores y AO ideal</a><a class="nx" href="tema-4.html"><small>Siguiente →</small>T4 Aplicaciones no lineales</a></nav>
+<script src="app.js?v=1"></script>
+<script>
+/* ---------- U3: integrador ---------- */
+(function(){
+  if(!$('in-w'))return;
+  const fn=()=>{
+    const w=$('in-w').value,R=val('in-r'),C=val('in-c'),f=val('in-f'),A=val('in-a');
+    out('in-r',num(R,0)+' kΩ');out('in-c',num(C,0)+' nF');out('in-f',num(f,0)+' Hz');out('in-a',num(A,1)+' V');
+    const tau=R*1e3*C*1e-9,T=1/f,N=600,dt=2*T/N;let vo=0;const t=[],vi=[],y=[];
+    for(let i=0;i<=N;i++){const tt=i*dt;const x=w==='sin'?A*Math.sin(2*Math.PI*f*tt):(((tt/T)%1)<.5?A:-A);vi.push(x);y.push(Math.max(-13,Math.min(13,vo)));t.push(tt*1000);vo+=-x/tau*dt;}
+    const L=Math.max(A,...y.map(Math.abs))*1.1;const Lc=Math.max(1,Math.min(L,14));
+    $('fig-in').innerHTML=plotSVG({x0:0,x1:2*T*1000,y0:-Lc,y1:Lc,xt:[0,T*1000,2*T*1000],xtf:v=>num(v,2)+' ms',yt:[-Lc,0,Lc].map(v=>+v.toFixed(1)),label:'Integrador'},[
+      {t:'line',x:t,y:vi,c:'s1'},{t:'line',x:t,y:y,c:'s2'}]);
+    $('in-txt').textContent='RC = '+num(tau*1e3,3)+' ms · pendiente con cuadrada = −V/RC = '+num(-A/tau,0)+' V/s · azul = entrada, rojo = salida'+(Math.max(...y.map(Math.abs))>=13?' · SATURA':'');
+  };
+  ['in-w','in-r','in-c','in-f','in-a'].forEach(i=>$(i).addEventListener('input',fn));fn();
+})();
+
+
+</script>
+</body>
+</html>

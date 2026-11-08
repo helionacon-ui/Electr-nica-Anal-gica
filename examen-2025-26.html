@@ -1,0 +1,242 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="description" content="Electrónica Analógica (UPCT): Primer parcial del curso 25-26, resuelto paso a paso.">
+<title>Electrónica Analógica · P1 curso 25-26 resuelto</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=IBM+Plex+Sans:ital,wght@0,400;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<script>
+window.MathJax = { tex: { inlineMath: [['$','$']], displayMath: [['$$','$$']] }, svg: { fontCache: 'global' } };
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-svg.js"></script>
+<link rel="manifest" href="manifest.webmanifest"><meta name="theme-color" content="#1d5fb8">
+<link rel="icon" type="image/png" sizes="192x192" href="icon-192.png"><link rel="apple-touch-icon" href="apple-touch-icon.png">
+<meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="Analógica">
+<link rel="stylesheet" href="style.css?v=1"></head><body data-page="examen-2025-26">
+
+<div class="hub-bar" style="max-width:1180px;margin:0 auto;padding:10px 16px 0"><a href="https://helionacon-ui.github.io/GIEIA-UPCT/" style="display:inline-flex;align-items:center;gap:6px;font:600 13.5px/1 system-ui,sans-serif;padding:8px 12px;border-radius:999px;border:1px solid var(--line,#d3dcdf);background:var(--surface,var(--card,#fff));color:var(--fg,#18232b);text-decoration:none">← Todas las guías GIEyA</a></div>
+<header class="phead"><div class="eyebrow">UPCT · GIEyA · Electrónica Analógica · Practicar</div><h1>P1 curso 25-26 resuelto</h1><p class="lede">Primer parcial del curso 25-26, resuelto paso a paso</p></header>
+
+<a href="#top" class="totop" id="totop" aria-label="Volver arriba">↑</a>
+<div class="wrap" id="top">
+<nav class="toc" aria-label="Índice">
+<a href="index.html" style="--tc:var(--c0)">Portada</a>
+<div class="grp">Empezar</div>
+<a href="empezar.html" style="--tc:var(--c0)">Cómo es el examen</a>
+<div class="grp">Parcial 1</div>
+<a href="tema-1-2.html" style="--tc:var(--c1)">T1–2 Amplificadores y AO ideal</a>
+<a href="tema-3.html" style="--tc:var(--c3)">T3 Aplicaciones lineales</a>
+<a href="tema-4.html" style="--tc:var(--c4)">T4 Aplicaciones no lineales</a>
+<a href="tema-5.html" style="--tc:var(--c5)">T5 AO real</a>
+<a href="tema-6.html" style="--tc:var(--c6)">T6 Bode y filtros</a>
+<div class="grp">Parcial 2</div>
+<a href="tema-7.html" style="--tc:var(--c7)">T7 Cuadripolos</a>
+<a href="tema-8.html" style="--tc:var(--c8)">T8 Transistores en frecuencia</a>
+<a href="realimentacion.html" style="--tc:var(--c1)">Realimentación y osciladores</a>
+<a href="potencia.html" style="--tc:var(--c3)">Amplificadores de potencia</a>
+<div class="grp">Practicar</div>
+<a href="examen-2025-26.html" aria-current="page" class="cur" style="--tc:var(--c3)">P1 curso 25-26 resuelto</a>
+<a href="examenes.html" style="--tc:var(--c8)">Exámenes resueltos</a>
+<a href="fuen.html" style="--tc:var(--c0)">Apuntes de Fuen</a>
+<a href="problemas.html" style="--tc:var(--c8)">Problemas resueltos</a>
+<a href="calculadoras.html" style="--tc:var(--c8)">Calculadoras de bolsillo</a>
+<a href="autoevaluacion.html" style="--tc:var(--c8)">Autoevaluación</a>
+<div class="grp">Repasar</div>
+<a href="formulario.html" style="--tc:var(--c0)">Formulario</a>
+<a href="glosario.html" style="--tc:var(--c0)">Glosario</a>
+<a href="plan.html" style="--tc:var(--c0)">Plan de estudio</a>
+<div class="grp">Todo en uno</div>
+<a href="guia-completa.html" style="--tc:var(--c0)">Guía completa</a>
+</nav>
+
+<main>
+<div class="srch-card" id="srch-card"><label for="srch" class="srch-lab">Buscar en la guía</label>
+<input type="search" id="srch" placeholder="Por ejemplo: slew rate, Schmitt, Miller, CMRR…" autocomplete="off" spellcheck="false">
+<div id="srch-out" class="srch-out" hidden></div></div>
+
+
+
+<section class="sec tema" style="--tc:var(--c3);--tcs:var(--c3s)">
+<div class="sh"><span class="badge" aria-hidden="true">25</span><div class="shx"><p class="kick">Examen · primer parcial, curso 25-26</p><h2 id="x2526a">Filtro pasa altos de segundo orden con operacional seguidor</h2></div></div>
+<div class="prob">
+<h3 class="ph">Ejercicio 1 · 2 puntos</h3>
+<div class="enun"><p class="et">Enunciado</p>
+<p>(a) Obtén $G(j\omega)=V_o/V_i$. (b) Dibuja el diagrama de Bode. Datos: $R_1=12$ kΩ, $R_2=R_3=22$ kΩ, $R_L=10$ kΩ, $C_1=20$ nF, $C_2=10$ nF.</p></div>
+<figure class="slide nota"><img src="img/ex-p1.jpg" alt="Vi entra por C2 a un nudo, que sigue por C1 a la entrada positiva del operacional, con R3 a masa. R1 une ese nudo con la salida. R2 une la entrada negativa con la salida. RL va de la salida a masa." loading="lazy" width="615" height="405"><figcaption><b class="n">Enunciado · curso 25-26</b>Dos condensadores en serie en la entrada y una $R_1$ que realimenta el nudo central.</figcaption></figure>
+<details class="paso" open><summary><span class="pn">0</span>La idea, desde cero</summary><div class="inner"><p>Fíjate primero en el operacional. La entrada negativa va a la salida a través de $R_2$, y por la entrada negativa no circula corriente. Entonces no hay caída en $R_2$ y $u^-=V_o$. Como $u^+=u^-$, resulta $V_o=u^+$: es un <b>seguidor de tensión</b> (ganancia $K=1$). Dos consecuencias: $R_2$ no influye en $G$, y $R_L$ tampoco, porque la salida de un operacional ideal da la tensión que sea sin importar la carga. Lo único que queda es una red RC en dos nudos: el nudo central $X$ (entre $C_2$, $C_1$ y $R_1$) y la entrada positiva.</p></div></details>
+<details class="paso"><summary><span class="pn">1</span>Nudo de la entrada positiva</summary><div class="inner"><p>Por $C_1$ llega la corriente $(X-V_o)\,sC_1$ y sale por $R_3$: $(X-V_o)\,sC_1=\dfrac{V_o}{R_3}$. De aquí $X=V_o\left(1+\dfrac1{sR_3C_1}\right)$.</p></div></details>
+<details class="paso"><summary><span class="pn">2</span>Nudo $X$</summary><div class="inner"><p>Entra por $C_2$ la corriente $(V_i-X)\,sC_2$ y sale por $C_1$ (la misma de antes, $V_o/R_3$) y por $R_1$ hacia la salida: $(V_i-X)\,sC_2=\dfrac{V_o}{R_3}+\dfrac{X-V_o}{R_1}$. Como $X-V_o=\dfrac{V_o}{sR_3C_1}$:</p>
+<p>$V_i\,sC_2=V_o\left[sC_2+\dfrac{C_2}{C_1R_3}+\dfrac1{R_3}+\dfrac1{sC_1R_1R_3}\right]$.</p></div></details>
+<details class="paso"><summary><span class="pn">3</span>Despejar $G$</summary><div class="inner"><p>Multiplica todo por $sC_1R_1R_3$. El corchete se convierte en $s^2C_1C_2R_1R_3+sC_2R_1+sC_1R_1+1$, y el primer miembro en $V_i\,s^2C_1C_2R_1R_3$. Entonces</p>
+<p>$G(s)=\dfrac{s^2C_1C_2R_1R_3}{s^2C_1C_2R_1R_3+sR_1(C_1+C_2)+1}$.</p></div></details>
+<details class="paso"><summary><span class="pn">4</span>Números</summary><div class="inner"><p>$C_1C_2R_1R_3=20\cdot10^{-9}\cdot10\cdot10^{-9}\cdot12\cdot10^3\cdot22\cdot10^3=5{,}28\cdot10^{-8}$ s². $R_1(C_1+C_2)=12\cdot10^3\cdot30\cdot10^{-9}=3{,}6\cdot10^{-4}$ s. Forma estándar de segundo orden: $\omega_0=\dfrac1{\sqrt{5{,}28\cdot10^{-8}}}=4352$ rad/s (692,6 Hz) y $Q=\dfrac{\sqrt{5{,}28\cdot10^{-8}}}{3{,}6\cdot10^{-4}}=0{,}638$. Como $Q&lt;0{,}707$, las raíces del denominador son complejas pero <b>no hay pico</b>: $s=-3409\pm j2705$.</p></div></details>
+<details class="paso"><summary><span class="pn">5</span>Bode</summary><div class="inner"><p>A baja frecuencia $G\approx s^2C_1C_2R_1R_3$: sube $+40$ dB/dec. Por encima de $\omega_0$ vale 1 (0 dB). En $\omega_0$ el módulo es exactamente $Q=0{,}638$ ($-3{,}90$ dB) y la fase es $+90^\circ$ (empieza en $+180^\circ$ y acaba en $0^\circ$). Valores exactos: −65,5 dB a 100 rad/s, −25,7 dB a 1000, −0,50 dB a $10^4$.</p></div></details>
+<figure class="fig"><p class="ft">Bode · curso 25-26, ejercicio 1</p>
+<div id="fig-p1"></div></figure>
+<div class="box trap"><h4>Ojo: es un pasa altos, no un pasa bajos</h4><p>El texto de la solución del aula virtual describe este filtro como «de orden 2» y habla de paso bajo, pero la función obtenida (con $s^2$ en el numerador) y el cálculo dan un <b>pasa altos de segundo orden</b>: los condensadores en serie bloquean la continua y $G\to0$ a baja frecuencia. Lo he comprobado resolviendo el circuito nodo a nodo con un programa: coincide con la fórmula de arriba en todas las frecuencias probadas.</p></div>
+<details class="resul"><summary>Resultado</summary><div class="inner"><p class="et">Solución</p><p>$G(s)=\dfrac{s^2C_1C_2R_1R_3}{s^2C_1C_2R_1R_3+sR_1(C_1+C_2)+1}$. Pasa altos de segundo orden con $K=1$, $\omega_0=4352$ rad/s, $Q=0{,}638$, sin pico, $+40$ dB/dec por debajo de $\omega_0$.</p></div></details>
+</div>
+
+<div class="prob" id="x2526b">
+<h3 class="ph">Ejercicio 2 · 2,5 puntos · tiempo de establecimiento de un sensor</h3>
+<div class="enun"><p class="et">Enunciado</p>
+<p>Un sensor da $V_s=K\cdot X$ a través de una resistencia interna $R_s$ y con una capacidad parásita $C_s$ en la salida. Al cerrar el interruptor en $t=0$ hay un transitorio. El tiempo de establecimiento $t_{su}$ es el tiempo hasta que $V_o=0{,}9\,V_\infty$. (a) Obtén $V_o(t)$. (b) Estima $t_{su}$ del sensor en vacío. (c) Con un cable de 10 m a un microcontrolador (figura 2.2), calcula $t_{su}$ con $R_\mu\approx\infty$. Datos: $R_s=100$ kΩ, $R_\mu=10$ MΩ, $C_s=1$ nF, $C_c=500$ pF, $C_\mu=10$ nF.</p></div>
+<figure class="slide nota"><img src="img/ex-p2a.jpg" alt="Fuente Vs=K·X, interruptor en t=0, resistencia Rs en serie y condensador Cs en paralelo con la salida Vo." loading="lazy" width="818" height="315"><figcaption><b class="n">Enunciado · curso 25-26 · figura 2.1</b>Sensor en vacío.</figcaption></figure>
+<figure class="slide nota"><img src="img/ex-p2b.jpg" alt="El mismo sensor, con el condensador del cable Cc en paralelo y, a la entrada del micro, Cµ en paralelo con Rµ y la tensión Vo." loading="lazy" width="795" height="255"><figcaption><b class="n">Enunciado · curso 25-26 · figura 2.2</b>Con cable y entrada del micro.</figcaption></figure>
+<details class="paso" open><summary><span class="pn">0</span>La idea, desde cero</summary><div class="inner"><p>Es la carga de un condensador a través de una resistencia: un circuito RC de primer orden. No hace falta Bode ni Laplace: basta una ecuación diferencial sencilla. La constante de tiempo $\tau=RC$ es lo que manda, y toda la solución sale de ella.</p></div></details>
+<details class="paso"><summary><span class="pn">1</span>(a) $V_o(t)$</summary><div class="inner"><p>La corriente por $R_s$ es la que carga $C_s$: $\dfrac{V_s-V_o}{R_s}=C_s\dfrac{dV_o}{dt}$, es decir $R_sC_s\dfrac{dV_o}{dt}+V_o=V_s$, con $V_o(0)=0$ (condensador descargado). Solución:</p>
+<p>$V_o(t)=V_s\left(1-e^{-t/R_sC_s}\right)$, con $V_\infty=V_s$.</p></div></details>
+<details class="paso"><summary><span class="pn">2</span>(b) Sensor en vacío</summary><div class="inner"><p>Se impone $1-e^{-t/\tau}=0{,}9\Rightarrow e^{-t/\tau}=0{,}1\Rightarrow t_{su}=\tau\ln10=2{,}303\,\tau$. Con $\tau=R_sC_s=100\text{ k}\Omega\cdot1\text{ nF}=0{,}1$ ms: $t_{su}=0{,}230$ ms.</p></div></details>
+<details class="paso"><summary><span class="pn">3</span>(c) Con el cable y el micro</summary><div class="inner"><p>Con $R_\mu=\infty$, los tres condensadores están en paralelo en la salida y los ve la misma $R_s$: $C_{eq}=C_s+C_c+C_\mu=1+0{,}5+10=11{,}5$ nF. Es el mismo circuito RC con $\tau'=R_sC_{eq}=1{,}15$ ms y</p>
+<p>$t_{su}'=2{,}303\cdot1{,}15\text{ ms}=2{,}65$ ms.</p>
+<p>El micro debe esperar al menos 2,65 ms. Si no se desprecia $R_\mu=10$ M$\Omega$, el valor final baja a $V_s\dfrac{R_\mu}{R_s+R_\mu}=0{,}990\,V_s$ y $\tau$ es un 1 % menor; el 90 % del valor final se alcanza en 2,62 ms, casi lo mismo.</p></div></details>
+<figure class="fig"><p class="ft">Respuesta al escalón · curso 25-26, ejercicio 2</p>
+<div id="fig-p2"></div>
+<p class="muted" style="font-size:13px;margin:4px 0 0">Azul: sensor en vacío. Rojo: con cable y micro. Línea discontinua: 90 % del valor final.</p></figure>
+<details class="resul"><summary>Resultado</summary><div class="inner"><p class="et">Solución</p><p>$V_o=V_s(1-e^{-t/R_sC_s})$. $t_{su}=2{,}303\,R_sC_s=0{,}23$ ms en vacío y $2{,}303\,R_s(C_s+C_c+C_\mu)=2{,}65$ ms con cable y micro.</p></div></details>
+</div>
+
+<div class="prob" id="x2526c">
+<h3 class="ph">Problema · 5,5 puntos · sistema de pesaje con cuatro sensores</h3>
+<div class="enun"><p class="et">Enunciado</p>
+<p>Una plancha apoyada en cuatro patas con un sensor de peso en cada una. Cada sensor da entre 0 y 1 V con $R_s=1$ kΩ. La etapa 1 suma los cuatro, la etapa 2 acondiciona para un convertidor A/D de 0 a 5 V. Parte I: un ingeniero novel propone el circuito de la figura para la etapa 1. (a) Calcula su salida y di si cumple la función de sumar. (b) ¿Es óptimo? Si no, propón una alternativa. Parte II: (c) propón un circuito para la etapa 2. Datos: $R_Y=40$ kΩ y $R_X=R_1=\dots=R_5=10$ kΩ.</p></div>
+<figure class="slide nota"><img src="img/ex-p3.jpg" alt="Plancha con una pata y un sensor en cada esquina, que entran a la etapa 1 (sumador), la etapa 2 (ganancia K) y el convertidor A/D del microcontrolador." loading="lazy" width="825" height="338"><figcaption><b class="n">Enunciado · curso 25-26</b>Etapa 1 suma $P_T=P_1+P_2+P_3+P_4$; la etapa 2 adapta el rango al A/D.</figcaption></figure>
+<figure class="slide nota"><img src="img/ex-p4.jpg" alt="Operacional con la entrada negativa unida a masa por RX y a la salida por RY. En la entrada positiva, cuatro resistencias R1 a R4 desde S1 a S4 y R5 a masa." loading="lazy" width="458" height="518"><figcaption><b class="n">Enunciado · curso 25-26 · parte I</b>Un no inversor cuyo nudo positivo es un sumador resistivo.</figcaption></figure>
+<details class="paso" open><summary><span class="pn">0</span>La idea, desde cero</summary><div class="inner"><p>Hay cinco resistencias iguales de 10 kΩ en la entrada positiva (cuatro de las fuentes y una a masa). Con todas iguales, la tensión del nudo es el <b>promedio</b> de las cuatro entradas repartido entre cinco ramas. Luego el no inversor multiplica por $1+R_Y/R_X=5$. El 5 compensa el reparto y sale justo la suma.</p></div></details>
+<details class="paso"><summary><span class="pn">1</span>(a) Salida del circuito</summary><div class="inner"><p>Nudo $u^+$ (suma de corrientes, sin corriente en el operacional): $\dfrac{S_1-u^+}{R}+\dfrac{S_2-u^+}{R}+\dfrac{S_3-u^+}{R}+\dfrac{S_4-u^+}{R}=\dfrac{u^+}{R}$ con $R=10$ kΩ. Luego $5u^+=S_1+S_2+S_3+S_4$ y $u^+=\dfrac{\sum S_i}{5}$. El no inversor tiene ganancia $1+\dfrac{40}{10}=5$:</p>
+<p>$V_{o1}=5u^+=S_1+S_2+S_3+S_4=P_T$.</p>
+<p>Funcionalmente <b>sí suma</b>: la salida va de 0 a 4 V.</p></div></details>
+<details class="paso"><summary><span class="pn">2</span>(b) ¿Es óptimo?</summary><div class="inner"><p>No. Tres defectos:</p>
+<ul>
+<li><b>Los sensores no son fuentes ideales.</b> Cada uno tiene $R_s=1$ kΩ en serie, así que cada rama vale $R+R_s=11$ kΩ y el reparto cambia: $u^+=\dfrac{\sum S_i}{4+(R+R_s)/R}=\dfrac{\sum S_i}{5{,}1}$ y $V_{o1}=0{,}980\sum S_i$. Un <b>error de ganancia de −1,96 %</b> (lo he comprobado con un programa). Con otro $R_s$ el error cambia.</li>
+<li><b>Cada entrada ve $R_1+(R_2\|R_3\|R_4\|R_5)=12{,}5$ kΩ</b>, que carga al sensor, y los canales se influyen entre sí (la tensión de $u^+$ vuelve a las otras ramas).</li>
+<li><b>La exactitud depende de siete resistencias</b> (seis iguales y la relación $R_Y/R_X$): con tolerancias del 1 % la suma deja de ser exacta.</li>
+</ul>
+<p><b>Alternativa:</b> un sumador <b>inversor</b>. Cada sensor entra por una $R$ a la tierra virtual, no hay interacción entre canales y $V_{o1}=-\dfrac{R_F}{R}\sum S_i$ (con $R_F=R$ para ganancia 1). Son 5 resistencias y un operacional, y el efecto de $R_s$ es un error fijo ($R_s/R$) que se corrige con $R_F$. Si hace falta la señal positiva, la etapa 2 puede ser otro inversor. Otra mejora más cara: un seguidor por canal para aislar los sensores.</p></div></details>
+<details class="paso"><summary><span class="pn">3</span>(c) Etapa 2</summary><div class="inner"><p>La suma sale entre 0 y 4 V y el A/D acepta 0–5 V. Para aprovechar todo el rango hace falta una ganancia $K=\dfrac54=1{,}25$.</p>
+<ul>
+<li>Con la etapa 1 de la figura (salida positiva): un <b>no inversor</b> con $1+\dfrac{R_B}{R_A}=1{,}25\Rightarrow R_B/R_A=\dfrac14$, por ejemplo $R_A=40$ kΩ y $R_B=10$ kΩ.</li>
+<li>Con el sumador inversor (salida de 0 a −4 V): un <b>inversor</b> con $\dfrac{R_B}{R_A}=\dfrac54$, por ejemplo $R_A=40$ kΩ y $R_B=50$ kΩ.</li>
+</ul></div></details>
+<details class="resul"><summary>Resultado</summary><div class="inner"><p class="et">Solución</p><p>(a) $V_{o1}=\sum S_i=P_T$ con fuentes ideales. (b) Mejorable: con $R_s=1$ kΩ queda un −1,96 %, los canales interactúan y dependen de siete resistencias; mejor un sumador inversor. (c) Ganancia $5/4$ en la etapa 2 (no inversor con $R_B/R_A=1/4$, o inversor con $5/4$ si la etapa 1 invierte).</p></div></details>
+</div>
+</section>
+
+</main>
+</div>
+<nav class="pager" aria-label="Páginas"><a href="potencia.html"><small>← Anterior</small>Amplificadores de potencia</a><a class="nx" href="examenes.html"><small>Siguiente →</small>Exámenes resueltos</a></nav>
+<script src="app.js?v=1"></script>
+<script>
+/* ---------- exámenes: gráficas ---------- */
+(function(){
+  const $=id=>document.getElementById(id)||{};
+  const lw=rng(0,6,400);
+  const lab=v=>{const w=Math.round(Math.pow(10,v));return w>=1e6?(w/1e6)+'M':w>=1e3?(w/1e3)+'k':String(w);};
+  // G = K (jw)^p prod (1+jw/w0)^n ; terms: [w0,n]
+  function bode(id,K,p,terms,o,label,extra){
+    const mag=l=>{const w=Math.pow(10,l);let g=Math.log10(K)+p*l;for(const [w0,n] of terms)g+=n*0.5*Math.log10(1+(w/w0)*(w/w0));return 20*g;};
+    const asy=l=>{let g=20*Math.log10(K)+20*p*l;for(const [w0,n] of terms)g+=20*n*Math.max(0,l-Math.log10(w0));return g;};
+    const x=rng(o.x0,o.x1,400);
+    const vl=terms.map(t=>({t:'vline',x:Math.log10(t[0]),c:'s2'}));
+    $(id).innerHTML=plotSVG(Object.assign({label,yl:'|G| dB',xl:'ω rad/s',xt:o.xt,xtf:lab},o),[
+      {t:'line',x,y:x.map(asy),c:'s3',dash:1,w:1.6},{t:'line',x,y:x.map(mag),c:'s1'}].concat(vl,extra||[]));
+    return {mag,asy};
+  }
+  // Feb 2013
+  // el integrador 1/(jw 0.01): K=100, p=-1
+  bode('fig-x13',100,-1,[[1/0.1005,1],[200,1],[400,-1],[2000,-2]],
+    {x0:0,x1:4,xt:[0,1,2,3,4],y0:-10,y1:50,yt:[0,10,20,30,40,50]},'Bode de la función de transferencia de febrero de 2013');
+  // Sep 2020
+  bode('fig-x20b',2*0.0159,1,[[1/0.0159,-1],[1/1.59e-5,-1]],
+    {x0:0,x1:6,xt:[0,1,2,3,4,5,6],y0:-40,y1:10,yt:[-40,-30,-20,-10,0,10]},'Bode del filtro pasa banda de septiembre de 2020');
+  // Nov 2023 Ej1: Sallen-Key K=2.9, Q=10, w0=6329
+  (function(){
+    const K=2.9,w0=1/(15.8e3*10e-9),Q=10;
+    const x=rng(2.5,5.5,500);
+    const mag=l=>{const w=Math.pow(10,l)/w0;const re=1-w*w,im=w/Q;return 20*Math.log10(K/Math.hypot(re,im));};
+    const asy=l=>20*Math.log10(K)-40*Math.max(0,l-Math.log10(w0));
+    $('fig-x23a').innerHTML=plotSVG({x0:2.5,x1:5.5,y0:-60,y1:40,yt:[-60,-40,-20,0,20,40],xt:[3,4,5],xtf:lab,label:'Bode del Sallen-Key de noviembre de 2023',yl:'|G| dB',xl:'ω rad/s'},[
+      {t:'line',x,y:x.map(asy),c:'s3',dash:1,w:1.6},{t:'line',x,y:x.map(mag),c:'s1'},{t:'vline',x:Math.log10(w0),c:'s2'}]);
+  })();
+  // Ene 2024 Ej2: K=2, Q=1, w0=1e4
+  (function(){
+    const K=2,w0=1e4,Q=1;
+    const x=rng(2.5,5.5,500);
+    const mag=l=>{const w=Math.pow(10,l)/w0;return 20*Math.log10(K/Math.hypot(1-w*w,w/Q));};
+    const asy=l=>20*Math.log10(K)-40*Math.max(0,l-Math.log10(w0));
+    $('fig-x24b').innerHTML=plotSVG({x0:2.5,x1:5.5,y0:-60,y1:20,yt:[-60,-40,-20,0,20],xt:[3,4,5],xtf:lab,label:'Bode del Sallen-Key de enero de 2024',yl:'|G| dB',xl:'ω rad/s'},[
+      {t:'line',x,y:x.map(asy),c:'s3',dash:1,w:1.6},{t:'line',x,y:x.map(mag),c:'s1'},{t:'vline',x:4,c:'s2'}]);
+  })();
+  // Feb 2020: histéresis
+  $('fig-x20a').innerHTML=plotSVG({x0:0,x1:12,y0:-1,y1:14,xt:[0,3,6,9,12],yt:[0,6,12],xtf:v=>v+' V',ytf:v=>v+' V',label:'Característica de transferencia del Schmitt no inversor',yl:'Vo',xl:'Vin'},[
+    {t:'line',x:[0,9,9,12],y:[0,0,12,12],c:'s1',w:2.4},
+    {t:'line',x:[12,3,3,0],y:[12,12,0,0],c:'s2',w:2.4,dash:1},
+    {t:'vline',x:3,c:'s2'},{t:'vline',x:9,c:'s1'},
+    {t:'text',x:9.2,y:6,s:'sube en 9 V',a:'start',c:'s1'},{t:'text',x:2.8,y:6,s:'baja en 3 V',a:'end',c:'s2'}]);
+  // Ene 2024: temporal
+  (function(){
+    const t=[0,5,10],vi=[-10,10,-10];
+    $('fig-x24c').innerHTML=plotSVG({x0:0,x1:10,y0:-12,y1:12,xt:[0,2,4,6,8,10],yt:[-10,-5,0,5,10],xtf:v=>v+' ms',ytf:v=>v+' V',label:'Entrada triangular y salida del comparador con zéneres',yl:'V',xl:'t'},[
+      {t:'line',x:t,y:vi,c:'s1',w:2},
+      {t:'line',x:[0,2.325,2.325,9.2,9.2,10],y:[3.6,3.6,-8.6,-8.6,3.6,3.6],c:'s2',w:2.4},
+      {t:'vline',x:2.325,c:'s3'},{t:'vline',x:9.2,c:'s3'},
+      {t:'text',x:1.1,y:5.6,s:'3,6 V',c:'s2'},{t:'text',x:6,y:-10.5,s:'−8,6 V',c:'s2'}]);
+  })();
+
+  // P1 curso 24-25 Ej1: Schmitt inversor, umbrales 0 y 5 V, salidas ±15 V
+  $('fig-q1').innerHTML=plotSVG({x0:-3,x1:8,y0:-19,y1:19,xt:[-2,0,2,4,5,6,8],yt:[-15,0,15],xtf:v=>v+' V',ytf:v=>v+' V',label:'Característica del Schmitt inversor del curso 24-25',yl:'Us',xl:'Ue'},[
+    {t:'line',x:[-3,5,5,8],y:[15,15,-15,-15],c:'s1',w:2.4},
+    {t:'line',x:[8,0,0,-3],y:[-15,-15,15,15],c:'s2',w:2.4,dash:1},
+    {t:'vline',x:0,c:'s2'},{t:'vline',x:5,c:'s1'},
+    {t:'text',x:5.2,y:0,s:'baja en 5 V',a:'start',c:'s1'},{t:'text',x:-0.2,y:0,s:'sube en 0 V',a:'end',c:'s2'}]);
+  // P1 curso 24-25 Ej2: cero en 1000, polos en 112,7 y 887,3
+  bode('fig-q2',1,0,[[1000,1],[112.7,-1],[887.3,-1]],
+    {x0:1,x1:4,xt:[1,2,3,4],y0:-50,y1:10,yt:[-50,-40,-30,-20,-10,0,10]},'Bode de la función de transferencia del curso 24-25');
+  // P1 curso 24-25 problema: Vo=(Vi+10)/4
+  $('fig-q3').innerHTML=plotSVG({x0:-12,x1:12,y0:-0.5,y1:5.5,xt:[-10,-5,0,5,10],yt:[0,2.5,5],xtf:v=>v+' V',ytf:v=>v+' V',label:'Salida frente a entrada del acondicionador',yl:'Vo',xl:'Vi'},[
+    {t:'line',x:[-10,10],y:[0,5],c:'s1',w:2.4},
+    {t:'pt',x:-10,y:0,c:'s2'},{t:'pt',x:0,y:2.5,c:'s2'},{t:'pt',x:10,y:5,c:'s2'}]);
+  // P1 curso 25-26 Ej1: pasa altos 2º orden, K=1, w0=4352, Q=0,638
+  (function(){
+    const w0=4352,Q=0.638;
+    const x=rng(2,5,500);
+    const mag=l=>{const w=Math.pow(10,l)/w0,w2=w*w;return 20*Math.log10(w2/Math.hypot(1-w2,w/Q));};
+    const asy=l=>40*Math.min(0,l-Math.log10(w0));
+    $('fig-p1').innerHTML=plotSVG({x0:2,x1:5,y0:-80,y1:10,yt:[-80,-60,-40,-20,0],xt:[2,3,4,5],xtf:lab,label:'Bode del pasa altos de segundo orden del curso 25-26',yl:'|G| dB',xl:'ω rad/s'},[
+      {t:'line',x,y:x.map(asy),c:'s3',dash:1,w:1.6},{t:'line',x,y:x.map(mag),c:'s1'},{t:'vline',x:Math.log10(w0),c:'s2'}]);
+  })();
+  // P1 curso 25-26 Ej2: respuesta al escalón, tau 0,1 ms y 1,15 ms
+  (function(){
+    const t=rng(0,8,400);
+    $('fig-p2').innerHTML=plotSVG({x0:0,x1:8,y0:-0.05,y1:1.1,xt:[0,2,4,6,8],yt:[0,0.5,0.9,1],xtf:v=>v+' ms',ytf:v=>Math.round(v*100)+' %',label:'Respuesta al escalón del sensor',yl:'Vo/Vs',xl:'t'},[
+      {t:'line',x:[0,8],y:[0.9,0.9],c:'s3',dash:1,w:1.2},
+      {t:'line',x:t,y:t.map(v=>1-Math.exp(-v/0.1)),c:'s1',w:2.4},
+      {t:'line',x:t,y:t.map(v=>1-Math.exp(-v/1.15)),c:'s2',w:2.4},
+      {t:'vline',x:0.23,c:'s1'},{t:'vline',x:2.65,c:'s2'},
+      {t:'text',x:0.4,y:0.4,s:'0,23 ms',a:'start',c:'s1'},{t:'text',x:2.85,y:0.5,s:'2,65 ms',a:'start',c:'s2'}]);
+  })();
+
+  // Nov 2021 Ej1: K=0.011, cero en el origen, polos 1e4 y 1e5 / 550 y 50
+  (function(){
+    const o={x0:0,x1:7,xt:[0,1,2,3,4,5,6,7],y0:-50,y1:45,yt:[-40,-20,0,20,40]};
+    const f1=bode('fig-a1',0.011,1,[[1.1e6,1],[1e5,-1],[1e4,-1]],o,'Bode de noviembre de 2021 con C5 = 1 nF');
+    const L=rng(0,7,400);
+    const mag=l=>{const w=Math.pow(10,l);let g=Math.log10(0.011)+l;for(const [w0,n] of [[550,1],[50,-1],[1e4,-1]])g+=n*0.5*Math.log10(1+(w/w0)*(w/w0));return 20*g;};
+    $('fig-a1').innerHTML=plotSVG(Object.assign({label:'Bode de noviembre de 2021',yl:'|G| dB',xl:'ω rad/s',xtf:lab},o),[
+      {t:'line',x:L,y:L.map(f1.mag),c:'s1'},{t:'line',x:L,y:L.map(mag),c:'s2'},
+      {t:'vline',x:4,c:'s3'},{t:'vline',x:5,c:'s1'},{t:'vline',x:Math.log10(50),c:'s2'},{t:'vline',x:Math.log10(550),c:'s2'}]);
+  })();
+  // Sensor: histéresis de ±2 °C alrededor de 10 °C, salidas ±10 V
+  $('fig-t1').innerHTML=plotSVG({x0:0,x1:20,y0:-13,y1:13,xt:[0,4,8,10,12,16,20],yt:[-10,0,10],xtf:v=>v+' °C',ytf:v=>v+' V',label:'Salida del termómetro con histéresis',yl:'Vout',xl:'T'},[
+    {t:'line',x:[0,12,12,20],y:[10,10,-10,-10],c:'s1',w:2.4},
+    {t:'line',x:[20,8,8,0],y:[-10,-10,10,10],c:'s2',w:2.4,dash:1},
+    {t:'vline',x:8,c:'s2'},{t:'vline',x:12,c:'s1'}]);
+})();
+
+</script>
+</body>
+</html>

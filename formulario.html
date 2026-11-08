@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="description" content="Electrónica Analógica (UPCT): Una hoja con las fórmulas.">
+<title>Electrónica Analógica · Formulario</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=IBM+Plex+Sans:ital,wght@0,400;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<script>
+window.MathJax = { tex: { inlineMath: [['$','$']], displayMath: [['$$','$$']] }, svg: { fontCache: 'global' } };
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-svg.js"></script>
+<link rel="manifest" href="manifest.webmanifest"><meta name="theme-color" content="#1d5fb8">
+<link rel="icon" type="image/png" sizes="192x192" href="icon-192.png"><link rel="apple-touch-icon" href="apple-touch-icon.png">
+<meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="Analógica">
+<link rel="stylesheet" href="style.css?v=1"></head><body data-page="formulario">
+
+<div class="hub-bar" style="max-width:1180px;margin:0 auto;padding:10px 16px 0"><a href="https://helionacon-ui.github.io/GIEIA-UPCT/" style="display:inline-flex;align-items:center;gap:6px;font:600 13.5px/1 system-ui,sans-serif;padding:8px 12px;border-radius:999px;border:1px solid var(--line,#d3dcdf);background:var(--surface,var(--card,#fff));color:var(--fg,#18232b);text-decoration:none">← Todas las guías GIEyA</a></div>
+<header class="phead"><div class="eyebrow">UPCT · GIEyA · Electrónica Analógica · Repasar</div><h1>Formulario</h1><p class="lede">Una hoja con las fórmulas</p></header>
+
+<a href="#top" class="totop" id="totop" aria-label="Volver arriba">↑</a>
+<div class="wrap" id="top">
+<nav class="toc" aria-label="Índice">
+<a href="index.html" style="--tc:var(--c0)">Portada</a>
+<div class="grp">Empezar</div>
+<a href="empezar.html" style="--tc:var(--c0)">Cómo es el examen</a>
+<div class="grp">Parcial 1</div>
+<a href="tema-1-2.html" style="--tc:var(--c1)">T1–2 Amplificadores y AO ideal</a>
+<a href="tema-3.html" style="--tc:var(--c3)">T3 Aplicaciones lineales</a>
+<a href="tema-4.html" style="--tc:var(--c4)">T4 Aplicaciones no lineales</a>
+<a href="tema-5.html" style="--tc:var(--c5)">T5 AO real</a>
+<a href="tema-6.html" style="--tc:var(--c6)">T6 Bode y filtros</a>
+<div class="grp">Parcial 2</div>
+<a href="tema-7.html" style="--tc:var(--c7)">T7 Cuadripolos</a>
+<a href="tema-8.html" style="--tc:var(--c8)">T8 Transistores en frecuencia</a>
+<a href="realimentacion.html" style="--tc:var(--c1)">Realimentación y osciladores</a>
+<a href="potencia.html" style="--tc:var(--c3)">Amplificadores de potencia</a>
+<div class="grp">Practicar</div>
+<a href="examen-2025-26.html" style="--tc:var(--c3)">P1 curso 25-26 resuelto</a>
+<a href="examenes.html" style="--tc:var(--c8)">Exámenes resueltos</a>
+<a href="fuen.html" style="--tc:var(--c0)">Apuntes de Fuen</a>
+<a href="problemas.html" style="--tc:var(--c8)">Problemas resueltos</a>
+<a href="calculadoras.html" style="--tc:var(--c8)">Calculadoras de bolsillo</a>
+<a href="autoevaluacion.html" style="--tc:var(--c8)">Autoevaluación</a>
+<div class="grp">Repasar</div>
+<a href="formulario.html" aria-current="page" class="cur" style="--tc:var(--c0)">Formulario</a>
+<a href="glosario.html" style="--tc:var(--c0)">Glosario</a>
+<a href="plan.html" style="--tc:var(--c0)">Plan de estudio</a>
+<div class="grp">Todo en uno</div>
+<a href="guia-completa.html" style="--tc:var(--c0)">Guía completa</a>
+</nav>
+
+<main>
+<div class="srch-card" id="srch-card"><label for="srch" class="srch-lab">Buscar en la guía</label>
+<input type="search" id="srch" placeholder="Por ejemplo: slew rate, Schmitt, Miller, CMRR…" autocomplete="off" spellcheck="false">
+<div id="srch-out" class="srch-out" hidden></div></div>
+
+
+
+<section class="sec" style="--tc:var(--c0);--tcs:var(--c0s)">
+<div class="sh"><span class="badge" aria-hidden="true">Σ</span><div class="shx"><p class="kick">Repaso</p><h2 id="formulario">Formulario de una hoja</h2></div></div>
+<div class="tw"><table>
+<tr><th>Tema</th><th>Fórmula</th></tr>
+<tr><td>Ganancia real con fuente y carga</td><td>$\dfrac{v_o}{v_s}=\dfrac{Z_{in}}{R_s+Z_{in}}A_{v0}\dfrac{R_L}{Z_{out}+R_L}$</td></tr>
+<tr><td>dB</td><td>$20\log|A|$; ×2 = 6 dB; ×10 = 20 dB; $\sqrt2$ = 3 dB</td></tr>
+<tr><td>Inversor, no inversor</td><td>$-\dfrac{R_2}{R_1}$ y $1+\dfrac{R_2}{R_1}$</td></tr>
+<tr><td>Integrador, diferenciador</td><td>$-\dfrac1{RC}\int V_i\,dt$ y $-RC\dfrac{dV_i}{dt}$</td></tr>
+<tr><td>Schmitt inversor</td><td>$V_{TH,TL}=V_{ref}(1-\beta)\pm\beta V_{sat}$, $\beta=\dfrac{R_1}{R_1+R_2}$</td></tr>
+<tr><td>Relajación</td><td>$T=2RC\ln\dfrac{1+\beta}{1-\beta}$</td></tr>
+<tr><td>Slew rate</td><td>$2\pi fA\le SR$, $f_{max}=\dfrac{SR}{2\pi A}$</td></tr>
+<tr><td>CMRR</td><td>$20\log\dfrac{A_d}{A_c}$</td></tr>
+<tr><td>Compensación de $I_B$</td><td>$R_3=R_1\parallel R_2$</td></tr>
+<tr><td>Ganancia finita (inversor)</td><td>$-\dfrac{R_2}{R_1}\dfrac1{1+\frac{R_1+R_2}{AR_1}}$</td></tr>
+<tr><td>GBW</td><td>$A_{CL}\cdot f_{-3dB}=f_1$</td></tr>
+<tr><td>Polo o cero real</td><td>$\omega_c=1/a$; ±20 dB/dec; ±45° en $\omega_c$</td></tr>
+<tr><td>Paso bajo RC</td><td>$\dfrac1{1+j\omega RC}$, $f_c=\dfrac1{2\pi RC}$</td></tr>
+<tr><td>Polos complejos</td><td>$M_r=\dfrac{1}{2\zeta\sqrt{1-\zeta^2}}$ en $\omega_r=\omega_n\sqrt{1-2\zeta^2}$ (si $\zeta<0{,}707$); $|G(j\omega_n)|=\dfrac1{2\zeta}$</td></tr>
+<tr><td>Butterworth</td><td>$|H|=\dfrac1{\sqrt{1+(f/f_c)^{2n}}}$, pendiente $-20n$ dB/dec</td></tr>
+<tr><td>Sallen–Key</td><td>$\omega_0=\dfrac1{\sqrt{R_1R_2C_1C_2}}$, $Q=\dfrac{\sqrt{R_1R_2C_1C_2}}{C_2(R_1+R_2)}$</td></tr>
+<tr><td>Parámetros $h$ (amplificador)</td><td>$A_i=\dfrac{-h_{21}}{1+h_{22}R_L}$, $A_v\approx-\dfrac{h_{fe}R_L}{h_{ie}}$</td></tr>
+<tr><td>EC en frecuencias medias</td><td>$A_v=-\dfrac{h_{fe}(R_C\parallel R_L)}{h_{ie}}\dfrac{R_b\parallel h_{ie}}{R_b\parallel h_{ie}+R_g}$</td></tr>
+<tr><td>Corte inferior de un condensador</td><td>$f_c(C_k)=\dfrac1{2\pi C_kZ_{th}(C_k)}$; $f_{ci}=\sum f_{ck}$ si no hay dominante</td></tr>
+<tr><td>Miller</td><td>$C_{in}=C(1-A)$, $C_{out}=C(1-1/A)$</td></tr>
+<tr><td>Corte superior</td><td>$f_{cs}=\dfrac1{2\pi\sum\tau_k}$</td></tr>
+<tr><td>Realimentación</td><td>$A_f=\dfrac{A}{1+A\beta}$</td></tr>
+<tr><td>Wien, desfase, LC, 555</td><td>$\dfrac1{2\pi RC}$; $\dfrac1{2\pi\sqrt6RC}$; $\dfrac1{2\pi\sqrt{LC}}$; $\dfrac{1{,}44}{(R_1+2R_2)C}$</td></tr>
+<tr><td>Clase B</td><td>$\eta=\dfrac\pi4\dfrac{V_p}{V_{CC}}$, $P_{D,max}=\dfrac{2V_{CC}^2}{\pi^2R_L}$</td></tr>
+</table></div>
+</section>
+
+</main>
+</div>
+<nav class="pager" aria-label="Páginas"><a href="autoevaluacion.html"><small>← Anterior</small>Autoevaluación</a><a class="nx" href="glosario.html"><small>Siguiente →</small>Glosario</a></nav>
+<script src="app.js?v=1"></script>
+<script>
+
+</script>
+</body>
+</html>

@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="description" content="Electrónica Analógica (UPCT): Clases de funcionamiento y rendimiento.">
+<title>Electrónica Analógica · Amplificadores de potencia</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=IBM+Plex+Sans:ital,wght@0,400;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<script>
+window.MathJax = { tex: { inlineMath: [['$','$']], displayMath: [['$$','$$']] }, svg: { fontCache: 'global' } };
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-svg.js"></script>
+<link rel="manifest" href="manifest.webmanifest"><meta name="theme-color" content="#1d5fb8">
+<link rel="icon" type="image/png" sizes="192x192" href="icon-192.png"><link rel="apple-touch-icon" href="apple-touch-icon.png">
+<meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="Analógica">
+<link rel="stylesheet" href="style.css?v=1"></head><body data-page="potencia">
+
+<div class="hub-bar" style="max-width:1180px;margin:0 auto;padding:10px 16px 0"><a href="https://helionacon-ui.github.io/GIEIA-UPCT/" style="display:inline-flex;align-items:center;gap:6px;font:600 13.5px/1 system-ui,sans-serif;padding:8px 12px;border-radius:999px;border:1px solid var(--line,#d3dcdf);background:var(--surface,var(--card,#fff));color:var(--fg,#18232b);text-decoration:none">← Todas las guías GIEyA</a></div>
+<header class="phead"><div class="eyebrow">UPCT · GIEyA · Electrónica Analógica · Parcial 2</div><h1>Amplificadores de potencia</h1><p class="lede">Clases de funcionamiento y rendimiento</p></header>
+
+<a href="#top" class="totop" id="totop" aria-label="Volver arriba">↑</a>
+<div class="wrap" id="top">
+<nav class="toc" aria-label="Índice">
+<a href="index.html" style="--tc:var(--c0)">Portada</a>
+<div class="grp">Empezar</div>
+<a href="empezar.html" style="--tc:var(--c0)">Cómo es el examen</a>
+<div class="grp">Parcial 1</div>
+<a href="tema-1-2.html" style="--tc:var(--c1)">T1–2 Amplificadores y AO ideal</a>
+<a href="tema-3.html" style="--tc:var(--c3)">T3 Aplicaciones lineales</a>
+<a href="tema-4.html" style="--tc:var(--c4)">T4 Aplicaciones no lineales</a>
+<a href="tema-5.html" style="--tc:var(--c5)">T5 AO real</a>
+<a href="tema-6.html" style="--tc:var(--c6)">T6 Bode y filtros</a>
+<div class="grp">Parcial 2</div>
+<a href="tema-7.html" style="--tc:var(--c7)">T7 Cuadripolos</a>
+<a href="tema-8.html" style="--tc:var(--c8)">T8 Transistores en frecuencia</a>
+<a href="realimentacion.html" style="--tc:var(--c1)">Realimentación y osciladores</a>
+<a href="potencia.html" aria-current="page" class="cur" style="--tc:var(--c3)">Amplificadores de potencia</a>
+<div class="grp">Practicar</div>
+<a href="examen-2025-26.html" style="--tc:var(--c3)">P1 curso 25-26 resuelto</a>
+<a href="examenes.html" style="--tc:var(--c8)">Exámenes resueltos</a>
+<a href="fuen.html" style="--tc:var(--c0)">Apuntes de Fuen</a>
+<a href="problemas.html" style="--tc:var(--c8)">Problemas resueltos</a>
+<a href="calculadoras.html" style="--tc:var(--c8)">Calculadoras de bolsillo</a>
+<a href="autoevaluacion.html" style="--tc:var(--c8)">Autoevaluación</a>
+<div class="grp">Repasar</div>
+<a href="formulario.html" style="--tc:var(--c0)">Formulario</a>
+<a href="glosario.html" style="--tc:var(--c0)">Glosario</a>
+<a href="plan.html" style="--tc:var(--c0)">Plan de estudio</a>
+<div class="grp">Todo en uno</div>
+<a href="guia-completa.html" style="--tc:var(--c0)">Guía completa</a>
+</nav>
+
+<main>
+<div class="srch-card" id="srch-card"><label for="srch" class="srch-lab">Buscar en la guía</label>
+<input type="search" id="srch" placeholder="Por ejemplo: slew rate, Schmitt, Miller, CMRR…" autocomplete="off" spellcheck="false">
+<div id="srch-out" class="srch-out" hidden></div></div>
+
+
+
+<section class="sec tema" style="--tc:var(--c3);--tcs:var(--c3s)">
+<div class="sh"><span class="badge" aria-hidden="true">P</span><div class="shx"><p class="kick">Amplificadores de potencia</p><h2 id="potencia">Amplificadores de potencia y clases de funcionamiento</h2><div class="tags"><span class="tag">Parcial 2</span></div></div></div>
+<div class="zero">
+<p class="ft">Desde cero</p>
+<p>Un amplificador de potencia no busca ganancia de tensión sino <b>entregar energía a una carga</b> (un altavoz, un motor) de forma eficiente. La pregunta clave es el <b>rendimiento</b>: $\eta=\dfrac{P_{carga}}{P_{alimentación}}$. Lo que no llega a la carga se convierte en calor en los transistores. Las «clases» describen durante qué parte del ciclo conduce cada transistor, y de ahí salen la eficiencia y la distorsión.</p>
+</div>
+<div class="tw"><table>
+<tr><th>Clase</th><th>Conducción</th><th>Rendimiento máximo</th><th>Característica</th></tr>
+<tr><td>A</td><td>Todo el ciclo (360°)</td><td>25 % con carga resistiva directa, 50 % con acoplo por transformador o inductancia</td><td>Poca distorsión; siempre consume y calienta mucho.</td></tr>
+<tr><td>B</td><td>Mitad del ciclo (180°) cada transistor, en contrafase</td><td>$\dfrac\pi4\approx78{,}5\%$</td><td>Distorsión de cruce: cerca de 0 V ninguno conduce.</td></tr>
+<tr><td>AB</td><td>Algo más de 180°</td><td>Entre 50 % y 78 %</td><td>Se polariza un poco para quitar la distorsión de cruce. Es la más usada en audio.</td></tr>
+<tr><td>C</td><td>Menos de 180°</td><td>Más del 78 %, hasta cerca de 100 %</td><td>Muy distorsionada; solo en RF con un circuito resonante que reconstruye la senoidal.</td></tr>
+</table></div>
+<h3>Clase B en contrafase: las fórmulas</h3>
+<p>Con alimentación $\pm V_{CC}$, carga $R_L$ y tensión de pico de salida $V_p$:</p>
+$$P_L=\frac{V_p^2}{2R_L},\qquad P_{alim}=\frac{2V_{CC}V_p}{\pi R_L},\qquad \eta=\frac{P_L}{P_{alim}}=\frac{\pi}{4}\frac{V_p}{V_{CC}}$$
+<p>El máximo se alcanza con $V_p=V_{CC}$: $P_{L,max}=\dfrac{V_{CC}^2}{2R_L}$ y $\eta=78{,}5\%$. La <b>potencia disipada total</b> en los dos transistores, $P_D=P_{alim}-P_L$, no es máxima a plena potencia sino con $V_p=\dfrac{2V_{CC}}{\pi}\approx0{,}64\,V_{CC}$, donde vale $P_{D,max}=\dfrac{2V_{CC}^2}{\pi^2R_L}$. Cada transistor disipa la mitad. Ese es el dato con el que se dimensiona el disipador.</p>
+<details><summary>Ejemplo: etapa clase B con $V_{CC}=12$ V y altavoz de 8 Ω <span class="src">comprobado</span></summary><div class="inner">
+<p>Potencia máxima en la carga: $\dfrac{12^2}{2\cdot8}=9$ W. Rendimiento a plena potencia: 78,5 %, así que $P_{alim}=\dfrac{9}{0{,}785}=11{,}5$ W y se disipan $2{,}5$ W.</p>
+<p>Disipación máxima: $\dfrac{2\cdot144}{\pi^2\cdot8}=3{,}65$ W en total, es decir, 1,8 W por transistor, y ocurre con $V_p=7{,}6$ V, a menos de plena potencia. Es mayor que a plena potencia (2,5 W).</p>
+</div></details>
+<details class="vids"><summary><span class="pn">▶</span>Vídeos para reforzar este tema</summary><div class="inner"><ul class="vlist"><li data-yt="qDxpCsPlzTE"><a href="https://www.youtube.com/watch?v=qDxpCsPlzTE" target="_blank" rel="noopener">Amplificadores de Potencia - Clase A, B y AB - Ejemplo con Amplificador compensado por Diodos</a><span class="vnote"> Clases de amplificadores de potencia.</span></li><li data-yt="I_uJnaqIVtI"><a href="https://www.youtube.com/watch?v=I_uJnaqIVtI" target="_blank" rel="noopener">Etapa de potencia clase B o Push Pull Amplificador con el Transistor BJT 20</a><span class="vnote"> El push-pull en clase B.</span></li></ul><p class="muted" style="font-size:13px;margin:8px 0 0">Los he elegido por su título y su tema, sin haberlos visto: comprueba que el enfoque coincide con el de tu profesor. Se abren en YouTube.</p></div></details>
+</section>
+
+</main>
+</div>
+<nav class="pager" aria-label="Páginas"><a href="realimentacion.html"><small>← Anterior</small>Realimentación y osciladores</a><a class="nx" href="examen-2025-26.html"><small>Siguiente →</small>P1 curso 25-26 resuelto</a></nav>
+<script src="app.js?v=1"></script>
+<script>
+
+</script>
+</body>
+</html>

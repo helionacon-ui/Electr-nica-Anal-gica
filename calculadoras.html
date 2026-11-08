@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="description" content="Electrónica Analógica (UPCT): Herramientas para comprobar tus resultados.">
+<title>Electrónica Analógica · Calculadoras de bolsillo</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=IBM+Plex+Sans:ital,wght@0,400;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<script>
+window.MathJax = { tex: { inlineMath: [['$','$']], displayMath: [['$$','$$']] }, svg: { fontCache: 'global' } };
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-svg.js"></script>
+<link rel="manifest" href="manifest.webmanifest"><meta name="theme-color" content="#1d5fb8">
+<link rel="icon" type="image/png" sizes="192x192" href="icon-192.png"><link rel="apple-touch-icon" href="apple-touch-icon.png">
+<meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="Analógica">
+<link rel="stylesheet" href="style.css?v=1"></head><body data-page="calculadoras">
+
+<div class="hub-bar" style="max-width:1180px;margin:0 auto;padding:10px 16px 0"><a href="https://helionacon-ui.github.io/GIEIA-UPCT/" style="display:inline-flex;align-items:center;gap:6px;font:600 13.5px/1 system-ui,sans-serif;padding:8px 12px;border-radius:999px;border:1px solid var(--line,#d3dcdf);background:var(--surface,var(--card,#fff));color:var(--fg,#18232b);text-decoration:none">← Todas las guías GIEyA</a></div>
+<header class="phead"><div class="eyebrow">UPCT · GIEyA · Electrónica Analógica · Practicar</div><h1>Calculadoras de bolsillo</h1><p class="lede">Herramientas para comprobar tus resultados</p></header>
+
+<a href="#top" class="totop" id="totop" aria-label="Volver arriba">↑</a>
+<div class="wrap" id="top">
+<nav class="toc" aria-label="Índice">
+<a href="index.html" style="--tc:var(--c0)">Portada</a>
+<div class="grp">Empezar</div>
+<a href="empezar.html" style="--tc:var(--c0)">Cómo es el examen</a>
+<div class="grp">Parcial 1</div>
+<a href="tema-1-2.html" style="--tc:var(--c1)">T1–2 Amplificadores y AO ideal</a>
+<a href="tema-3.html" style="--tc:var(--c3)">T3 Aplicaciones lineales</a>
+<a href="tema-4.html" style="--tc:var(--c4)">T4 Aplicaciones no lineales</a>
+<a href="tema-5.html" style="--tc:var(--c5)">T5 AO real</a>
+<a href="tema-6.html" style="--tc:var(--c6)">T6 Bode y filtros</a>
+<div class="grp">Parcial 2</div>
+<a href="tema-7.html" style="--tc:var(--c7)">T7 Cuadripolos</a>
+<a href="tema-8.html" style="--tc:var(--c8)">T8 Transistores en frecuencia</a>
+<a href="realimentacion.html" style="--tc:var(--c1)">Realimentación y osciladores</a>
+<a href="potencia.html" style="--tc:var(--c3)">Amplificadores de potencia</a>
+<div class="grp">Practicar</div>
+<a href="examen-2025-26.html" style="--tc:var(--c3)">P1 curso 25-26 resuelto</a>
+<a href="examenes.html" style="--tc:var(--c8)">Exámenes resueltos</a>
+<a href="fuen.html" style="--tc:var(--c0)">Apuntes de Fuen</a>
+<a href="problemas.html" style="--tc:var(--c8)">Problemas resueltos</a>
+<a href="calculadoras.html" aria-current="page" class="cur" style="--tc:var(--c8)">Calculadoras de bolsillo</a>
+<a href="autoevaluacion.html" style="--tc:var(--c8)">Autoevaluación</a>
+<div class="grp">Repasar</div>
+<a href="formulario.html" style="--tc:var(--c0)">Formulario</a>
+<a href="glosario.html" style="--tc:var(--c0)">Glosario</a>
+<a href="plan.html" style="--tc:var(--c0)">Plan de estudio</a>
+<div class="grp">Todo en uno</div>
+<a href="guia-completa.html" style="--tc:var(--c0)">Guía completa</a>
+</nav>
+
+<main>
+<div class="srch-card" id="srch-card"><label for="srch" class="srch-lab">Buscar en la guía</label>
+<input type="search" id="srch" placeholder="Por ejemplo: slew rate, Schmitt, Miller, CMRR…" autocomplete="off" spellcheck="false">
+<div id="srch-out" class="srch-out" hidden></div></div>
+
+
+
+<section class="sec" style="--tc:var(--c8);--tcs:var(--c8s)">
+<div class="sh"><span class="badge" aria-hidden="true">⚙</span><div class="shx"><p class="kick">Practicar</p><h2 id="calc">Calculadoras de bolsillo</h2></div></div>
+<p>Para comprobar tus resultados a mano. Todas calculan al momento.</p>
+<figure class="fig">
+<p class="ft">Frecuencia de corte de un filtro RC</p>
+<div class="ctrl"><label for="rc-r">$R$ <input type="range" id="rc-r" min="0" max="100" step="1" value="50"></label><output id="rc-r-o"></output>
+<label for="rc-c">$C$ <input type="range" id="rc-c" min="0" max="100" step="1" value="50"></label><output id="rc-c-o"></output></div>
+<div class="readout" id="rc-txt"></div>
+<figcaption>Los deslizadores son logarítmicos: $R$ de 100 Ω a 1 MΩ y $C$ de 100 pF a 100 µF. $f_c=\dfrac1{2\pi RC}$.</figcaption>
+</figure>
+<figure class="fig">
+<p class="ft">Temporizador 555 astable</p>
+<div class="ctrl"><label for="t5-r1">$R_1$ <input type="range" id="t5-r1" min="1" max="100" step="1" value="10"></label><output id="t5-r1-o"></output>
+<label for="t5-r2">$R_2$ <input type="range" id="t5-r2" min="1" max="100" step="1" value="47"></label><output id="t5-r2-o"></output>
+<label for="t5-c">$C$ <input type="range" id="t5-c" min="1" max="100" step="1" value="10"></label><output id="t5-c-o"></output></div>
+<div class="readout" id="t5-txt"></div>
+<figcaption>$R_1$ y $R_2$ en kΩ; $C$ en nF. $f=\dfrac{1{,}44}{(R_1+2R_2)C}$.</figcaption>
+</figure>
+<figure class="fig">
+<p class="ft">Oscilador de Wien y oscilador LC</p>
+<div class="ctrl"><label for="wi-r">$R$ <input type="range" id="wi-r" min="1" max="100" step="1" value="16"></label><output id="wi-r-o"></output>
+<label for="wi-c">$C$ <input type="range" id="wi-c" min="1" max="100" step="1" value="10"></label><output id="wi-c-o"></output></div>
+<div class="ctrl"><label for="lc-l">$L$ <input type="range" id="lc-l" min="1" max="100" step="1" value="10"></label><output id="lc-l-o"></output>
+<label for="lc-c">$C_{LC}$ <input type="range" id="lc-c" min="1" max="100" step="1" value="10"></label><output id="lc-c-o"></output></div>
+<div class="readout" id="wi-txt"></div>
+<figcaption>Wien: $R$ en kΩ y $C$ en nF, $f_0=\dfrac1{2\pi RC}$ con $R_f=2R_g$. LC: $L$ en mH y $C$ en nF, $f_0=\dfrac1{2\pi\sqrt{LC}}$.</figcaption>
+</figure>
+</section>
+
+</main>
+</div>
+<nav class="pager" aria-label="Páginas"><a href="problemas.html"><small>← Anterior</small>Problemas resueltos</a><a class="nx" href="autoevaluacion.html"><small>Siguiente →</small>Autoevaluación</a></nav>
+<script src="app.js?v=1"></script>
+<script>
+/* ---------- calculadoras ---------- */
+(function(){
+  if($('rc-r')){
+    const R=v=>100*Math.pow(10,v/100*4),C=v=>1e-10*Math.pow(10,v/100*6);
+    const un=(x,u)=>x>=1e6&&u==='Ω'?num(x/1e6,2)+' MΩ':x>=1e3&&u==='Ω'?num(x/1e3,2)+' kΩ':u==='Ω'?num(x,0)+' Ω':x>=1e-6?num(x*1e6,2)+' µF':x>=1e-9?num(x*1e9,2)+' nF':num(x*1e12,0)+' pF';
+    bind(['rc-r','rc-c'],()=>{const r=R(val('rc-r')),c=C(val('rc-c'));out('rc-r',un(r,'Ω'));out('rc-c',un(c,'F'));
+      const f=1/(2*Math.PI*r*c);$('rc-txt').textContent='f_c = '+freq(f)+' · ω_c = '+num(1/(r*c),1)+' rad/s · τ = RC = '+num(r*c*1e3,4)+' ms';});
+  }
+  if($('t5-r1'))bind(['t5-r1','t5-r2','t5-c'],()=>{const r1=val('t5-r1'),r2=val('t5-r2'),c=val('t5-c');out('t5-r1',num(r1,0)+' kΩ');out('t5-r2',num(r2,0)+' kΩ');out('t5-c',num(c,0)+' nF');
+    const f=1.44/((r1+2*r2)*1e3*c*1e-9),th=0.693*(r1+r2)*1e3*c*1e-9,tl=0.693*r2*1e3*c*1e-9;
+    $('t5-txt').textContent='f = '+freq(f)+' · t_alto = '+num(th*1e3,3)+' ms · t_bajo = '+num(tl*1e3,3)+' ms · ciclo de trabajo = '+num((r1+r2)/(r1+2*r2)*100,1)+' %';});
+  if($('wi-r'))bind(['wi-r','wi-c','lc-l','lc-c'],()=>{const r=val('wi-r'),c=val('wi-c'),l=val('lc-l'),cl=val('lc-c');out('wi-r',num(r,0)+' kΩ');out('wi-c',num(c,0)+' nF');out('lc-l',num(l,0)+' mH');out('lc-c',num(cl,0)+' nF');
+    const fw=1/(2*Math.PI*r*1e3*c*1e-9),fl=1/(2*Math.PI*Math.sqrt(l*1e-3*cl*1e-9));
+    $('wi-txt').textContent='Wien: f₀ = '+freq(fw)+' (con R_f = 2·R_g) · LC: f₀ = '+freq(fl);});
+})();
+
+
+</script>
+</body>
+</html>

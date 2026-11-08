@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="description" content="Electrónica Analógica (UPCT): Evaluación, reglas, qué ha caído en otros años y tu progreso.">
+<title>Electrónica Analógica · Cómo es el examen</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=IBM+Plex+Sans:ital,wght@0,400;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<script>
+window.MathJax = { tex: { inlineMath: [['$','$']], displayMath: [['$$','$$']] }, svg: { fontCache: 'global' } };
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-svg.js"></script>
+<link rel="manifest" href="manifest.webmanifest"><meta name="theme-color" content="#1d5fb8">
+<link rel="icon" type="image/png" sizes="192x192" href="icon-192.png"><link rel="apple-touch-icon" href="apple-touch-icon.png">
+<meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="Analógica">
+<link rel="stylesheet" href="style.css?v=1"></head><body data-page="empezar">
+
+<div class="hub-bar" style="max-width:1180px;margin:0 auto;padding:10px 16px 0"><a href="https://helionacon-ui.github.io/GIEIA-UPCT/" style="display:inline-flex;align-items:center;gap:6px;font:600 13.5px/1 system-ui,sans-serif;padding:8px 12px;border-radius:999px;border:1px solid var(--line,#d3dcdf);background:var(--surface,var(--card,#fff));color:var(--fg,#18232b);text-decoration:none">← Todas las guías GIEyA</a></div>
+<header class="phead"><div class="eyebrow">UPCT · GIEyA · Electrónica Analógica · Empezar</div><h1>Cómo es el examen</h1><p class="lede">Evaluación, reglas, qué ha caído en otros años y tu progreso</p></header>
+
+<a href="#top" class="totop" id="totop" aria-label="Volver arriba">↑</a>
+<div class="wrap" id="top">
+<nav class="toc" aria-label="Índice">
+<a href="index.html" style="--tc:var(--c0)">Portada</a>
+<div class="grp">Empezar</div>
+<a href="empezar.html" aria-current="page" class="cur" style="--tc:var(--c0)">Cómo es el examen</a>
+<a class="sub" href="#examen" style="--tc:var(--c0)">Cómo es el examen</a>
+<a class="sub" href="#progreso" style="--tc:var(--c0)">Tu progreso</a>
+<div class="grp">Parcial 1</div>
+<a href="tema-1-2.html" style="--tc:var(--c1)">T1–2 Amplificadores y AO ideal</a>
+<a href="tema-3.html" style="--tc:var(--c3)">T3 Aplicaciones lineales</a>
+<a href="tema-4.html" style="--tc:var(--c4)">T4 Aplicaciones no lineales</a>
+<a href="tema-5.html" style="--tc:var(--c5)">T5 AO real</a>
+<a href="tema-6.html" style="--tc:var(--c6)">T6 Bode y filtros</a>
+<div class="grp">Parcial 2</div>
+<a href="tema-7.html" style="--tc:var(--c7)">T7 Cuadripolos</a>
+<a href="tema-8.html" style="--tc:var(--c8)">T8 Transistores en frecuencia</a>
+<a href="realimentacion.html" style="--tc:var(--c1)">Realimentación y osciladores</a>
+<a href="potencia.html" style="--tc:var(--c3)">Amplificadores de potencia</a>
+<div class="grp">Practicar</div>
+<a href="examen-2025-26.html" style="--tc:var(--c3)">P1 curso 25-26 resuelto</a>
+<a href="examenes.html" style="--tc:var(--c8)">Exámenes resueltos</a>
+<a href="fuen.html" style="--tc:var(--c0)">Apuntes de Fuen</a>
+<a href="problemas.html" style="--tc:var(--c8)">Problemas resueltos</a>
+<a href="calculadoras.html" style="--tc:var(--c8)">Calculadoras de bolsillo</a>
+<a href="autoevaluacion.html" style="--tc:var(--c8)">Autoevaluación</a>
+<div class="grp">Repasar</div>
+<a href="formulario.html" style="--tc:var(--c0)">Formulario</a>
+<a href="glosario.html" style="--tc:var(--c0)">Glosario</a>
+<a href="plan.html" style="--tc:var(--c0)">Plan de estudio</a>
+<div class="grp">Todo en uno</div>
+<a href="guia-completa.html" style="--tc:var(--c0)">Guía completa</a>
+</nav>
+
+<main>
+<div class="srch-card" id="srch-card"><label for="srch" class="srch-lab">Buscar en la guía</label>
+<input type="search" id="srch" placeholder="Por ejemplo: slew rate, Schmitt, Miller, CMRR…" autocomplete="off" spellcheck="false">
+<div id="srch-out" class="srch-out" hidden></div></div>
+
+<nav class="onthispage" aria-label="En esta página" style="--tc:var(--c0);--tcs:var(--c0s)"><span>En esta página</span><a href="#examen">Cómo es el examen</a><a href="#progreso">Tu progreso</a></nav>
+
+<section class="sec" style="--tc:var(--c0);--tcs:var(--c0s)">
+<div class="sh"><span class="badge" aria-hidden="true">i</span><div class="shx"><p class="kick">Empezar</p><h2 id="examen">Cómo es el examen</h2></div></div>
+<p>Esta sección sale de la guía docente 2026-27 y de los exámenes y entregas que tienes en tu carpeta.</p>
+<div class="grid2">
+  <div class="box key">
+    <h4>Evaluación (guía docente)</h4>
+    <ul>
+      <li><b>80 %</b> exámenes escritos (parciales).</li>
+      <li><b>10 %</b> informes de prácticas.</li>
+      <li><b>10 %</b> evaluación continua: problemas propuestos entregables, con fecha fija. Son 8 h de trabajo fuera del horario lectivo.</li>
+      <li>Las <b>6 prácticas</b> de laboratorio son <b>obligatorias</b>. Se califican APTO / NO APTO y sin ellas no apruebas.</li>
+    </ul>
+  </div>
+  <div class="box key">
+    <h4>Reglas que conviene saber</h4>
+    <ul>
+      <li>Para presentarte al examen tienes que estar matriculado.</li>
+      <li>Si repites una actividad de continua en la evaluación final, <b>renuncias a la nota de continua</b> de esa actividad.</li>
+      <li>Las prácticas se guardan un máximo de dos cursos.</li>
+      <li>Trabajo autónomo previsto: 106 h de las 150 h del curso.</li>
+    </ul>
+  </div>
+</div>
+<h3>Qué ha caído en los exámenes de tu carpeta</h3>
+<div class="tw"><table>
+<tr><th>Convocatoria</th><th>Tema de los ejercicios</th></tr>
+<tr><td><a href="examenes.html#x13">Feb 2013</a></td><td>Dos etapas con operacional y condensadores: función de transferencia $G(j\omega)$ y Bode.</td></tr>
+<tr><td><a href="examenes.html#x16">Jul 2016</a></td><td>Dos operacionales con un condensador: impedancia de entrada $V_i/I_i$ y decidir si es resistiva, capacitiva o inductiva.</td></tr>
+<tr><td>Feb 2020</td><td>Comparador con histéresis y tensión de referencia, alimentado a +12 V. <a href="examenes.html#x20a">Resuelto aquí.</a></td></tr>
+<tr><td>Sep 2020</td><td>Operacional no inversor con RC: valor de R2, $G(j\omega)$ y Bode. <a href="examenes.html#x20b">Resuelto aquí.</a></td></tr>
+<tr><td>P1 Nov 2023</td><td>(1) $G(j\omega)$ y Bode con denominador de segundo grado, (2) ganancia y saturación con entradas de 21 V y 30 V, (3) problema de 5,5 puntos: inversor con operacional real (slew rate, GBW, tolerancias, corriente máxima). <a href="examenes.html#x23a">Resuelto aquí.</a></td></tr>
+<tr><td>P1 Ene 2024</td><td>(1) Condición de resistencias para una fuente de corriente controlada por tensión, (2) $G(j\omega)$ y Bode, (3) problema: limitador con zéners y referencia de −5 V, y amplificador diferencial con CMRR de 70 dB. <a href="examenes.html#x24a">Resuelto aquí.</a></td></tr>
+<tr><td>EC01 y EC02</td><td>Entregas de evaluación continua: fuente regulable con zéner, restador, filtro con $G(j\omega)$. <a href="problemas.html#p-ec">Resueltos aquí.</a></td></tr>
+</table></div>
+<div class="box key">
+<h4>El patrón</h4>
+<p>Los dos primeros parciales que tienes (Nov 2023 y Ene 2024) tienen tres bloques: un ejercicio de 2 a 2,5 puntos con un circuito de operacional, otro de 2 a 2,5 puntos con Bode o saturación, y un <b>problema de 5,5 puntos</b> sobre el operacional real (SR, GBW, CMRR, tolerancias, corriente de salida). Dedica el tiempo fuerte a las unidades 2, 3, 5 y 6.</p>
+</div>
+<p class="muted" style="font-size:14px">En tu carpeta no hay ningún examen resuelto de transistores, realimentación, osciladores o potencia. Esas partes las explico con las diapositivas de la unidad 8 y con el programa oficial. Consulta con el profesor qué unidades entran en cada parcial este curso.</p>
+</section>
+
+<section class="sec" style="--tc:var(--c0);--tcs:var(--c0s)">
+<div class="sh"><span class="badge" aria-hidden="true">✓</span><div class="shx"><p class="kick">Empezar</p><h2 id="progreso">Tu progreso</h2></div></div>
+<p class="muted">Marca cada punto cuando puedas hacer su ejercicio de examen sin mirar la solución. Se guarda en este navegador.</p>
+<div class="bar" aria-hidden="true"><i id="barfill"></i></div>
+<p id="bartxt" class="muted" style="margin:0 0 8px;font-size:14px">0 de 10 puntos</p>
+<div id="checks">
+  <div class="check"><input type="checkbox" id="c1"><label for="c1">U1: ganancia con carga y fuente, impedancias de entrada y salida</label></div>
+  <div class="check"><input type="checkbox" id="c2"><label for="c2">U2–U3: ganancia de inversor, no inversor, sumador, restador y diferencial</label></div>
+  <div class="check"><input type="checkbox" id="c3"><label for="c3">U3: integrador y diferenciador, diseño de ganancia y offset</label></div>
+  <div class="check"><input type="checkbox" id="c4"><label for="c4">U4: comparador con histéresis, umbrales y gráfica de entrada y salida</label></div>
+  <div class="check"><input type="checkbox" id="c5"><label for="c5">U5: slew rate, GBW, saturación y corriente máxima</label></div>
+  <div class="check"><input type="checkbox" id="c6"><label for="c6">U5: CMRR, ganancia finita, tolerancias y offset</label></div>
+  <div class="check"><input type="checkbox" id="c7"><label for="c7">U6: Bode de una función de transferencia de primer y segundo orden</label></div>
+  <div class="check"><input type="checkbox" id="c8"><label for="c8">U6: filtros activos y orden, Butterworth y Chebyshev</label></div>
+  <div class="check"><input type="checkbox" id="c9"><label for="c9">U7–U8: parámetros h, modelo híbrido-π, Miller, frecuencias de corte</label></div>
+  <div class="check"><input type="checkbox" id="c10"><label for="c10">Realimentación, osciladores y potencia: fórmulas clave</label></div>
+</div>
+</section>
+
+</main>
+</div>
+<nav class="pager" aria-label="Páginas"><a href="index.html"><small>← Anterior</small>Portada</a><a class="nx" href="tema-1-2.html"><small>Siguiente →</small>T1–2 Amplificadores y AO ideal</a></nav>
+<script src="app.js?v=1"></script>
+<script>
+/* ---------- progreso ---------- */
+(function(){
+  const K='ea-guia-progreso-v1';let st={};
+  try{st=JSON.parse(localStorage.getItem(K)||'{}')}catch(e){}
+  const ids=Array.from({length:10},(_,i)=>'c'+(i+1));
+  function upd(){const n=ids.filter(i=>$(i)&&$(i).checked).length;$('barfill').style.width=(n*10)+'%';$('bartxt').textContent=n+' de 10 puntos';}
+  ids.forEach(i=>{const e=$(i);if(!e)return;e.checked=!!st[i];e.addEventListener('change',()=>{st[i]=e.checked;try{localStorage.setItem(K,JSON.stringify(st))}catch(e){}upd();});});
+  upd();
+})();
+
+
+</script>
+</body>
+</html>

@@ -1,0 +1,16 @@
+{
+  "name": "Electrónica Analógica · Guía para aprobar",
+  "short_name": "Analógica",
+  "description": "Guía de estudio de Electrónica Analógica (UPCT): teoría desde cero, Bode, exámenes y problemas resueltos.",
+  "lang": "es",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#f4f7fc",
+  "theme_color": "#1d5fb8",
+  "icons": [
+    {"src": "icon-192.png", "sizes": "192x192", "type": "image/png"},
+    {"src": "icon-512.png", "sizes": "512x512", "type": "image/png"},
+    {"src": "icon-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable"}
+  ]
+}

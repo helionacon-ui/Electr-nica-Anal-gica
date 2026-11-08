@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="description" content="Electrónica Analógica (UPCT): Preguntas para comprobar qué sabes.">
+<title>Electrónica Analógica · Autoevaluación</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=IBM+Plex+Sans:ital,wght@0,400;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<script>
+window.MathJax = { tex: { inlineMath: [['$','$']], displayMath: [['$$','$$']] }, svg: { fontCache: 'global' } };
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-svg.js"></script>
+<link rel="manifest" href="manifest.webmanifest"><meta name="theme-color" content="#1d5fb8">
+<link rel="icon" type="image/png" sizes="192x192" href="icon-192.png"><link rel="apple-touch-icon" href="apple-touch-icon.png">
+<meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="Analógica">
+<link rel="stylesheet" href="style.css?v=1"></head><body data-page="autoevaluacion">
+
+<div class="hub-bar" style="max-width:1180px;margin:0 auto;padding:10px 16px 0"><a href="https://helionacon-ui.github.io/GIEIA-UPCT/" style="display:inline-flex;align-items:center;gap:6px;font:600 13.5px/1 system-ui,sans-serif;padding:8px 12px;border-radius:999px;border:1px solid var(--line,#d3dcdf);background:var(--surface,var(--card,#fff));color:var(--fg,#18232b);text-decoration:none">← Todas las guías GIEyA</a></div>
+<header class="phead"><div class="eyebrow">UPCT · GIEyA · Electrónica Analógica · Practicar</div><h1>Autoevaluación</h1><p class="lede">Preguntas para comprobar qué sabes</p></header>
+
+<a href="#top" class="totop" id="totop" aria-label="Volver arriba">↑</a>
+<div class="wrap" id="top">
+<nav class="toc" aria-label="Índice">
+<a href="index.html" style="--tc:var(--c0)">Portada</a>
+<div class="grp">Empezar</div>
+<a href="empezar.html" style="--tc:var(--c0)">Cómo es el examen</a>
+<div class="grp">Parcial 1</div>
+<a href="tema-1-2.html" style="--tc:var(--c1)">T1–2 Amplificadores y AO ideal</a>
+<a href="tema-3.html" style="--tc:var(--c3)">T3 Aplicaciones lineales</a>
+<a href="tema-4.html" style="--tc:var(--c4)">T4 Aplicaciones no lineales</a>
+<a href="tema-5.html" style="--tc:var(--c5)">T5 AO real</a>
+<a href="tema-6.html" style="--tc:var(--c6)">T6 Bode y filtros</a>
+<div class="grp">Parcial 2</div>
+<a href="tema-7.html" style="--tc:var(--c7)">T7 Cuadripolos</a>
+<a href="tema-8.html" style="--tc:var(--c8)">T8 Transistores en frecuencia</a>
+<a href="realimentacion.html" style="--tc:var(--c1)">Realimentación y osciladores</a>
+<a href="potencia.html" style="--tc:var(--c3)">Amplificadores de potencia</a>
+<div class="grp">Practicar</div>
+<a href="examen-2025-26.html" style="--tc:var(--c3)">P1 curso 25-26 resuelto</a>
+<a href="examenes.html" style="--tc:var(--c8)">Exámenes resueltos</a>
+<a href="fuen.html" style="--tc:var(--c0)">Apuntes de Fuen</a>
+<a href="problemas.html" style="--tc:var(--c8)">Problemas resueltos</a>
+<a href="calculadoras.html" style="--tc:var(--c8)">Calculadoras de bolsillo</a>
+<a href="autoevaluacion.html" aria-current="page" class="cur" style="--tc:var(--c8)">Autoevaluación</a>
+<div class="grp">Repasar</div>
+<a href="formulario.html" style="--tc:var(--c0)">Formulario</a>
+<a href="glosario.html" style="--tc:var(--c0)">Glosario</a>
+<a href="plan.html" style="--tc:var(--c0)">Plan de estudio</a>
+<div class="grp">Todo en uno</div>
+<a href="guia-completa.html" style="--tc:var(--c0)">Guía completa</a>
+</nav>
+
+<main>
+<div class="srch-card" id="srch-card"><label for="srch" class="srch-lab">Buscar en la guía</label>
+<input type="search" id="srch" placeholder="Por ejemplo: slew rate, Schmitt, Miller, CMRR…" autocomplete="off" spellcheck="false">
+<div id="srch-out" class="srch-out" hidden></div></div>
+
+
+
+<section class="sec" style="--tc:var(--c8);--tcs:var(--c8s)">
+<div class="sh"><span class="badge" aria-hidden="true">?</span><div class="shx"><p class="kick">Practicar</p><h2 id="auto">Autoevaluación</h2></div></div>
+<p>Veinte preguntas; filtra por bloque. Al elegir una opción se muestra por qué la correcta lo es y por qué se falla.</p>
+<div class="ctrl quiz-tabs" id="quiz-tabs" role="group" aria-label="Filtrar por unidad"></div>
+<div id="quiz" class="box"></div>
+</section>
+
+</main>
+</div>
+<nav class="pager" aria-label="Páginas"><a href="calculadoras.html"><small>← Anterior</small>Calculadoras de bolsillo</a><a class="nx" href="formulario.html"><small>Siguiente →</small>Formulario</a></nav>
+<script src="app.js?v=1"></script>
+<script>
+/* ---------- autoevaluación ---------- */
+(function(){
+  if(!$('quiz'))return;
+  const Q=[
+   {g:1,q:'Un amplificador de tensión tiene Z_in = 9 kΩ, A_v0 = 100 y Z_out = 1 kΩ. Se conecta a un generador de R_s = 1 kΩ y una carga de 3 kΩ. ¿Cuál es la ganancia v_o/v_s?',o:['100','90','67,5','75'],c:2,e:'Hay dos divisores: 9/(1+9) = 0,9 a la entrada y 3/(1+3) = 0,75 a la salida. 100 · 0,9 · 0,75 = 67,5.'},
+   {g:1,q:'Un inversor tiene R₁ = 2 kΩ y R₂ = 10 kΩ. Con una entrada de +1 V (AO ideal, sin saturar), ¿qué salida hay?',o:['+5 V','−5 V','+6 V','−6 V'],c:1,e:'La ganancia del inversor es −R₂/R₁ = −5, así que v_o = −5 V.'},
+   {g:1,q:'Un integrador inversor recibe una onda cuadrada. ¿Qué sale?',o:['Una cuadrada de mayor amplitud','Una triangular','Una senoidal','Una continua constante'],c:1,e:'La integral de un valor constante es una rampa: sube con pendiente −V/(RC) mientras la entrada es positiva y baja mientras es negativa.'},
+   {g:1,q:'Para calcular la impedancia de salida de un circuito con una fuente controlada, ¿qué se hace con las fuentes?',o:['Se apagan todas, también las controladas','Se apagan las independientes y se mantienen las controladas','Se mantienen todas','Se sustituyen por resistencias de 1 Ω'],c:1,e:'Solo las independientes se apagan (tensión a cortocircuito, corriente a circuito abierto). Las controladas dependen de una variable del circuito y se quedan.'},
+   {g:2,q:'Un Schmitt inversor tiene V_sat = ±12 V, V_ref = 0 y β = 0,25. ¿Cuáles son los umbrales?',o:['±12 V','±3 V','±0,25 V','0 V y 3 V'],c:1,e:'V_TH,TL = ±β·V_sat = ±0,25 · 12 = ±3 V. La histéresis es de 6 V.'},
+   {g:2,q:'En el oscilador de relajación con AO con β = 0,5, ¿cuánto vale el periodo?',o:['T = RC','T = 2RC·ln 3 ≈ 2,2 RC','T = 2π RC','T = 0,693 RC'],c:1,e:'T = 2RC·ln[(1+β)/(1−β)] = 2RC·ln 3 ≈ 2,2 RC.'},
+   {g:2,q:'Un AO con SR = 0,5 V/µs genera una senoidal de 10 V de amplitud. ¿A qué frecuencia deja de seguir la señal?',o:['Unos 800 Hz','Unos 7,96 kHz','Unos 80 kHz','Unos 796 kHz'],c:1,e:'f_max = SR/(2πA) = 0,5·10⁶/(2π·10) = 7957 Hz.'},
+   {g:2,q:'Un 741C tiene ganancia diferencial 200 000 y de modo común 6,3. ¿Cuál es su CMRR?',o:['60 dB','75 dB','90 dB','106 dB'],c:2,e:'CMRR = 20·log(200 000/6,3) = 20·log(31 746) = 90 dB.'},
+   {g:2,q:'En un inversor con R₁ y R₂, ¿qué resistencia hay que poner en la entrada no inversora para compensar la corriente de polarización?',o:['R₁ + R₂','R₁ ∥ R₂','R₂','0 Ω (a masa directamente)'],c:1,e:'R₃ = R₁∥R₂ iguala la resistencia que ve cada entrada, y la corriente de polarización común se cancela.'},
+   {g:2,q:'Un inversor de ganancia 100 se monta con resistencias del 5 %. ¿Cuál es la máxima ganancia posible?',o:['105','110,5','100,5','95'],c:1,e:'Peor caso: 100·1,05/0,95 = 110,5, un error de cerca del +10 %.'},
+   {g:3,q:'En un diagrama de Bode, ¿qué hace un polo real en ω_c?',o:['Sube 20 dB/década y suma +45° de fase','Baja 20 dB/década y resta 45° de fase en ω_c','Baja 40 dB/década','No cambia la pendiente'],c:1,e:'Un polo real hace que la pendiente pase de 0 a −20 dB/década y la fase a −45° en ω_c (llegando a −90°). La curva real está 3 dB por debajo de la asíntota en ω_c.'},
+   {g:3,q:'G(s) = 100(1+s/40)/((1+s/10)(1+s/400)). ¿Qué pendiente tiene el tramo entre 40 y 400 rad/s?',o:['+20 dB/década','0 dB/década','−20 dB/década','−40 dB/década'],c:1,e:'A partir de 40 el cero (+20) cancela el efecto del polo en 10 (−20), y queda plano hasta el polo de 400.'},
+   {g:3,q:'¿Qué pendiente final tiene un filtro Butterworth de cuarto orden?',o:['−20 dB/década','−40 dB/década','−80 dB/década','−4 dB/década'],c:2,e:'Cada polo añade −20 dB/década, así que el orden 4 baja −80 dB/década.'},
+   {g:3,q:'En los parámetros h de un transistor, h₂₁ (h_fe) es…',o:['una impedancia en ohmios','una admitancia en siemens','la ganancia de corriente con la salida en cortocircuito (adimensional)','la ganancia inversa de tensión'],c:2,e:'h₂₁ = i₂/i₁ con v₂ = 0: ganancia de corriente directa, sin unidades.'},
+   {g:3,q:'G(s) = 1/[s(1+s/10)]. ¿Qué pendiente tiene el módulo entre 1 y 10 rad/s y cuánto vale (asíntota) en 10 rad/s?',o:['0 dB/dec y 0 dB','−20 dB/dec y −20 dB','−40 dB/dec y −40 dB','+20 dB/dec y +20 dB'],c:1,e:'El integrador da −20 dB/dec y la gráfica pasa por 0 dB en 1 rad/s. Hasta el polo de 10 rad/s baja una década: −20 dB. Luego la pendiente es −40.'},
+   {g:3,q:'Un par de polos complejos conjugados produce pico de resonancia en el módulo cuando…',o:['ζ > 1','ζ = 1','ζ < 0,707','ζ = 0'],c:2,e:'M_r = 1/(2ζ√(1−ζ²)) existe para ζ < 0,707. Con ζ = 1 son dos polos reales iguales y no hay pico.'},
+   {g:3,q:'Un diagrama de Bode empieza plano en 20 dB, cae 20 dB/década desde 100 rad/s y 40 dB/década desde 10⁴ rad/s. ¿Qué función es?',o:['10/[(1+s/100)(1+s/10⁴)]','100/[(1+s/100)(1+s/10⁴)]','10·(1+s/100)/(1+s/10⁴)','10/[s(1+s/100)]'],c:0,e:'20 dB es K = 10. En 100 rad/s hay un polo y en 10⁴ otro (la pendiente pasa de −20 a −40). Fase final −180°.'},
+   {g:3,q:'G(s) = 10s/(s+100). ¿Cuánto vale |G| a frecuencias muy altas?',o:['0 dB','20 dB','−20 dB','40 dB'],c:1,e:'Para s→∞, G → 10s/s = 10, es decir 20 dB. Es un filtro paso alto con un polo en 100 rad/s.'},
+   {g:4,q:'En baja frecuencia, un amplificador tiene tres condensadores con f_c de 5,97 Hz, 1,08 Hz y 56,8 Hz. ¿Cuál es f_ci aproximada?',o:['56,8 Hz, porque es la mayor','63,9 Hz, la suma, porque no hay una década de diferencia','1,08 Hz, la menor','5,97 Hz'],c:1,e:'56,8/5,97 = 9,5 < 10: no hay polo dominante, y se suman las frecuencias: 56,8+5,97+1,08 = 63,9 Hz.'},
+   {g:4,q:'Una capacidad C_μ = 2 pF une entrada y salida de una etapa de ganancia −100. ¿Cuánto vale la capacidad de entrada por el efecto Miller?',o:['2 pF','102 pF','202 pF','200 pF'],c:2,e:'C_in = C(1−A) = 2·(1+100) = 202 pF.'},
+   {g:2,q:'Un Schmitt inversor tiene Vcc = 10 V, R₄ = 49·R₃ y V_ref = 50/49 V (R₃ desde V_ref a la entrada +, R₄ desde la salida a la +). ¿Cuál es el centro y la semianchura del ciclo?',o:['Centro 1 V, semianchura 0,2 V','Centro 1,02 V, semianchura 10 V','Centro 0 V, semianchura 0,2 V','Centro 1 V, semianchura 2 V'],c:0,e:'Centro = R₄/(R₃+R₄)·V_ref = (49/50)·(50/49) = 1 V. Semianchura = R₃/(R₃+R₄)·Vcc = (1/50)·10 = 0,2 V.'},
+   {g:3,q:'Un inversor con Z₁ = R₁‖C₁ (160 kΩ, 10 nF) y Z₂ = R₂‖C₂ (32 kΩ, 1 nF). ¿Qué ganancia tiene a alta frecuencia?',o:['−13,98 dB','20 dB','−20 dB','33,98 dB'],c:1,e:'A = −(R₂/R₁)(1+jωR₁C₁)/(1+jωR₂C₂). En alta frecuencia el cociente tiende a (R₂/R₁)·(R₁C₁)/(R₂C₂) = C₁/C₂ = 10, es decir 20 dB. En continua es 0,2, o −13,98 dB.'},
+   {g:3,q:'En A = (1 + jωR₁C₁) / [jωR₁C₁ (1 + jωR₂C₂)] con 1/(R₁C₁) &lt; 1/(R₂C₂), ¿qué hace el módulo entre ω = 1/(R₁C₁) y ω = 1/(R₂C₂)?',o:['Baja 20 dB/dec','Sube 20 dB/dec','Es plano en 0 dB','Baja 40 dB/dec'],c:2,e:'El integrador (−20 dB/dec) pasa por 0 dB justo en 1/(R₁C₁), donde el cero sube +20 dB/dec y cancela la pendiente: queda plano en 0 dB hasta que llega el polo.'},
+   {g:4,q:'Emisor común con h_ie = 2 kΩ, h_fe = 50, R_E = 1 kΩ y R_C‖R_L = 2,67 kΩ. Si se quita el condensador C_E, ¿cuánto vale la ganancia de tensión?',o:['−66,7 (no cambia)','−33,3','−2,52','−1,26'],c:2,e:'Sin C_E queda A_v = −h_fe·(R_C‖R_L)/(h_ie+(1+h_fe)R_E) = −50·2,67k/(2k+51k) = −2,52. A cambio, f_ci baja de 421 Hz a unos 1,6 Hz.'},
+   {g:4,q:'En un seguidor de emisor con el colector conectado a V_cc, ¿cómo se trata el condensador C_BC?',o:['Con Miller, con A = g_m','Con Miller, con A = −g_m·R_C','Como un condensador de la base a masa, sin Miller','Se ignora siempre'],c:2,e:'V_cc es masa en alterna, así que C_BC va de la base a masa. No une dos nodos con ganancia entre ellos y no hay efecto Miller.'}
+  ];
+  const groups=[['Todas',0],['U1–U3',1],['U4–U5',2],['U6–U7',3],['U8 y más',4]];
+  let cur=0,list=Q,score=0,done={};
+  const tabs=$('quiz-tabs');
+  groups.forEach(([n,g])=>{const b=document.createElement('button');b.type='button';b.className='qt';b.textContent=n;b.setAttribute('aria-pressed',g===0);b.addEventListener('click',()=>{[...tabs.children].forEach(x=>x.setAttribute('aria-pressed',x===b));list=g?Q.filter(q=>q.g===g):Q;cur=0;render();});tabs.appendChild(b);});
+  function render(){
+    const box=$('quiz');box.innerHTML='';const q=list[cur];
+    const p=document.createElement('p');p.className='qp';p.textContent=q.q;box.appendChild(p);
+    const ops=document.createElement('div');ops.className='qops';box.appendChild(ops);
+    const ex=document.createElement('p');ex.className='qex';ex.hidden=true;
+    q.o.forEach((t,i)=>{const b=document.createElement('button');b.type='button';b.className='qo';b.textContent=t;
+      const reveal=sel=>{[...ops.children].forEach((x,j)=>{x.disabled=true;if(j===q.c)x.classList.add('ok');else if(j===sel)x.classList.add('ko');});ex.hidden=false;ex.textContent=(sel===q.c?'Correcto. ':'No es esa. ')+q.e;upd();};
+      b.addEventListener('click',()=>{if(done[q.q]===undefined){done[q.q]=i===q.c;}reveal(i);});ops.appendChild(b);});
+    box.appendChild(ex);
+    if(done[q.q]!==undefined){[...ops.children].forEach((x,j)=>{x.disabled=true;if(j===q.c)x.classList.add('ok');});ex.hidden=false;ex.textContent=(done[q.q]?'Respondida bien. ':'Respondida mal. ')+q.e;}
+    const nav=document.createElement('div');nav.className='qnav';
+    const sp=document.createElement('span');sp.className='muted';sp.textContent='Pregunta '+(cur+1)+' de '+list.length;nav.appendChild(sp);
+    const pv=document.createElement('button');pv.type='button';pv.className='btn';pv.textContent='Anterior';pv.disabled=cur===0;pv.addEventListener('click',()=>{cur--;render();});
+    const nx=document.createElement('button');nx.type='button';nx.className='btn pri';nx.textContent='Siguiente';nx.disabled=cur===list.length-1;nx.addEventListener('click',()=>{cur++;render();});
+    nav.appendChild(pv);nav.appendChild(nx);box.appendChild(nav);
+    const sc=document.createElement('p');sc.className='qscore';sc.id='qscore';box.appendChild(sc);upd();
+  }
+  function upd(){const s=$('qscore');if(!s)return;const ans=list.filter(q=>done[q.q]!==undefined),ok=ans.filter(q=>done[q.q]).length;s.textContent='Acertadas: '+ok+' de '+ans.length+' respondidas ('+list.length+' en este grupo)';}
+  render();
+})();
+
+
+
+</script>
+</body>
+</html>
