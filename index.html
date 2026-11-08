@@ -452,6 +452,11 @@ dl.gloss dt{font-weight:700;color:var(--tc,var(--accent))}
 dl.gloss dd{margin:0}
 @media (max-width:640px){dl.gloss{grid-template-columns:1fr}dl.gloss dd{margin-bottom:6px}}
 .sec .quiz-tabs{margin-bottom:10px}
+figure.slide.nota{max-width:720px;margin-left:auto;margin-right:auto}
+details.nt{margin:14px 0 4px;border:1px solid var(--line);border-radius:10px;background:var(--surface);padding:0 14px}
+details.nt>summary{padding:12px 0;font-weight:600}
+details.nt>summary:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:6px}
+details.nt[open]{padding-bottom:6px}
 </style></head><body>
 
 <div class="hub-bar" style="max-width:1180px;margin:0 auto;padding:10px 16px 0"><a href="https://helionacon-ui.github.io/GIEIA-UPCT/" style="display:inline-flex;align-items:center;gap:6px;font:600 13.5px/1 system-ui,sans-serif;padding:8px 12px;border-radius:999px;border:1px solid var(--line,#d3dcdf);background:var(--surface,var(--card,#fff));color:var(--fg,#18232b);text-decoration:none">← Todas las guías GIEyA</a></div>
@@ -464,9 +469,9 @@ dl.gloss dd{margin:0}
       <p class="sub">Guía para aprobar · curso 2026-27</p>
       <div class="stats">
         <div><b>11</b><span>bloques de teoría desde cero</span></div>
-        <div><b>124</b><span>diapositivas explicadas paso a paso</span></div>
-        <div><b>12</b><span>problemas resueltos</span></div>
-        <div><b>15</b><span>simuladores, calculadoras y generador</span></div>
+        <div><b>150</b><span>diapositivas y páginas de apuntes explicadas</span></div>
+        <div><b>19</b><span>problemas resueltos</span></div>
+        <div><b>16</b><span>simuladores, calculadoras y generador</span></div>
       </div>
       <div class="cta"><a class="btn pri" href="#cero">Empieza desde cero</a><a class="btn" href="#examen">Cómo es el examen</a><a class="btn" href="#problemas">Problemas resueltos</a><a class="btn" href="#bode">Bode</a><a class="btn" href="#auto">Autoevaluación</a><a class="btn" href="#formulario">Formulario</a></div>
     </div>
@@ -514,6 +519,7 @@ dl.gloss dd{margin:0}
   <a href="#fb" style="--tc:var(--c1)">Realimentación y osciladores</a>
   <a href="#potencia" style="--tc:var(--c3)">Amplificadores de potencia</a>
   <div class="grp">Practicar</div>
+  <a href="#fuen" style="--tc:var(--c0)">Apuntes de Fuen</a>
   <a href="#problemas" style="--tc:var(--c8)">Problemas resueltos</a>
   <a href="#calc" style="--tc:var(--c8)">Calculadoras</a>
   <a href="#auto" style="--tc:var(--c8)">Autoevaluación</a>
@@ -1429,6 +1435,197 @@ $$P_L=\frac{V_p^2}{2R_L},\qquad P_{alim}=\frac{2V_{CC}V_p}{\pi R_L},\qquad \eta=
 </div></details>
 </section>
 
+<!-- ===================== APUNTES DE FUEN ===================== -->
+<section class="sec tema" style="--tc:var(--c0);--tcs:var(--c0s)">
+<div class="sh"><span class="badge" aria-hidden="true">✎</span><div class="shx"><p class="kick">Tus apuntes manuscritos</p><h2 id="fuen">Apuntes de Fuen: mapa, páginas clave y problemas rehechos</h2></div></div>
+<div class="zero">
+<p class="ft">Cómo usar esta parte</p>
+<p>El PDF <b>«Analógica fuen»</b> tiene 143 páginas manuscritas: teoría de los temas 0 a 8, ejercicios resueltos y problemas tipo examen. Aquí tienes primero un <b>mapa</b> para encontrar cada cosa, después <b>7 problemas</b> de esos apuntes rehechos paso a paso, con las páginas escaneadas plegadas debajo de cada uno por si quieres ver el original. Los números de página son los del PDF. Al rehacerlos he recalculado todos los resultados, y en cinco puntos no me salen los mismos números que en el cuaderno (están marcados en el recuadro rojo de abajo).</p>
+</div>
+
+<h3>Mapa del cuaderno</h3>
+<div class="tw"><table>
+<tr><th>Tema</th><th>Págs.</th><th>Qué hay</th><th>En esta guía</th></tr>
+<tr><td>0 Fundamentos</td><td>1–5</td><td>Señales, ganancia y dB, fuentes, Thévenin/Norton, máxima transferencia de potencia ($R_L=R_g$)</td><td><a href="#cero">Empieza desde cero</a></td></tr>
+<tr><td>1 Amplificadores</td><td>6–10</td><td>Cuatro tipos, $Z_{in}$, $Z_{out}$, atenuación en entrada y salida, mejor amplificador de cada tipo</td><td><a href="#u1">U1</a></td></tr>
+<tr><td>2 AO ideal</td><td>11–13</td><td>Tierra virtual, modo diferencial y común, realimentación negativa</td><td><a href="#u2">U2</a></td></tr>
+<tr><td>3 Aplicaciones lineales</td><td>14–24</td><td>Inversor, no inversor, integrador, derivador, seguidor, sumador, restador, instrumentación. Ejercicios en 20–24 (fuente de corriente, regulador con zener)</td><td><a href="#u3">U3</a></td></tr>
+<tr><td>4 No lineales</td><td>25–31</td><td>Comparador, Schmitt, rectificador de precisión, log/exp. Ejercicios tipo examen en 28–31</td><td><a href="#u4">U4</a> · problemas F1 y F2</td></tr>
+<tr><td>5 AO real</td><td>32–40</td><td>Estructura interna, límites, slew rate, CMRR, $Z_{in}$ finita, ganancia finita, offsets, tolerancias, GBW</td><td><a href="#u5">U5</a></td></tr>
+<tr><td>6 Bode</td><td>41–81</td><td>Teoría 41–52. Ejercicios 53–55. Problemas tipo examen resueltos 57–81 (circuitos con C, polos complejos, resonancia)</td><td><a href="#u6">U6</a>, <a href="#bode">Bode a fondo</a> · F3 y F4</td></tr>
+<tr><td>Exámenes</td><td>82–85</td><td>Enunciados de parciales (los resueltos están en 57–81)</td><td>—</td></tr>
+<tr><td>7 Cuadripolos</td><td>86–90</td><td>Parámetros z, y, h, g y un problema de h de un cuadripolo en T</td><td><a href="#u7">U7</a></td></tr>
+<tr><td>8 Transistores en frecuencia</td><td>91–140, 143</td><td>Teoría 91–100 (modelo h, $\pi$, Miller, constantes de tiempo). Ejercicios 101–140. Resumen de modelos en 143</td><td><a href="#u8">U8</a> · F5, F6 y F7</td></tr>
+</table></div>
+<p class="muted" style="font-size:14px">Las págs. 56 y 141 son escaneos casi en blanco, y la 142 es de otra asignatura (contaminación atmosférica).</p>
+
+<div class="box trap"><h4>Cinco sitios donde mis cuentas no coinciden con el cuaderno</h4>
+<ul>
+<li><b>Pág. 55 (intercambiar $Z_1$ y $Z_2$).</b> Con $R_1=160$ kΩ y $R_2=32$ kΩ la ganancia en continua es $R_1/R_2=5$ (13,98 dB), no 3,2 (10,1 dB). El nivel de alta frecuencia sale $-20$ dB, no $-17{,}7$ dB.</li>
+<li><b>Pág. 54–55 ($K_1$).</b> El 17,93 dB del cuaderno es el módulo <i>exacto</i> en 40 000 rad/s, ya pegado al polo. La meseta asintótica de alta frecuencia es 20 dB.</li>
+<li><b>Pág. 106 (sin $C_E$).</b> $f_{c1}=0{,}30$ Hz, no 0,33, así que la suma queda 1,63 Hz y no 1,66 Hz.</li>
+<li><b>Pág. 109 (ejercicio de Miller).</b> $h_{ie}\parallel(R_1\parallel R_2)$ es 581 Ω, no 588 Ω. La ganancia queda $-96{,}5$ (39,7 dB), no $-95{,}5$.</li>
+<li><b>Págs. 115–118 (seguidor de emisor, alta frecuencia).</b> No me sale 151 kHz sino unos 4 MHz. Detalle en F7.</li>
+</ul>
+<p>Si el examen se corrige con el criterio del profesor, contrasta estas cinco con tus diapositivas antes de fiarte de ninguna de las dos versiones.</p></div>
+
+<!-- ============ F1 ============ -->
+<div class="prob" id="p-f1">
+<h3 class="ph">F1. Schmitt con tensión de referencia</h3>
+<div class="enun"><p class="et">Enunciado · Tema 4 · págs. 28–29</p>
+<p>AO ideal con alimentación $\pm V_{cc}$. La señal $V_2$ entra por la entrada $-$. La entrada $+$ recibe $V_{ref}$ a través de $R_3$, y $R_4$ une la salida con la entrada $+$. Calcula $V_{out}$ en función de $V_2$ y dibuja la característica.</p></div>
+<p class="pasos-t">Pasos <span>(toca para abrir)</span></p>
+<details class="paso"><summary><span class="pn">1</span>Qué tipo de circuito es</summary><div class="inner"><p>No hay camino de la salida a la entrada $-$, pero sí a la $+$ (por $R_4$). Es <b>realimentación positiva</b>, así que no vale la tierra virtual: la salida satura en $+V_{cc}$ o en $-V_{cc}$ y hay que <b>probar hipótesis</b>.</p></div></details>
+<details class="paso"><summary><span class="pn">2</span>Tensión en la entrada $+$</summary><div class="inner"><p>Por $R_3$ llega $V_{ref}$ y por $R_4$ llega $V_{out}$, y ninguna corriente entra en el AO. Es un divisor con dos fuentes: $$U^+=\dfrac{R_4}{R_3+R_4}V_{ref}+\dfrac{R_3}{R_3+R_4}V_{out}$$ La diferencia que decide es $U_d=U^+-V_2$.</p></div></details>
+<details class="paso"><summary><span class="pn">3</span>Hipótesis $V_{out}=+V_{cc}$</summary><div class="inner"><p>Se mantiene mientras $U_d&gt;0$, es decir, mientras $$V_2&lt;V_H=\dfrac{R_4V_{ref}+R_3V_{cc}}{R_3+R_4}.$$</p></div></details>
+<details class="paso"><summary><span class="pn">4</span>Hipótesis $V_{out}=-V_{cc}$</summary><div class="inner"><p>Se mantiene mientras $U_d&lt;0$, es decir, mientras $$V_2&gt;V_L=\dfrac{R_4V_{ref}-R_3V_{cc}}{R_3+R_4}.$$</p></div></details>
+<details class="paso"><summary><span class="pn">5</span>Une las dos: ciclo de histéresis</summary><div class="inner"><p>Entre $V_L$ y $V_H$ caben las dos hipótesis, así que la salida <b>depende de la historia</b>. Si $V_2$ sube y pasa $V_H$, la salida cae a $-V_{cc}$ y no vuelve hasta que $V_2$ baje de $V_L$. Es inversor: entrada alta, salida baja. El ciclo está centrado en $\dfrac{R_4}{R_3+R_4}V_{ref}$ y tiene semianchura $\dfrac{R_3}{R_3+R_4}V_{cc}$. Mover $V_{ref}$ desplaza el ciclo sin cambiarle el ancho, y cambiar $R_3/R_4$ le cambia el ancho.</p></div></details>
+<details class="resul"><summary>Resultado</summary><div class="inner"><p class="et">Solución</p><p>$V_H=\dfrac{R_4V_{ref}+R_3V_{cc}}{R_3+R_4}$ y $V_L=\dfrac{R_4V_{ref}-R_3V_{cc}}{R_3+R_4}$. Salida $+V_{cc}$ por debajo de $V_L$, $-V_{cc}$ por encima de $V_H$ y, entre medias, la que tuviera antes.</p></div></details>
+<details class="nt"><summary>Ver tus apuntes: págs. 28–29</summary>
+<figure class="slide nota"><img src="img/f-028.jpg" alt="Apuntes pág. 28: ejercicio de Schmitt con Vref, cálculo de U+ y de la salida" loading="lazy" width="900" height="1271"><figcaption><b class="n">Apuntes · pág. 28</b>Planteamiento: tensión en $U^+$ y hipótesis $V_{out}=+V_{cc}$.</figcaption></figure>
+<figure class="slide nota"><img src="img/f-029.jpg" alt="Apuntes pág. 29: hipótesis -Vcc, gráfica del ciclo y enunciado del ejercicio del sensor LM35" loading="lazy" width="900" height="1271"><figcaption><b class="n">Apuntes · pág. 29</b>Hipótesis $-V_{cc}$, el ciclo dibujado, y el enunciado del termostato con LM35 (F2).</figcaption></figure>
+</details>
+</div>
+
+<!-- ============ F2 ============ -->
+<div class="prob" id="p-f2">
+<h3 class="ph">F2. Termostato con sensor LM35 y tres operacionales</h3>
+<div class="enun"><p class="et">Enunciado · Tema 4 · págs. 29–31</p>
+<p>Un LM35 da 10 mV/°C. Va a un seguidor (AO1), luego a un no inversor de ganancia $1+R_2/R_1$ (AO2), y su salida $V_2$ se compara con $V_{ref}$ en AO3. $\pm V_{cc}=\pm10$ V. (a) Función de cada etapa. (b) Ajusta la ganancia para que $V_2$ valga 0–3 V cuando la temperatura va de 0 a 30 °C. (c) $V_{ref}$ para conmutar a 10 °C. (d) Rediseña la última etapa con histéresis de $\pm2$ °C. (e) Si midiéramos de 35 a 42 °C con $V_2$ entre 0 y 2 V, ¿qué hay que añadir y cuánto vale $V_{ref}$ para detectar 37 °C?</p></div>
+<p class="pasos-t">Pasos <span>(toca para abrir)</span></p>
+<details class="paso"><summary><span class="pn">1</span>(a) Qué hace cada etapa</summary><div class="inner"><p>AO1 es un <b>seguidor</b>: copia la tensión del sensor y le da impedancia de entrada alta (no carga al LM35). AO2 es un <b>no inversor</b>: amplifica con $G=1+R_2/R_1$. AO3 no tiene realimentación negativa: es un <b>comparador</b>. Si $V_2&gt;V_{ref}$ la entrada $-$ gana y la salida va a $-V_{cc}$. Si $V_2&lt;V_{ref}$, a $+V_{cc}$.</p></div></details>
+<details class="paso"><summary><span class="pn">2</span>(b) Ganancia</summary><div class="inner"><p>0–30 °C son 0–0,3 V a la salida del seguidor. Queremos 0–3 V, luego $G=3/0{,}3=10$ y $1+R_2/R_1=10$, o sea $R_2=9R_1$.</p></div></details>
+<details class="paso"><summary><span class="pn">3</span>(c) $V_{ref}$ para 10 °C</summary><div class="inner"><p>10 °C dan 0,1 V a la salida del sensor y $V_2=10\cdot0{,}1=1$ V. Se conmuta cuando $V_2=V_{ref}$, así que $V_{ref}=1$ V.</p></div></details>
+<details class="paso"><summary><span class="pn">4</span>(d) Histéresis de $\pm2$ °C</summary><div class="inner"><p>$\pm2$ °C son $\pm0{,}02$ V en el sensor y $\pm0{,}2$ V en $V_2$. Usamos el Schmitt de F1: el centro tiene que ser 1 V y la semianchura 0,2 V. Con $V_{cc}=10$ V: $$\dfrac{R_3}{R_3+R_4}\cdot10=0{,}2\;\Rightarrow\;\dfrac{R_3}{R_3+R_4}=0{,}02\;\Rightarrow\;R_4=49R_3.$$ El centro es $\dfrac{R_4}{R_3+R_4}V_{ref}=\dfrac{49}{50}V_{ref}=1$ V, luego $V_{ref}=\dfrac{50}{49}=1{,}02$ V. Ojo: el valor 1 V del apartado (c) ya no vale, porque el divisor atenúa $V_{ref}$.</p></div></details>
+<details class="paso"><summary><span class="pn">5</span>(e) Medir 35–42 °C</summary><div class="inner"><p>35 °C son 0,35 V y 42 °C son 0,42 V. Quieren 0 V y 2 V. Como 0,35 V no se convierte en 0 V multiplicando, primero hay que <b>restar 0,35 V</b> con un restador ($R_1=R_2$, $R_3=R_d$): $V_2=\dfrac{R_d}{R_1}(V_1-0{,}35)$. La pendiente es $\dfrac{2-0}{0{,}42-0{,}35}=28{,}57$, así que con $R_1=1$ kΩ queda $R_d=28{,}57$ kΩ.</p></div></details>
+<details class="paso"><summary><span class="pn">6</span>(e) $V_{ref}$ para 37 °C</summary><div class="inner"><p>37 °C son 0,37 V. Entonces $V_2=28{,}57\cdot(0{,}37-0{,}35)=0{,}571$ V, que es el valor de referencia.</p></div></details>
+<details class="resul"><summary>Resultado</summary><div class="inner"><p class="et">Solución</p><p>$R_2=9R_1$; $V_{ref}=1$ V sin histéresis; con $\pm2$ °C, $R_4=49R_3$ y $V_{ref}=1{,}02$ V; restador con $R_d=28{,}57$ kΩ y $V_{ref}\approx0{,}57$ V.</p></div></details>
+<details class="nt"><summary>Ver tus apuntes: págs. 30–31</summary>
+<figure class="slide nota"><img src="img/f-030.jpg" alt="Apuntes pág. 30: apartados b, c y d del termostato" loading="lazy" width="900" height="1271"><figcaption><b class="n">Apuntes · pág. 30</b>Apartados (b), (c) y (d): ganancia 10, $V_{ref}=1$ V y rediseño con histéresis.</figcaption></figure>
+<figure class="slide nota"><img src="img/f-031.jpg" alt="Apuntes pág. 31: restador y cálculo de Vref para 37 grados" loading="lazy" width="900" height="1271"><figcaption><b class="n">Apuntes · pág. 31</b>Apartado (e): restador de 0,35 V, $R_d=28{,}57$ kΩ y $V_{ref}=0{,}57$ V.</figcaption></figure>
+</details>
+</div>
+
+<!-- ============ F3 ============ -->
+<div class="prob" id="p-f3">
+<h3 class="ph">F3. Inversor con $Z_1=R_1\parallel C_1$ y $Z_2=R_2\parallel C_2$</h3>
+<div class="enun"><p class="et">Enunciado · Tema 6 · págs. 53–55</p>
+<p>Inversor ideal con $R_1=160$ kΩ, $C_1=10$ nF en la entrada y $R_2=32$ kΩ, $C_2=1$ nF en la realimentación. (a) Ganancia $A(j\omega)$. (b) Diagrama de Bode. (c) ¿Qué cambia si se intercambian $Z_1$ y $Z_2$?</p></div>
+<p class="pasos-t">Pasos <span>(toca para abrir)</span></p>
+<details class="paso"><summary><span class="pn">1</span>Impedancias</summary><div class="inner"><p>Un paralelo de $R$ y $C$ vale $\dfrac{R}{1+j\omega RC}$. Entonces $Z_1=\dfrac{R_1}{1+j\omega R_1C_1}$ y $Z_2=\dfrac{R_2}{1+j\omega R_2C_2}$.</p></div></details>
+<details class="paso"><summary><span class="pn">2</span>(a) Ganancia</summary><div class="inner"><p>Es un inversor, así que $A=-\dfrac{Z_2}{Z_1}=-\dfrac{R_2}{R_1}\cdot\dfrac{1+j\omega R_1C_1}{1+j\omega R_2C_2}$. Con los datos, $R_2/R_1=0{,}2$, $R_1C_1=1{,}6$ ms y $R_2C_2=32$ µs: $$A(j\omega)=-0{,}2\;\dfrac{1+j\omega\,0{,}0016}{1+j\omega\,0{,}000032}.$$</p></div></details>
+<details class="paso"><summary><span class="pn">3</span>(b) Factores</summary><div class="inner"><p>Constante $0{,}2$: $20\log0{,}2=-13{,}98$ dB (el signo menos es sólo un giro de 180°). Cero en $\omega_z=1/0{,}0016=625$ rad/s. Polo en $\omega_p=1/0{,}000032=31\,250$ rad/s.</p></div></details>
+<details class="paso"><summary><span class="pn">4</span>(b) Tramos</summary><div class="inner"><p>Hasta 625 rad/s: plano en $-13{,}98$ dB. De 625 a 31 250: sube 20 dB/década. Hay $\log_{10}(31250/625)=1{,}70$ décadas, o sea $+33{,}98$ dB, y el tramo final queda a $-13{,}98+33{,}98=20$ dB. Más allá del polo, plano a 20 dB. Comprobación directa: $0{,}2\cdot R_1C_1/(R_2C_2)=0{,}2\cdot50=10$, y $20\log10=20$ dB.</p></div></details>
+<details class="paso"><summary><span class="pn">5</span>(c) Intercambiar Z₁ y Z₂</summary><div class="inner"><p>Ahora $A=-\dfrac{R_1}{R_2}\cdot\dfrac{1+j\omega R_2C_2}{1+j\omega R_1C_1}=-5\,\dfrac{1+j\omega\,32\text{ µs}}{1+j\omega\,1{,}6\text{ ms}}$. El cero y el polo se cambian de sitio: polo en 625, cero en 31 250. La ganancia en continua pasa a $+13{,}98$ dB y la final a $-20$ dB. De <b>pasa-altas con amplificación</b> se convierte en <b>pasa-bajas</b>. Pulsa el botón de la gráfica para verlo.</p></div></details>
+<div class="sim" style="margin-top:14px">
+<div class="ctrl"><button type="button" id="fz-sw" aria-pressed="false">Intercambiar Z₁ y Z₂</button></div>
+<div id="fig-fz"></div>
+<p id="fz-txt" class="muted" style="font-size:14px"></p>
+<p class="muted" style="font-size:13px;margin:4px 0 0">Línea discontinua: aproximación asintótica. Línea azul continua: módulo exacto. Líneas verticales: frecuencias del cero y del polo.</p>
+</div>
+<details class="resul"><summary>Resultado</summary><div class="inner"><p class="et">Solución</p><p>$A=-0{,}2\,\dfrac{1+j\omega\,1{,}6\text{ ms}}{1+j\omega\,32\text{ µs}}$: $-13{,}98$ dB hasta 625 rad/s, +20 dB/dec hasta 31 250 rad/s y 20 dB a partir de ahí. Intercambiando, 13,98 dB, polo en 625, cero en 31 250 y $-20$ dB al final.</p></div></details>
+<details class="nt"><summary>Ver tus apuntes: págs. 53–55</summary>
+<figure class="slide nota"><img src="img/f-053.jpg" alt="Apuntes pág. 53: Bode de una función con cuatro factores y enunciado del inversor con R y C" loading="lazy" width="900" height="1271"><figcaption><b class="n">Apuntes · pág. 53</b>Ejercicio 1, un Bode con cuatro factores (ceros en 10 y 10 000, polos en 1 000 y 100 000) y el enunciado de este problema.</figcaption></figure>
+<figure class="slide nota"><img src="img/f-054.jpg" alt="Apuntes pág. 54: ganancia del inversor con R en paralelo con C y su diagrama de Bode" loading="lazy" width="900" height="1271"><figcaption><b class="n">Apuntes · pág. 54</b>Impedancias, ganancia y Bode. Fíjate en la nota de $K_1$ (sección «Cinco sitios…»).</figcaption></figure>
+<figure class="slide nota"><img src="img/f-055.jpg" alt="Apuntes pág. 55: módulo exacto en 40000 rad/s y caso con Z1 y Z2 intercambiadas" loading="lazy" width="900" height="1271"><figcaption><b class="n">Apuntes · pág. 55</b>Valor de $K_1$ y el apartado de intercambiar $Z_1$ y $Z_2$.</figcaption></figure>
+</details>
+</div>
+
+<!-- ============ F4 ============ -->
+<div class="prob" id="p-f4">
+<h3 class="ph">F4. Un polo en el origen que se cancela con un cero</h3>
+<div class="enun"><p class="et">Enunciado · Tema 6 · págs. 57–58 · tipo examen</p>
+<p>AO ideal. $U^-$ se conecta a masa por $R_1$ y a la salida por $C_1$. $U^+$ recibe $U_e$ por $R_2$ y está unido a masa por $C_2$. (a) Ganancia $A(j\omega)=U_s/U_e$. (b) Bode, sabiendo que $\dfrac1{R_1C_1}&lt;\dfrac1{R_2C_2}$.</p></div>
+<p class="pasos-t">Pasos <span>(toca para abrir)</span></p>
+<details class="paso"><summary><span class="pn">1</span>Las dos entradas son dos divisores</summary><div class="inner"><p>$U^+=U_e\dfrac{Z_{C2}}{Z_{C2}+R_2}$ y $U^-=U_s\dfrac{R_1}{R_1+Z_{C1}}$. Con realimentación negativa $U^+=U^-$.</p></div></details>
+<details class="paso"><summary><span class="pn">2</span>Despeja $U_s/U_e$</summary><div class="inner"><p>$$A=\dfrac{Z_{C2}}{Z_{C2}+R_2}\cdot\dfrac{R_1+Z_{C1}}{R_1}=\dfrac1{1+j\omega R_2C_2}\cdot\Big(1+\dfrac1{j\omega R_1C_1}\Big)=\dfrac{1+j\omega R_1C_1}{j\omega R_1C_1\,(1+j\omega R_2C_2)}.$$ Esta expresión ya está normalizada.</p></div></details>
+<details class="paso"><summary><span class="pn">3</span>Factores</summary><div class="inner"><p>Constante $K=1$ (0 dB). Un <b>polo en el origen</b>, $1/(j\omega R_1C_1)$. Un <b>cero real</b> en $\omega_1=1/(R_1C_1)$. Un <b>polo real</b> en $\omega_2=1/(R_2C_2)$.</p></div></details>
+<details class="paso"><summary><span class="pn">4</span>Dibujo</summary><div class="inner"><p>El integrador baja 20 dB/década y pasa por 0 dB justo en $\omega=1/(R_1C_1)$, que es donde está el cero. El cero <b>anula</b> esa pendiente: desde $\omega_1$ el módulo queda plano en 0 dB. Al llegar a $\omega_2$ el polo hace bajar $-20$ dB/dec. La forma es: <b>baja $-20$ dB/dec hasta $\omega_1$, plano a 0 dB hasta $\omega_2$, baja $-20$ dB/dec</b>. La fase empieza en $-90^\circ$, sube hacia $0^\circ$ en la zona plana y baja a $-90^\circ$ después.</p></div></details>
+<div class="sim" style="margin-top:14px">
+<div id="fig-fy"></div>
+<p class="muted" style="font-size:13px;margin:4px 0 0">Ejemplo numérico con $R_1C_1=1$ ms ($\omega_1=1000$ rad/s) y $R_2C_2=0{,}1$ ms ($\omega_2=10^4$ rad/s). Discontinua: asíntotas. Continua: exacta. Por debajo de $\omega_1$ el módulo crece sin límite hacia las bajas frecuencias, porque el integrador no tiene ganancia finita en continua.</p>
+</div>
+<details class="resul"><summary>Resultado</summary><div class="inner"><p class="et">Solución</p><p>$A=\dfrac{1+j\omega R_1C_1}{j\omega R_1C_1(1+j\omega R_2C_2)}$. Bode: $-20$ dB/dec hasta $1/(R_1C_1)$, 0 dB hasta $1/(R_2C_2)$ y $-20$ dB/dec después.</p></div></details>
+<details class="nt"><summary>Ver tus apuntes: págs. 57–58</summary>
+<figure class="slide nota"><img src="img/f-057.jpg" alt="Apuntes pág. 57: circuito con R1 C1 R2 C2 y obtención de la ganancia" loading="lazy" width="900" height="1271"><figcaption><b class="n">Apuntes · pág. 57</b>Circuito y obtención de $A(j\omega)$ con los dos divisores.</figcaption></figure>
+<figure class="slide nota"><img src="img/f-058.jpg" alt="Apuntes pág. 58: diagrama de Bode con polo en el origen cancelado" loading="lazy" width="900" height="1271"><figcaption><b class="n">Apuntes · pág. 58</b>El Bode dibujado, con la zona plana entre las dos frecuencias.</figcaption></figure>
+</details>
+</div>
+
+<!-- ============ F5 ============ -->
+<div class="prob" id="p-f5">
+<h3 class="ph">F5. Emisor común: ganancias, impedancias y frecuencias de corte inferiores</h3>
+<div class="enun"><p class="et">Enunciado · Tema 8 · págs. 101–106</p>
+<p>Etapa en emisor común con polarización automática. $R_1=R_2=\infty$ (no cuentan), $R_C=8$ kΩ, $R_E=1$ kΩ, $R_L=4$ kΩ, $R_g=0$, $C_1=C_2=C_E=10$ µF, $h_{ie}=2$ kΩ, $h_{fe}=50$. (a) $A_I$. (b) $A_V$. (c) $Z_{in}$ y $Z_{out}$. (d) Frecuencia de cada condensador y $f_{ci}$. (e) Repite sin $C_E$.</p></div>
+<p class="pasos-t">Pasos <span>(toca para abrir)</span></p>
+<details class="paso"><summary><span class="pn">1</span>Modelo a frecuencias medias</summary><div class="inner"><p>En medias, los condensadores de acoplo y desacoplo (en serie y a masa) son cortocircuitos. Dejamos sólo el modelo simplificado: $h_{ie}$ en la base y una fuente $h_{fe}i_b$ en el colector, con $R_C\parallel R_L$ como carga. Como $R_E$ queda puenteada por $C_E$, desaparece.</p></div></details>
+<details class="paso"><summary><span class="pn">2</span>(a) y (b) Ganancias</summary><div class="inner"><p>$A_I=-h_{fe}\dfrac{R_C}{R_C+R_L}=-50\cdot\dfrac8{12}=-33{,}33$. $A_V=-\dfrac{h_{fe}}{h_{ie}}(R_C\parallel R_L)=-25\cdot2{,}667\text{ k}=-66{,}67$.</p></div></details>
+<details class="paso"><summary><span class="pn">3</span>(c) $Z_{in}$ y $Z_{out}$</summary><div class="inner"><p>Mirando desde la entrada sólo se ve $h_{ie}$: $Z_{in}=2$ kΩ. Para $Z_{out}$ se apaga la fuente de entrada, $i_b=0$ y $h_{fe}i_b$ se abre. Queda $Z_{out}=R_C=8$ kΩ ($R_L$ no cuenta, es la carga).</p></div></details>
+<details class="paso"><summary><span class="pn">4</span>(d) $C_1$: el resto en cortocircuito</summary><div class="inner"><p>$C_1$ ve $h_{ie}$ (con $R_g=0$): $f_{c}(C_1)=\dfrac1{2\pi\cdot2000\cdot10\mu}=7{,}96$ Hz.</p></div></details>
+<details class="paso"><summary><span class="pn">5</span>(d) $C_2$</summary><div class="inner"><p>Apagada la fuente, $C_2$ ve $R_C+R_L=12$ kΩ: $f_c(C_2)=\dfrac1{2\pi\cdot12\text{k}\cdot10\mu}=1{,}33$ Hz.</p></div></details>
+<details class="paso"><summary><span class="pn">6</span>(d) $C_E$: refléjalo a la base</summary><div class="inner"><p>$C_E$ está en el emisor, entre dos mallas, y no se puede separar. Se <b>refleja a la base</b>: una impedancia $Z$ del emisor se ve en la base multiplicada por $(1+h_{fe})$, es decir $R_E^*=R_E(1+h_{fe})=51$ kΩ y $C_E^*=C_E/(1+h_{fe})$. Entonces $Z_{th}(C_E^*)=R_E^*\parallel h_{ie}=1{,}925$ kΩ, y para volver al emisor se divide entre 51: $Z_{th}(C_E)=37{,}74$ Ω. $$f_c(C_E)=\dfrac1{2\pi\cdot37{,}74\cdot10\mu}=421{,}8\text{ Hz}.$$</p></div></details>
+<details class="paso"><summary><span class="pn">7</span>(d) Frecuencia de corte inferior</summary><div class="inner"><p>$421{,}8/7{,}96=53\gt10$: hay un polo dominante y $f_{ci}=f_c(C_E)=421{,}8$ Hz. Lo habitual es que el condensador del emisor domine.</p></div></details>
+<details class="paso"><summary><span class="pn">8</span>(e) Sin $C_E$: baja la ganancia</summary><div class="inner"><p>Ahora $R_E$ queda en el camino. Es una <b>degeneración de emisor</b>: $A_V=-h_{fe}\dfrac{R_C\parallel R_L}{h_{ie}+(1+h_{fe})R_E}=-\dfrac{50\cdot2{,}667\text{ k}}{2\text{ k}+51\text{ k}}=-2{,}52$. La ganancia ha pasado de $-66{,}7$ a $-2{,}5$. $Z_{in}=h_{ie}+(1+h_{fe})R_E=53$ kΩ.</p></div></details>
+<details class="paso"><summary><span class="pn">9</span>(e) Nuevas frecuencias de corte</summary><div class="inner"><p>$f_c(C_1)=\dfrac1{2\pi\cdot53\text{k}\cdot10\mu}=0{,}30$ Hz y $f_c(C_2)=1{,}33$ Hz. Ahora $1{,}33/0{,}30=4{,}4&lt;10$, no hay polo dominante y se <b>suman</b>: $f_{ci}\approx1{,}63$ Hz. Con $C_E$ era 421,8 Hz y sin él 1,63 Hz: menos ganancia ⇒ más ancho de banda (el producto ganancia por ancho de banda es casi constante).</p></div></details>
+<details class="paso"><summary><span class="pn">10</span>Frecuencia de corte superior</summary><div class="inner"><p>Aquí los condensadores de acoplo son cortocircuitos y manda la capacidad $C_{ce}\approx1{,}49$ nF (= $1/0{,}672$ nF) en paralelo con la carga. Se apaga la fuente: $Z_{th}=R_C\parallel R_L=2{,}667$ kΩ y $f_{cs}=\dfrac1{2\pi\cdot2{,}667\text{k}\cdot1{,}49\text{n}}\approx40$ kHz. No hay más condensadores de alta frecuencia, así que ese es $f_{cs}$.</p></div></details>
+<details class="resul"><summary>Resultado</summary><div class="inner"><p class="et">Solución</p><p>$A_I=-33{,}3$, $A_V=-66{,}7$, $Z_{in}=2$ kΩ, $Z_{out}=8$ kΩ. $f_c$: 7,96 Hz, 1,33 Hz y 421,8 Hz (dominante). Sin $C_E$: $A_V=-2{,}52$, $Z_{in}=53$ kΩ, $f_{ci}\approx1{,}63$ Hz. $f_{cs}\approx40$ kHz.</p></div></details>
+<details class="nt"><summary>Ver tus apuntes: págs. 99–108</summary>
+<figure class="slide nota"><img src="img/f-099.jpg" alt="Apuntes pág. 99: modelo del transistor bipolar en alta frecuencia y teorema de Miller" loading="lazy" width="900" height="1271"><figcaption><b class="n">Apuntes · pág. 99</b>Modelo $h$ y modelo $\pi$ (con $C_\pi$ y $C_\mu$) y el enunciado del teorema de Miller.</figcaption></figure>
+<figure class="slide nota"><img src="img/f-100.jpg" alt="Apuntes pág. 100: aplicación de Miller y método de constantes de tiempo" loading="lazy" width="900" height="1271"><figcaption><b class="n">Apuntes · pág. 100</b>Miller aplicado al análisis en alta frecuencia y método aproximado de $f_{cs}$.</figcaption></figure>
+<figure class="slide nota"><img src="img/f-101.jpg" alt="Apuntes pág. 101: enunciado del emisor común con polarización automática" loading="lazy" width="900" height="1271"><figcaption><b class="n">Apuntes · pág. 101</b>Enunciado, modelo simplificado y planteamiento de $A_I$.</figcaption></figure>
+<figure class="slide nota"><img src="img/f-102.jpg" alt="Apuntes pág. 102: ganancia de corriente y tensión, impedancias" loading="lazy" width="900" height="1271"><figcaption><b class="n">Apuntes · pág. 102</b>$A_I$, $A_V$, $Z_{in}$ y $Z_{out}$.</figcaption></figure>
+<figure class="slide nota"><img src="img/f-103.jpg" alt="Apuntes pág. 103: efecto de C1, C2 y CE" loading="lazy" width="900" height="1271"><figcaption><b class="n">Apuntes · pág. 103</b>Efecto de $C_1$, $C_2$ y, reflejado a la base, de $C_E$.</figcaption></figure>
+<figure class="slide nota"><img src="img/f-104.jpg" alt="Apuntes pág. 104: Zth de CE y ganancia sin CE" loading="lazy" width="900" height="1271"><figcaption><b class="n">Apuntes · pág. 104</b>$f_c(C_E)=421{,}76$ Hz y el caso sin $C_E$ ($A_V=-2{,}52$).</figcaption></figure>
+<figure class="slide nota"><img src="img/f-105.jpg" alt="Apuntes pág. 105: impedancias y frecuencias de corte sin CE" loading="lazy" width="900" height="1271"><figcaption><b class="n">Apuntes · pág. 105</b>Sin $C_E$: $Z_{in}=53$ kΩ, $Z_{out}=8$ kΩ y $f_c(C_1)=0{,}3$ Hz.</figcaption></figure>
+<figure class="slide nota"><img src="img/f-106.jpg" alt="Apuntes pág. 106: comparación de fci y frecuencia de corte superior" loading="lazy" width="900" height="1271"><figcaption><b class="n">Apuntes · pág. 106</b>Suma de frecuencias, comparación con la etapa anterior y modelo $\pi$ para $f_{cs}$.</figcaption></figure>
+<figure class="slide nota"><img src="img/f-107.jpg" alt="Apuntes pág. 107: fcs con Cce y enunciado del amplificador de alta frecuencia" loading="lazy" width="900" height="1271"><figcaption><b class="n">Apuntes · pág. 107</b>$f_{cs}=40{,}06$ kHz y el enunciado de F6.</figcaption></figure>
+</details>
+</div>
+
+<!-- ============ F6 ============ -->
+<div class="prob" id="p-f6">
+<h3 class="ph">F6. Alta frecuencia con efecto Miller</h3>
+<div class="enun"><p class="et">Enunciado · Tema 8 · págs. 107–111</p>
+<p>Etapa en emisor común con $R_1=27$ kΩ, $R_2=6{,}8$ kΩ, $R_3=1{,}2$ kΩ (colector), $R_5=1$ kΩ (carga), $R_g=100$ Ω, $h_{fe}=135$, $h_{ie}=651$ Ω, $C_{BE}=22$ pF, $C_{BC}=4$ pF. Calcula: (a) ganancia a frecuencias medias, (b) $Z_{in}$, (c) $Z_{out}$, (d) $f_{cs}$.</p></div>
+<p class="pasos-t">Pasos <span>(toca para abrir)</span></p>
+<details class="paso"><summary><span class="pn">1</span>Frecuencias medias</summary><div class="inner"><p>En medias, los condensadores de baja frecuencia ($C_3$, $C_2$, $C_E$) son cortos y los de alta ($C_{BE}$, $C_{BC}$) abiertos. $R_1\parallel R_2=5{,}43$ kΩ y $h_{ie}\parallel(R_1\parallel R_2)=581$ Ω. Hay dos mallas independientes.</p></div></details>
+<details class="paso"><summary><span class="pn">2</span>(a) Ganancia</summary><div class="inner"><p>Entrada: divisor $\dfrac{581}{100+581}=0{,}853$. Transistor: $-\dfrac{h_{fe}}{h_{ie}}(R_3\parallel R_5)=-0{,}2074\cdot545{,}5=-113{,}1$. Total: $A_v=0{,}853\cdot(-113{,}1)\approx-96{,}5$, que son 39,7 dB.</p></div></details>
+<details class="paso"><summary><span class="pn">3</span>(b) y (c) Impedancias</summary><div class="inner"><p>$Z_{in}=(R_1\parallel R_2)\parallel h_{ie}=581$ Ω ($R_g$ forma parte de la fuente y no cuenta). $Z_{out}=R_3=1{,}2$ kΩ: se apaga la fuente, $h_{fe}i_b=0$, y $R_5$ es la carga.</p></div></details>
+<details class="paso"><summary><span class="pn">4</span>(d) $C_{BC}$ está en medio: teorema de Miller</summary><div class="inner"><p>$C_{BC}$ une la base con el colector y no se pueden separar las mallas. Se sustituye por dos condensadores a masa: $C_X=C_{BC}(1-A)$ a la entrada y $C_Y=C_{BC}(1-1/A)$ a la salida, donde $A=V_{col}/V_{base}=-\dfrac{h_{fe}}{h_{ie}}(R_3\parallel R_5)=-113{,}1$. $$C_X=4\text{ pF}\cdot114{,}1=456\text{ pF},\qquad C_Y=4\text{ pF}\cdot1{,}009=4{,}04\text{ pF}.$$ Los 4 pF de $C_{BC}$ se han convertido en 456 pF en la entrada.</p></div></details>
+<details class="paso"><summary><span class="pn">5</span>(d) Un condensador cada vez</summary><div class="inner"><p>Para cada uno, apaga la fuente y mira lo que ve. En la entrada: $Z_{th}=R_g\parallel R_1\parallel R_2\parallel h_{ie}=85{,}3$ Ω. $f_c(C_{BE})=\dfrac1{2\pi\cdot85{,}3\cdot22\text{p}}=84{,}8$ MHz. $f_c(C_X)=\dfrac1{2\pi\cdot85{,}3\cdot456\text{p}}=4{,}09$ MHz. En la salida: $Z_{th}=R_3\parallel R_5=545$ Ω, $f_c(C_Y)=72$ MHz.</p></div></details>
+<details class="paso"><summary><span class="pn">6</span>(d) Cuál manda</summary><div class="inner"><p>La menor es 4,09 MHz y la siguiente está más de 10 veces por encima (72/4,09 ≈ 17). Hay polo dominante y $f_{cs}=4{,}09$ MHz.</p></div></details>
+<details class="resul"><summary>Resultado</summary><div class="inner"><p class="et">Solución</p><p>$A_v\approx-96{,}5$ (39,7 dB), $Z_{in}=581$ Ω, $Z_{out}=1{,}2$ kΩ, $f_{cs}\approx4{,}09$ MHz fijada por la capacidad Miller de entrada.</p></div></details>
+<details class="nt"><summary>Ver tus apuntes: págs. 108–111</summary>
+<figure class="slide nota"><img src="img/f-108.jpg" alt="Apuntes pág. 108: circuito equivalente a frecuencias medias y ganancia" loading="lazy" width="900" height="1271"><figcaption><b class="n">Apuntes · pág. 108</b>Circuito de medias y cálculo de la ganancia. (Ahí aparece 588 Ω y $-95{,}53$; yo obtengo 581 Ω y $-96{,}5$.)</figcaption></figure>
+<figure class="slide nota"><img src="img/f-109.jpg" alt="Apuntes pág. 109: impedancias y efecto de CBE" loading="lazy" width="900" height="1271"><figcaption><b class="n">Apuntes · pág. 109</b>$Z_{in}$, $Z_{out}$ y $f_c(C_{BE})=84{,}8$ MHz.</figcaption></figure>
+<figure class="slide nota"><img src="img/f-110.jpg" alt="Apuntes pág. 110: teorema de Miller sobre CBC" loading="lazy" width="900" height="1271"><figcaption><b class="n">Apuntes · pág. 110</b>Miller sobre $C_{BC}$: $A=-113{,}1$, $C_X$ y $C_Y$. La nota verde «no estoy de acuerdo» sobre $A$: el resultado es correcto.</figcaption></figure>
+<figure class="slide nota"><img src="img/f-111.jpg" alt="Apuntes pág. 111: frecuencias de CBx, CBy y fcs, y enunciado del seguidor de emisor" loading="lazy" width="900" height="1271"><figcaption><b class="n">Apuntes · pág. 111</b>$f_c(C_X)=4{,}09$ MHz, $f_c(C_Y)\approx72$ MHz, $f_{cs}=4{,}09$ MHz, y enunciado de F7.</figcaption></figure>
+</details>
+</div>
+
+<!-- ============ F7 ============ -->
+<div class="prob" id="p-f7">
+<h3 class="ph">F7. Seguidor de emisor (colector común)</h3>
+<div class="enun"><p class="et">Enunciado · Tema 8 · págs. 111–118</p>
+<p>$V_{cc}=12$ V, $R_g=1$ kΩ, $R_B=270$ kΩ, $R_E=3$ kΩ, $R_L=1$ kΩ, $C_1=C_2=10$ µF, $h_{ie}=1$ kΩ, $h_{fe}=100$, $C_{BE}=C_\pi=2$ nF, $C_{BC}=C_\mu=4$ pF, $g_m=h_{fe}/h_{ie}=0{,}1$ S. Calcula la ganancia, $f_{ci}$ y $f_{cs}$. El colector va directo a $V_{cc}$.</p></div>
+<p class="pasos-t">Pasos <span>(toca para abrir)</span></p>
+<details class="paso"><summary><span class="pn">1</span>Topología y ganancia</summary><div class="inner"><p>Entrada en la base, salida en el emisor, colector común. Con los condensadores de acoplo en cortocircuito, $R_E\parallel R_L=750$ Ω. Impedancia vista desde la base: $h_{ie}+(1+h_{fe})\cdot750=76{,}75$ kΩ. Con $R_B$ en paralelo, $Z_{in}=59{,}8$ kΩ. $$A_v=\dfrac{Z_{in}}{R_g+Z_{in}}\cdot\dfrac{(1+h_{fe})750}{h_{ie}+(1+h_{fe})750}=0{,}984\cdot0{,}987\approx0{,}97.$$ Casi 1, es un seguidor (0 dB aproximadamente).</p></div></details>
+<details class="paso"><summary><span class="pn">2</span>Frecuencia de $C_1$</summary><div class="inner"><p>$C_1$ ve $R_g+Z_{in}=60{,}8$ kΩ: $f_c(C_1)=\dfrac1{2\pi\cdot60{,}8\text{k}\cdot10\mu}=0{,}26$ Hz.</p></div></details>
+<details class="paso"><summary><span class="pn">3</span>Frecuencia de $C_2$</summary><div class="inner"><p>Apagada la fuente, $C_2$ ve $R_L$ en serie con ($R_E$ en paralelo con la impedancia de salida del seguidor). La salida vista por el emisor es $\dfrac{h_{ie}+R_g\parallel R_B}{1+h_{fe}}=19{,}8$ Ω, luego $R_E\parallel19{,}8=19{,}6$ Ω y $Z_{th}(C_2)=19{,}6+1000=1019{,}6$ Ω. $f_c(C_2)=\dfrac1{2\pi\cdot1019{,}6\cdot10\mu}=15{,}6$ Hz.</p></div></details>
+<details class="paso"><summary><span class="pn">4</span>$f_{ci}$</summary><div class="inner"><p>$15{,}6/0{,}26=60\gt10$: $f_{ci}=15{,}6$ Hz. Lo manda $C_2$, que es el que ve una impedancia baja.</p></div></details>
+<details class="paso"><summary><span class="pn">5</span>Alta frecuencia: $C_{BC}$ sin Miller</summary><div class="inner"><p>El colector está unido a $V_{cc}$, que en alterna es masa. Así que $C_{BC}$ no une dos nodos con ganancia entre ellos: va <b>de la base a masa</b>. No hay Miller. Ve $R_g\parallel R_B\parallel[h_{ie}+(1+h_{fe})750]\approx984$ Ω, y $f_c(C_{BC})=\dfrac1{2\pi\cdot984\cdot4\text{p}}=40$ MHz.</p></div></details>
+<details class="paso"><summary><span class="pn">6</span>Alta frecuencia: $C_\pi$ (entre base y emisor)</summary><div class="inner"><p>$C_\pi$ une la base con el emisor, y el emisor sigue a la base (ganancia 0,987). Ve una realimentación fuerte y por eso la impedancia que ve es mucho menor. Resolviendo el circuito con una fuente de prueba en bornes de $C_\pi$ sale $Z_{th}\approx22$ Ω, así que $f_c(C_\pi)\approx\dfrac1{2\pi\cdot22\cdot2\text{n}}\approx3{,}5$ MHz. Por el método de constantes de tiempo, $\tau_\pi+\tau_\mu\approx49$ ns, y $f_{cs}\approx3{,}3$ MHz.</p></div></details>
+<details class="paso"><summary><span class="pn">7</span>Comprobación con simulación</summary><div class="inner"><p>He resuelto el circuito completo con análisis AC (nodos B y E, $r_\pi$, $g_m$, $C_\pi$, $C_\mu$ a masa). La ganancia en medias sale 0,971 y la caída de 3 dB queda en unos 4,2 MHz. El cuaderno da 151 kHz (págs. 116–118) y no me coincide. Creo que hay dos causas: en la derivación de $Z_{th}(C_\pi)$ parece perderse el factor $R_E\parallel R_L$ al escribir $V^*=-g_mU_{th}$ (una corriente no se puede igualar a una tensión), y $C_{BC}$ se trata con Miller como si el colector fuera una salida con ganancia, cuando va directo a $V_{cc}$. Revisa esas dos líneas con tus diapositivas.</p></div></details>
+<details class="resul"><summary>Resultado</summary><div class="inner"><p class="et">Solución</p><p>$A_v\approx0{,}97$ (≈ 0 dB), $f_{ci}=15{,}6$ Hz y $f_{cs}\approx3$–4 MHz (el cuaderno da 151 kHz).</p></div></details>
+<details class="nt"><summary>Ver tus apuntes: págs. 113–117</summary>
+<figure class="slide nota"><img src="img/f-113.jpg" alt="Apuntes pág. 113: ganancia del seguidor de emisor y fc de C1" loading="lazy" width="900" height="1271"><figcaption><b class="n">Apuntes · pág. 113</b>Ganancia 0,98 (yo 0,97) y efecto de $C_1$.</figcaption></figure>
+<figure class="slide nota"><img src="img/f-114.jpg" alt="Apuntes pág. 114: Zth de C1 y efecto de C2" loading="lazy" width="900" height="1271"><figcaption><b class="n">Apuntes · pág. 114</b>$Z_{th}$ de $C_1$ (60 762 Ω, 0,26 Hz) y planteamiento de $C_2$ reflejando a la base.</figcaption></figure>
+<figure class="slide nota"><img src="img/f-115.jpg" alt="Apuntes pág. 115: fc de C2, fci y modelo pi" loading="lazy" width="900" height="1271"><figcaption><b class="n">Apuntes · pág. 115</b>$f_c(C_2)=15{,}61$ Hz, $f_{ci}=15{,}61$ Hz y el modelo $\pi$ en alta frecuencia.</figcaption></figure>
+<figure class="slide nota"><img src="img/f-117.jpg" alt="Apuntes pág. 117: teorema de Miller sobre CBC" loading="lazy" width="900" height="1271"><figcaption><b class="n">Apuntes · pág. 117</b>Aquí se aplica Miller a $C_{BC}$ con $A=g_m$; es la parte que no me cuadra (el colector va a $V_{cc}$).</figcaption></figure>
+</details>
+</div>
+</section>
+
 <!-- ===================== PROBLEMAS ===================== -->
 <section class="sec tema" style="--tc:var(--c8);--tcs:var(--c8s)">
 <div class="sh"><span class="badge" aria-hidden="true">✎</span><div class="shx"><p class="kick">Practicar</p><h2 id="problemas">Problemas resueltos paso a paso</h2></div></div>
@@ -1633,6 +1830,7 @@ $$P_L=\frac{V_p^2}{2R_L},\qquad P_{alim}=\frac{2V_{CC}V_p}{\pi R_L},\qquad \eta=
 <li>Guía docente 2026-27 de Electrónica Analógica (507103006), UPCT.</li>
 <li>Diapositivas de los Temas 1, 2, 3, 5, 6, 7 y 8, de la asignatura (UPCT). Las imágenes de esta página son recortes de esas diapositivas, sin pie ni logotipos, con fines de estudio y con su explicación al lado.</li>
 <li>Problemas tipo de examen resueltos y ejercicios 1 a 4 de la asignatura.</li>
+<li>Apuntes manuscritos «Analógica fuen» (143 págs.): se incluyen 26 páginas escaneadas, con los problemas F1 a F7 rehechos y recalculados.</li>
 </ul>
 <p class="muted" style="font-size:14px">Esta guía es material de estudio personal y no sustituye al profesor ni a las diapositivas. Revisa los resultados contra los apuntes de clase.</p>
 </section>
@@ -1926,7 +2124,12 @@ function plotSVG(o,items){
    {g:3,q:'Un diagrama de Bode empieza plano en 20 dB, cae 20 dB/década desde 100 rad/s y 40 dB/década desde 10⁴ rad/s. ¿Qué función es?',o:['10/[(1+s/100)(1+s/10⁴)]','100/[(1+s/100)(1+s/10⁴)]','10·(1+s/100)/(1+s/10⁴)','10/[s(1+s/100)]'],c:0,e:'20 dB es K = 10. En 100 rad/s hay un polo y en 10⁴ otro (la pendiente pasa de −20 a −40). Fase final −180°.'},
    {g:3,q:'G(s) = 10s/(s+100). ¿Cuánto vale |G| a frecuencias muy altas?',o:['0 dB','20 dB','−20 dB','40 dB'],c:1,e:'Para s→∞, G → 10s/s = 10, es decir 20 dB. Es un filtro paso alto con un polo en 100 rad/s.'},
    {g:4,q:'En baja frecuencia, un amplificador tiene tres condensadores con f_c de 5,97 Hz, 1,08 Hz y 56,8 Hz. ¿Cuál es f_ci aproximada?',o:['56,8 Hz, porque es la mayor','63,9 Hz, la suma, porque no hay una década de diferencia','1,08 Hz, la menor','5,97 Hz'],c:1,e:'56,8/5,97 = 9,5 < 10: no hay polo dominante, y se suman las frecuencias: 56,8+5,97+1,08 = 63,9 Hz.'},
-   {g:4,q:'Una capacidad C_μ = 2 pF une entrada y salida de una etapa de ganancia −100. ¿Cuánto vale la capacidad de entrada por el efecto Miller?',o:['2 pF','102 pF','202 pF','200 pF'],c:2,e:'C_in = C(1−A) = 2·(1+100) = 202 pF.'}
+   {g:4,q:'Una capacidad C_μ = 2 pF une entrada y salida de una etapa de ganancia −100. ¿Cuánto vale la capacidad de entrada por el efecto Miller?',o:['2 pF','102 pF','202 pF','200 pF'],c:2,e:'C_in = C(1−A) = 2·(1+100) = 202 pF.'},
+   {g:2,q:'Un Schmitt inversor tiene Vcc = 10 V, R₄ = 49·R₃ y V_ref = 50/49 V (R₃ desde V_ref a la entrada +, R₄ desde la salida a la +). ¿Cuál es el centro y la semianchura del ciclo?',o:['Centro 1 V, semianchura 0,2 V','Centro 1,02 V, semianchura 10 V','Centro 0 V, semianchura 0,2 V','Centro 1 V, semianchura 2 V'],c:0,e:'Centro = R₄/(R₃+R₄)·V_ref = (49/50)·(50/49) = 1 V. Semianchura = R₃/(R₃+R₄)·Vcc = (1/50)·10 = 0,2 V.'},
+   {g:3,q:'Un inversor con Z₁ = R₁‖C₁ (160 kΩ, 10 nF) y Z₂ = R₂‖C₂ (32 kΩ, 1 nF). ¿Qué ganancia tiene a alta frecuencia?',o:['−13,98 dB','20 dB','−20 dB','33,98 dB'],c:1,e:'A = −(R₂/R₁)(1+jωR₁C₁)/(1+jωR₂C₂). En alta frecuencia el cociente tiende a (R₂/R₁)·(R₁C₁)/(R₂C₂) = C₁/C₂ = 10, es decir 20 dB. En continua es 0,2, o −13,98 dB.'},
+   {g:3,q:'En A = (1 + jωR₁C₁) / [jωR₁C₁ (1 + jωR₂C₂)] con 1/(R₁C₁) &lt; 1/(R₂C₂), ¿qué hace el módulo entre ω = 1/(R₁C₁) y ω = 1/(R₂C₂)?',o:['Baja 20 dB/dec','Sube 20 dB/dec','Es plano en 0 dB','Baja 40 dB/dec'],c:2,e:'El integrador (−20 dB/dec) pasa por 0 dB justo en 1/(R₁C₁), donde el cero sube +20 dB/dec y cancela la pendiente: queda plano en 0 dB hasta que llega el polo.'},
+   {g:4,q:'Emisor común con h_ie = 2 kΩ, h_fe = 50, R_E = 1 kΩ y R_C‖R_L = 2,67 kΩ. Si se quita el condensador C_E, ¿cuánto vale la ganancia de tensión?',o:['−66,7 (no cambia)','−33,3','−2,52','−1,26'],c:2,e:'Sin C_E queda A_v = −h_fe·(R_C‖R_L)/(h_ie+(1+h_fe)R_E) = −50·2,67k/(2k+51k) = −2,52. A cambio, f_ci baja de 421 Hz a unos 1,6 Hz.'},
+   {g:4,q:'En un seguidor de emisor con el colector conectado a V_cc, ¿cómo se trata el condensador C_BC?',o:['Con Miller, con A = g_m','Con Miller, con A = −g_m·R_C','Como un condensador de la base a masa, sin Miller','Se ignora siempre'],c:2,e:'V_cc es masa en alterna, así que C_BC va de la base a masa. No une dos nodos con ganancia entre ellos y no hay efecto Miller.'}
   ];
   const groups=[['Todas',0],['U1–U3',1],['U4–U5',2],['U6–U7',3],['U8 y más',4]];
   let cur=0,list=Q,score=0,done={};
@@ -2016,6 +2219,37 @@ function plotSVG(o,items){
   }
 })();
 
+
+/* ---------- apuntes de Fuen: Bode de F3 y F4 ---------- */
+(function(){
+  if(!$('fig-fz'))return;
+  const lw=rng(1,6,300);
+  const lab=v=>{const w=Math.round(Math.pow(10,v));return w>=1e6?(w/1e6)+'M':w>=1e3?(w/1e3)+'k':String(w);};
+  const rad=w=>String(Math.round(w)).replace(/\B(?=(\d{3})+(?!\d))/g,'\u202f');
+  const xo={x0:1,x1:6,xt:[1,2,3,4,5,6],xtf:lab};
+  let sw=false;
+  function drawF3(){
+    const R1=160e3,C1=10e-9,R2=32e3,C2=1e-9;
+    const t1=sw?R2*C2:R1*C1, t2=sw?R1*C1:R2*C2, K=sw?R1/R2:R2/R1;
+    const ex=lw.map(l=>{const w=Math.pow(10,l);return 20*Math.log10(K*Math.hypot(1,w*t1)/Math.hypot(1,w*t2));});
+    const as=lw.map(l=>20*Math.log10(K)+20*Math.max(0,l+Math.log10(t1))-20*Math.max(0,l+Math.log10(t2)));
+    const yt=[-40,-20,0,20,40];
+    $('fig-fz').innerHTML=plotSVG(Object.assign({y0:-40,y1:40,yt,label:'Módulo del inversor con Z1 y Z2 en paralelo RC',yl:'|A| dB',xl:'ω rad/s'},xo),[
+      {t:'line',x:lw,y:as,c:'s3',dash:1,w:1.6},{t:'line',x:lw,y:ex,c:'s1'},
+      {t:'vline',x:-Math.log10(t1),c:'s2'},{t:'vline',x:-Math.log10(t2),c:'s2'}]);
+    $('fz-txt').textContent=(sw?'Z₁ y Z₂ intercambiadas: ':'Original: ')+'ganancia en continua '+num(20*Math.log10(K),2)+' dB · cero en '+rad(1/t1)+' rad/s · polo en '+rad(1/t2)+' rad/s · nivel final '+num(20*Math.log10(K*t1/t2),2)+' dB';
+  }
+  $('fz-sw').addEventListener('click',()=>{sw=!sw;$('fz-sw').setAttribute('aria-pressed',sw);drawF3();});
+  drawF3();
+  if($('fig-fy')){
+    const t1=1e-3,t2=1e-4;
+    const ex=lw.map(l=>{const w=Math.pow(10,l);return 20*Math.log10(Math.hypot(1,w*t1)/(w*t1*Math.hypot(1,w*t2)));});
+    const as=lw.map(l=>-20*(l+Math.log10(t1))+20*Math.max(0,l+Math.log10(t1))-20*Math.max(0,l+Math.log10(t2)));
+    $('fig-fy').innerHTML=plotSVG(Object.assign({y0:-40,y1:40,yt:[-40,-20,0,20,40],label:'Módulo con polo en el origen cancelado por un cero',yl:'|A| dB',xl:'ω rad/s'},xo),[
+      {t:'line',x:lw,y:as,c:'s3',dash:1,w:1.6},{t:'line',x:lw,y:ex,c:'s1'},
+      {t:'vline',x:3,c:'s2'},{t:'vline',x:4,c:'s2'}]);
+  }
+})();
 </script>
 </body>
 </html>
