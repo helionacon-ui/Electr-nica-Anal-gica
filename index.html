@@ -2,208 +2,63 @@
 <html lang="es">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="description" content="Guía de estudio de Electrónica Analógica (UPCT, GIEyA): operacionales, Bode, filtros, cuadripolos y transistores en frecuencia, con diapositivas explicadas paso a paso, simuladores y problemas resueltos.">
-<title>Electrónica Analógica · Guía de examen</title>
-<meta name="claude:viewport-fit-sides" content="cover">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=IBM+Plex+Sans:ital,wght@0,400;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap">
-<script>
-window.MathJax = { tex: { inlineMath: [['$','$']], displayMath: [['$$','$$']] }, svg: { fontCache: 'global' } };
-</script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-svg.js"></script>
-<link rel="manifest" href="manifest.webmanifest"><meta name="theme-color" content="#1d5fb8">
-<link rel="icon" type="image/png" sizes="192x192" href="icon-192.png"><link rel="apple-touch-icon" href="apple-touch-icon.png">
-<meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="Analógica">
-<link rel="stylesheet" href="style.css?v=2"></head><body data-page="index">
-
-<div class="hub-bar" style="max-width:1180px;margin:0 auto;padding:10px 16px 0"><a href="https://helionacon-ui.github.io/GIEIA-UPCT/" style="display:inline-flex;align-items:center;gap:6px;font:600 13.5px/1 system-ui,sans-serif;padding:8px 12px;border-radius:999px;border:1px solid var(--line,#d3dcdf);background:var(--surface,var(--card,#fff));color:var(--fg,#18232b);text-decoration:none">← Todas las guías GIEyA</a></div>
-<header class="hero">
-  <div class="hero-in">
-    <div class="hero-txt">
-      <div class="eyebrow">UPCT · GIEyA · 3.º curso · 507103006</div>
-      <p class="fecha" style="margin:6px 0 0;max-width:none;font:13px/1.45 system-ui,sans-serif;color:var(--muted,#5b6660)">Proyecto iniciado el <time datetime="2026-11-08">8 de noviembre de 2026</time> · Última actualización: <time datetime="2026-11-08">8 de noviembre de 2026</time></p>
-      <h1>Electrónica <span>Analógica</span></h1>
-      <p class="sub">Guía para aprobar · curso 2026-27</p>
-      <div class="stats">
-        <div><b>11</b><span>bloques de teoría desde cero</span></div>
-        <div><b>150</b><span>diapositivas y páginas de apuntes explicadas</span></div>
-        <div><b>51</b><span>problemas y ejercicios de examen resueltos</span></div>
-        <div><b>16</b><span>simuladores, calculadoras y generador</span></div>
-      </div>
-      <div class="cta"><a class="btn pri" href="#cero">Empieza desde cero</a><a class="btn" href="empezar.html#examen">Cómo es el examen</a><a class="btn" href="examenes.html#exa-indice">Exámenes resueltos</a><a class="btn" href="problemas.html#problemas">Problemas resueltos</a><a class="btn" href="tema-6.html#bode">Bode</a><a class="btn" href="autoevaluacion.html#auto">Autoevaluación</a><a class="btn" href="formulario.html#formulario">Formulario</a></div>
-    </div>
-    <div class="hero-art" role="img" aria-label="Ilustración de la asignatura: un amplificador operacional inversor con una señal que sale amplificada y, debajo, un diagrama de Bode con la caída de 20 dB por década">
-      <svg viewBox="0 0 340 330" class="zart" aria-hidden="true">
-        <defs>
-          <linearGradient id="og" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="var(--accent)" stop-opacity=".34"/><stop offset="1" stop-color="var(--accent)" stop-opacity=".10"/></linearGradient>
-          <pattern id="gr" width="20" height="20" patternUnits="userSpaceOnUse"><path d="M20 0H0V20" fill="none" stroke="var(--line)" stroke-width=".8"/></pattern>
-        </defs>
-        <rect x="1" y="1" width="338" height="328" rx="16" fill="var(--surface)" stroke="var(--line)" stroke-width="1.4"/>
-        <rect x="1" y="1" width="338" height="328" rx="16" fill="url(#gr)" opacity=".55"/>
-        <!-- señal de entrada -->
-        <path d="M14 78 q6 -14 12 0 t12 0" stroke="var(--fg)" stroke-width="1.7" fill="none" transform="translate(0 0)"/>
-        <text x="14" y="104" fill="var(--muted)" font-size="10" font-family="IBM Plex Mono, monospace">Vi</text>
-        <!-- R1 -->
-        <path d="M40 78 H52" stroke="var(--fg)" stroke-width="1.7"/>
-        <path d="M52 78 l4 -7 l6 14 l6 -14 l6 14 l6 -14 l4 7" stroke="var(--fg)" stroke-width="1.7" fill="none" stroke-linejoin="round"/>
-        <path d="M90 78 H132" stroke="var(--fg)" stroke-width="1.7"/>
-        <text x="71" y="63" fill="var(--muted)" font-size="10" font-family="IBM Plex Mono, monospace" text-anchor="middle">R1</text>
-        <!-- operacional -->
-        <path d="M132 40 L132 150 L252 95 Z" fill="url(#og)" stroke="var(--accent)" stroke-width="2.6" stroke-linejoin="round"/>
-        <text x="140" y="85" fill="var(--fg)" font-size="22" font-family="IBM Plex Mono, monospace">−</text>
-        <text x="140" y="136" fill="var(--fg)" font-size="22" font-family="IBM Plex Mono, monospace">+</text>
-        <!-- entrada + a masa -->
-        <path d="M132 128 H110 V150" stroke="var(--fg)" stroke-width="1.7" fill="none"/>
-        <path d="M100 150 H120 M104 156 H116 M108 162 H112" stroke="var(--fg)" stroke-width="1.7"/>
-        <!-- salida -->
-        <path d="M252 95 H324" stroke="var(--fg)" stroke-width="1.7"/>
-        <path d="M274 68 q7 -22 14 0 t14 0 t14 0" stroke="var(--accent)" stroke-width="2.6" fill="none" stroke-linecap="round"/>
-        <text x="298" y="118" fill="var(--accent)" font-size="10" font-family="IBM Plex Mono, monospace" text-anchor="middle">Vo</text>
-        <!-- realimentación -->
-        <path d="M264 95 V28 H112 V78" stroke="var(--warn)" stroke-width="1.7" fill="none" stroke-dasharray="5 4"/>
-        <rect x="170" y="18" width="46" height="20" rx="3" fill="var(--surface)" stroke="var(--warn)" stroke-width="1.6"/>
-        <text x="193" y="32" fill="var(--warn)" font-size="11" font-family="IBM Plex Mono, monospace" text-anchor="middle">R2</text>
-        <circle cx="112" cy="78" r="3" fill="var(--fg)"/><circle cx="264" cy="95" r="3" fill="var(--warn)"/>
-        <!-- separador -->
-        <path d="M18 184 H322" stroke="var(--line)" stroke-width="1.4"/>
-        <!-- bode -->
-        <path d="M44 200 V300 H316" stroke="var(--muted)" stroke-width="1.5" fill="none"/>
-        <path d="M44 232 H150 L300 288" stroke="var(--accent)" stroke-width="1.8" fill="none" stroke-dasharray="5 4" opacity=".8"/>
-        <path d="M44 232 H110 Q150 234 164 247 Q190 270 300 288" stroke="var(--accent)" stroke-width="3" fill="none" stroke-linecap="round"/>
-        <circle cx="150" cy="232" r="5" fill="var(--surface)" stroke="var(--accent)" stroke-width="2.4"/>
-        <path d="M150 232 V300" stroke="var(--muted)" stroke-width="1" stroke-dasharray="3 4"/>
-        <text x="20" y="206" fill="var(--muted)" font-size="10" font-family="IBM Plex Mono, monospace">dB</text>
-        <text x="316" y="316" fill="var(--muted)" font-size="10" font-family="IBM Plex Mono, monospace" text-anchor="end">ω</text>
-        <text x="156" y="314" fill="var(--muted)" font-size="10" font-family="IBM Plex Mono, monospace">ωc</text>
-        <text x="244" y="262" fill="var(--accent)" font-size="10.5" font-family="IBM Plex Mono, monospace">−20 dB/déc</text>
-      </svg>
-      <p class="art-cap">Un operacional, su realimentación y su Bode: lo que más pesa en el examen.</p>
-    </div>
-  </div>
-</header>
-
-<a href="#top" class="totop" id="totop" aria-label="Volver arriba">↑</a>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Electrónica Analógica · Guía para aprobar</title>
+<meta name="description" content="Guía para aprobar Electrónica Analógica (UPCT, GIEyA): amplificadores y decibelios, amplificador operacional ideal y real, aplicaciones lineales y no lineales, comparadores y disparadores de Schmitt, GBW, slew rate y CMRR, diagramas de Bode, filtros activos, cuadripolos, teorema de Miller y respuesta en frecuencia de amplificadores con transistores, con figuras interactivas y problemas resueltos">
+<meta name="theme-color" content="#8a6a12">
+<link href="https://fonts.googleapis.com" rel="preconnect"><link crossorigin href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=IBM+Plex+Sans:ital,wght@0,400;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script>window.MathJax={tex:{inlineMath:[['\\(','\\)']],displayMath:[['\\[','\\]']]},svg:{fontCache:'global'}};</script>
+<script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+<link rel="stylesheet" href="style.css">
+<style>html{-webkit-text-size-adjust:100%}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+</head>
+<body>
+<div class="hub-bar" style="max-width:1180px;margin:0 auto;padding:10px 16px 0"><a href="https://helionacon-ui.github.io/GIEIA-UPCT/" style="display:inline-flex;align-items:center;gap:6px;font:600 13.5px/1 system-ui,sans-serif;padding:8px 12px;border-radius:999px;border:1px solid var(--line);background:var(--surface);color:var(--fg);text-decoration:none">← Todas las guías GIEyA</a><p class="fecha" style="margin:6px 0 0;max-width:none;font:13px/1.45 system-ui,sans-serif;color:var(--muted)">Datos tomados del curso <time datetime="2023-09">2023/24</time> (transparencias de las ocho unidades, apuntes, boletines de ejercicios resueltos, prácticas y exámenes de 2022 a 2024) · página creada en noviembre de 2026</p></div>
+<header class="hero"><div class="hero-in"><div class="hero-txt">
+<div class="eyebrow">UPCT · GIEyA · 3.er curso</div>
+<h1>Electrónica <span>Analógica</span></h1><p class="sub">Del operacional ideal a la respuesta en frecuencia · Guía para aprobar</p>
+<div class="stats"><div><b>8</b><span>temas, del amplificador a los transistores</span></div><div><b>10</b><span>figuras interactivas que calculan de verdad</span></div><div><b>8</b><span>problemas tipo resueltos</span></div><div><b>48</b><span>cuestiones de teoría respondidas</span></div></div>
+<div class="cta"><a class="btn pri" href="#cero">Empieza desde cero</a><a class="btn" href="cuestiones.html">Teoría</a><a class="btn" href="examenes.html">Problemas</a><a class="btn" href="problemas.html">Qué cae</a><a class="btn" href="laboratorio.html">Prácticas</a><a class="btn" href="formulario.html">Formulario</a></div>
+</div>
+<div aria-hidden="true" class="hero-art"><svg class="zart" viewBox="-120 -120 240 240">
+<path d="M -30 -46 L 52 0 L -30 46 Z" fill="none" stroke="var(--accent)" stroke-width="2.5" stroke-linejoin="round"></path>
+<text fill="var(--accent)" font-family="IBM Plex Mono, monospace" font-size="15" x="-18" y="-16">&#8722;</text>
+<text fill="var(--accent)" font-family="IBM Plex Mono, monospace" font-size="15" x="-18" y="26">+</text>
+<line x1="-92" y1="-23" x2="-30" y2="-23" stroke="var(--muted)" stroke-width="2"></line>
+<line x1="-92" y1="23" x2="-30" y2="23" stroke="var(--muted)" stroke-width="2"></line>
+<line x1="52" y1="0" x2="96" y2="0" stroke="var(--muted)" stroke-width="2"></line>
+<path d="M 70 0 L 70 -62 L -62 -62 L -62 -23" fill="none" stroke="var(--warn)" stroke-width="2"></path>
+<rect x="-26" y="-70" width="30" height="16" rx="2" fill="var(--warn)" fill-opacity="0.2" stroke="var(--warn)" stroke-width="2"></rect>
+<rect x="-80" y="-31" width="26" height="16" rx="2" fill="none" stroke="var(--muted)" stroke-width="2"></rect>
+<circle cx="96" cy="0" r="4" fill="var(--c2)"></circle>
+<path d="M -92 74 Q -46 50 0 74 T 92 74" fill="none" stroke="var(--c2)" stroke-width="2"></path>
+<text fill="var(--muted)" font-family="IBM Plex Mono, monospace" font-size="11" text-anchor="middle" x="0" y="-92">AO &#183; Schmitt &#183; Bode &#183; cuadripolos &#183; Miller</text>
+<text fill="var(--muted)" font-family="IBM Plex Mono, monospace" font-size="11" text-anchor="middle" x="0" y="100">dos reglas de oro resuelven medio examen</text></svg>
+<p class="art-cap">Dos parciales: el primero llega hasta el AO real; el segundo, de Bode a los transistores.</p></div></div></header><a href="#top" class="totop" id="totop" aria-label="Volver arriba">↑</a>
 <div class="wrap" id="top">
-<nav class="toc" aria-label="Índice">
-<a href="index.html" aria-current="page" class="cur" style="--tc:var(--c0)">Portada</a>
-<div class="grp">Empezar</div>
-<a href="empezar.html" style="--tc:var(--c0)">Cómo es el examen</a>
-<div class="grp">Parcial 1</div>
-<a href="tema-1-2.html" style="--tc:var(--c1)">T1–2 Amplificadores y AO ideal</a>
-<a href="tema-3.html" style="--tc:var(--c3)">T3 Aplicaciones lineales</a>
-<a href="tema-4.html" style="--tc:var(--c4)">T4 Aplicaciones no lineales</a>
-<a href="tema-5.html" style="--tc:var(--c5)">T5 AO real</a>
-<a href="tema-6.html" style="--tc:var(--c6)">T6 Bode y filtros</a>
-<div class="grp">Parcial 2</div>
-<a href="tema-7.html" style="--tc:var(--c7)">T7 Cuadripolos</a>
-<a href="tema-8.html" style="--tc:var(--c8)">T8 Transistores en frecuencia</a>
-<a href="realimentacion.html" style="--tc:var(--c1)">Realimentación y osciladores</a>
-<a href="potencia.html" style="--tc:var(--c3)">Amplificadores de potencia</a>
-<div class="grp">Practicar</div>
-<a href="examen-2025-26.html" style="--tc:var(--c3)">P1 curso 25-26 resuelto</a>
-<a href="examenes.html" style="--tc:var(--c8)">Exámenes resueltos</a>
-<a href="examenes-p2.html" style="--tc:var(--c8)">Exámenes P2 resueltos</a>
-<a href="fuen.html" style="--tc:var(--c0)">Apuntes de Fuen</a>
-<a href="problemas.html" style="--tc:var(--c8)">Problemas resueltos</a>
-<a href="calculadoras.html" style="--tc:var(--c8)">Calculadoras de bolsillo</a>
-<a href="autoevaluacion.html" style="--tc:var(--c8)">Autoevaluación</a>
-<div class="grp">Repasar</div>
-<a href="formulario.html" style="--tc:var(--c0)">Formulario</a>
-<a href="glosario.html" style="--tc:var(--c0)">Glosario</a>
-<a href="plan.html" style="--tc:var(--c0)">Plan de estudio</a>
-<div class="grp">Todo en uno</div>
-<a href="guia-completa.html" style="--tc:var(--c0)">Guía completa</a>
-</nav>
-
+<nav aria-label="Índice" class="toc"><a href="index.html" style="--tc:var(--c0)" class="on" aria-current="page">Portada</a><div class="grp">Empezar</div><a href="index.html#cero" style="--tc:var(--c0)" class="on" aria-current="page">Empieza aquí desde cero</a><a href="plan.html" style="--tc:var(--c0)">Cómo es la evaluación</a><a href="index.html#progreso" style="--tc:var(--c0)" class="on" aria-current="page">Tu progreso</a><div class="grp">El amplificador operacional</div><a href="tema-01.html" style="--tc:var(--c2)">T1 Introducción a los amplificadores</a><a href="tema-02.html" style="--tc:var(--c3)">T2 El amplificador operacional ideal</a><a href="tema-03.html" style="--tc:var(--c4)">T3 Aplicaciones lineales del operacional</a><a href="tema-04.html" style="--tc:var(--c5)">T4 Aplicaciones no lineales</a><a href="tema-05.html" style="--tc:var(--c6)">T5 El amplificador operacional real</a><div class="grp">Respuesta en frecuencia</div><a href="tema-06.html" style="--tc:var(--c7)">T6 Diagramas de Bode y filtros</a><a href="tema-07.html" style="--tc:var(--c8)">T7 Cuadripolos</a><a href="tema-08.html" style="--tc:var(--c1)">T8 Respuesta en frecuencia de amplificadores con transistores</a><div class="grp">Practicar</div><a href="cuestiones.html" style="--tc:var(--c8)">Cuestiones de teoría respondidas</a><a href="examenes.html" style="--tc:var(--c8)">Problemas de examen resueltos</a><a href="problemas.html" style="--tc:var(--c8)">Qué cae en el examen</a><a href="laboratorio.html" style="--tc:var(--c7)">Prácticas y simulación</a><a href="formulario.html" style="--tc:var(--c8)">Formulario</a></nav>
 <main>
-<div class="srch-card" id="srch-card"><label for="srch" class="srch-lab">Buscar en la guía</label>
-<input type="search" id="srch" placeholder="Por ejemplo: slew rate, Schmitt, Miller, CMRR…" autocomplete="off" spellcheck="false">
-<div id="srch-out" class="srch-out" hidden></div></div>
-
-
-
-<section class="sec" style="--tc:var(--c0);--tcs:var(--c0s)"><div class="sh"><span class="badge" aria-hidden="true">≡</span><div class="shx"><p class="kick">Contenido</p><h2 id="paginas">Páginas de la guía</h2></div></div><p>Cada tema tiene su página y las de práctica van aparte. A la izquierda tienes siempre el índice con todas las páginas y el buscador encuentra texto en todas. Si prefieres un solo documento, está la guía completa. Para estudiar sin pantalla, tienes dos PDF: <a href="Electronica-Analogica-guia-completa.pdf">la guía completa (unas 240 páginas, 12 MB)</a> y <a href="Electronica-Analogica-formulario.pdf">el formulario de una hoja</a>.</p><div class="pages"><a href="empezar.html" style="--tc:var(--c0)"><small>Empezar</small>Cómo es el examen</a><a href="tema-1-2.html" style="--tc:var(--c1)"><small>Parcial 1</small>T1–2 Amplificadores y AO ideal</a><a href="tema-3.html" style="--tc:var(--c3)"><small>Parcial 1</small>T3 Aplicaciones lineales</a><a href="tema-4.html" style="--tc:var(--c4)"><small>Parcial 1</small>T4 Aplicaciones no lineales</a><a href="tema-5.html" style="--tc:var(--c5)"><small>Parcial 1</small>T5 AO real</a><a href="tema-6.html" style="--tc:var(--c6)"><small>Parcial 1</small>T6 Bode y filtros</a><a href="tema-7.html" style="--tc:var(--c7)"><small>Parcial 2</small>T7 Cuadripolos</a><a href="tema-8.html" style="--tc:var(--c8)"><small>Parcial 2</small>T8 Transistores en frecuencia</a><a href="realimentacion.html" style="--tc:var(--c1)"><small>Parcial 2</small>Realimentación y osciladores</a><a href="potencia.html" style="--tc:var(--c3)"><small>Parcial 2</small>Amplificadores de potencia</a><a href="examen-2025-26.html" style="--tc:var(--c3)"><small>Practicar</small>P1 curso 25-26 resuelto</a><a href="examenes.html" style="--tc:var(--c8)"><small>Practicar</small>Exámenes resueltos</a><a href="examenes-p2.html" style="--tc:var(--c8)"><small>Practicar</small>Exámenes P2 resueltos</a><a href="fuen.html" style="--tc:var(--c0)"><small>Practicar</small>Apuntes de Fuen</a><a href="problemas.html" style="--tc:var(--c8)"><small>Practicar</small>Problemas resueltos</a><a href="calculadoras.html" style="--tc:var(--c8)"><small>Practicar</small>Calculadoras de bolsillo</a><a href="autoevaluacion.html" style="--tc:var(--c8)"><small>Practicar</small>Autoevaluación</a><a href="formulario.html" style="--tc:var(--c0)"><small>Repasar</small>Formulario</a><a href="glosario.html" style="--tc:var(--c0)"><small>Repasar</small>Glosario</a><a href="plan.html" style="--tc:var(--c0)"><small>Repasar</small>Plan de estudio</a><a href="guia-completa.html" style="--tc:var(--c0)"><small>Todo en uno</small>Guía completa en una página</a></div></section>
-
 <section class="sec" style="--tc:var(--c0);--tcs:var(--c0s)">
-<div class="sh"><span class="badge" aria-hidden="true">0</span><div class="shx"><p class="kick">Empezar</p><h2 id="cero">Empieza aquí si partes de cero</h2></div></div>
-<div class="zero">
-<p class="ft">La asignatura en un párrafo</p>
-<p>Un <b>amplificador</b> recibe una señal pequeña y entrega una copia más grande, y para eso toma energía de una fuente de alimentación. En Electrónica Analógica respondes a tres preguntas. <b>¿Cuánto amplifica?</b> Eso es la ganancia (unidades 1 a 4). <b>¿Qué se pierde porque los componentes no son ideales?</b> Eso es el operacional real y los transistores (unidades 5 y 7). <b>¿Hasta qué frecuencia sigue funcionando?</b> Eso son los diagramas de Bode, los filtros y la respuesta en frecuencia (unidades 6 y 8).</p>
-</div>
-<p>El camino, en orden. Cada unidad usa lo de la anterior:</p>
-<div class="map">
-<a href="tema-1-2.html#u1"><b>U1</b>Amplificadores</a>
-<a href="tema-1-2.html#u2"><b>U2</b>AO ideal</a>
-<a href="tema-3.html#u3"><b>U3</b>Aplicaciones lineales</a>
-<a href="tema-4.html#u4"><b>U4</b>Aplicaciones no lineales</a>
-<a href="tema-5.html#u5"><b>U5</b>AO real</a>
-<a href="tema-6.html#u6"><b>U6</b>Bode y filtros</a>
-<a href="tema-7.html#u7"><b>U7</b>Cuadripolos</a>
-<a href="tema-8.html#u8"><b>U8</b>Transistores en frecuencia</a>
-</div>
-<div class="grid2">
-<div class="box"><h4>Lo que necesitas saber de antes</h4>
-<ul>
-<li><b>Ley de Ohm y Kirchhoff.</b> Casi todo problema de operacionales se resuelve con una ecuación de corrientes en un nudo.</li>
-<li><b>Divisor de tensión:</b> $V_o=V_i\,\dfrac{R_2}{R_1+R_2}$.</li>
-<li><b>Impedancias:</b> $Z_R=R$, $Z_C=\dfrac1{j\omega C}$, $Z_L=j\omega L$. Un condensador es un circuito abierto en continua y un cortocircuito a frecuencia alta.</li>
-<li><b>Números complejos:</b> módulo, fase y $e^{j\theta}=\cos\theta+j\sin\theta$.</li>
-<li><b>Logaritmos decimales:</b> $\log(ab)=\log a+\log b$ y $\log a^x=x\log a$.</li>
-</ul></div>
-<div class="box"><h4>Cómo usar esta guía</h4>
-<ol>
-<li>Lee el recuadro «Desde cero» de cada unidad.</li>
-<li>Juega con el simulador hasta que puedas <b>predecir</b> el resultado antes de mover un control.</li>
-<li>Haz el problema de examen resuelto <b>tapando la solución</b> y despliega solo el paso en el que te atascas.</li>
-<li>Marca la unidad en «Tu progreso».</li>
-</ol></div>
-</div>
-<details class="nom"><summary><span class="nom-ic" aria-hidden="true">Aa</span>Notación general de toda la asignatura <span class="src">16 símbolos</span></summary><div class="inner">
-<div class="tw"><table><tr><th>Símbolo</th><th>Qué significa</th><th>Unidades · ejemplo</th></tr>
-<tr><td class="sym">$A_v,\ A_{CL}$</td><td>Ganancia de tensión; la segunda es en <b>lazo cerrado</b> (con realimentación)</td><td class="u">adimensional o dB</td></tr>
-<tr><td class="sym">$A_{OL}$</td><td>Ganancia del operacional en <b>lazo abierto</b>, sin realimentar</td><td class="u">100 000 a 1 000 000</td></tr>
-<tr><td class="sym">$Z_{in},\ Z_{out}$</td><td>Impedancia de entrada y de salida</td><td class="u">Ω</td></tr>
-<tr><td class="sym">$V^+,\ V^-$</td><td>Tensión en la entrada no inversora y en la inversora</td><td class="u">V</td></tr>
-<tr><td class="sym">$V_d,\ V_c$</td><td>Tensión diferencial $V^+-V^-$ y de modo común $\frac{V^++V^-}2$</td><td class="u">V</td></tr>
-<tr><td class="sym">$\pm V_{sat}$</td><td>Tensiones de saturación de la salida, 1 a 1,5 V por debajo de la alimentación</td><td class="u">±13,6 V con ±15 V</td></tr>
-<tr><td class="sym">$SR$</td><td>Slew rate: máxima velocidad de cambio de la salida</td><td class="u">V/µs</td></tr>
-<tr><td class="sym">$GBW,\ f_1$</td><td>Producto ganancia por ancho de banda. $f_1$ es la frecuencia donde la ganancia en lazo abierto vale 1</td><td class="u">Hz; 1 MHz para el 741</td></tr>
-<tr><td class="sym">$CMRR$</td><td>Razón de rechazo al modo común $=\left|\frac{A_d}{A_c}\right|$</td><td class="u">dB; 90 dB típico</td></tr>
-<tr><td class="sym">$I_B,\ I_{io},\ V_{io}$</td><td>Corriente de polarización, de asimetría y tensión de asimetría de entrada (offset)</td><td class="u">nA, nA, mV</td></tr>
-<tr><td class="sym">$s=j\omega$</td><td>Variable de Laplace evaluada en régimen senoidal</td><td class="u">$\omega=2\pi f$ rad/s</td></tr>
-<tr><td class="sym">$G(j\omega)$</td><td>Ganancia compleja o función de transferencia $U_s/U_e$</td><td class="u">módulo y fase</td></tr>
-<tr><td class="sym">$\omega_c,\ f_c$</td><td>Frecuencia de corte (−3 dB)</td><td class="u">$f_c=\frac1{2\pi RC}$ en un RC</td></tr>
-<tr><td class="sym">$f_{ci},\ f_{cs}$</td><td>Frecuencia de corte inferior y superior de un amplificador</td><td class="u">Hz</td></tr>
-<tr><td class="sym">$g_m,\ r_\pi$</td><td>Transconductancia y resistencia de entrada del transistor en pequeña señal</td><td class="u">$g_m=\frac{I_C}{V_T}$, $V_T\approx25$ mV</td></tr>
-<tr><td class="sym">dB</td><td>Decibelio: $20\log|A_v|$ para tensión o corriente, $10\log A_p$ para potencia</td><td class="u">×10 = +20 dB</td></tr>
-</table></div>
-<div class="box trap" style="margin:12px 0 0"><h4>Ojo con el 20 y el 10</h4><p>En decibelios de <b>tensión</b> multiplicas por 20 y en decibelios de <b>potencia</b> por 10. La potencia depende del cuadrado de la tensión, y por eso las dos fórmulas dan el mismo número de dB para el mismo circuito.</p></div>
-</div></details>
-
-<figure class="fig">
-<p class="ft">Simulador · de razón a decibelios</p>
-<div class="ctrl"><label for="db-s">Ganancia en dB <input type="range" id="db-s" min="-60" max="60" step="1" value="20"></label><output id="db-o"></output></div>
-<div class="readout" id="db-txt"></div>
-<figcaption>Mueve el control y fíjate en tres puntos: <b>0 dB</b> es ganancia 1 (la salida es igual a la entrada), <b>+20 dB</b> es ×10 en tensión y <b>−3 dB</b> es ×0,707 en tensión, es decir, la mitad de potencia. Ese −3 dB es el criterio de la frecuencia de corte.</figcaption>
-</figure>
-</section>
-
+<div class="sh"><span aria-hidden="true" class="badge">0</span><div class="shx"><p class="kick">Empezar</p><h2 id="cero">Empieza aquí desde cero</h2></div></div>
+<div class="zero"><p class="ft">Cómo usar la guía</p>
+<ol><li>Toda la primera mitad de la asignatura sale de <b>dos reglas</b>: por las entradas del AO no entra corriente y las dos entradas están al mismo potencial. Con eso y una ecuación de nudo se resuelven el inversor, el sumador, el restador, el integrador y el de instrumentación.</li>
+<li>Antes de aplicarlas, <b>mira siempre a qué entrada llega la realimentación</b>. A la (−) es negativa y el circuito es lineal; a la (+) es positiva y el circuito <b>conmuta</b>. Confundirlo es el error que más puntos cuesta.</li>
+<li>La segunda mitad es <b>frecuencia</b>: sustituir el condensador por \(1/j\omega C\), normalizar y dibujar el Bode. El paso que decide el ejercicio es la <b>normalización</b>, no el dibujo.</li>
+<li>Las limitaciones del AO real (GBW, slew rate, CMRR, offset) caen en los dos parciales y son cuatro fórmulas cortas. Lo que se evalúa es saber <b>cuál manda</b> en cada caso.</li>
+<li>Usa las <b>figuras interactivas</b>: calculan de verdad. La del Schmitt enseña por qué hace falta histéresis y la de Miller, por qué un condensador de 5 pF arruina el ancho de banda.</li></ol></div>
+<h3 id="mapa">Mapa de temas</h3>
+<div class="map"><a href="tema-01.html"><b>T1</b>Introducción a los amplificadores</a><a href="tema-02.html"><b>T2</b>El amplificador operacional ideal</a><a href="tema-03.html"><b>T3</b>Aplicaciones lineales del operacional</a><a href="tema-04.html"><b>T4</b>Aplicaciones no lineales</a><a href="tema-05.html"><b>T5</b>El amplificador operacional real</a><a href="tema-06.html"><b>T6</b>Diagramas de Bode y filtros</a><a href="tema-07.html"><b>T7</b>Cuadripolos</a><a href="tema-08.html"><b>T8</b>Respuesta en frecuencia de amplificadores con transistores</a></div>
+<div class="box key"><p><b>De dónde sale esta guía.</b> Las <b>transparencias de las ocho unidades</b> de la asignatura, los apuntes y boletines de ejercicios resueltos, los guiones de prácticas y los exámenes de <b>2022 a 2024</b> con sus soluciones.</p></div>
+<div class="box trap"><h4>El error que más puntos cuesta</h4><p>Aplicar \(v^{+}=v^{-}\) en un circuito que no tiene realimentación negativa. En un comparador o en un Schmitt la salida está <b>saturada</b> y esa igualdad no se cumple: hay que razonar por estados, no por ecuaciones de nudo.</p></div>
+<h3 id="progreso">Tu progreso</h3>
+<p class="muted">Se guarda en este navegador.</p>
+<div class="bar"><i id="prog-bar"></i></div><p id="prog-txt" class="muted"></p>
+<div class="check"><input type="checkbox" id="c1"><label for="c1">T1 · Introducción a los amplificadores</label></div><div class="check"><input type="checkbox" id="c2"><label for="c2">T2 · El amplificador operacional ideal</label></div><div class="check"><input type="checkbox" id="c3"><label for="c3">T3 · Aplicaciones lineales del operacional</label></div><div class="check"><input type="checkbox" id="c4"><label for="c4">T4 · Aplicaciones no lineales</label></div><div class="check"><input type="checkbox" id="c5"><label for="c5">T5 · El amplificador operacional real</label></div><div class="check"><input type="checkbox" id="c6"><label for="c6">T6 · Diagramas de Bode y filtros</label></div><div class="check"><input type="checkbox" id="c7"><label for="c7">T7 · Cuadripolos</label></div><div class="check"><input type="checkbox" id="c8"><label for="c8">T8 · Respuesta en frecuencia de amplificadores con transistores</label></div>
+</section><p class="inicio" style="margin:36px 0 8px;text-align:center;font-size:13px;color:var(--muted)">Guía no oficial de Electrónica Analógica (UPCT, GIEyA) · Datos tomados del curso <time datetime="2023-09">2023/24</time> (transparencias de las ocho unidades, apuntes, boletines de ejercicios resueltos, prácticas y exámenes de 2022 a 2024) · página creada en noviembre de 2026</p>
 </main>
 </div>
-<nav class="pager" aria-label="Páginas"><span></span><a class="nx" href="empezar.html"><small>Siguiente →</small>Cómo es el examen</a></nav>
-<script src="app.js?v=2"></script>
-<script>
-/* ---------- U0: decibelios ---------- */
-(function(){
-  if(!$('db-s'))return;
-  bind(['db-s'],()=>{const d=val('db-s');out('db-s',num(d,0)+' dB');
-    const v=Math.pow(10,d/20),p=Math.pow(10,d/10);
-    $('db-txt').textContent='Tensión × '+fmt(v)+' · Potencia × '+fmt(p)+(d<0?' (atenúa)':d===0?' (igual)':' (amplifica)');});
-})();
-
-
-</script>
+<script src="app.js"></script>
+<script src="sims.js"></script>
 </body>
 </html>

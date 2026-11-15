@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>T3 Aplicaciones lineales del operacional · Electrónica Analógica · Guía para aprobar</title>
+<meta name="description" content="Electrónica Analógica (UPCT, GIEyA): tema 3, Aplicaciones lineales del operacional">
+<meta name="theme-color" content="#8a6a12">
+<link href="https://fonts.googleapis.com" rel="preconnect"><link crossorigin href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=IBM+Plex+Sans:ital,wght@0,400;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script>window.MathJax={tex:{inlineMath:[['\\(','\\)']],displayMath:[['\\[','\\]']]},svg:{fontCache:'global'}};</script>
+<script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+<link rel="stylesheet" href="style.css">
+<style>html{-webkit-text-size-adjust:100%}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+</head>
+<body>
+<div class="hub-bar" style="max-width:1180px;margin:0 auto;padding:10px 16px 0"><a href="https://helionacon-ui.github.io/GIEIA-UPCT/" style="display:inline-flex;align-items:center;gap:6px;font:600 13.5px/1 system-ui,sans-serif;padding:8px 12px;border-radius:999px;border:1px solid var(--line);background:var(--surface);color:var(--fg);text-decoration:none">← Todas las guías GIEyA</a><p class="fecha" style="margin:6px 0 0;max-width:none;font:13px/1.45 system-ui,sans-serif;color:var(--muted)">Datos tomados del curso <time datetime="2023-09">2023/24</time> (transparencias de las ocho unidades, apuntes, boletines de ejercicios resueltos, prácticas y exámenes de 2022 a 2024) · página creada en noviembre de 2026</p></div>
+<div class="crumb"><a href="index.html">Electrónica Analógica</a><span class="sep">›</span><span>El amplificador operacional</span><span class="sep">›</span><span>T3 · Aplicaciones lineales del operacional</span></div><a href="#top" class="totop" id="totop" aria-label="Volver arriba">↑</a>
+<div class="wrap" id="top">
+<nav aria-label="Índice" class="toc"><a href="index.html" style="--tc:var(--c0)">Portada</a><div class="grp">Empezar</div><a href="index.html#cero" style="--tc:var(--c0)">Empieza aquí desde cero</a><a href="plan.html" style="--tc:var(--c0)">Cómo es la evaluación</a><a href="index.html#progreso" style="--tc:var(--c0)">Tu progreso</a><div class="grp">El amplificador operacional</div><a href="tema-01.html" style="--tc:var(--c2)">T1 Introducción a los amplificadores</a><a href="tema-02.html" style="--tc:var(--c3)">T2 El amplificador operacional ideal</a><a href="tema-03.html" style="--tc:var(--c4)" class="on" aria-current="page">T3 Aplicaciones lineales del operacional</a><a href="tema-04.html" style="--tc:var(--c5)">T4 Aplicaciones no lineales</a><a href="tema-05.html" style="--tc:var(--c6)">T5 El amplificador operacional real</a><div class="grp">Respuesta en frecuencia</div><a href="tema-06.html" style="--tc:var(--c7)">T6 Diagramas de Bode y filtros</a><a href="tema-07.html" style="--tc:var(--c8)">T7 Cuadripolos</a><a href="tema-08.html" style="--tc:var(--c1)">T8 Respuesta en frecuencia de amplificadores con transistores</a><div class="grp">Practicar</div><a href="cuestiones.html" style="--tc:var(--c8)">Cuestiones de teoría respondidas</a><a href="examenes.html" style="--tc:var(--c8)">Problemas de examen resueltos</a><a href="problemas.html" style="--tc:var(--c8)">Qué cae en el examen</a><a href="laboratorio.html" style="--tc:var(--c7)">Prácticas y simulación</a><a href="formulario.html" style="--tc:var(--c8)">Formulario</a></nav>
+<main>
+<section class="sec tema" style="--tc:var(--c4);--tcs:var(--c4s)">
+<div class="sh"><span aria-hidden="true" class="badge">3</span><div class="shx"><p class="kick">El amplificador operacional · Tema 3</p><h2 id="t3">Aplicaciones lineales del operacional</h2><div class="tags"><span class="tag">El amplificador operacional</span><span class="tag">1.er parcial</span></div></div></div>
+<div class="zero"><p class="ft">Desde cero</p><p><b>Objetivo:</b> reconocer y calcular las configuraciones lineales clásicas: inversor, no inversor, seguidor, sumador, restador, integrador, derivador e instrumentación.</p><ul>
+<li>Todas las configuraciones de este tema se resuelven con las <b>mismas dos reglas</b>. Cambia el circuito, no el método: masa virtual (o cortocircuito virtual) y ecuación de nudo.</li>
+<li>El <b>inversor</b> da \(-R_2/R_1\), tiene impedancia de entrada \(R_1\) y permite ganancias menores que 1. El <b>no inversor</b> da \(1+R_2/R_1\), tiene impedancia de entrada infinita y <b>no puede</b> dar ganancia menor que 1.</li>
+<li>El <b>seguidor de tensión</b> es el no inversor con \(R_2=0\) y \(R_1=\infty\): ganancia 1, entrada infinita y salida nula. No amplifica tensión, pero <b>desacopla</b> etapas y elimina el efecto de carga del tema 1. Es, con diferencia, el circuito más usado de todos.</li>
+<li>El <b>sumador</b> aprovecha la masa virtual: como el nudo inversor está a 0 V, cada entrada aporta su corriente <b>sin enterarse de las demás</b>. Por eso las entradas no interaccionan y el circuito suma exactamente.</li>
+<li>El <b>restador</b> o amplificador diferencial resta dos tensiones, pero sólo lo hace bien si las resistencias están <b>equilibradas</b>: \(R_1/R_2=R_3/R_4\). Cualquier desequilibrio deja pasar parte del modo común, que es el problema que mide el CMRR del tema 5.</li>
+<li>El <b>amplificador de instrumentación</b> resuelve los dos defectos del restador: le pone dos seguidores con ganancia a la entrada, de modo que la impedancia de entrada es altísima y la ganancia se ajusta con <b>una sola resistencia</b>. Es el circuito estándar para medir sensores: puentes, termopares, células de carga.</li>
+<li>El <b>integrador</b> sustituye \(R_2\) por un condensador y el <b>derivador</b> sustituye \(R_1\). Los dos son correctos sobre el papel y problemáticos en la práctica: el integrador deriva hasta saturar por culpa del offset, y el derivador amplifica el ruido de alta frecuencia. La solución es la misma en los dos casos: una resistencia o un condensador adicional que limiten la ganancia en el extremo problemático.</li>
+<li>En todos estos circuitos la ganancia depende <b>sólo</b> del cociente de dos componentes externos. Esa es la razón práctica de que la electrónica analógica moderna se haga con operacionales.</li>
+</ul></div>
+<details class="nom"><summary><span aria-hidden="true" class="nom-ic">Aa</span>Nomenclatura del tema 3 <span class="src">8 entradas</span></summary><div class="inner">
+<div class="tw"><table><tr><th>Símbolo</th><th>Significado</th><th>Unidad · nota</th></tr><tr><td class="sym">inversor</td><td>−R2/R1</td><td class="u">Zi = R1</td></tr><tr><td class="sym">no inversor</td><td>1 + R2/R1</td><td class="u">Zi = ∞</td></tr><tr><td class="sym">seguidor</td><td>vo = vi</td><td class="u">desacopla</td></tr><tr><td class="sym">sumador</td><td>−Rf·Σ(vi/Ri)</td><td class="u"></td></tr><tr><td class="sym">restador</td><td>(R2/R1)(v2−v1)</td><td class="u">exige equilibrio</td></tr><tr><td class="sym">instrumentación</td><td>(1+2R2/R1)(R4/R3)</td><td class="u"></td></tr><tr><td class="sym">integrador</td><td>−(1/RC)∫vi dt</td><td class="u"></td></tr><tr><td class="sym">derivador</td><td>−RC·dvi/dt</td><td class="u"></td></tr></table></div></div></details>
+<figure class="fig"><p class="ft">Calculadora interactiva - las configuraciones lineales del AO</p><div data-sim="lineales"></div><figcaption>Mueve los controles y observa cómo cambia el resultado: es el mismo cálculo que hay que saber hacer a mano en el examen.</figcaption></figure>
+<h3 id="t3-formulas">Fórmulas y conceptos que hay que saber</h3>
+<div class="box key"><div class="tw"><table><tr><th>Circuito</th><th>Salida</th><th>\(Z_i\)</th><th>Nota</th></tr>
+<tr><td><b>Inversor</b></td><td>\(v_o=-\dfrac{R_2}{R_1}v_i\)</td><td>\(R_1\)</td><td>admite \(|A|<1\)</td></tr>
+<tr><td><b>No inversor</b></td><td>\(v_o=\left(1+\dfrac{R_2}{R_1}\right)v_i\)</td><td>\(\infty\)</td><td>siempre \(A\ge1\)</td></tr>
+<tr><td><b>Seguidor</b></td><td>\(v_o=v_i\)</td><td>\(\infty\)</td><td>adaptador de impedancias</td></tr>
+<tr><td><b>Sumador inversor</b></td><td>\(v_o=-R_f\left(\dfrac{v_1}{R_1}+\dfrac{v_2}{R_2}+\cdots\right)\)</td><td>\(R_i\) por rama</td><td>entradas independientes</td></tr>
+<tr><td><b>Restador</b></td><td>\(v_o=\dfrac{R_2}{R_1}(v_2-v_1)\) si \(\dfrac{R_1}{R_2}=\dfrac{R_3}{R_4}\)</td><td>distinta por rama</td><td>exige equilibrio</td></tr>
+<tr><td><b>Integrador</b></td><td>\(v_o=-\dfrac{1}{RC}\displaystyle\int v_i\,dt\)</td><td>\(R\)</td><td>\(-20\) dB/déc</td></tr>
+<tr><td><b>Derivador</b></td><td>\(v_o=-RC\dfrac{dv_i}{dt}\)</td><td>\(1/j\omega C\)</td><td>\(+20\) dB/déc</td></tr>
+<tr><td><b>Instrumentación</b></td><td>\(v_o=\left(1+\dfrac{2R_2}{R_1}\right)\dfrac{R_4}{R_3}(v_2-v_1)\)</td><td>\(\infty\)</td><td>ganancia con \(R_1\)</td></tr></table></div>
+<ul>
+<li><b>Restador completo</b> (sin suponer equilibrio), por superposición:</li></ul>
+\[v_o=\frac{R_4}{R_3+R_4}\left(1+\frac{R_2}{R_1}\right)v_2-\frac{R_2}{R_1}v_1\]
+<ul>
+<li><b>Impedancias en el dominio de la frecuencia:</b> \(Z_C=\dfrac{1}{j\omega C}\), \(Z_L=j\omega L\). Con esto, <b>cualquier</b> circuito de este tema se resuelve igual que uno con resistencias, cambiando \(R\) por \(Z\):</li></ul>
+\[A_v(j\omega)=-\frac{Z_2(j\omega)}{Z_1(j\omega)}\quad\text{(inversor)},\qquad
+A_v(j\omega)=1+\frac{Z_2(j\omega)}{Z_1(j\omega)}\quad\text{(no inversor)}\]
+<ul>
+<li><b>Integrador práctico:</b> \(R_f\) en paralelo con \(C\) limita la ganancia en continua a \(-R_f/R\) y evita la deriva.</li>
+<li><b>Derivador práctico:</b> \(R_s\) en serie con \(C\) limita la ganancia en alta frecuencia a \(-R/R_s\) y evita amplificar el ruido.</li>
+</ul></div>
+<h3 id="t3-metodo">Método paso a paso</h3>
+<ol class="steps">
+<li><b>Identifica la configuración</b> mirando por dónde entra la señal: si entra a la patilla (−) a través de una impedancia, es inversora; si entra a la (+), es no inversora.</li>
+<li><b>Marca el cortocircuito virtual</b> y escribe el potencial de las dos entradas.</li>
+<li><b>Ecuación de nudo en la entrada inversora.</b> Suma de corrientes que entran igual a suma de las que salen, sin contar ninguna hacia el AO.</li>
+<li><b>Con varias fuentes, superposición:</b> una a una, anulando las demás (fuentes de tensión a masa).</li>
+<li><b>Si hay condensadores</b>, trabaja con impedancias complejas y deja el resultado en función de \(j\omega\). Eso enlaza directamente con el diagrama de Bode del tema 6.</li>
+<li><b>Verifica</b> con un caso extremo: en continua, un condensador en serie es un circuito abierto y en paralelo un cortocircuito.</li>
+</ol>
+<div class="box trap"><h4>Trampas típicas</h4><ul>
+<li>Olvidar el <b>signo menos</b> del inversor, del sumador, del integrador y del derivador.</li>
+<li>Escribir la ganancia del no inversor como \(R_2/R_1\) en vez de \(1+R_2/R_1\). Nunca puede ser menor que 1.</li>
+<li>Aplicar la fórmula simplificada del restador sin comprobar que las resistencias están <b>equilibradas</b>.</li>
+<li>Dar la ganancia del amplificador de instrumentación como la del restador, olvidando el factor \(1+2R_2/R_1\) de la primera etapa.</li>
+<li>Suponer que el sumador inversor tiene impedancia de entrada infinita. Cada rama ve su propia \(R_i\).</li>
+<li>Usar el integrador o el derivador ideales en un montaje real. Hace falta siempre el componente que limita la ganancia.</li>
+<li>Mezclar la frecuencia \(f\) con la pulsación \(\omega=2\pi f\) dentro de las impedancias.</li>
+</ul></div>
+<h3 id="t3-problema">Problema resuelto</h3>
+<div class="prob"><div class="enun"><p class="et">Enunciado</p><p>Un puente de sensores entrega dos señales \(v_1\) y \(v_2\) con una diferencia de 5 mV sobre un modo común de 2,5 V. Hay que amplificar la diferencia por 100 y llevarla a un conversor A/D.</p>
+<ol><li>¿Por qué no sirve un restador simple?</li>
+<li>Diseña un amplificador de instrumentación con ganancia 100, usando \(R_3=R_4=10\) kΩ.</li>
+<li>¿Cuánto vale la salida?</li></ol></div>
+<details class="paso"><summary><span class="pn">✓</span>Ver solución paso a paso</summary><div class="inner"><p><b>1) Por qué el restador simple no sirve.</b> Dos motivos, los dos graves:</p>
+<ul>
+<li><b>Impedancia de entrada baja y distinta en cada rama.</b> La entrada inversora ve \(R_1\) y la no inversora ve \(R_3+R_4\). Un puente de sensores tiene impedancia de salida apreciable, así que <b>carga de forma distinta</b> las dos ramas y desequilibra el puente antes de medir nada.</li>
+<li><b>Exige resistencias perfectamente equilibradas.</b> Con un modo común de 2,5 V y una señal de 5 mV, la relación entre lo que queremos y lo que sobra es de 500 a 1. Un desequilibrio del 1 % en las resistencias deja pasar unos 25 mV de modo común, <b>cinco veces mayor que la señal</b>.</li>
+</ul>
+<p><b>2) Diseño.</b> La ganancia del amplificador de instrumentación es</p>
+\[A=\left(1+\frac{2R_2}{R_1}\right)\frac{R_4}{R_3}\]
+<p>Con \(R_3=R_4=10\) kΩ la segunda etapa tiene ganancia 1, así que toda la ganancia la da la primera:</p>
+\[1+\frac{2R_2}{R_1}=100\ \Rightarrow\ \frac{2R_2}{R_1}=99\ \Rightarrow\ \frac{R_2}{R_1}=49{,}5\]
+<p>Eligiendo \(R_2=49{,}5\) kΩ y \(R_1=1\) kΩ, o más cómodo, \(R_2=24{,}75\) kΩ con \(R_1=500\) Ω. En la práctica se toma \(R_2\) de valor normalizado y se ajusta \(R_1\):</p>
+\[R_2=47\ \text{k}\Omega\ \Rightarrow\ R_1=\frac{2\cdot47}{99}=0{,}9495\ \text{k}\Omega\approx950\ \Omega\]
+\[A=\left(1+\frac{2\cdot47}{0{,}950}\right)\cdot1=1+98{,}95=99{,}95\approx\boxed{100}\]
+<p><b>3) Salida.</b></p>
+\[v_o=100\cdot5\ \text{mV}=\boxed{0{,}5\ \text{V}}\]
+<p>y el modo común de 2,5 V queda rechazado: idealmente no aparece en la salida, y en un amplificador de instrumentación real con CMRR de 100 dB aportaría</p>
+\[v_{o,cm}=\frac{A}{10^{100/20}}\cdot2{,}5=\frac{100}{10^5}\cdot2{,}5=2{,}5\ \text{mV}\]
+<p>es decir, un 0,5 % de la señal útil: perfectamente asumible.</p>
+<div class="box key"><p>Lo que de verdad aporta esta topología: la ganancia se ajusta con <b>una sola resistencia</b> \(R_1\), y al cambiarla <b>no se toca el equilibrio</b> del restador. En el restador simple, subir la ganancia obliga a cambiar dos pares de resistencias a la vez manteniendo la relación exacta, lo que en la práctica es imposible. Por eso todos los amplificadores de instrumentación integrados (AD620, INA128) llevan una patilla para \(R_G\) y nada más.</p></div></div></details></div>
+<h3 id="t3-auto">Autoevaluación</h3>
+<p class="muted">Responde antes de desplegar.</p><details class="paso"><summary><span class="pn">1</span>¿Cuál es la ganancia del no inversor y por qué nunca es menor que 1?</summary><div class="inner"><p>\(1+R_2/R_1\): el sumando 1 corresponde a la señal que llega directa a la salida por el cortocircuito virtual.</p></div></details><details class="paso"><summary><span class="pn">2</span>¿Para qué sirve el seguidor de tensión si su ganancia es 1?</summary><div class="inner"><p>Para <b>desacoplar</b> etapas: tiene impedancia de entrada infinita y de salida nula, así que elimina el efecto de carga.</p></div></details><details class="paso"><summary><span class="pn">3</span>¿Por qué las entradas de un sumador inversor no interaccionan?</summary><div class="inner"><p>Porque todas llegan a la <b>masa virtual</b>, que está a 0 V independientemente de lo que hagan las demás.</p></div></details><details class="paso"><summary><span class="pn">4</span>¿Qué condición deben cumplir las resistencias de un restador?</summary><div class="inner"><p>\(R_1/R_2=R_3/R_4\). Si no, parte del modo común aparece en la salida.</p></div></details><details class="paso"><summary><span class="pn">5</span>¿Qué dos ventajas tiene el amplificador de instrumentación sobre el restador?</summary><div class="inner"><p>Impedancia de entrada <b>infinita</b> en las dos ramas y ganancia ajustable con <b>una sola resistencia</b> sin tocar el equilibrio.</p></div></details><details class="paso"><summary><span class="pn">6</span>¿Por qué un integrador ideal no funciona en la práctica?</summary><div class="inner"><p>Porque en continua su ganancia es infinita y la tensión de offset del AO lo lleva a saturación. Se corrige con una resistencia en paralelo con el condensador.</p></div></details>
+</section>
+<nav class="pager" aria-label="Páginas"><a href="tema-02.html"><small>← Anterior</small>T2 · El amplificador operacional ideal</a><a class="nx" href="tema-04.html"><small>Siguiente →</small>T4 · Aplicaciones no lineales</a></nav>
+<p class="inicio" style="margin:36px 0 8px;text-align:center;font-size:13px;color:var(--muted)">Guía no oficial de Electrónica Analógica (UPCT, GIEyA) · Datos tomados del curso <time datetime="2023-09">2023/24</time> (transparencias de las ocho unidades, apuntes, boletines de ejercicios resueltos, prácticas y exámenes de 2022 a 2024) · página creada en noviembre de 2026</p>
+</main>
+</div>
+<script src="app.js"></script>
+<script src="sims.js"></script>
+</body>
+</html>

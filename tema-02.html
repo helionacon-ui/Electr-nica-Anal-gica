@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>T2 El amplificador operacional ideal · Electrónica Analógica · Guía para aprobar</title>
+<meta name="description" content="Electrónica Analógica (UPCT, GIEyA): tema 2, El amplificador operacional ideal">
+<meta name="theme-color" content="#8a6a12">
+<link href="https://fonts.googleapis.com" rel="preconnect"><link crossorigin href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=IBM+Plex+Sans:ital,wght@0,400;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script>window.MathJax={tex:{inlineMath:[['\\(','\\)']],displayMath:[['\\[','\\]']]},svg:{fontCache:'global'}};</script>
+<script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+<link rel="stylesheet" href="style.css">
+<style>html{-webkit-text-size-adjust:100%}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+</head>
+<body>
+<div class="hub-bar" style="max-width:1180px;margin:0 auto;padding:10px 16px 0"><a href="https://helionacon-ui.github.io/GIEIA-UPCT/" style="display:inline-flex;align-items:center;gap:6px;font:600 13.5px/1 system-ui,sans-serif;padding:8px 12px;border-radius:999px;border:1px solid var(--line);background:var(--surface);color:var(--fg);text-decoration:none">← Todas las guías GIEyA</a><p class="fecha" style="margin:6px 0 0;max-width:none;font:13px/1.45 system-ui,sans-serif;color:var(--muted)">Datos tomados del curso <time datetime="2023-09">2023/24</time> (transparencias de las ocho unidades, apuntes, boletines de ejercicios resueltos, prácticas y exámenes de 2022 a 2024) · página creada en noviembre de 2026</p></div>
+<div class="crumb"><a href="index.html">Electrónica Analógica</a><span class="sep">›</span><span>El amplificador operacional</span><span class="sep">›</span><span>T2 · El amplificador operacional ideal</span></div><a href="#top" class="totop" id="totop" aria-label="Volver arriba">↑</a>
+<div class="wrap" id="top">
+<nav aria-label="Índice" class="toc"><a href="index.html" style="--tc:var(--c0)">Portada</a><div class="grp">Empezar</div><a href="index.html#cero" style="--tc:var(--c0)">Empieza aquí desde cero</a><a href="plan.html" style="--tc:var(--c0)">Cómo es la evaluación</a><a href="index.html#progreso" style="--tc:var(--c0)">Tu progreso</a><div class="grp">El amplificador operacional</div><a href="tema-01.html" style="--tc:var(--c2)">T1 Introducción a los amplificadores</a><a href="tema-02.html" style="--tc:var(--c3)" class="on" aria-current="page">T2 El amplificador operacional ideal</a><a href="tema-03.html" style="--tc:var(--c4)">T3 Aplicaciones lineales del operacional</a><a href="tema-04.html" style="--tc:var(--c5)">T4 Aplicaciones no lineales</a><a href="tema-05.html" style="--tc:var(--c6)">T5 El amplificador operacional real</a><div class="grp">Respuesta en frecuencia</div><a href="tema-06.html" style="--tc:var(--c7)">T6 Diagramas de Bode y filtros</a><a href="tema-07.html" style="--tc:var(--c8)">T7 Cuadripolos</a><a href="tema-08.html" style="--tc:var(--c1)">T8 Respuesta en frecuencia de amplificadores con transistores</a><div class="grp">Practicar</div><a href="cuestiones.html" style="--tc:var(--c8)">Cuestiones de teoría respondidas</a><a href="examenes.html" style="--tc:var(--c8)">Problemas de examen resueltos</a><a href="problemas.html" style="--tc:var(--c8)">Qué cae en el examen</a><a href="laboratorio.html" style="--tc:var(--c7)">Prácticas y simulación</a><a href="formulario.html" style="--tc:var(--c8)">Formulario</a></nav>
+<main>
+<section class="sec tema" style="--tc:var(--c3);--tcs:var(--c3s)">
+<div class="sh"><span aria-hidden="true" class="badge">2</span><div class="shx"><p class="kick">El amplificador operacional · Tema 2</p><h2 id="t2">El amplificador operacional ideal</h2><div class="tags"><span class="tag">El amplificador operacional</span><span class="tag">1.er parcial</span></div></div></div>
+<div class="zero"><p class="ft">Desde cero</p><p><b>Objetivo:</b> aplicar las dos reglas del AO ideal, reconocer la realimentación negativa y resolver cualquier circuito lineal con cortocircuito virtual.</p><ul>
+<li>El <b>amplificador operacional</b> es un amplificador diferencial de ganancia enorme: amplifica la <b>diferencia</b> entre sus dos entradas, \(v_o=A_{OL}(v^{+}-v^{-})\), con \(A_{OL}\) del orden de \(10^5\) a \(10^6\).</li>
+<li>El <b>AO ideal</b> se define por cuatro propiedades: ganancia en lazo abierto <b>infinita</b>, impedancia de entrada <b>infinita</b>, impedancia de salida <b>nula</b> y ancho de banda <b>infinito</b>. Ninguna es cierta, pero las cuatro son casi ciertas en la banda de trabajo habitual, y suponerlas simplifica enormemente el análisis.</li>
+<li>De ahí salen las <b>dos reglas de oro</b>, que resuelven todos los circuitos del tema 3:
+<ul><li><b>Regla 1:</b> no entra corriente por las entradas, \(i^{+}=i^{-}=0\) (porque \(Z_i=\infty\)).</li>
+<li><b>Regla 2:</b> las dos entradas están al mismo potencial, \(v^{+}=v^{-}\) (porque \(A_{OL}=\infty\) y la salida es finita).</li></ul></li>
+<li>La regla 2 <b>sólo vale con realimentación negativa</b>. Es una consecuencia, no un axioma: si \(v_o\) es finita y \(A_{OL}\) infinita, entonces \(v^{+}-v^{-}=v_o/A_{OL}\to0\). Sin realimentación negativa, la salida se va a saturación y las entradas pueden diferir todo lo que quieran.</li>
+<li>Al punto donde se cumple \(v^{+}=v^{-}\) se le llama <b>cortocircuito virtual</b>: los dos terminales están al mismo potencial pero <b>no hay corriente</b> entre ellos. Si además una entrada está a masa, la otra queda a 0 V y se habla de <b>masa virtual</b>.</li>
+<li>Hay tres <b>modos de señal</b>: <b>diferencial</b> (la diferencia entre entradas, que es lo que se quiere amplificar), <b>común</b> (lo que tienen las dos en común, que se quiere rechazar) y <b>simple</b> (una entrada a masa). Un AO ideal tiene ganancia en modo común nula.</li>
+<li>La <b>realimentación negativa</b> consiste en llevar parte de la salida a la entrada <b>inversora</b>. Reduce la ganancia pero la hace depender sólo de los <b>componentes externos</b>, aumenta el ancho de banda, baja la distorsión y estabiliza el punto de trabajo. Es el motivo de que un circuito con AO funcione igual con un operacional de 0,30 € que con uno de 30 €.</li>
+<li>Si la realimentación va a la entrada <b>no inversora</b> es <b>positiva</b>, y entonces el circuito no es lineal: la salida se va a saturación. Eso no es un error, es el principio de los comparadores con histéresis del tema 4.</li>
+</ul></div>
+<details class="nom"><summary><span aria-hidden="true" class="nom-ic">Aa</span>Nomenclatura del tema 2 <span class="src">8 entradas</span></summary><div class="inner">
+<div class="tw"><table><tr><th>Símbolo</th><th>Significado</th><th>Unidad · nota</th></tr><tr><td class="sym">AOL</td><td>ganancia en lazo abierto</td><td class="u">~10⁵</td></tr><tr><td class="sym">v⁺, v⁻</td><td>entradas no inversora e inversora</td><td class="u"></td></tr><tr><td class="sym">masa virtual</td><td>v⁻ = 0 sin conectar a masa</td><td class="u"></td></tr><tr><td class="sym">cortocircuito virtual</td><td>v⁺ = v⁻ sin corriente</td><td class="u"></td></tr><tr><td class="sym">Vsat</td><td>tensión de saturación</td><td class="u">~±13,6 V</td></tr><tr><td class="sym">β</td><td>fracción realimentada</td><td class="u"></td></tr><tr><td class="sym">vd</td><td>señal diferencial</td><td class="u">v⁺ − v⁻</td></tr><tr><td class="sym">vcm</td><td>señal de modo común</td><td class="u">(v⁺+v⁻)/2</td></tr></table></div></div></details>
+<figure class="fig"><p class="ft">Figura interactiva - realimentacion, cortocircuito virtual y saturacion</p><div data-sim="aoideal"></div><figcaption>Mueve los controles y observa cómo cambia el resultado: es el mismo cálculo que hay que saber hacer a mano en el examen.</figcaption></figure>
+<h3 id="t2-formulas">Fórmulas y conceptos que hay que saber</h3>
+<div class="box key"><ul>
+<li><b>Ecuación básica:</b> \(v_o=A_{OL}\,(v^{+}-v^{-})\), con \(A_{OL}\to\infty\) en el ideal.</li>
+<li><b>Reglas de oro</b> (sólo con realimentación negativa):</li></ul>
+\[i^{+}=i^{-}=0\qquad\text{y}\qquad v^{+}=v^{-}\]
+<ul>
+<li><b>Modos de señal:</b></li></ul>
+\[v_d=v^{+}-v^{-}\quad\text{(diferencial)},\qquad v_{cm}=\frac{v^{+}+v^{-}}{2}\quad\text{(común)}\]
+\[v_o=A_d\,v_d+A_{cm}\,v_{cm}\]
+<ul>
+<li><b>Saturación:</b> la salida nunca supera la alimentación: \(V_{sat^-}\le v_o\le V_{sat^+}\), típicamente 1 o 2 V por dentro de \(\pm V_{CC}\).</li>
+<li><b>Ganancia de lazo cerrado con realimentación negativa:</b></li></ul>
+\[A_{CL}=\frac{A_{OL}}{1+\beta A_{OL}}\ \xrightarrow{\ A_{OL}\to\infty\ }\ \frac{1}{\beta}\]
+<ul><li>donde \(\beta\) es la fracción de salida que vuelve a la entrada. El término \(1+\beta A_{OL}\) es la <b>cantidad de realimentación</b>: divide la ganancia, divide la distorsión y multiplica el ancho de banda.</li>
+<li><b>Cómo distinguir el tipo de realimentación:</b> si la red de realimentación llega a la entrada <b>inversora</b> (−), es negativa y el circuito es lineal; si llega a la <b>no inversora</b> (+), es positiva y el circuito conmuta.</li>
+</ul></div>
+<h3 id="t2-metodo">Método paso a paso</h3>
+<ol class="steps">
+<li><b>Comprueba que hay realimentación negativa:</b> sigue el camino desde la salida y mira a qué entrada llega. Si va a la (−), puedes usar las dos reglas.</li>
+<li><b>Marca el nudo de masa virtual:</b> si la entrada (+) está a masa, escribe 0 V en la (−).</li>
+<li><b>Plantea la corriente en el nudo de la entrada inversora.</b> Como no entra nada por el AO, toda la corriente que llega por la entrada sale por la realimentación.</li>
+<li><b>Despeja \(v_o\).</b> Ese es todo el método: una ecuación de nudo y despejar.</li>
+<li><b>Si hay varias fuentes</b>, usa <b>superposición</b>: anula todas menos una y suma los resultados.</li>
+<li><b>Comprueba que \(v_o\) no excede la saturación.</b> Si sale un valor mayor que la alimentación, el AO está saturado y el resultado lineal no vale.</li>
+</ol>
+<div class="box trap"><h4>Trampas típicas</h4><ul>
+<li>Aplicar \(v^{+}=v^{-}\) en un circuito <b>sin</b> realimentación negativa o con realimentación positiva. Ahí la salida está saturada y esa igualdad no se cumple.</li>
+<li>Olvidar que por las entradas no circula corriente y escribir una ecuación de nudo con un término de más.</li>
+<li>Confundir <b>cortocircuito virtual</b> con cortocircuito real: los potenciales son iguales, pero <b>no hay un cable</b> ni pasa corriente entre las entradas.</li>
+<li>Pensar que la masa virtual puede absorber corriente. La corriente que llega al nudo inversor se va <b>entera</b> por la realimentación.</li>
+<li>Dar un resultado mayor que la tensión de alimentación. La salida siempre se recorta en \(V_{sat}\).</li>
+<li>Olvidar el signo del amplificador inversor.</li>
+</ul></div>
+<h3 id="t2-problema">Problema resuelto</h3>
+<div class="prob"><div class="enun"><p class="et">Enunciado</p><p>En el circuito de la figura, la entrada no inversora está a masa, la señal \(v_i\) entra por \(R_1=10\) kΩ y la realimentación es \(R_2=100\) kΩ. El AO se alimenta a ±15 V y satura en ±13,6 V.</p>
+<ol><li>Demuestra con las reglas de oro que \(v_o=-\dfrac{R_2}{R_1}v_i\).</li>
+<li>¿Qué vale \(v_o\) para \(v_i=0{,}5\) V? ¿Y para \(v_i=2\) V?</li>
+<li>¿Cuál es la impedancia de entrada del circuito?</li></ol></div>
+<details class="paso"><summary><span class="pn">✓</span>Ver solución paso a paso</summary><div class="inner"><p><b>1) Demostración.</b> La realimentación llega a la entrada (−), así que es <b>negativa</b> y podemos aplicar las dos reglas.</p>
+<p>Por la regla 2 y como \(v^{+}=0\) (está a masa):</p>
+\[v^{-}=v^{+}=0\ \text{V}\qquad\text{(masa virtual)}\]
+<p>Por la regla 1, no entra corriente por la entrada inversora, así que toda la corriente que llega por \(R_1\) continúa por \(R_2\):</p>
+\[i_1=\frac{v_i-v^{-}}{R_1}=\frac{v_i}{R_1},\qquad
+i_2=\frac{v^{-}-v_o}{R_2}=\frac{-v_o}{R_2}\]
+\[i_1=i_2\ \Rightarrow\ \frac{v_i}{R_1}=\frac{-v_o}{R_2}\ \Rightarrow\ \boxed{v_o=-\frac{R_2}{R_1}\,v_i}\]
+<p>Con los valores dados, \(A_v=-100/10=-10\): amplifica por 10 e invierte.</p>
+<p><b>2) Valores numéricos.</b></p>
+\[v_i=0{,}5\ \text{V}\ \Rightarrow\ v_o=-10\cdot0{,}5=\boxed{-5\ \text{V}}\]
+\[v_i=2\ \text{V}\ \Rightarrow\ v_o=-10\cdot2=-20\ \text{V}\quad\text{¡imposible!}\]
+<p>La salida no puede bajar de \(-13{,}6\) V, así que el AO <b>satura</b>:</p>
+\[v_o=\boxed{-13{,}6\ \text{V}}\]
+<p>El valor de entrada a partir del cual satura es \(v_i=13{,}6/10=1{,}36\) V. Por encima de eso la salida se recorta y el circuito deja de ser lineal.</p>
+<p><b>3) Impedancia de entrada.</b> La fuente ve \(R_1\) conectada a un nudo que está a 0 V (masa virtual), así que</p>
+\[Z_i=\frac{v_i}{i_1}=\frac{v_i}{v_i/R_1}=\boxed{R_1=10\ \text{k}\Omega}\]
+<p>Y es un resultado importante: la impedancia de entrada del amplificador <b>inversor</b> es sólo \(R_1\), no infinita. Si queremos más ganancia subiendo \(R_2\) no pasa nada, pero si la bajamos subiendo... en realidad, si queremos ganancia 100 con \(Z_i=10\) kΩ necesitamos \(R_2=1\) MΩ, y resistencias tan grandes traen problemas de ruido y de corrientes de polarización (tema 5).</p>
+<div class="box key"><p>Compara con el amplificador <b>no inversor</b> del tema siguiente: allí la señal entra directamente por la patilla (+), que no absorbe corriente, y la impedancia de entrada es <b>infinita</b> en el ideal. Esa es la diferencia práctica fundamental entre las dos configuraciones, y la razón de elegir una u otra casi nunca es el signo.</p></div></div></details></div>
+<h3 id="t2-auto">Autoevaluación</h3>
+<p class="muted">Responde antes de desplegar.</p><details class="paso"><summary><span class="pn">1</span>¿Cuáles son las cuatro características del AO ideal?</summary><div class="inner"><p>Ganancia en lazo abierto infinita, impedancia de entrada infinita, impedancia de salida nula y ancho de banda infinito.</p></div></details><details class="paso"><summary><span class="pn">2</span>¿Cuáles son las dos reglas de oro y cuándo valen?</summary><div class="inner"><p>\(i^{+}=i^{-}=0\) y \(v^{+}=v^{-}\). La segunda sólo con <b>realimentación negativa</b>.</p></div></details><details class="paso"><summary><span class="pn">3</span>¿Qué es el cortocircuito virtual?</summary><div class="inner"><p>Que las dos entradas están al mismo potencial sin que circule corriente entre ellas. Si una está a masa, la otra queda a 0 V: masa virtual.</p></div></details><details class="paso"><summary><span class="pn">4</span>¿Cómo se distingue la realimentación negativa de la positiva?</summary><div class="inner"><p>Mirando a qué entrada llega la red desde la salida: a la (−) es negativa y el circuito es lineal; a la (+) es positiva y conmuta.</p></div></details><details class="paso"><summary><span class="pn">5</span>¿Qué aporta la realimentación negativa?</summary><div class="inner"><p>Hace que la ganancia dependa sólo de los <b>componentes externos</b>, aumenta el ancho de banda, reduce la distorsión y estabiliza el circuito.</p></div></details><details class="paso"><summary><span class="pn">6</span>¿Cuál es la impedancia de entrada del amplificador inversor?</summary><div class="inner"><p>\(R_1\), la resistencia de entrada, porque el otro extremo está en masa virtual. No es infinita.</p></div></details>
+</section>
+<nav class="pager" aria-label="Páginas"><a href="tema-01.html"><small>← Anterior</small>T1 · Introducción a los amplificadores</a><a class="nx" href="tema-03.html"><small>Siguiente →</small>T3 · Aplicaciones lineales del operacional</a></nav>
+<p class="inicio" style="margin:36px 0 8px;text-align:center;font-size:13px;color:var(--muted)">Guía no oficial de Electrónica Analógica (UPCT, GIEyA) · Datos tomados del curso <time datetime="2023-09">2023/24</time> (transparencias de las ocho unidades, apuntes, boletines de ejercicios resueltos, prácticas y exámenes de 2022 a 2024) · página creada en noviembre de 2026</p>
+</main>
+</div>
+<script src="app.js"></script>
+<script src="sims.js"></script>
+</body>
+</html>

@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>T8 Respuesta en frecuencia de amplificadores con transistores · Electrónica Analógica · Guía para aprobar</title>
+<meta name="description" content="Electrónica Analógica (UPCT, GIEyA): tema 8, Respuesta en frecuencia de amplificadores con transistores">
+<meta name="theme-color" content="#8a6a12">
+<link href="https://fonts.googleapis.com" rel="preconnect"><link crossorigin href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=IBM+Plex+Sans:ital,wght@0,400;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script>window.MathJax={tex:{inlineMath:[['\\(','\\)']],displayMath:[['\\[','\\]']]},svg:{fontCache:'global'}};</script>
+<script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+<link rel="stylesheet" href="style.css">
+<style>html{-webkit-text-size-adjust:100%}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+</head>
+<body>
+<div class="hub-bar" style="max-width:1180px;margin:0 auto;padding:10px 16px 0"><a href="https://helionacon-ui.github.io/GIEIA-UPCT/" style="display:inline-flex;align-items:center;gap:6px;font:600 13.5px/1 system-ui,sans-serif;padding:8px 12px;border-radius:999px;border:1px solid var(--line);background:var(--surface);color:var(--fg);text-decoration:none">← Todas las guías GIEyA</a><p class="fecha" style="margin:6px 0 0;max-width:none;font:13px/1.45 system-ui,sans-serif;color:var(--muted)">Datos tomados del curso <time datetime="2023-09">2023/24</time> (transparencias de las ocho unidades, apuntes, boletines de ejercicios resueltos, prácticas y exámenes de 2022 a 2024) · página creada en noviembre de 2026</p></div>
+<div class="crumb"><a href="index.html">Electrónica Analógica</a><span class="sep">›</span><span>Respuesta en frecuencia</span><span class="sep">›</span><span>T8 · Respuesta en frecuencia de amplificadores con transistores</span></div><a href="#top" class="totop" id="totop" aria-label="Volver arriba">↑</a>
+<div class="wrap" id="top">
+<nav aria-label="Índice" class="toc"><a href="index.html" style="--tc:var(--c0)">Portada</a><div class="grp">Empezar</div><a href="index.html#cero" style="--tc:var(--c0)">Empieza aquí desde cero</a><a href="plan.html" style="--tc:var(--c0)">Cómo es la evaluación</a><a href="index.html#progreso" style="--tc:var(--c0)">Tu progreso</a><div class="grp">El amplificador operacional</div><a href="tema-01.html" style="--tc:var(--c2)">T1 Introducción a los amplificadores</a><a href="tema-02.html" style="--tc:var(--c3)">T2 El amplificador operacional ideal</a><a href="tema-03.html" style="--tc:var(--c4)">T3 Aplicaciones lineales del operacional</a><a href="tema-04.html" style="--tc:var(--c5)">T4 Aplicaciones no lineales</a><a href="tema-05.html" style="--tc:var(--c6)">T5 El amplificador operacional real</a><div class="grp">Respuesta en frecuencia</div><a href="tema-06.html" style="--tc:var(--c7)">T6 Diagramas de Bode y filtros</a><a href="tema-07.html" style="--tc:var(--c8)">T7 Cuadripolos</a><a href="tema-08.html" style="--tc:var(--c1)" class="on" aria-current="page">T8 Respuesta en frecuencia de amplificadores con transistores</a><div class="grp">Practicar</div><a href="cuestiones.html" style="--tc:var(--c8)">Cuestiones de teoría respondidas</a><a href="examenes.html" style="--tc:var(--c8)">Problemas de examen resueltos</a><a href="problemas.html" style="--tc:var(--c8)">Qué cae en el examen</a><a href="laboratorio.html" style="--tc:var(--c7)">Prácticas y simulación</a><a href="formulario.html" style="--tc:var(--c8)">Formulario</a></nav>
+<main>
+<section class="sec tema" style="--tc:var(--c1);--tcs:var(--c1s)">
+<div class="sh"><span aria-hidden="true" class="badge">8</span><div class="shx"><p class="kick">Respuesta en frecuencia · Tema 8</p><h2 id="t8">Respuesta en frecuencia de amplificadores con transistores</h2><div class="tags"><span class="tag">Respuesta en frecuencia</span><span class="tag">2.º parcial</span></div></div></div>
+<div class="zero"><p class="ft">Desde cero</p><p><b>Objetivo:</b> calcular las frecuencias de corte inferior y superior de un amplificador con transistores, aplicar el teorema de Miller y el método de las constantes de tiempo.</p><ul>
+<li>Un amplificador con transistores tiene una banda plana entre dos frecuencias de corte. Por <b>debajo</b> de \(f_L\) la ganancia cae por culpa de los condensadores <b>grandes</b> (acoplamiento y desacoplo); por <b>encima</b> de \(f_H\) cae por culpa de los condensadores <b>pequeños</b> (los parásitos internos del transistor y los del montaje).</li>
+<li>Esa es la idea que ordena todo el tema: dos familias de condensadores actuando en dos extremos opuestos del espectro, y <b>en la banda plana no actúa ninguno</b>: los grandes son cortocircuitos y los pequeños, circuitos abiertos.</li>
+<li>En <b>baja frecuencia</b>, cada condensador de acoplamiento o desacoplo aporta un <b>cero en el origen y un polo</b>. El método aproximado consiste en calcular la frecuencia de corte de cada uno por separado, \(f_i=1/(2\pi R_iC_i)\) con \(R_i\) la resistencia vista por ese condensador con los demás en cortocircuito, y quedarse con la <b>mayor</b>, que es la que domina.</li>
+<li>El condensador de <b>desacoplo de emisor</b> suele ser el dominante, porque la resistencia que ve es muy pequeña (incluye \(r_e\) dividido por \(\beta\)) y por tanto su frecuencia de corte es alta.</li>
+<li>En <b>alta frecuencia</b> el transistor deja de ser ideal: el modelo híbrido en Π añade \(C_{\pi}\) (base-emisor, decenas de pF) y \(C_{\mu}\) (base-colector, unos pocos pF). Aunque \(C_{\mu}\) sea pequeñísimo, es el que manda, y la razón es el efecto Miller.</li>
+<li>El <b>teorema de Miller</b> dice que una impedancia conectada entre la entrada y la salida de un amplificador de ganancia \(A_v\) equivale a una impedancia \(Z/(1-A_v)\) a la entrada y otra a la salida. Para un condensador y una ganancia inversora grande, eso significa que \(C_{\mu}\) <b>aparece a la entrada multiplicado por \((1+|A_v|)\)</b>.</li>
+<li>Las cifras lo explican todo: un \(C_{\mu}\) de 4 pF con ganancia 200 se convierte en 804 pF a la entrada, veinte veces mayor que \(C_{\pi}\). Por eso el ancho de banda de un amplificador cae en cuanto se sube la ganancia: es el <b>compromiso ganancia-ancho de banda</b>, el mismo que aparecía en el AO.</li>
+<li>El <b>método de las constantes de tiempo en circuito abierto</b> da una estimación rápida de \(f_H\): se calcula la resistencia que ve cada condensador parásito <b>con los demás abiertos</b>, se suman todos los productos \(R_iC_i\) y \(f_H\approx1/(2\pi\sum R_iC_i)\). Es conservador (da un valor algo bajo) pero suficiente para diseñar.</li>
+<li>El <b>producto ganancia-ancho de banda</b> de un amplificador con transistor es aproximadamente constante, igual que en el AO: para ganar banda hay que renunciar a ganancia, o usar configuraciones como el <b>cascodo</b>, que anula el efecto Miller poniendo una etapa en base común a la salida de la de emisor común.</li>
+</ul></div>
+<details class="nom"><summary><span aria-hidden="true" class="nom-ic">Aa</span>Nomenclatura del tema 8 <span class="src">10 entradas</span></summary><div class="inner">
+<div class="tw"><table><tr><th>Símbolo</th><th>Significado</th><th>Unidad · nota</th></tr><tr><td class="sym">rπ</td><td>resistencia de entrada</td><td class="u">β·re</td></tr><tr><td class="sym">gm</td><td>transconductancia</td><td class="u">IC/VT</td></tr><tr><td class="sym">re</td><td>resistencia de emisor</td><td class="u">26 mV / IE</td></tr><tr><td class="sym">Cπ</td><td>capacidad base-emisor</td><td class="u">pF</td></tr><tr><td class="sym">Cµ</td><td>capacidad base-colector</td><td class="u">pF</td></tr><tr><td class="sym">CM</td><td>capacidad de Miller</td><td class="u">Cµ(1+|Av|)</td></tr><tr><td class="sym">fL</td><td>corte inferior</td><td class="u">condensadores grandes</td></tr><tr><td class="sym">fH</td><td>corte superior</td><td class="u">parásitos</td></tr><tr><td class="sym">fT</td><td>frecuencia de transición</td><td class="u">β = 1</td></tr><tr><td class="sym">cascodo</td><td>EC + BC</td><td class="u">anula Miller</td></tr></table></div></div></details>
+<figure class="fig"><p class="ft">Calculadora interactiva - efecto Miller y frecuencia de corte superior</p><div data-sim="miller"></div><figcaption>Mueve los controles y observa cómo cambia el resultado: es el mismo cálculo que hay que saber hacer a mano en el examen.</figcaption></figure>
+<h3 id="t8-formulas">Fórmulas y conceptos que hay que saber</h3>
+<div class="box key"><ul>
+<li><b>Modelo del transistor en baja y media frecuencia</b> (híbrido en Π simplificado):</li></ul>
+\[r_{\pi}=h_{ie}=\frac{\beta\,V_T}{I_C}=\beta\,r_e,\qquad
+g_m=\frac{I_C}{V_T},\qquad r_e=\frac{V_T}{I_E}\approx\frac{26\ \text{mV}}{I_E}\]
+<ul><li><b>Emisor común</b> (con \(R_E\) desacoplada): \(A_v\approx-g_mR_C'=-\dfrac{R_C'}{r_e}\), \(Z_i=R_B\parallel r_{\pi}\), \(Z_o\approx R_C\).</li>
+<li><b>Frecuencia de corte inferior</b> (método aproximado):</li></ul>
+\[f_i=\frac{1}{2\pi R_iC_i}\quad\text{para cada condensador},\qquad
+f_L\approx\max\{f_i\}\]
+<ul><li>y, si son del mismo orden, la aproximación mejor es \(f_L\approx\sqrt{\sum f_i^2}\).</li>
+<li><b>Resistencias vistas</b> por cada condensador:</li></ul>
+<div class="tw"><table><tr><th>Condensador</th><th>Resistencia que ve</th></tr>
+<tr><td>\(C_{s}\) (acoplo de entrada)</td><td>\(R_s+(R_B\parallel r_{\pi})\)</td></tr>
+<tr><td>\(C_{C}\) (acoplo de salida)</td><td>\(R_C+R_L\)</td></tr>
+<tr><td>\(C_{E}\) (desacoplo de emisor)</td><td>\(R_E\parallel\left(r_e+\dfrac{R_s\parallel R_B}{\beta}\right)\)</td></tr>
+</table></div>
+<ul><li><b>Teorema de Miller:</b></li></ul>
+\[Z_{M,\text{entrada}}=\frac{Z}{1-A_v},\qquad Z_{M,\text{salida}}=\frac{Z}{1-1/A_v}\approx Z\]
+\[C_{M}=C_{\mu}\,(1+|A_v|)\quad\text{(a la entrada, con }A_v\text{ inversora)}\]
+<ul><li><b>Capacidad total de entrada:</b> \(C_i=C_{\pi}+C_{\mu}(1+|A_v|)\).</li>
+<li><b>Frecuencia de corte superior:</b></li></ul>
+\[f_H=\frac{1}{2\pi R_{th}C_i}\qquad\text{o, por constantes de tiempo:}\qquad
+f_H\approx\frac{1}{2\pi\displaystyle\sum_i R_iC_i}\]
+<ul><li><b>Frecuencia de transición del transistor:</b> \(f_T=\dfrac{g_m}{2\pi(C_{\pi}+C_{\mu})}\), la frecuencia a la que \(\beta\) cae a 1. En hoja de características suele venir como \(f_T\) o como el producto \(\beta\cdot f_{\beta}\).</li>
+<li><b>Ancho de banda:</b> \(BW=f_H-f_L\approx f_H\) cuando \(f_H\gg f_L\).</li></ul></div>
+<h3 id="t8-metodo">Método paso a paso</h3>
+<ol class="steps">
+<li><b>Resuelve primero el punto de trabajo en continua</b> y obtén \(I_C\), de donde salen \(g_m\), \(r_e\) y \(r_{\pi}\). Todo lo demás depende de eso.</li>
+<li><b>Calcula la ganancia en la banda plana</b> con todos los condensadores grandes en cortocircuito y los pequeños abiertos.</li>
+<li><b>Para \(f_L\):</b> uno a uno, calcula la resistencia que ve cada condensador grande y su \(f_i\). Quédate con la mayor e identifica <b>cuál domina</b>.</li>
+<li><b>Para \(f_H\):</b> aplica Miller a \(C_{\mu}\) con la ganancia de la etapa, suma \(C_{\pi}\) y calcula el corte con la resistencia equivalente de Thévenin que ve esa capacidad.</li>
+<li><b>Si hay varios condensadores parásitos</b>, usa el método de las constantes de tiempo en circuito abierto: suma todos los \(R_iC_i\) y aplica \(f_H\approx1/(2\pi\sum R_iC_i)\).</li>
+<li><b>Dibuja el Bode</b> resultante: plana entre \(f_L\) y \(f_H\), con −20 dB/déc por debajo y por encima.</li>
+</ol>
+<div class="box trap"><h4>Trampas típicas</h4><ul>
+<li>Mezclar condensadores de acoplo y parásitos en el mismo cálculo. Los grandes sólo importan en baja frecuencia y los pequeños sólo en alta.</li>
+<li>Olvidar el <b>efecto Miller</b> y tomar \(C_{\mu}\) tal cual. Es el error que más falsea el resultado: puede equivocar \(f_H\) en un factor 10 o más.</li>
+<li>Aplicar Miller con la ganancia de <b>todo</b> el amplificador en lugar de la de la etapa concreta entre cuyos extremos está el condensador.</li>
+<li>Sumar las frecuencias \(f_i\) de baja para obtener \(f_L\). Se toma la <b>mayor</b>, o la raíz de la suma de cuadrados.</li>
+<li>Calcular la resistencia que ve un condensador <b>sin anular</b> las fuentes independientes y sin sustituir los demás condensadores por su equivalente (cortocircuito en baja, abierto en alta).</li>
+<li>Usar \(r_e=26/I_E\) con \(I_E\) en amperios y esperar ohmios. La fórmula da ohmios con \(I_E\) en <b>miliamperios</b>.</li>
+</ul></div>
+<h3 id="t8-problema">Problema resuelto</h3>
+<div class="prob"><div class="enun"><p class="et">Enunciado</p><p>Un amplificador en emisor común tiene en su etapa de entrada una resistencia equivalente de Thévenin \(R_{th}=1{,}8\) kΩ, un transistor con \(C_{\pi}=20\) pF y \(C_{\mu}=5\) pF, y una ganancia de etapa \(A_v=-100\). A la salida, la resistencia equivalente es 4,7 kΩ con una capacidad de carga de 10 pF.</p>
+<ol><li>Calcula la capacidad de entrada equivalente por Miller.</li>
+<li>Estima \(f_H\) por el método de las constantes de tiempo en circuito abierto.</li>
+<li>¿Qué pasaría si la ganancia fuese −10?</li></ol></div>
+<details class="paso"><summary><span class="pn">✓</span>Ver solución paso a paso</summary><div class="inner"><p><b>1) Efecto Miller.</b> El condensador \(C_{\mu}\) está entre la base y el colector, es decir, entre la entrada y la salida de un amplificador inversor de ganancia 100:</p>
+\[C_M=C_{\mu}\,(1+|A_v|)=5\ \text{pF}\cdot(1+100)=5\cdot101=\boxed{505\ \text{pF}}\]
+<p>Cinco picofaradios se han convertido en <b>505</b>. La capacidad total que ve la entrada es</p>
+\[C_i=C_{\pi}+C_M=20+505=\boxed{525\ \text{pF}}\]
+<p>De esos 525 pF, el 96 % lo aporta un condensador de 5 pF. Esa es la lección del teorema de Miller.</p>
+<p><b>2) Frecuencia de corte superior.</b> Constantes de tiempo en circuito abierto, una por cada condensador:</p>
+\[\tau_1=R_{th}\,C_i=1800\ \Omega\cdot525\ \text{pF}=945\ \text{ns}\]
+\[\tau_2=R_{o}\,C_L=4700\ \Omega\cdot10\ \text{pF}=47\ \text{ns}\]
+\[\sum\tau_i=945+47=992\ \text{ns}\]
+\[f_H\approx\frac{1}{2\pi\sum\tau_i}=\frac{1}{2\pi\cdot992\cdot10^{-9}}=\frac{1}{6{,}233\cdot10^{-6}}=\boxed{160{,}4\ \text{kHz}}\]
+<p>El 95 % de la constante de tiempo total viene del nudo de entrada, y dentro de él casi todo es Miller. Si quisiéramos más ancho de banda, atacar el nudo de salida no serviría de nada.</p>
+<p><b>3) Con ganancia −10.</b></p>
+\[C_M=5\cdot11=55\ \text{pF},\qquad C_i=20+55=75\ \text{pF}\]
+\[\tau_1=1800\cdot75\ \text{pF}=135\ \text{ns},\qquad \sum\tau=135+47=182\ \text{ns}\]
+\[f_H\approx\frac{1}{2\pi\cdot182\cdot10^{-9}}=\boxed{874{,}5\ \text{kHz}}\]
+<p>Dividiendo la ganancia por 10, el ancho de banda se multiplica por <b>5,5</b>. No es exactamente ×10 porque \(C_{\pi}\) y el nudo de salida no dependen de la ganancia, pero la tendencia es inequívoca: el <b>producto ganancia-ancho de banda</b> se mantiene aproximadamente, igual que en el operacional.</p>
+<div class="box key"><p><b>Cómo se rompe este compromiso.</b> La configuración <b>cascodo</b> pone un transistor en base común encima del de emisor común. El de emisor común trabaja entonces con una ganancia de apenas −1 o −2, así que su \(C_{\mu}\) apenas se multiplica; la ganancia grande la da el de base común, que no tiene efecto Miller porque su entrada y su salida están aisladas. Resultado: la misma ganancia total con un ancho de banda muchísimo mayor. Es la razón de que el cascodo aparezca en todos los amplificadores de banda ancha.</p></div></div></details></div>
+<h3 id="t8-auto">Autoevaluación</h3>
+<p class="muted">Responde antes de desplegar.</p><details class="paso"><summary><span class="pn">1</span>¿Qué condensadores limitan la respuesta en baja frecuencia y cuáles en alta?</summary><div class="inner"><p>En baja, los <b>grandes</b> (acoplo y desacoplo); en alta, los <b>pequeños</b> (parásitos del transistor y del montaje).</p></div></details><details class="paso"><summary><span class="pn">2</span>¿Cómo se estima \(f_L\) por el método aproximado?</summary><div class="inner"><p>Calculando \(f_i=1/(2\pi R_iC_i)\) para cada condensador grande y quedándose con la <b>mayor</b>.</p></div></details><details class="paso"><summary><span class="pn">3</span>¿Qué condensador suele dominar \(f_L\) y por qué?</summary><div class="inner"><p>El de <b>desacoplo de emisor</b>, porque la resistencia que ve es muy pequeña y su frecuencia de corte resulta alta.</p></div></details><details class="paso"><summary><span class="pn">4</span>¿Qué dice el teorema de Miller?</summary><div class="inner"><p>Que una impedancia entre entrada y salida de un amplificador de ganancia \(A_v\) equivale a \(Z/(1-A_v)\) a la entrada. Para un condensador inversor: \(C_M=C(1+|A_v|)\).</p></div></details><details class="paso"><summary><span class="pn">5</span>¿Por qué un \(C_{\mu}\) de pocos pF domina la respuesta en alta frecuencia?</summary><div class="inner"><p>Porque Miller lo multiplica por \(1+|A_v|\): con ganancia 100, 5 pF se convierten en 505 pF.</p></div></details><details class="paso"><summary><span class="pn">6</span>¿Cómo se estima \(f_H\) por constantes de tiempo en circuito abierto?</summary><div class="inner"><p>Sumando todos los productos \(R_iC_i\) (cada resistencia vista con los demás condensadores <b>abiertos</b>) y aplicando \(f_H\approx1/(2\pi\sum R_iC_i)\).</p></div></details>
+</section>
+<nav class="pager" aria-label="Páginas"><a href="tema-07.html"><small>← Anterior</small>T7 · Cuadripolos</a><a class="nx" href="cuestiones.html"><small>Siguiente →</small>Cuestiones de teoría</a></nav>
+<p class="inicio" style="margin:36px 0 8px;text-align:center;font-size:13px;color:var(--muted)">Guía no oficial de Electrónica Analógica (UPCT, GIEyA) · Datos tomados del curso <time datetime="2023-09">2023/24</time> (transparencias de las ocho unidades, apuntes, boletines de ejercicios resueltos, prácticas y exámenes de 2022 a 2024) · página creada en noviembre de 2026</p>
+</main>
+</div>
+<script src="app.js"></script>
+<script src="sims.js"></script>
+</body>
+</html>

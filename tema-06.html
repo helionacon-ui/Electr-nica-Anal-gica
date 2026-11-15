@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>T6 Diagramas de Bode y filtros · Electrónica Analógica · Guía para aprobar</title>
+<meta name="description" content="Electrónica Analógica (UPCT, GIEyA): tema 6, Diagramas de Bode y filtros">
+<meta name="theme-color" content="#8a6a12">
+<link href="https://fonts.googleapis.com" rel="preconnect"><link crossorigin href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=IBM+Plex+Sans:ital,wght@0,400;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script>window.MathJax={tex:{inlineMath:[['\\(','\\)']],displayMath:[['\\[','\\]']]},svg:{fontCache:'global'}};</script>
+<script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+<link rel="stylesheet" href="style.css">
+<style>html{-webkit-text-size-adjust:100%}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+</head>
+<body>
+<div class="hub-bar" style="max-width:1180px;margin:0 auto;padding:10px 16px 0"><a href="https://helionacon-ui.github.io/GIEIA-UPCT/" style="display:inline-flex;align-items:center;gap:6px;font:600 13.5px/1 system-ui,sans-serif;padding:8px 12px;border-radius:999px;border:1px solid var(--line);background:var(--surface);color:var(--fg);text-decoration:none">← Todas las guías GIEyA</a><p class="fecha" style="margin:6px 0 0;max-width:none;font:13px/1.45 system-ui,sans-serif;color:var(--muted)">Datos tomados del curso <time datetime="2023-09">2023/24</time> (transparencias de las ocho unidades, apuntes, boletines de ejercicios resueltos, prácticas y exámenes de 2022 a 2024) · página creada en noviembre de 2026</p></div>
+<div class="crumb"><a href="index.html">Electrónica Analógica</a><span class="sep">›</span><span>Respuesta en frecuencia</span><span class="sep">›</span><span>T6 · Diagramas de Bode y filtros</span></div><a href="#top" class="totop" id="totop" aria-label="Volver arriba">↑</a>
+<div class="wrap" id="top">
+<nav aria-label="Índice" class="toc"><a href="index.html" style="--tc:var(--c0)">Portada</a><div class="grp">Empezar</div><a href="index.html#cero" style="--tc:var(--c0)">Empieza aquí desde cero</a><a href="plan.html" style="--tc:var(--c0)">Cómo es la evaluación</a><a href="index.html#progreso" style="--tc:var(--c0)">Tu progreso</a><div class="grp">El amplificador operacional</div><a href="tema-01.html" style="--tc:var(--c2)">T1 Introducción a los amplificadores</a><a href="tema-02.html" style="--tc:var(--c3)">T2 El amplificador operacional ideal</a><a href="tema-03.html" style="--tc:var(--c4)">T3 Aplicaciones lineales del operacional</a><a href="tema-04.html" style="--tc:var(--c5)">T4 Aplicaciones no lineales</a><a href="tema-05.html" style="--tc:var(--c6)">T5 El amplificador operacional real</a><div class="grp">Respuesta en frecuencia</div><a href="tema-06.html" style="--tc:var(--c7)" class="on" aria-current="page">T6 Diagramas de Bode y filtros</a><a href="tema-07.html" style="--tc:var(--c8)">T7 Cuadripolos</a><a href="tema-08.html" style="--tc:var(--c1)">T8 Respuesta en frecuencia de amplificadores con transistores</a><div class="grp">Practicar</div><a href="cuestiones.html" style="--tc:var(--c8)">Cuestiones de teoría respondidas</a><a href="examenes.html" style="--tc:var(--c8)">Problemas de examen resueltos</a><a href="problemas.html" style="--tc:var(--c8)">Qué cae en el examen</a><a href="laboratorio.html" style="--tc:var(--c7)">Prácticas y simulación</a><a href="formulario.html" style="--tc:var(--c8)">Formulario</a></nav>
+<main>
+<section class="sec tema" style="--tc:var(--c7);--tcs:var(--c7s)">
+<div class="sh"><span aria-hidden="true" class="badge">6</span><div class="shx"><p class="kick">Respuesta en frecuencia · Tema 6</p><h2 id="t6">Diagramas de Bode y filtros</h2><div class="tags"><span class="tag">Respuesta en frecuencia</span><span class="tag">2.º parcial</span></div></div></div>
+<div class="zero"><p class="ft">Desde cero</p><p><b>Objetivo:</b> dibujar el diagrama de Bode asintótico de cualquier función de transferencia y diseñar filtros activos de primer orden.</p><ul>
+<li>Un circuito con condensadores o bobinas tiene una ganancia que <b>depende de la frecuencia</b>. El <b>diagrama de Bode</b> la representa en dos gráficas con el eje de frecuencias <b>logarítmico</b>: módulo en decibelios y fase en grados.</li>
+<li>La gracia del Bode es que, con ejes logarítmicos, <b>multiplicar se convierte en sumar</b>: la respuesta de una función de transferencia compleja es la suma de las contribuciones de cada polo y cada cero. Por eso se dibuja a mano, sin calcular ni un punto.</li>
+<li>Cada <b>polo</b> simple aporta, a partir de su frecuencia de corte, una pendiente de <b>−20 dB/década</b> y un desfase que va de 0° a −90°. Cada <b>cero</b> aporta <b>+20 dB/década</b> y de 0° a +90°.</li>
+<li>En la frecuencia de corte exacta, el módulo real está <b>3 dB por debajo</b> de la asíntota y la fase vale exactamente <b>−45°</b> (polo) o +45° (cero). La transición de fase se extiende una <b>década antes y una década después</b>: de \(f_c/10\) a \(10f_c\).</li>
+<li>Un <b>polo en el origen</b> (un integrador) da −20 dB/década desde la frecuencia más baja y una fase constante de −90°. Un <b>cero en el origen</b> (un derivador) da +20 dB/década y +90°.</li>
+<li>Los <b>filtros</b> de primer orden son la aplicación directa: paso bajo (un polo), paso alto (un cero en el origen y un polo) y paso banda (combinación de los dos, con \(f_L\) y \(f_H\)).</li>
+<li>Un <b>filtro activo</b> con AO tiene ventajas sobre el pasivo: ganancia mayor que 1, impedancia de entrada alta, impedancia de salida baja y, sobre todo, <b>no se carga</b> al conectar etapas, de modo que se pueden encadenar sin que cada una estropee a la anterior.</li>
+<li>Para subir el orden se encadenan secciones, y la pendiente de corte se multiplica: un filtro de orden \(n\) cae a \(-20n\) dB/década. Los filtros de orden 2 clásicos (Sallen-Key) permiten elegir además el <b>factor de calidad</b> y la forma de la transición.</li>
+<li>El diagrama de Bode es también la herramienta para estudiar la <b>estabilidad</b> de un lazo realimentado, que es lo que conecta este tema con Regulación Automática.</li>
+</ul></div>
+<details class="nom"><summary><span aria-hidden="true" class="nom-ic">Aa</span>Nomenclatura del tema 6 <span class="src">9 entradas</span></summary><div class="inner">
+<div class="tw"><table><tr><th>Símbolo</th><th>Significado</th><th>Unidad · nota</th></tr><tr><td class="sym">K</td><td>ganancia estática</td><td class="u"></td></tr><tr><td class="sym">polo</td><td>−20 dB/déc, −90º</td><td class="u"></td></tr><tr><td class="sym">cero</td><td>+20 dB/déc, +90º</td><td class="u"></td></tr><tr><td class="sym">fc</td><td>frecuencia de corte</td><td class="u">1/(2πRC)</td></tr><tr><td class="sym">−3 dB</td><td>error en fc</td><td class="u"></td></tr><tr><td class="sym">década</td><td>×10 en frecuencia</td><td class="u"></td></tr><tr><td class="sym">octava</td><td>×2 en frecuencia</td><td class="u"></td></tr><tr><td class="sym">orden n</td><td>−20n dB/déc</td><td class="u"></td></tr><tr><td class="sym">Q</td><td>factor de calidad</td><td class="u">f0/BW</td></tr></table></div></div></details>
+<figure class="fig"><p class="ft">Figura interactiva - diagrama de Bode de modulo y fase</p><div data-sim="bode"></div><figcaption>Mueve los controles y observa cómo cambia el resultado: es el mismo cálculo que hay que saber hacer a mano en el examen.</figcaption></figure>
+<h3 id="t6-formulas">Fórmulas y conceptos que hay que saber</h3>
+<div class="box key"><ul>
+<li><b>Forma normalizada</b> de una función de transferencia:</li></ul>
+\[G(j\omega)=K\,\frac{\left(1+\dfrac{j\omega}{\omega_{z1}}\right)\cdots}{(j\omega)^{m}\left(1+\dfrac{j\omega}{\omega_{p1}}\right)\cdots}\]
+<ul>
+<li><b>Módulo y fase:</b> \(|G|_{dB}=20\log K+\sum20\log|1+j\omega/\omega_z|-\sum20\log|1+j\omega/\omega_p|\); las fases se suman igual.</li>
+<li><b>Reglas de trazado:</b></li></ul>
+<div class="tw"><table><tr><th>Elemento</th><th>Pendiente</th><th>Fase</th><th>En \(\omega_c\)</th></tr>
+<tr><td>Constante \(K\)</td><td>0</td><td>0° (o 180° si \(K<0\))</td><td>\(20\log|K|\)</td></tr>
+<tr><td>Polo simple</td><td>−20 dB/déc</td><td>0° → −90°</td><td>−3 dB, −45°</td></tr>
+<tr><td>Cero simple</td><td>+20 dB/déc</td><td>0° → +90°</td><td>+3 dB, +45°</td></tr>
+<tr><td>Polo en el origen</td><td>−20 dB/déc siempre</td><td>−90° constante</td><td>0 dB en \(\omega=1\)</td></tr>
+<tr><td>Cero en el origen</td><td>+20 dB/déc siempre</td><td>+90° constante</td><td>0 dB en \(\omega=1\)</td></tr></table></div>
+<ul>
+<li><b>Frecuencia de corte de una red RC:</b> \(f_c=\dfrac{1}{2\pi RC}\), \(\omega_c=\dfrac{1}{RC}\).</li>
+<li><b>Filtro activo paso bajo</b> (inversor con \(C\) en paralelo con \(R_2\)):</li></ul>
+\[G(j\omega)=-\frac{R_2/R_1}{1+j\omega R_2C},\qquad f_c=\frac{1}{2\pi R_2C}\]
+<ul><li><b>Filtro activo paso alto</b> (inversor con \(C\) en serie con \(R_1\)):</li></ul>
+\[G(j\omega)=-\frac{j\omega R_2C}{1+j\omega R_1C},\qquad f_c=\frac{1}{2\pi R_1C}\]
+<ul>
+<li><b>Paso banda:</b> \(BW=f_H-f_L\); frecuencia central \(f_0=\sqrt{f_Lf_H}\); factor de calidad \(Q=f_0/BW\).</li>
+<li><b>Décadas y octavas:</b> una <b>década</b> es ×10 en frecuencia; una <b>octava</b> es ×2. −20 dB/década ≈ −6 dB/octava.</li>
+</ul></div>
+<h3 id="t6-metodo">Método paso a paso</h3>
+<ol class="steps">
+<li><b>Escribe \(G(j\omega)\) en forma normalizada</b>, con todos los paréntesis en la forma \(1+j\omega/\omega_c\). Este paso es el que decide el ejercicio: si lo haces bien, el resto es mecánico.</li>
+<li><b>Identifica \(K\), los ceros y los polos</b> y calcula sus frecuencias de corte.</li>
+<li><b>Dibuja la asíntota de baja frecuencia:</b> una horizontal en \(20\log|K|\), o una recta de pendiente \(\pm20\) dB/déc si hay polos o ceros en el origen.</li>
+<li><b>Recorre el eje de frecuencias de izquierda a derecha</b> y, en cada frecuencia de corte, <b>cambia la pendiente</b>: −20 por cada polo, +20 por cada cero.</li>
+<li><b>Dibuja la fase</b> sumando las contribuciones, cada una repartida entre una década antes y una década después de su corte.</li>
+<li><b>Corrige los −3 dB</b> en cada frecuencia de corte si piden la curva real.</li>
+<li><b>Comprueba un punto</b> en el centro de la banda sustituyendo en la expresión. Si no coincide, hay un error en la normalización.</li>
+</ol>
+<div class="box trap"><h4>Trampas típicas</h4><ul>
+<li>No normalizar antes de dibujar. \(\dfrac{1}{R+j\omega L}\) no tiene su corte en \(\omega=L\): hay que sacar factor común \(R\) para dejar \(1+j\omega L/R\).</li>
+<li>Confundir \(\omega\) con \(f\). En el eje suele ir \(f\) y en las fórmulas \(\omega=2\pi f\).</li>
+<li>Dibujar las pendientes en dB/octava cuando el eje está en décadas, o al revés.</li>
+<li>Olvidar que la fase empieza a moverse <b>una década antes</b> del corte, no justo en él.</li>
+<li>Hacer el diagrama de un circuito con AO sin tener en cuenta el <b>GBW</b>: el AO añade su propio polo, y a frecuencias altas la ganancia cae aunque el filtro no lo prevea.</li>
+<li>Olvidar que una ganancia negativa (inversor) añade <b>180°</b> de fase constante.</li>
+</ul></div>
+<h3 id="t6-problema">Problema resuelto</h3>
+<div class="prob"><div class="enun"><p class="et">Enunciado</p><p>Un circuito tiene \(R=R_a=R_b=10\) kΩ y \(C=10\) nF, y su ganancia resulta ser</p>
+\[G(j\omega)=-\frac{R_b}{R_a}\cdot\frac{1}{1+j\omega RC}\]
+<ol><li>Calcula la frecuencia de corte y la ganancia en la banda plana.</li>
+<li>Dibuja el diagrama de Bode asintótico de módulo y fase.</li>
+<li>¿Cuánto valen el módulo y la fase a 1 kHz y a 10 kHz?</li></ol></div>
+<details class="paso"><summary><span class="pn">✓</span>Ver solución paso a paso</summary><div class="inner"><p><b>1) Parámetros.</b></p>
+\[K=-\frac{R_b}{R_a}=-1\ \Rightarrow\ 20\log|K|=\boxed{0\ \text{dB}}\]
+\[f_c=\frac{1}{2\pi RC}=\frac{1}{2\pi\cdot10^4\cdot10^{-8}}=\frac{1}{6{,}283\cdot10^{-4}}=\boxed{1591{,}5\ \text{Hz}}\]
+<p>Es un <b>filtro paso bajo</b> de primer orden con ganancia unidad en la banda plana e inversión de signo.</p>
+<p><b>2) Diagrama asintótico.</b></p>
+<div class="tw"><table><tr><th>Zona</th><th>Módulo</th><th>Fase</th></tr>
+<tr><td>\(f\ll1592\) Hz</td><td>horizontal a <b>0 dB</b></td><td><b>180°</b> (por el signo menos)</td></tr>
+<tr><td>\(f=1592\) Hz</td><td><b>−3 dB</b> (la asíntota marca 0)</td><td><b>135°</b> (180° − 45°)</td></tr>
+<tr><td>\(f\gg1592\) Hz</td><td>recta de <b>−20 dB/década</b></td><td><b>90°</b> (180° − 90°)</td></tr></table></div>
+<p>La fase empieza a moverse en \(f_c/10=159\) Hz y termina en \(10f_c=15{,}9\) kHz. Si se omite el signo menos del inversor, todas las fases bajan 180°: de 0° a −90°.</p>
+<p><b>3) Valores numéricos.</b> Con \(\omega RC=2\pi f\cdot10^{-4}\):</p>
+<p>A <b>1 kHz</b>: \(\omega RC=2\pi\cdot1000\cdot10^{-4}=0{,}6283\)</p>
+\[|G|=\frac{1}{\sqrt{1+0{,}6283^2}}=\frac{1}{1{,}1810}=0{,}8467\ \Rightarrow\ \boxed{-1{,}45\ \text{dB}}\]
+\[\varphi=180^\circ-\arctan(0{,}6283)=180^\circ-32{,}14^\circ=\boxed{147{,}9^\circ}\]
+<p>A <b>10 kHz</b>: \(\omega RC=6{,}283\)</p>
+\[|G|=\frac{1}{\sqrt{1+6{,}283^2}}=\frac{1}{6{,}362}=0{,}1572\ \Rightarrow\ \boxed{-16{,}07\ \text{dB}}\]
+\[\varphi=180^\circ-\arctan(6{,}283)=180^\circ-80{,}96^\circ=\boxed{99{,}0^\circ}\]
+<p><b>Comprobación con las asíntotas.</b> De 1592 Hz a 10 kHz hay \(\log_{10}(10\,000/1592)=0{,}798\) décadas, así que la asíntota predice \(-20\cdot0{,}798=-15{,}96\) dB. El valor real, \(-16{,}07\) dB, difiere en 0,11 dB: a una década del corte las asíntotas ya son prácticamente exactas. Esa es la razón de que el método gráfico sea tan útil.</p>
+<div class="box key"><p>Las tres cifras que conviene llevar memorizadas para dibujar sin calcular: en \(f_c\) el error es <b>−3 dB</b>; en \(f_c/2\) y \(2f_c\), <b>−1 dB</b>; a partir de una década, menos de 0,1 dB. Con eso puedes trazar la curva real a mano alzada sobre el diagrama asintótico.</p></div></div></details></div>
+<h3 id="t6-auto">Autoevaluación</h3>
+<p class="muted">Responde antes de desplegar.</p><details class="paso"><summary><span class="pn">1</span>¿Por qué el diagrama de Bode usa escala logarítmica?</summary><div class="inner"><p>Porque convierte productos en sumas: la respuesta total es la suma de las contribuciones de cada polo y cada cero.</p></div></details><details class="paso"><summary><span class="pn">2</span>¿Cuánto aporta un polo simple al módulo y a la fase?</summary><div class="inner"><p><b>−20 dB/década</b> a partir de su frecuencia de corte y un desfase que va de 0° a −90°, con −45° en el corte.</p></div></details><details class="paso"><summary><span class="pn">3</span>¿Cuántos decibelios hay de error en la frecuencia de corte?</summary><div class="inner"><p><b>3 dB</b>: la curva real pasa 3 dB por debajo de la asíntota.</p></div></details><details class="paso"><summary><span class="pn">4</span>¿En qué intervalo cambia la fase de un polo?</summary><div class="inner"><p>Desde una década <b>antes</b> de la frecuencia de corte hasta una década <b>después</b>.</p></div></details><details class="paso"><summary><span class="pn">5</span>¿Qué ventajas tiene un filtro activo sobre uno pasivo?</summary><div class="inner"><p>Ganancia mayor que 1, impedancia de entrada alta y de salida baja, y sobre todo que las etapas se pueden <b>encadenar sin cargarse</b> entre sí.</p></div></details><details class="paso"><summary><span class="pn">6</span>¿Qué pendiente tiene un filtro de orden n?</summary><div class="inner"><p>\(-20n\) dB/década, porque cada polo aporta sus −20.</p></div></details>
+</section>
+<nav class="pager" aria-label="Páginas"><a href="tema-05.html"><small>← Anterior</small>T5 · El amplificador operacional real</a><a class="nx" href="tema-07.html"><small>Siguiente →</small>T7 · Cuadripolos</a></nav>
+<p class="inicio" style="margin:36px 0 8px;text-align:center;font-size:13px;color:var(--muted)">Guía no oficial de Electrónica Analógica (UPCT, GIEyA) · Datos tomados del curso <time datetime="2023-09">2023/24</time> (transparencias de las ocho unidades, apuntes, boletines de ejercicios resueltos, prácticas y exámenes de 2022 a 2024) · página creada en noviembre de 2026</p>
+</main>
+</div>
+<script src="app.js"></script>
+<script src="sims.js"></script>
+</body>
+</html>

@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>T1 Introducción a los amplificadores · Electrónica Analógica · Guía para aprobar</title>
+<meta name="description" content="Electrónica Analógica (UPCT, GIEyA): tema 1, Introducción a los amplificadores">
+<meta name="theme-color" content="#8a6a12">
+<link href="https://fonts.googleapis.com" rel="preconnect"><link crossorigin href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=IBM+Plex+Sans:ital,wght@0,400;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script>window.MathJax={tex:{inlineMath:[['\\(','\\)']],displayMath:[['\\[','\\]']]},svg:{fontCache:'global'}};</script>
+<script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+<link rel="stylesheet" href="style.css">
+<style>html{-webkit-text-size-adjust:100%}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+</head>
+<body>
+<div class="hub-bar" style="max-width:1180px;margin:0 auto;padding:10px 16px 0"><a href="https://helionacon-ui.github.io/GIEIA-UPCT/" style="display:inline-flex;align-items:center;gap:6px;font:600 13.5px/1 system-ui,sans-serif;padding:8px 12px;border-radius:999px;border:1px solid var(--line);background:var(--surface);color:var(--fg);text-decoration:none">← Todas las guías GIEyA</a><p class="fecha" style="margin:6px 0 0;max-width:none;font:13px/1.45 system-ui,sans-serif;color:var(--muted)">Datos tomados del curso <time datetime="2023-09">2023/24</time> (transparencias de las ocho unidades, apuntes, boletines de ejercicios resueltos, prácticas y exámenes de 2022 a 2024) · página creada en noviembre de 2026</p></div>
+<div class="crumb"><a href="index.html">Electrónica Analógica</a><span class="sep">›</span><span>El amplificador operacional</span><span class="sep">›</span><span>T1 · Introducción a los amplificadores</span></div><a href="#top" class="totop" id="totop" aria-label="Volver arriba">↑</a>
+<div class="wrap" id="top">
+<nav aria-label="Índice" class="toc"><a href="index.html" style="--tc:var(--c0)">Portada</a><div class="grp">Empezar</div><a href="index.html#cero" style="--tc:var(--c0)">Empieza aquí desde cero</a><a href="plan.html" style="--tc:var(--c0)">Cómo es la evaluación</a><a href="index.html#progreso" style="--tc:var(--c0)">Tu progreso</a><div class="grp">El amplificador operacional</div><a href="tema-01.html" style="--tc:var(--c2)" class="on" aria-current="page">T1 Introducción a los amplificadores</a><a href="tema-02.html" style="--tc:var(--c3)">T2 El amplificador operacional ideal</a><a href="tema-03.html" style="--tc:var(--c4)">T3 Aplicaciones lineales del operacional</a><a href="tema-04.html" style="--tc:var(--c5)">T4 Aplicaciones no lineales</a><a href="tema-05.html" style="--tc:var(--c6)">T5 El amplificador operacional real</a><div class="grp">Respuesta en frecuencia</div><a href="tema-06.html" style="--tc:var(--c7)">T6 Diagramas de Bode y filtros</a><a href="tema-07.html" style="--tc:var(--c8)">T7 Cuadripolos</a><a href="tema-08.html" style="--tc:var(--c1)">T8 Respuesta en frecuencia de amplificadores con transistores</a><div class="grp">Practicar</div><a href="cuestiones.html" style="--tc:var(--c8)">Cuestiones de teoría respondidas</a><a href="examenes.html" style="--tc:var(--c8)">Problemas de examen resueltos</a><a href="problemas.html" style="--tc:var(--c8)">Qué cae en el examen</a><a href="laboratorio.html" style="--tc:var(--c7)">Prácticas y simulación</a><a href="formulario.html" style="--tc:var(--c8)">Formulario</a></nav>
+<main>
+<section class="sec tema" style="--tc:var(--c2);--tcs:var(--c2s)">
+<div class="sh"><span aria-hidden="true" class="badge">1</span><div class="shx"><p class="kick">El amplificador operacional · Tema 1</p><h2 id="t1">Introducción a los amplificadores</h2><div class="tags"><span class="tag">El amplificador operacional</span><span class="tag">1.er parcial</span></div></div></div>
+<div class="zero"><p class="ft">Desde cero</p><p><b>Objetivo:</b> manejar ganancias en veces y en decibelios, entender el efecto de carga entre etapas y clasificar un amplificador por sus impedancias.</p><ul>
+<li>Un <b>amplificador</b> es un dispositivo que magnifica una señal. La potencia que entrega a la salida es mayor que la de entrada, así que necesariamente hay una <b>fuente de alimentación</b> detrás: el amplificador no crea energía, la toma de la fuente y la controla con la señal.</li>
+<li>Se caracteriza por tres cosas: su <b>ganancia</b>, su <b>impedancia de entrada</b> \(Z_i\) y su <b>impedancia de salida</b> \(Z_o\). El modelo equivalente es una fuente dependiente con \(Z_i\) a la entrada y \(Z_o\) en serie a la salida.</li>
+<li>Hay tres ganancias y no son intercambiables: de <b>tensión</b> \(A_v=v_o/v_i\), de <b>corriente</b> \(A_i=i_o/i_i\) y de <b>potencia</b> \(A_p=P_o/P_i=A_vA_i\). Un seguidor de tensión tiene \(A_v=1\) y sin embargo amplifica potencia.</li>
+<li>El <b>decibelio</b> es una escala logarítmica. Para potencia, \(10\log\); para tensión y corriente, \(20\log\), porque la potencia va con el cuadrado. Multiplicar ganancias se convierte en <b>sumar</b> decibelios, y por eso las etapas en cascada se tratan en dB.</li>
+<li>El <b>efecto de carga</b> es el fenómeno central del tema: al conectar una etapa a otra, la impedancia de entrada de la segunda carga a la primera y la ganancia real cae por un divisor de tensión. Un amplificador «de ganancia 100» puede quedarse en 50 simplemente por conectarlo mal.</li>
+<li>De ahí la regla de diseño: para transferir <b>tensión</b> se quiere \(Z_i\) grande y \(Z_o\) pequeña; para transferir <b>potencia</b> se quiere <b>adaptación</b>, \(Z_o=Z_L\). En electrónica de señal casi siempre se busca lo primero.</li>
+<li>El <b>ancho de banda</b> es el intervalo de frecuencias en el que la ganancia se mantiene dentro de 3 dB de su valor máximo: \(BW=f_H-f_L\). Fuera de él, el amplificador sigue funcionando pero ya no es fiel.</li>
+<li>Un amplificador real también introduce <b>ruido</b> y <b>distorsión</b>, y tiene un <b>margen dinámico</b> limitado por la alimentación: por encima de cierto nivel la señal se recorta.</li>
+</ul></div>
+<details class="nom"><summary><span aria-hidden="true" class="nom-ic">Aa</span>Nomenclatura del tema 1 <span class="src">8 entradas</span></summary><div class="inner">
+<div class="tw"><table><tr><th>Símbolo</th><th>Significado</th><th>Unidad · nota</th></tr><tr><td class="sym">Av</td><td>ganancia de tensión</td><td class="u">vo/vi</td></tr><tr><td class="sym">Ai</td><td>ganancia de corriente</td><td class="u"></td></tr><tr><td class="sym">Ap</td><td>ganancia de potencia</td><td class="u">Av·Ai</td></tr><tr><td class="sym">dB</td><td>decibelio</td><td class="u">20·log|Av|</td></tr><tr><td class="sym">Zi</td><td>impedancia de entrada</td><td class="u">Ω</td></tr><tr><td class="sym">Zo</td><td>impedancia de salida</td><td class="u">Ω</td></tr><tr><td class="sym">BW</td><td>ancho de banda</td><td class="u">fH − fL</td></tr><tr><td class="sym">efecto de carga</td><td>divisor entre etapas</td><td class="u"></td></tr></table></div></div></details>
+<figure class="fig"><p class="ft">Calculadora interactiva - cadena de etapas y efecto de carga</p><div data-sim="amplificador"></div><figcaption>Mueve los controles y observa cómo cambia el resultado: es el mismo cálculo que hay que saber hacer a mano en el examen.</figcaption></figure>
+<h3 id="t1-formulas">Fórmulas y conceptos que hay que saber</h3>
+<div class="box key"><ul>
+<li><b>Ganancias:</b> \(A_v=\dfrac{v_o}{v_i}\) · \(A_i=\dfrac{i_o}{i_i}\) · \(A_p=\dfrac{P_o}{P_i}=A_v\,A_i\)</li>
+<li><b>Decibelios:</b></li></ul>
+\[A_{v}\,[\text{dB}]=20\log_{10}\left|\frac{v_o}{v_i}\right|,\qquad
+A_{p}\,[\text{dB}]=10\log_{10}\frac{P_o}{P_i}\]
+<div class="tw"><table><tr><th>Veces</th><th>0,5</th><th>0,707</th><th>1</th><th>2</th><th>10</th><th>100</th><th>1000</th></tr>
+<tr><td><b>dB</b></td><td>−6</td><td><b>−3</b></td><td>0</td><td>+6</td><td>+20</td><td>+40</td><td>+60</td></tr></table></div>
+<ul>
+<li><b>Cascada:</b> \(A_{\text{total}}=A_1A_2A_3\) en veces, \(A_{\text{total}}[\text{dB}]=A_1+A_2+A_3\) en dB.</li>
+<li><b>Efecto de carga</b> (etapa con \(Z_o\) cargada con \(Z_L\)):</li></ul>
+\[v_o=A_{v0}\,v_i\,\frac{Z_L}{Z_o+Z_L},\qquad
+A_{v,\text{real}}=A_{v0}\,\frac{Z_L}{Z_o+Z_L}\]
+<ul><li><b>Divisor de entrada</b> (fuente con resistencia \(R_s\)):</li></ul>
+\[v_i=v_s\,\frac{Z_i}{R_s+Z_i}\]
+<ul>
+<li><b>Ganancia total de la cadena</b> fuente → amplificador → carga:</li></ul>
+\[\frac{v_L}{v_s}=\frac{Z_i}{R_s+Z_i}\cdot A_{v0}\cdot\frac{Z_L}{Z_o+Z_L}\]
+<ul>
+<li><b>Máxima transferencia de potencia:</b> \(Z_L=Z_o^{*}\) (adaptación); entonces sólo llega la mitad de la tensión.</li>
+<li><b>Ancho de banda:</b> \(BW=f_H-f_L\), con \(f_H\) y \(f_L\) las frecuencias donde la ganancia cae <b>3 dB</b> (a 0,707 en tensión, a la mitad en potencia).</li>
+</ul></div>
+<h3 id="t1-metodo">Método paso a paso</h3>
+<ol class="steps">
+<li><b>Dibuja el modelo equivalente</b> de cada etapa: \(Z_i\), fuente dependiente \(A_{v0}v_i\) y \(Z_o\) en serie.</li>
+<li><b>Aplica los divisores</b>, uno a la entrada y otro a la salida de cada etapa. La ganancia real es el producto de todos ellos por las ganancias en vacío.</li>
+<li><b>Pasa a decibelios</b> cuando haya varias etapas: sumar es más rápido y menos propenso a errores que multiplicar.</li>
+<li><b>Comprueba los órdenes de magnitud</b>: si \(Z_i\gg R_s\) y \(Z_L\gg Z_o\), los divisores valen casi 1 y la ganancia real es prácticamente la nominal.</li>
+<li><b>Para volver de dB a veces:</b> \(A=10^{A_{dB}/20}\). Memoriza que 20 dB es ×10, 6 dB es ×2 y −3 dB es ×0,707.</li>
+</ol>
+<div class="box trap"><h4>Trampas típicas</h4><ul>
+<li>Usar \(10\log\) para tensiones o \(20\log\) para potencias. Tensión y corriente llevan 20; potencia lleva 10.</li>
+<li>Multiplicar las ganancias <b>en dB</b>. En decibelios se <b>suman</b>.</li>
+<li>Ignorar el efecto de carga y dar la ganancia en vacío como ganancia real.</li>
+<li>Confundir \(Z_L\) (lo que conectamos) con \(Z_o\) (lo que tiene el amplificador). El divisor es \(Z_L/(Z_o+Z_L)\), no al revés.</li>
+<li>Creer que adaptar impedancias siempre es lo mejor. Adaptar maximiza la <b>potencia</b>, pero pierde la mitad de la <b>tensión</b>: en un amplificador de señal eso es malo.</li>
+<li>Olvidar que una ganancia negativa (inversora) tiene el mismo valor en dB: el decibelio usa el <b>módulo</b>.</li>
+</ul></div>
+<h3 id="t1-problema">Problema resuelto</h3>
+<div class="prob"><div class="enun"><p class="et">Enunciado</p><p>Una fuente de señal de 10 mV con \(R_s=50\) kΩ alimenta un amplificador de dos etapas:</p>
+<div class="tw"><table><tr><th>Etapa</th><th>\(Z_i\)</th><th>\(A_{v0}\)</th><th>\(Z_o\)</th></tr>
+<tr><td>1</td><td>100 kΩ</td><td>50</td><td>5 kΩ</td></tr>
+<tr><td>2</td><td>10 kΩ</td><td>20</td><td>100 Ω</td></tr></table></div>
+<p>La carga final es \(R_L=1\) kΩ. Calcula la tensión de salida y la ganancia total en veces y en dB, y compárala con el producto de las ganancias nominales.</p></div>
+<details class="paso"><summary><span class="pn">✓</span>Ver solución paso a paso</summary><div class="inner"><p><b>1) Divisor de entrada.</b></p>
+\[v_{i1}=10\ \text{mV}\cdot\frac{100}{50+100}=10\cdot0{,}6667=6{,}667\ \text{mV}\]
+<p>Ya se ha perdido un tercio de la señal <b>antes</b> de amplificar nada, porque \(R_s\) no es despreciable frente a \(Z_{i1}\).</p>
+<p><b>2) Primera etapa cargada con la segunda.</b></p>
+\[v_{i2}=50\cdot6{,}667\ \text{mV}\cdot\frac{10}{5+10}=333{,}3\cdot0{,}6667=222{,}2\ \text{mV}\]
+<p><b>3) Segunda etapa cargada con \(R_L\).</b></p>
+\[v_L=20\cdot222{,}2\ \text{mV}\cdot\frac{1}{0{,}1+1}=4444\cdot0{,}9091=\boxed{4040\ \text{mV}=4{,}04\ \text{V}}\]
+<p><b>4) Ganancia total.</b></p>
+\[A_{\text{total}}=\frac{v_L}{v_s}=\frac{4040}{10}=\boxed{404}\qquad\Rightarrow\qquad 20\log_{10}404=\boxed{52{,}1\ \text{dB}}\]
+<p><b>5) Comparación.</b> El producto de las ganancias nominales es \(50\times20=1000\), es decir 60 dB. La ganancia real es <b>404</b>, o sea 52,1 dB: hemos perdido <b>7,9 dB</b> por efecto de carga, que se reparten así:</p>
+<div class="tw"><table><tr><th>Pérdida</th><th>Factor</th><th>dB</th></tr>
+<tr><td>Divisor de entrada (\(R_s\) frente a \(Z_{i1}\))</td><td>0,667</td><td>−3,52</td></tr>
+<tr><td>Etapa 1 cargada por etapa 2</td><td>0,667</td><td>−3,52</td></tr>
+<tr><td>Etapa 2 cargada por \(R_L\)</td><td>0,909</td><td>−0,83</td></tr>
+<tr><td><b>Total</b></td><td>0,404</td><td><b>−7,87</b></td></tr></table></div>
+<p>Comprobación: \(60-7{,}87=52{,}1\) dB ✓</p>
+<div class="box key"><p>Las dos pérdidas grandes vienen de <b>impedancias del mismo orden</b>: 50 k frente a 100 k, y 5 k frente a 10 k. La solución no es subir la ganancia sino cambiar las impedancias: si la segunda etapa tuviera \(Z_i=1\) MΩ en vez de 10 kΩ, el divisor pasaría de 0,667 a 0,995 y recuperaríamos casi 3,5 dB sin tocar ninguna ganancia. Ese es exactamente el motivo de que exista el <b>seguidor de tensión</b> del tema 3.</p></div></div></details></div>
+<h3 id="t1-auto">Autoevaluación</h3>
+<p class="muted">Responde antes de desplegar.</p><details class="paso"><summary><span class="pn">1</span>¿Por qué un amplificador necesita fuente de alimentación?</summary><div class="inner"><p>Porque entrega más potencia de la que recibe: la energía sale de la fuente, y la señal sólo la controla.</p></div></details><details class="paso"><summary><span class="pn">2</span>¿Cuándo se usa \(20\log\) y cuándo \(10\log\)?</summary><div class="inner"><p>\(20\log\) para tensión y corriente; \(10\log\) para potencia, porque la potencia va con el cuadrado.</p></div></details><details class="paso"><summary><span class="pn">3</span>¿Qué es el efecto de carga?</summary><div class="inner"><p>La caída de ganancia al conectar una etapa a otra: la impedancia de entrada de la siguiente forma un divisor con la impedancia de salida de la anterior.</p></div></details><details class="paso"><summary><span class="pn">4</span>¿Qué impedancias se buscan para transferir tensión?</summary><div class="inner"><p>\(Z_i\) <b>grande</b> y \(Z_o\) <b>pequeña</b>, para que los divisores valgan casi 1.</p></div></details><details class="paso"><summary><span class="pn">5</span>¿Qué significa adaptar impedancias y cuándo interesa?</summary><div class="inner"><p>Hacer \(Z_L=Z_o\). Maximiza la <b>potencia</b> transferida, pero pierde la mitad de la tensión: interesa en radiofrecuencia, no en amplificadores de señal.</p></div></details><details class="paso"><summary><span class="pn">6</span>¿Cómo se definen \(f_L\) y \(f_H\)?</summary><div class="inner"><p>Como las frecuencias en las que la ganancia cae <b>3 dB</b> respecto al valor en la banda plana, es decir, a 0,707 en tensión.</p></div></details>
+</section>
+<nav class="pager" aria-label="Páginas"><a href="plan.html"><small>← Anterior</small>Cómo es la evaluación</a><a class="nx" href="tema-02.html"><small>Siguiente →</small>T2 · El amplificador operacional ideal</a></nav>
+<p class="inicio" style="margin:36px 0 8px;text-align:center;font-size:13px;color:var(--muted)">Guía no oficial de Electrónica Analógica (UPCT, GIEyA) · Datos tomados del curso <time datetime="2023-09">2023/24</time> (transparencias de las ocho unidades, apuntes, boletines de ejercicios resueltos, prácticas y exámenes de 2022 a 2024) · página creada en noviembre de 2026</p>
+</main>
+</div>
+<script src="app.js"></script>
+<script src="sims.js"></script>
+</body>
+</html>

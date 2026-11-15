@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>T7 Cuadripolos · Electrónica Analógica · Guía para aprobar</title>
+<meta name="description" content="Electrónica Analógica (UPCT, GIEyA): tema 7, Cuadripolos">
+<meta name="theme-color" content="#8a6a12">
+<link href="https://fonts.googleapis.com" rel="preconnect"><link crossorigin href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=IBM+Plex+Sans:ital,wght@0,400;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script>window.MathJax={tex:{inlineMath:[['\\(','\\)']],displayMath:[['\\[','\\]']]},svg:{fontCache:'global'}};</script>
+<script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+<link rel="stylesheet" href="style.css">
+<style>html{-webkit-text-size-adjust:100%}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+</head>
+<body>
+<div class="hub-bar" style="max-width:1180px;margin:0 auto;padding:10px 16px 0"><a href="https://helionacon-ui.github.io/GIEIA-UPCT/" style="display:inline-flex;align-items:center;gap:6px;font:600 13.5px/1 system-ui,sans-serif;padding:8px 12px;border-radius:999px;border:1px solid var(--line);background:var(--surface);color:var(--fg);text-decoration:none">← Todas las guías GIEyA</a><p class="fecha" style="margin:6px 0 0;max-width:none;font:13px/1.45 system-ui,sans-serif;color:var(--muted)">Datos tomados del curso <time datetime="2023-09">2023/24</time> (transparencias de las ocho unidades, apuntes, boletines de ejercicios resueltos, prácticas y exámenes de 2022 a 2024) · página creada en noviembre de 2026</p></div>
+<div class="crumb"><a href="index.html">Electrónica Analógica</a><span class="sep">›</span><span>Respuesta en frecuencia</span><span class="sep">›</span><span>T7 · Cuadripolos</span></div><a href="#top" class="totop" id="totop" aria-label="Volver arriba">↑</a>
+<div class="wrap" id="top">
+<nav aria-label="Índice" class="toc"><a href="index.html" style="--tc:var(--c0)">Portada</a><div class="grp">Empezar</div><a href="index.html#cero" style="--tc:var(--c0)">Empieza aquí desde cero</a><a href="plan.html" style="--tc:var(--c0)">Cómo es la evaluación</a><a href="index.html#progreso" style="--tc:var(--c0)">Tu progreso</a><div class="grp">El amplificador operacional</div><a href="tema-01.html" style="--tc:var(--c2)">T1 Introducción a los amplificadores</a><a href="tema-02.html" style="--tc:var(--c3)">T2 El amplificador operacional ideal</a><a href="tema-03.html" style="--tc:var(--c4)">T3 Aplicaciones lineales del operacional</a><a href="tema-04.html" style="--tc:var(--c5)">T4 Aplicaciones no lineales</a><a href="tema-05.html" style="--tc:var(--c6)">T5 El amplificador operacional real</a><div class="grp">Respuesta en frecuencia</div><a href="tema-06.html" style="--tc:var(--c7)">T6 Diagramas de Bode y filtros</a><a href="tema-07.html" style="--tc:var(--c8)" class="on" aria-current="page">T7 Cuadripolos</a><a href="tema-08.html" style="--tc:var(--c1)">T8 Respuesta en frecuencia de amplificadores con transistores</a><div class="grp">Practicar</div><a href="cuestiones.html" style="--tc:var(--c8)">Cuestiones de teoría respondidas</a><a href="examenes.html" style="--tc:var(--c8)">Problemas de examen resueltos</a><a href="problemas.html" style="--tc:var(--c8)">Qué cae en el examen</a><a href="laboratorio.html" style="--tc:var(--c7)">Prácticas y simulación</a><a href="formulario.html" style="--tc:var(--c8)">Formulario</a></nav>
+<main>
+<section class="sec tema" style="--tc:var(--c8);--tcs:var(--c8s)">
+<div class="sh"><span aria-hidden="true" class="badge">7</span><div class="shx"><p class="kick">Respuesta en frecuencia · Tema 7</p><h2 id="t7">Cuadripolos</h2><div class="tags"><span class="tag">Respuesta en frecuencia</span><span class="tag">2.º parcial</span></div></div></div>
+<div class="zero"><p class="ft">Desde cero</p><p><b>Objetivo:</b> caracterizar una red de dos puertas con parámetros z, y, h o g, elegir el juego adecuado y convertir entre ellos.</p><ul>
+<li>Un <b>cuadripolo</b> o red de dos puertas es cualquier circuito con dos terminales de entrada y dos de salida del que interesa sólo <b>qué hace</b>, no cómo está hecho por dentro. Es la forma de tratar un amplificador, un transistor o un filtro como una caja con cuatro magnitudes: \(v_1\), \(i_1\), \(v_2\), \(i_2\).</li>
+<li>De esas cuatro, dos son <b>independientes</b> y dos dependientes. Según cuáles se elijan salen los distintos juegos de parámetros, y <b>todos describen el mismo circuito</b>: sólo cambia la forma de escribirlo.</li>
+<li>Los <b>parámetros z</b> (impedancia) toman las corrientes como independientes; los <b>y</b> (admitancia), las tensiones; los <b>h</b> (híbridos), \(i_1\) y \(v_2\); los <b>g</b> (híbridos inversos), \(v_1\) e \(i_2\).</li>
+<li>Cada parámetro se mide <b>anulando</b> una variable: poner a cero una corriente significa dejar esa puerta en <b>circuito abierto</b>; poner a cero una tensión significa <b>cortocircuitarla</b>. De ahí los nombres: los z son «parámetros en circuito abierto» y los y «en cortocircuito».</li>
+<li>Los <b>parámetros h</b> son los importantes en esta asignatura porque son los que describen un <b>transistor bipolar</b>: \(h_{ie}\) es la impedancia de entrada, \(h_{fe}=\beta\) la ganancia de corriente, \(h_{re}\) la realimentación inversa (casi siempre despreciable) y \(h_{oe}\) la admitancia de salida. Son los que aparecen en las hojas de características.</li>
+<li>La razón de que los h se usen con transistores es física: la entrada de un transistor bipolar se comporta como una <b>impedancia</b> (una unión en directa) y la salida como una <b>fuente de corriente</b>, y eso es exactamente lo que modela el juego híbrido.</li>
+<li>Una red es <b>recíproca</b> si \(z_{12}=z_{21}\) (equivalentemente \(y_{12}=y_{21}\) o \(h_{12}=-h_{21}\)). Todas las redes pasivas lo son; las que tienen fuentes dependientes, como un transistor, <b>no</b>.</li>
+<li>Para conectar cuadripolos hay reglas: en <b>serie</b> se suman los parámetros z, en <b>paralelo</b> los y, y en <b>cascada</b> se multiplican las matrices de transmisión ABCD. Eso permite analizar un amplificador multietapa por bloques.</li>
+</ul></div>
+<details class="nom"><summary><span aria-hidden="true" class="nom-ic">Aa</span>Nomenclatura del tema 7 <span class="src">9 entradas</span></summary><div class="inner">
+<div class="tw"><table><tr><th>Símbolo</th><th>Significado</th><th>Unidad · nota</th></tr><tr><td class="sym">z</td><td>parámetros impedancia</td><td class="u">circuito abierto</td></tr><tr><td class="sym">y</td><td>parámetros admitancia</td><td class="u">cortocircuito</td></tr><tr><td class="sym">h</td><td>parámetros híbridos</td><td class="u">transistores</td></tr><tr><td class="sym">g</td><td>híbridos inversos</td><td class="u"></td></tr><tr><td class="sym">hie</td><td>impedancia de entrada</td><td class="u">Ω</td></tr><tr><td class="sym">hfe</td><td>ganancia de corriente</td><td class="u">β</td></tr><tr><td class="sym">hre</td><td>realimentación inversa</td><td class="u">despreciable</td></tr><tr><td class="sym">hoe</td><td>admitancia de salida</td><td class="u">S</td></tr><tr><td class="sym">recíproca</td><td>z12 = z21</td><td class="u">redes pasivas</td></tr></table></div></div></details>
+<figure class="fig"><p class="ft">Calculadora interactiva - parametros z, y y h de un cuadripolo</p><div data-sim="cuadripolo"></div><figcaption>Mueve los controles y observa cómo cambia el resultado: es el mismo cálculo que hay que saber hacer a mano en el examen.</figcaption></figure>
+<h3 id="t7-formulas">Fórmulas y conceptos que hay que saber</h3>
+<div class="box key"><ul><li><b>Parámetros z (circuito abierto):</b></li></ul>
+\[\begin{cases}v_1=z_{11}i_1+z_{12}i_2\\ v_2=z_{21}i_1+z_{22}i_2\end{cases}\qquad
+z_{11}=\left.\frac{v_1}{i_1}\right|_{i_2=0},\quad z_{12}=\left.\frac{v_1}{i_2}\right|_{i_1=0}\]
+<ul><li><b>Parámetros y (cortocircuito):</b></li></ul>
+\[\begin{cases}i_1=y_{11}v_1+y_{12}v_2\\ i_2=y_{21}v_1+y_{22}v_2\end{cases}\qquad
+y_{11}=\left.\frac{i_1}{v_1}\right|_{v_2=0},\quad y_{21}=\left.\frac{i_2}{v_1}\right|_{v_2=0}\]
+<ul><li><b>Parámetros h (híbridos):</b></li></ul>
+\[\begin{cases}v_1=h_{11}i_1+h_{12}v_2\\ i_2=h_{21}i_1+h_{22}v_2\end{cases}\]
+\[h_{11}=\left.\frac{v_1}{i_1}\right|_{v_2=0}\ [\Omega],\quad
+h_{12}=\left.\frac{v_1}{v_2}\right|_{i_1=0},\quad
+h_{21}=\left.\frac{i_2}{i_1}\right|_{v_2=0},\quad
+h_{22}=\left.\frac{i_2}{v_2}\right|_{i_1=0}\ [\text{S}]\]
+<ul><li><b>Parámetros g (híbridos inversos):</b> \(i_1=g_{11}v_1+g_{12}i_2\), \(v_2=g_{21}v_1+g_{22}i_2\).</li>
+<li><b>Notación del transistor en emisor común:</b> \(h_{ie}=h_{11}\), \(h_{re}=h_{12}\), \(h_{fe}=h_{21}=\beta\), \(h_{oe}=h_{22}\).</li>
+<li><b>Conversiones más usadas:</b></li></ul>
+\[[y]=[z]^{-1},\qquad [g]=[h]^{-1}\]
+\[h_{11}=\frac{\Delta z}{z_{22}},\quad h_{12}=\frac{z_{12}}{z_{22}},\quad h_{21}=-\frac{z_{21}}{z_{22}},\quad h_{22}=\frac{1}{z_{22}}\]
+<ul><li>con \(\Delta z=z_{11}z_{22}-z_{12}z_{21}\).</li>
+<li><b>Ganancias del cuadripolo cargado</b> con \(Z_L\) y excitado con \(Z_s\), en parámetros h:</li></ul>
+\[A_i=\frac{-h_{21}}{1+h_{22}Z_L},\qquad
+Z_i=h_{11}-\frac{h_{12}h_{21}Z_L}{1+h_{22}Z_L},\qquad
+A_v=\frac{A_i\,Z_L}{Z_i}\]
+<ul><li><b>Conexiones:</b> serie → \([z]=[z_A]+[z_B]\) · paralelo → \([y]=[y_A]+[y_B]\) · cascada → \([T]=[T_A][T_B]\).</li></ul></div>
+<h3 id="t7-metodo">Método paso a paso</h3>
+<ol class="steps">
+<li><b>Elige el juego de parámetros</b> que pida el enunciado, o el que haga más cómodas las condiciones de contorno: z si es fácil abrir las puertas, y si es fácil cortocircuitarlas, h si hay un transistor.</li>
+<li><b>Escribe las dos ecuaciones</b> del juego elegido.</li>
+<li><b>Anula una variable cada vez:</b> corriente nula = puerta <b>abierta</b>; tensión nula = puerta <b>cortocircuitada</b>.</li>
+<li><b>Resuelve el circuito</b> resultante, que siempre es más sencillo que el original, y despeja el parámetro como cociente.</li>
+<li><b>Repite</b> para los cuatro parámetros.</li>
+<li><b>Comprueba las unidades:</b> en z todo son ohmios, en y siemens, y en h hay de los dos (de ahí «híbridos»): \(h_{11}\) en ohmios, \(h_{22}\) en siemens y los otros dos adimensionales.</li>
+</ol>
+<div class="box trap"><h4>Trampas típicas</h4><ul>
+<li>Confundir «anular la corriente» con cortocircuitar. Corriente nula es <b>circuito abierto</b>; tensión nula es <b>cortocircuito</b>.</li>
+<li>Equivocar el <b>signo de \(i_2\)</b>. El convenio habitual toma las dos corrientes <b>entrando</b> al cuadripolo; si el enunciado dibuja \(i_2\) saliendo, cambian los signos de \(z_{21}\), \(h_{21}\) y compañía.</li>
+<li>Dar todos los parámetros h en ohmios. Sólo \(h_{11}\) lo es.</li>
+<li>Invertir elemento a elemento al convertir de z a y. Hay que invertir la <b>matriz</b>: \([y]=[z]^{-1}\), con su determinante.</li>
+<li>Suponer que una red con transistores es recíproca. No lo es: \(h_{12}\ne-h_{21}\).</li>
+<li>Sumar parámetros z de dos cuadripolos conectados en cascada. En cascada se multiplican las matrices de transmisión; los z sólo se suman en conexión <b>serie</b>.</li>
+</ul></div>
+<h3 id="t7-problema">Problema resuelto</h3>
+<div class="prob"><div class="enun"><p class="et">Enunciado</p><p>Una red en T tiene \(Z_a=1\) kΩ en la rama serie de entrada, \(Z_b=2\) kΩ en la rama serie de salida y \(Z_c=5\) kΩ en la rama paralelo central.</p>
+<ol><li>Calcula los parámetros z.</li>
+<li>Obtén los parámetros h a partir de ellos.</li>
+<li>¿Es recíproca? ¿Y simétrica?</li></ol></div>
+<details class="paso"><summary><span class="pn">✓</span>Ver solución paso a paso</summary><div class="inner"><p><b>1) Parámetros z.</b> Los z se miden con las puertas en <b>circuito abierto</b>, que en una red en T es cómodo porque abrir una puerta elimina su rama serie.</p>
+<p>\(z_{11}\) con la puerta 2 abierta (\(i_2=0\)): la corriente \(i_1\) recorre \(Z_a\) y después \(Z_c\) (por \(Z_b\) no circula nada, porque está en serie con un circuito abierto):</p>
+\[z_{11}=\left.\frac{v_1}{i_1}\right|_{i_2=0}=Z_a+Z_c=1+5=\boxed{6\ \text{k}\Omega}\]
+<p>\(z_{21}\) en la misma situación: la tensión que aparece en la puerta 2 es la de \(Z_c\), porque por \(Z_b\) no cae nada:</p>
+\[z_{21}=\left.\frac{v_2}{i_1}\right|_{i_2=0}=Z_c=\boxed{5\ \text{k}\Omega}\]
+<p>Por simetría del razonamiento, con la puerta 1 abierta:</p>
+\[z_{22}=Z_b+Z_c=2+5=\boxed{7\ \text{k}\Omega},\qquad z_{12}=Z_c=\boxed{5\ \text{k}\Omega}\]
+\[[z]=\begin{pmatrix}6&5\\5&7\end{pmatrix}\ \text{k}\Omega\]
+<p><b>2) Parámetros h.</b> Con \(\Delta z=z_{11}z_{22}-z_{12}z_{21}=6\cdot7-5\cdot5=42-25=17\) (kΩ)²:</p>
+\[h_{11}=\frac{\Delta z}{z_{22}}=\frac{17}{7}=\boxed{2{,}429\ \text{k}\Omega}\]
+\[h_{12}=\frac{z_{12}}{z_{22}}=\frac{5}{7}=\boxed{0{,}7143}\quad\text{(adimensional)}\]
+\[h_{21}=-\frac{z_{21}}{z_{22}}=-\frac{5}{7}=\boxed{-0{,}7143}\quad\text{(adimensional)}\]
+\[h_{22}=\frac{1}{z_{22}}=\frac{1}{7\ \text{k}\Omega}=\boxed{0{,}1429\ \text{mS}}\]
+<p>Comprobación de unidades: ohmios, adimensional, adimensional y siemens. Eso es lo que significa «híbridos».</p>
+<p>Comprobación física de \(h_{11}\): es la impedancia de entrada con la salida <b>en cortocircuito</b>. Cortocircuitando la puerta 2, \(Z_b\) queda en paralelo con \(Z_c\):</p>
+\[h_{11}=Z_a+(Z_b\parallel Z_c)=1+\frac{2\cdot5}{2+5}=1+1{,}4286=2{,}4286\ \text{k}\Omega\ \checkmark\]
+<p><b>3) Reciprocidad y simetría.</b></p>
+<ul>
+<li><b>Recíproca:</b> \(z_{12}=z_{21}=5\) kΩ ✓. Era de esperar: la red sólo tiene elementos pasivos. Equivalentemente, \(h_{12}=-h_{21}\) ✓.</li>
+<li><b>Simétrica:</b> haría falta \(z_{11}=z_{22}\), y aquí 6 ≠ 7. <b>No es simétrica</b>, porque \(Z_a\ne Z_b\): se distingue cuál es la entrada y cuál la salida.</li>
+</ul>
+<div class="box key"><p>Fíjate en que los cuatro parámetros z de una red en T se leen <b>directamente del dibujo</b>: \(z_{11}\) y \(z_{22}\) son «mi rama serie más la paralela», y \(z_{12}=z_{21}\) es «la rama paralela». No hace falta plantear ninguna ecuación. En una red en Π ocurre lo mismo con los parámetros <b>y</b>. Reconocer la topología ahorra la mitad del trabajo.</p></div></div></details></div>
+<h3 id="t7-auto">Autoevaluación</h3>
+<p class="muted">Responde antes de desplegar.</p><details class="paso"><summary><span class="pn">1</span>¿Qué es un cuadripolo?</summary><div class="inner"><p>Una red de dos puertas caracterizada sólo por la relación entre \(v_1\), \(i_1\), \(v_2\) e \(i_2\), sin importar su contenido.</p></div></details><details class="paso"><summary><span class="pn">2</span>¿Cómo se anula una corriente y cómo una tensión al medir parámetros?</summary><div class="inner"><p>Corriente nula: puerta en <b>circuito abierto</b>. Tensión nula: puerta en <b>cortocircuito</b>.</p></div></details><details class="paso"><summary><span class="pn">3</span>¿Por qué los parámetros h se usan con transistores?</summary><div class="inner"><p>Porque la entrada de un transistor se comporta como una <b>impedancia</b> y la salida como una <b>fuente de corriente</b>, que es justo lo que modela el juego híbrido.</p></div></details><details class="paso"><summary><span class="pn">4</span>¿Qué significan \(h_{ie}\), \(h_{fe}\), \(h_{re}\) y \(h_{oe}\)?</summary><div class="inner"><p>Impedancia de entrada, ganancia de corriente (\(\beta\)), realimentación inversa (casi siempre despreciable) y admitancia de salida.</p></div></details><details class="paso"><summary><span class="pn">5</span>¿Cuándo es recíproca una red?</summary><div class="inner"><p>Cuando \(z_{12}=z_{21}\). Todas las redes <b>pasivas</b> lo son; las que llevan fuentes dependientes, no.</p></div></details><details class="paso"><summary><span class="pn">6</span>¿Cómo se combinan cuadripolos en serie, en paralelo y en cascada?</summary><div class="inner"><p>Serie: se suman los <b>z</b>. Paralelo: se suman los <b>y</b>. Cascada: se <b>multiplican</b> las matrices de transmisión.</p></div></details>
+</section>
+<nav class="pager" aria-label="Páginas"><a href="tema-06.html"><small>← Anterior</small>T6 · Diagramas de Bode y filtros</a><a class="nx" href="tema-08.html"><small>Siguiente →</small>T8 · Respuesta en frecuencia de amplificadores con transistores</a></nav>
+<p class="inicio" style="margin:36px 0 8px;text-align:center;font-size:13px;color:var(--muted)">Guía no oficial de Electrónica Analógica (UPCT, GIEyA) · Datos tomados del curso <time datetime="2023-09">2023/24</time> (transparencias de las ocho unidades, apuntes, boletines de ejercicios resueltos, prácticas y exámenes de 2022 a 2024) · página creada en noviembre de 2026</p>
+</main>
+</div>
+<script src="app.js"></script>
+<script src="sims.js"></script>
+</body>
+</html>

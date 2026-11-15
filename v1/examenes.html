@@ -1,0 +1,727 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="description" content="Electrónica Analógica (UPCT): Exámenes del primer parcial de otros años, resueltos desde cero.">
+<title>Electrónica Analógica · Exámenes resueltos</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=IBM+Plex+Sans:ital,wght@0,400;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<script>
+window.MathJax = { tex: { inlineMath: [['$','$']], displayMath: [['$$','$$']] }, svg: { fontCache: 'global' } };
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-svg.js"></script>
+<link rel="manifest" href="manifest.webmanifest"><meta name="theme-color" content="#1d5fb8">
+<link rel="icon" type="image/png" sizes="192x192" href="icon-192.png"><link rel="apple-touch-icon" href="apple-touch-icon.png">
+<meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="Analógica">
+<link rel="stylesheet" href="style.css?v=2"></head><body data-page="examenes">
+
+<div class="hub-bar" style="max-width:1180px;margin:0 auto;padding:10px 16px 0"><a href="https://helionacon-ui.github.io/GIEIA-UPCT/" style="display:inline-flex;align-items:center;gap:6px;font:600 13.5px/1 system-ui,sans-serif;padding:8px 12px;border-radius:999px;border:1px solid var(--line,#d3dcdf);background:var(--surface,var(--card,#fff));color:var(--fg,#18232b);text-decoration:none">← Todas las guías GIEyA</a></div>
+<header class="phead"><div class="eyebrow">UPCT · GIEyA · Electrónica Analógica · Practicar</div><h1>Exámenes resueltos</h1><p class="lede">Exámenes del primer parcial de otros años, resueltos desde cero</p></header>
+
+<a href="#top" class="totop" id="totop" aria-label="Volver arriba">↑</a>
+<div class="wrap" id="top">
+<nav class="toc" aria-label="Índice">
+<a href="index.html" style="--tc:var(--c0)">Portada</a>
+<div class="grp">Empezar</div>
+<a href="empezar.html" style="--tc:var(--c0)">Cómo es el examen</a>
+<div class="grp">Parcial 1</div>
+<a href="tema-1-2.html" style="--tc:var(--c1)">T1–2 Amplificadores y AO ideal</a>
+<a href="tema-3.html" style="--tc:var(--c3)">T3 Aplicaciones lineales</a>
+<a href="tema-4.html" style="--tc:var(--c4)">T4 Aplicaciones no lineales</a>
+<a href="tema-5.html" style="--tc:var(--c5)">T5 AO real</a>
+<a href="tema-6.html" style="--tc:var(--c6)">T6 Bode y filtros</a>
+<div class="grp">Parcial 2</div>
+<a href="tema-7.html" style="--tc:var(--c7)">T7 Cuadripolos</a>
+<a href="tema-8.html" style="--tc:var(--c8)">T8 Transistores en frecuencia</a>
+<a href="realimentacion.html" style="--tc:var(--c1)">Realimentación y osciladores</a>
+<a href="potencia.html" style="--tc:var(--c3)">Amplificadores de potencia</a>
+<div class="grp">Practicar</div>
+<a href="examen-2025-26.html" style="--tc:var(--c3)">P1 curso 25-26 resuelto</a>
+<a href="examenes.html" aria-current="page" class="cur" style="--tc:var(--c8)">Exámenes resueltos</a>
+<a class="sub" href="#exa-indice" style="--tc:var(--c8)">Índice de exámenes</a>
+<a class="sub" href="#x13" style="--tc:var(--c1)">Feb 2013</a>
+<a class="sub" href="#x16" style="--tc:var(--c2)">Jul 2016</a>
+<a class="sub" href="#x20a" style="--tc:var(--c3)">Feb 2020</a>
+<a class="sub" href="#x20b" style="--tc:var(--c4)">Sep 2020</a>
+<a class="sub" href="#x23a" style="--tc:var(--c5)">P1 Nov 2023</a>
+<a class="sub" href="#x24a" style="--tc:var(--c6)">Final P1 Ene 2024</a>
+<a class="sub" href="#x24j" style="--tc:var(--c6)">P1 Jul 2024</a>
+<a class="sub" href="#x2425a" style="--tc:var(--c2)">P1 curso 24-25</a>
+<a class="sub" href="#x21a" style="--tc:var(--c4)">P1 Nov 2021</a>
+<a class="sub" href="#xtemp" style="--tc:var(--c6)">Termómetro LM35</a>
+<a href="examenes-p2.html" style="--tc:var(--c8)">Exámenes P2 resueltos</a>
+<a href="fuen.html" style="--tc:var(--c0)">Apuntes de Fuen</a>
+<a href="problemas.html" style="--tc:var(--c8)">Problemas resueltos</a>
+<a href="calculadoras.html" style="--tc:var(--c8)">Calculadoras de bolsillo</a>
+<a href="autoevaluacion.html" style="--tc:var(--c8)">Autoevaluación</a>
+<div class="grp">Repasar</div>
+<a href="formulario.html" style="--tc:var(--c0)">Formulario</a>
+<a href="glosario.html" style="--tc:var(--c0)">Glosario</a>
+<a href="plan.html" style="--tc:var(--c0)">Plan de estudio</a>
+<div class="grp">Todo en uno</div>
+<a href="guia-completa.html" style="--tc:var(--c0)">Guía completa</a>
+</nav>
+
+<main>
+<div class="srch-card" id="srch-card"><label for="srch" class="srch-lab">Buscar en la guía</label>
+<input type="search" id="srch" placeholder="Por ejemplo: slew rate, Schmitt, Miller, CMRR…" autocomplete="off" spellcheck="false">
+<div id="srch-out" class="srch-out" hidden></div></div>
+
+<nav class="onthispage" aria-label="En esta página" style="--tc:var(--c8);--tcs:var(--c8s)"><span>En esta página</span><a href="#exa-indice">Índice de exámenes</a><a href="#x13">Feb 2013</a><a href="#x16">Jul 2016</a><a href="#x20a">Feb 2020</a><a href="#x20b">Sep 2020</a><a href="#x23a">P1 Nov 2023</a><a href="#x24a">Final P1 Ene 2024</a><a href="#x24j">P1 Jul 2024</a><a href="#x2425a">P1 curso 24-25</a><a href="#x21a">P1 Nov 2021</a><a href="#xtemp">Termómetro LM35</a></nav>
+
+<section class="sec" style="--tc:var(--c8);--tcs:var(--c8s)">
+<div class="sh"><span class="badge" aria-hidden="true">✎</span><div class="shx"><p class="kick">Exámenes</p><h2 id="exa-indice">Exámenes de otros años, resueltos desde cero</h2></div></div>
+<div class="zero">
+<p class="ft">Cómo usar esta página</p>
+<p>Cada examen trae el enunciado (solo el circuito y los datos), la solución paso a paso y, cuando toca, una gráfica. Haz el ejercicio con papel y <b>abre solo el paso en el que te atascas</b>. Todos los números están recalculados aquí con un programa y coinciden con las soluciones del aula virtual, salvo dos casos en los que la solución publicada tiene un error de signo (se explican en el examen de noviembre de 2023 y en el de enero de 2024), un rango de tensión de modo común que no cuadra (julio de 2024), un caso en el que el texto de la solución llama «paso bajo» a un pasa altos (curso 25-26) y un redondeo que da 0,83 dB de más (noviembre de 2021).</p>
+</div>
+<div class="tw"><table>
+<tr><th>Examen</th><th>Ejercicio</th><th>Tema</th><th>Dificultad</th></tr>
+<tr><td>Feb 2013</td><td><a href="#x13">Dos etapas con RC</a></td><td>Función de transferencia y Bode con 5 factores</td><td>●●●</td></tr>
+<tr><td>Jul 2016</td><td><a href="#x16">Impedancia de entrada con dos AO</a></td><td>Girador: un condensador que parece una bobina</td><td>●●●</td></tr>
+<tr><td>Feb 2020</td><td><a href="#x20a">Comparador con referencia</a></td><td>Schmitt no inversor y ciclo de histéresis</td><td>●●</td></tr>
+<tr><td>Sep 2020</td><td><a href="#x20b">Filtro pasa banda con tres AO</a></td><td>Ganancia, $G(j\omega)$ y Bode</td><td>●●</td></tr>
+<tr><td>P1 Nov 2023</td><td><a href="#x23a">Sallen-Key con ganancia 2,9</a>, <a href="#x23b">red en T</a>, <a href="#x23c">inversor real</a></td><td>Bode de segundo orden, saturación, slew rate, tolerancias, corriente máxima</td><td>●●●</td></tr>
+<tr><td>Final P1 Ene 2024</td><td><a href="#x24a">Howland</a>, <a href="#x24b">Sallen-Key</a>, <a href="#x24c">zéner</a>, <a href="#x24d">diferencial</a></td><td>Fuente de corriente, Bode, comparador con zéner, CMRR</td><td>●●●</td></tr>
+<tr><td>P1 Jul 2024</td><td><a href="#x24j">Schmitt inversor</a>, <a href="#x24jb">dos Sallen-Key</a>, <a href="#x24jc">modo común</a>, <a href="#x24jd">ventana con diodos</a></td><td>Histéresis, Bode de cuarto orden, rango de entrada del operacional, comparadores y diodos</td><td>●●●</td></tr>
+<tr><td>P1 curso 24-25</td><td><a href="#x2425a">Schmitt con zéner</a>, <a href="#x2425b">dos etapas RC</a>, <a href="#x2425c">sensor ±10 V a 0–5 V</a></td><td>Histéresis con realimentación positiva, Bode con cero y dos polos, acondicionamiento de señal, $Z_i$, $Z_o$, $A_u$</td><td>●●●</td></tr>
+<tr><td>P1 curso 25-26</td><td><a href="examen-2025-26.html#x2526a">Pasa altos Sallen-Key</a>, <a href="examen-2025-26.html#x2526b">tiempo de establecimiento</a>, <a href="examen-2025-26.html#x2526c">pesaje con cuatro sensores</a></td><td>Bode de segundo orden con $K=1$, respuesta RC al escalón, sumadores y error por $R_s$</td><td>●●●</td></tr>
+<tr><td>P1 Nov 2021</td><td><a href="#x21a">Derivador con dos etapas</a>, <a href="#x21b">cuadripolos</a>, <a href="#x21c">slew rate</a></td><td>Bode con cinco factores, acoplamiento de impedancias, corriente máxima, frecuencia máxima</td><td>●●</td></tr>
+<tr><td>Aula virtual</td><td><a href="#xtemp">Termómetro con LM35</a></td><td>Seguidor, no inversor, comparador, Schmitt, restador y ajuste de rango</td><td>●●</td></tr>
+</table></div>
+<p class="muted" style="font-size:14px">El patrón es siempre el mismo: un circuito con operacionales ideales que se resuelve con Kirchhoff en un nudo, un Bode y un problema largo con el operacional real. Si dominas todo lo de aquí, dominas el primer parcial.</p>
+</section>
+
+<section class="sec tema" style="--tc:var(--c1);--tcs:var(--c1s)">
+<div class="sh"><span class="badge" aria-hidden="true">13</span><div class="shx"><p class="kick">Examen · febrero de 2013</p><h2 id="x13">Dos etapas inversoras con RC y diagrama de Bode</h2></div></div>
+<div class="prob">
+<h3 class="ph">Ejercicio 1 · 2,5 puntos</h3>
+<div class="enun"><p class="et">Enunciado</p>
+<p>Dado el circuito de la figura, obtén (a) la función de transferencia $G(j\omega)=U_s/U_e$ y (b) su diagrama de Bode. Datos: $R_1=1\,\text{M}\Omega$, $R_2=R_4=5\,\text{k}\Omega$, $R_3=R_5=45\,\text{k}\Omega$, $C_1=C_3=100$ nF, $C_2=10$ nF, $C_4=55{,}5$ nF.</p></div>
+<figure class="slide nota"><img src="img/ex-f13.jpg" alt="Circuito del examen de febrero de 2013: dos amplificadores operacionales inversores en cascada. El primero tiene a la entrada R1 en paralelo con la serie R2 y C1, y un condensador C2 en la realimentación. El segundo tiene R3 en serie con C3 en paralelo con R4 a la entrada, y R5 en paralelo con C4 en la realimentación." loading="lazy" width="1116" height="778"><figcaption><b class="n">Enunciado · febrero de 2013</b>Dos inversores en cascada. En cada etapa la ganancia es $-Z_{realim}/Z_{ent}$, con impedancias que mezclan resistencias y condensadores.</figcaption></figure>
+<details class="paso" open><summary><span class="pn">0</span>La idea, desde cero</summary><div class="inner">
+<p>Un inversor con operacional ideal tiene ganancia $G=-\dfrac{Z_f}{Z_i}$, donde $Z_f$ es la impedancia entre la salida y el nudo inversor y $Z_i$ la de la entrada. Esa fórmula vale aunque $Z$ lleve condensadores, siempre que escribas $Z_C=\dfrac1{j\omega C}$. Dos etapas en cascada se <b>multiplican</b>, porque la salida del primer operacional es ideal (impedancia de salida nula) y no se carga.</p>
+<p>El truco del examen: calcula primero tres impedancias paralelo, cada una es «una resistencia en paralelo con una resistencia en serie con un condensador». Después juntas.</p></div></details>
+<details class="paso"><summary><span class="pn">1</span>Impedancia de entrada de la etapa 1</summary><div class="inner">
+<p>$Z_{e1}=R_1\parallel\left(R_2+\dfrac1{j\omega C_1}\right)$. Con $Z_1=R_2+\dfrac1{j\omega C_1}=\dfrac{1+j\omega C_1R_2}{j\omega C_1}$:</p>
+<p>$Z_{e1}=\dfrac{R_1Z_1}{R_1+Z_1}=\dfrac{R_1(1+j\omega C_1R_2)}{1+j\omega C_1(R_1+R_2)}$.</p></div></details>
+<details class="paso"><summary><span class="pn">2</span>Ganancia de la etapa 1</summary><div class="inner">
+<p>La realimentación es solo $C_2$, luego $Z_f=\dfrac1{j\omega C_2}$ y</p>
+<p>$G_1=-\dfrac{1/(j\omega C_2)}{Z_{e1}}=-\dfrac{1+j\omega C_1(R_1+R_2)}{j\omega C_2R_1\,(1+j\omega C_1R_2)}$.</p></div></details>
+<details class="paso"><summary><span class="pn">3</span>Etapa 2: entrada y realimentación</summary><div class="inner">
+<p>Entrada: $Z_{e2}=R_3\parallel\left(R_4+\dfrac1{j\omega C_3}\right)=\dfrac{R_3(1+j\omega C_3R_4)}{1+j\omega C_3(R_3+R_4)}$, con el mismo cálculo que antes.</p>
+<p>Realimentación: $Z_{f2}=R_5\parallel\dfrac1{j\omega C_4}=\dfrac{R_5}{1+j\omega R_5C_4}$.</p>
+<p>$G_2=-\dfrac{Z_{f2}}{Z_{e2}}=-\dfrac{R_5\,[1+j\omega C_3(R_3+R_4)]}{R_3\,(1+j\omega C_3R_4)(1+j\omega R_5C_4)}$.</p></div></details>
+<details class="paso"><summary><span class="pn">4</span>Producto de las dos etapas</summary><div class="inner">
+<p>Los dos signos menos se cancelan:</p>
+<p>$G=\dfrac{R_5}{R_3}\cdot\dfrac{[1+j\omega C_1(R_1+R_2)]\,[1+j\omega C_3(R_3+R_4)]}{j\omega C_2R_1\,(1+j\omega C_1R_2)(1+j\omega C_3R_4)(1+j\omega R_5C_4)}$.</p></div></details>
+<details class="paso"><summary><span class="pn">5</span>Sustituir números</summary><div class="inner">
+<p>$R_5/R_3=1$. Constantes de tiempo: $C_1(R_1+R_2)=0{,}1005$ s, $C_3(R_3+R_4)=0{,}005$ s, $C_2R_1=0{,}01$ s, $C_1R_2=C_3R_4=0{,}0005$ s, $R_5C_4=0{,}0025$ s.</p>
+<p>$G=\dfrac{(1+j\omega\,0{,}1005)(1+j\omega\,0{,}005)}{j\omega\,0{,}01\,(1+j\omega\,0{,}0005)^2(1+j\omega\,0{,}0025)}$.</p>
+<p>Cada factor $(1+j\omega\tau)$ tiene su frecuencia de corte en $\omega=1/\tau$. Fíjate en que $C_1R_2$ y $C_3R_4$ coinciden y por eso sale un <b>polo doble</b>.</p></div></details>
+<details class="paso"><summary><span class="pn">6</span>Tabla de quiebros y pendientes</summary><div class="inner">
+<div class="tw"><table>
+<tr><th>Factor</th><th>$\omega=1/\tau$ (rad/s)</th><th>Efecto</th></tr>
+<tr><td>$\dfrac1{j\omega\,0{,}01}$</td><td>cruza 0 dB en 100</td><td>pendiente $-20$ dB/dec desde el principio</td></tr>
+<tr><td>$1+j\omega\,0{,}1005$</td><td>9,95</td><td>cero: sube $+20$ dB/dec</td></tr>
+<tr><td>$1+j\omega\,0{,}005$</td><td>200</td><td>cero: sube $+20$ dB/dec</td></tr>
+<tr><td>$1+j\omega\,0{,}0025$</td><td>400</td><td>polo: baja $-20$ dB/dec</td></tr>
+<tr><td>$(1+j\omega\,0{,}0005)^2$</td><td>2000</td><td>polo doble: baja $-40$ dB/dec</td></tr>
+</table></div>
+<p>Recorre el eje de izquierda a derecha sumando pendientes. Antes de 9,95: $-20$. Entre 9,95 y 200: $-20+20=0$ (tramo plano). Entre 200 y 400: $+20$. Entre 400 y 2000: $+20-20=0$ (plano). Después de 2000: $0-40=-40$.</p></div></details>
+<details class="paso"><summary><span class="pn">7</span>Niveles en dB</summary><div class="inner">
+<p>En $\omega=1$ rad/s el integrador vale $1/0{,}01=100\to40$ dB. Bajando $-20$ dB/dec hasta 9,95 rad/s (casi una década): $40-20\log9{,}95=20{,}04$ dB. Tramo plano a <b>20,04 dB</b> hasta 200. De 200 a 400 sube $20\log2=6{,}02$ dB y llega a <b>26,06 dB</b>, que se mantiene hasta 2000 rad/s. Luego cae $-40$ dB/dec.</p>
+<p>Valores exactos: $|G(j105)|=20{,}8$ dB y $|G(j1200)|=23{,}06$ dB. En 1200 rad/s la asíntota dice 26,06 dB y el módulo real es 23,06 dB: entre quiebros tan próximos (400 y 2000 rad/s) la aproximación asintótica puede quedarse hasta 3 dB por encima del valor real.</p></div></details>
+<figure class="fig"><p class="ft">Bode de la función de transferencia · febrero de 2013</p>
+<div id="fig-x13"></div>
+<p class="muted" style="font-size:13px;margin:4px 0 0">Línea discontinua: aproximación asintótica. Línea azul: módulo exacto. Líneas verticales rojas: frecuencias de los ceros y polos.</p></figure>
+<details class="resul"><summary>Resultado</summary><div class="inner"><p class="et">Solución</p><p>$G=\dfrac{(1+j\omega\,0{,}1005)(1+j\omega\,0{,}005)}{j\omega\,0{,}01\,(1+j\omega\,0{,}0005)^2(1+j\omega\,0{,}0025)}$. Bode: $-20$ dB/dec hasta 9,95 rad/s, plano a 20,04 dB hasta 200, $+20$ dB/dec hasta 400, plano a 26,06 dB hasta 2000, $-40$ dB/dec después. Es un filtro paso banda con ganancia máxima de unos 26 dB.</p></div></details>
+</div>
+</section>
+
+<section class="sec tema" style="--tc:var(--c2);--tcs:var(--c2s)">
+<div class="sh"><span class="badge" aria-hidden="true">16</span><div class="shx"><p class="kick">Examen · julio de 2016</p><h2 id="x16">Impedancia de entrada con dos operacionales: un condensador que se comporta como bobina</h2></div></div>
+<div class="prob">
+<h3 class="ph">Ejercicio 1 · 2,5 puntos</h3>
+<div class="enun"><p class="et">Enunciado</p>
+<p>Considerando ideales los operacionales del circuito, (a) obtén la impedancia de entrada $Z_{in}=V_i/I_i$ solo con resistencias y capacidades y (b) identifica si es resistiva, capacitiva o inductiva en régimen senoidal.</p></div>
+<figure class="slide nota"><img src="img/ex-j16.jpg" alt="Circuito del examen de julio de 2016: una columna de R1, C2, R3, R4 y R5 en serie hacia masa, con dos amplificadores operacionales que llevan nudos de la columna a otros nudos." loading="lazy" width="1207" height="663"><figcaption><b class="n">Enunciado · julio de 2016</b>Una cadena $R_1$, $C_2$, $R_3$, $R_4$, $R_5$ con dos operacionales que obligan a que ciertos nudos tengan la misma tensión.</figcaption></figure>
+<details class="paso" open><summary><span class="pn">0</span>La idea, desde cero</summary><div class="inner">
+<p>Con operacionales ideales, la tensión en la entrada $-$ es igual a la de la $+$ y no entra corriente. Cada operacional obliga a que dos nudos tengan la <b>misma tensión</b> sin consumir corriente de ellos, y eso sirve para «copiar» una tensión de un nudo a otro. El problema se resuelve con la ley de Ohm tramo a tramo, empezando por abajo, donde las corrientes son más fáciles.</p></div></details>
+<details class="paso"><summary><span class="pn">1</span>Nudos con la misma tensión</summary><div class="inner">
+<p>Llama $V_1,\dots,V_5$ a las tensiones de los nudos de arriba abajo, con $V_5$ entre $R_4$ y $R_5$. Los dos operacionales imponen $V_1=V_3=V_5=V_i$. Es decir, el nudo de entrada, el de la mitad y el de abajo valen todos $V_i$.</p></div></details>
+<details class="paso"><summary><span class="pn">2</span>Corriente por $R_5$ y tensión $V_4$</summary><div class="inner">
+<p>$R_5$ va de $V_5=V_i$ a masa, luego $I_5=\dfrac{V_i}{R_5}$. Al operacional no entra corriente y por eso $I_4=I_5$. Entonces $V_4=(R_4+R_5)I_5=\left(1+\dfrac{R_4}{R_5}\right)V_i$.</p></div></details>
+<details class="paso"><summary><span class="pn">3</span>Corriente por $R_3$ y $C_2$</summary><div class="inner">
+<p>$I_3=\dfrac{V_3-V_4}{R_3}=\dfrac{V_i-\left(1+\frac{R_4}{R_5}\right)V_i}{R_3}=-\dfrac{R_4}{R_3R_5}V_i$. Por el otro operacional tampoco entra corriente, así que $I_2=I_3$.</p></div></details>
+<details class="paso"><summary><span class="pn">4</span>Tensión $V_2$ y corriente de entrada</summary><div class="inner">
+<p>$V_2=V_3+Z_{C_2}I_2=V_i-\dfrac{Z_{C_2}R_4}{R_3R_5}V_i$. Y la corriente de entrada es la de $R_1$: $I_i=\dfrac{V_1-V_2}{R_1}=\dfrac{V_i-V_2}{R_1}=\dfrac{Z_{C_2}R_4}{R_1R_3R_5}V_i$.</p></div></details>
+<details class="paso"><summary><span class="pn">5</span>Impedancia de entrada</summary><div class="inner">
+<p>$Z_{in}=\dfrac{V_i}{I_i}=\dfrac{R_1R_3R_5}{R_4\,Z_{C_2}}=\dfrac{R_1R_3R_5}{R_4}\,j\omega C_2$.</p>
+<p>Es de la forma $j\omega L$: una <b>bobina</b> de valor $L=\dfrac{R_1R_3R_5}{R_4}C_2$. Este circuito se llama girador (o simulador de inductancia).</p></div></details>
+<details class="paso"><summary><span class="pn">6</span>Un valor numérico para quedarte con la idea</summary><div class="inner">
+<p>Con las cuatro resistencias de 10 kΩ y $C_2=100$ nF: $L=\dfrac{10^4\cdot10^4\cdot10^4}{10^4}\cdot10^{-7}=10$ H. Una bobina real de 10 H pesaría kilos. Con dos operacionales y un condensador pequeño la tienes en un chip.</p></div></details>
+<details class="resul"><summary>Resultado</summary><div class="inner"><p class="et">Solución</p><p>$Z_{in}=\dfrac{R_1R_3R_5}{R_4}\,j\omega C_2$. Se comporta como una bobina de $L=\dfrac{R_1R_3R_5C_2}{R_4}$.</p></div></details>
+</div>
+</section>
+
+<section class="sec tema" style="--tc:var(--c3);--tcs:var(--c3s)">
+<div class="sh"><span class="badge" aria-hidden="true">20</span><div class="shx"><p class="kick">Examen · febrero de 2020</p><h2 id="x20a">Comparador con referencia: Schmitt no inversor</h2></div></div>
+<div class="prob">
+<h3 class="ph">Ejercicio 1 · 2,5 puntos</h3>
+<div class="enun"><p class="et">Enunciado</p>
+<p>Obtén la relación entre la tensión de salida y la de entrada del circuito, represéntala y di qué tipo de circuito es. Datos: $R_1=2$ kΩ, $R_2=1$ kΩ, $R_3=R_4=2$ kΩ, alimentación del operacional de 0 a +12 V.</p></div>
+<figure class="slide nota"><img src="img/ex-e20.jpg" alt="Circuito del examen de febrero de 2020: un amplificador operacional 741 con la entrada V_in aplicada a la entrada positiva a través de R2. R1 lleva la salida a la entrada positiva. La entrada negativa recibe V_ref de un divisor R4 y R3 alimentado a +12 V." loading="lazy" width="1108" height="775"><figcaption><b class="n">Enunciado · febrero de 2020</b>La entrada positiva recibe $V_{in}$ por $R_2$ y la salida por $R_1$. La negativa recibe una referencia fija.</figcaption></figure>
+<details class="paso" open><summary><span class="pn">0</span>La idea, desde cero</summary><div class="inner">
+<p>No hay realimentación negativa: la salida solo vuelve a la entrada positiva. Entonces el operacional <b>no</b> cumple $V^+=V^-$. Se comporta como un comparador: si $V^+>V^-$ la salida satura arriba y si $V^+&lt;V^-$ satura abajo. Aquí «arriba» es +12 V y «abajo» es 0 V. Lo único que hay que hacer es calcular $V^+$ y $V^-$ y ver cuándo se igualan.</p></div></details>
+<details class="paso"><summary><span class="pn">1</span>Tensión de referencia en $V^-$</summary><div class="inner">
+<p>Divisor de tensión sin corriente al operacional: $V_{ref}=V^-=\dfrac{R_3}{R_3+R_4}\,12=\dfrac{2}{4}\cdot12=6$ V.</p></div></details>
+<details class="paso"><summary><span class="pn">2</span>Tensión en $V^+$</summary><div class="inner">
+<p>Por la entrada positiva no entra corriente. La que sale de $V_{in}$ por $R_2$ es la misma que llega a la salida por $R_1$: $\dfrac{V_{in}-V^+}{R_2}=\dfrac{V^+-V_o}{R_1}$. Despejando:</p>
+<p>$V^+=\dfrac{R_1}{R_1+R_2}V_{in}+\dfrac{R_2}{R_1+R_2}V_o=\dfrac23V_{in}+\dfrac13V_o$.</p></div></details>
+<details class="paso"><summary><span class="pn">3</span>Condición de conmutación</summary><div class="inner">
+<p>La salida está en $+12$ V si $V^+>V^-$, es decir, $\dfrac23V_{in}+\dfrac13V_o>6$, o sea $V_{in}>9-\dfrac{V_o}2$. Esa desigualdad depende de la salida actual, y de ahí sale la histéresis.</p></div></details>
+<details class="paso"><summary><span class="pn">4</span>Los dos umbrales</summary><div class="inner">
+<p><b>Si la salida está en 0 V:</b> para pasar a 12 V hace falta $V_{in}>9-0=9$ V. Umbral superior $V_{TH}=9$ V.</p>
+<p><b>Si la salida está en 12 V:</b> se mantiene mientras $V_{in}>9-6=3$ V. Cuando $V_{in}$ baja de 3 V cae a 0 V. Umbral inferior $V_{TL}=3$ V.</p>
+<p>Anchura del ciclo de histéresis: $9-3=6$ V. Entre 3 V y 9 V la salida conserva el estado anterior.</p></div></details>
+<figure class="fig"><p class="ft">Característica de transferencia · febrero de 2020</p>
+<div id="fig-x20a"></div>
+<p class="muted" style="font-size:13px;margin:4px 0 0">Al subir la entrada, la salida sube en 9 V (rama inferior hacia arriba). Al bajarla, la salida cae en 3 V. La salida y la entrada van en el mismo sentido: es no inversor.</p></figure>
+<details class="resul"><summary>Resultado</summary><div class="inner"><p class="et">Solución</p><p>Disparador de Schmitt <b>no inversor</b> con $V_{TH}=9$ V, $V_{TL}=3$ V, salida entre 0 y 12 V e histéresis de 6 V.</p></div></details>
+</div>
+</section>
+
+<section class="sec tema" style="--tc:var(--c4);--tcs:var(--c4s)">
+<div class="sh"><span class="badge" aria-hidden="true">20</span><div class="shx"><p class="kick">Examen · septiembre de 2020</p><h2 id="x20b">Pasa altos, amplificador y pasa bajos en cascada</h2></div></div>
+<div class="prob">
+<h3 class="ph">Ejercicio 2 (tipo A) · 2,5 puntos</h3>
+<div class="enun"><p class="et">Enunciado</p>
+<p>Datos: $R_1=R=10$ kΩ, $C_1=1{,}59$ µF, $C_2=1{,}59$ nF, alimentación ±12 V. Se pide (a) el valor de $R_2$ para que $V_2/V_1=2$, (b) $G(j\omega)=V_o/V_i$ y (c) su diagrama de Bode.</p></div>
+<figure class="slide nota"><img src="img/ex-s20.jpg" alt="Circuito del examen de septiembre de 2020: la entrada V_i pasa por C1 a un nudo con R a masa, que va a la entrada positiva del primer operacional. Este está realimentado por R2 y R1 a masa. Su salida V2 pasa por R y C2 a la entrada positiva del segundo operacional, que es un seguidor." loading="lazy" width="991" height="816"><figcaption><b class="n">Enunciado · septiembre de 2020</b>Tres bloques: $C_1$ con $R$ (filtro), no inversor con $R_1$ y $R_2$ (amplificador) y $R$ con $C_2$ más seguidor (filtro).</figcaption></figure>
+<details class="paso" open><summary><span class="pn">0</span>La idea, desde cero</summary><div class="inner">
+<p>Los tres bloques no se cargan entre sí porque cada operacional ideal tiene entrada de corriente nula. Entonces la ganancia total es el <b>producto</b> de las tres ganancias. Resuelve cada una por separado.</p></div></details>
+<details class="paso"><summary><span class="pn">1</span>Apartado (a): la ganancia del amplificador</summary><div class="inner">
+<p>El primer operacional es un no inversor: $V_2=\left(1+\dfrac{R_2}{R_1}\right)V^-$ y con $V^-=V^+=V_1$ queda $\dfrac{V_2}{V_1}=1+\dfrac{R_2}{R_1}$. Si debe valer 2, $\dfrac{R_2}{R_1}=1$ y $R_2=R_1=10$ kΩ.</p></div></details>
+<details class="paso"><summary><span class="pn">2</span>Primer bloque: pasa altos</summary><div class="inner">
+<p>La entrada positiva no consume corriente. Así que $C_1$ y $R$ forman un divisor: $V_1=\dfrac{R}{R+\frac1{j\omega C_1}}V_i=\dfrac{j\omega RC_1}{1+j\omega RC_1}V_i$.</p></div></details>
+<details class="paso"><summary><span class="pn">3</span>Tercer bloque: pasa bajos y seguidor</summary><div class="inner">
+<p>$R$ y $C_2$ forman otro divisor, esta vez tomando la tensión en el condensador. El seguidor la copia a la salida: $V_o=\dfrac{1/(j\omega C_2)}{R+1/(j\omega C_2)}V_2=\dfrac1{1+j\omega RC_2}V_2$.</p></div></details>
+<details class="paso"><summary><span class="pn">4</span>Apartado (b): juntar</summary><div class="inner">
+<p>$G(j\omega)=\dfrac{V_o}{V_i}=2\cdot\dfrac{j\omega RC_1}{(1+j\omega RC_1)(1+j\omega RC_2)}$ con $RC_1=10^4\cdot1{,}59\cdot10^{-6}=1{,}59\cdot10^{-2}$ s y $RC_2=1{,}59\cdot10^{-5}$ s.</p></div></details>
+<details class="paso"><summary><span class="pn">5</span>Apartado (c): el Bode</summary><div class="inner">
+<p>Frecuencias de corte: $\omega_1=\dfrac1{RC_1}=62{,}9$ rad/s (10 Hz) y $\omega_2=\dfrac1{RC_2}=62\,893$ rad/s (10 kHz). La ganancia en banda es $2\to6{,}02$ dB.</p>
+<p>Por debajo de 62,9 rad/s sube $+20$ dB/dec (el pasa altos). Entre 62,9 y 62 893 rad/s está plano a 6,02 dB. Por encima baja $-20$ dB/dec. Es un filtro <b>pasa banda</b> de 10 Hz a 10 kHz.</p>
+<p>En las frecuencias de corte el módulo exacto vale 3,01 dB, es decir, 3 dB menos que la banda de paso. Eso es lo que significa «frecuencia de corte».</p></div></details>
+<figure class="fig"><p class="ft">Bode · septiembre de 2020</p>
+<div id="fig-x20b"></div>
+<p class="muted" style="font-size:13px;margin:4px 0 0">La fase va de +90° a 0° en el pasa altos y de 0° a −90° en el pasa bajos. En la banda de paso es casi 0°.</p></figure>
+<details class="resul"><summary>Resultado</summary><div class="inner"><p class="et">Solución</p><p>$R_2=10$ kΩ. $G=2\dfrac{j\omega\,0{,}0159}{(1+j\omega\,0{,}0159)(1+j\omega\,1{,}59\cdot10^{-5})}$. Pasa banda con 6,02 dB entre 62,9 y 62 893 rad/s.</p></div></details>
+</div>
+</section>
+
+<section class="sec tema" style="--tc:var(--c5);--tcs:var(--c5s)">
+<div class="sh"><span class="badge" aria-hidden="true">23</span><div class="shx"><p class="kick">Examen · primer parcial, noviembre de 2023</p><h2 id="x23a">Sallen-Key con ganancia 2,9 y resonancia</h2></div></div>
+<div class="prob">
+<h3 class="ph">Ejercicio 1 · 2,5 puntos</h3>
+<div class="enun"><p class="et">Enunciado</p>
+<p>Obtén (a) $G(j\omega)$ y (b) su diagrama de Bode. Datos: $R=15{,}8$ kΩ, $R_A=10$ kΩ, $R_B=19$ kΩ, $C=10$ nF. Pista del enunciado: un polinomio $ax^2+bx+c$ se factoriza con sus raíces.</p></div>
+<figure class="slide nota"><img src="img/ex-n1.jpg" alt="Circuito del examen de noviembre de 2023: Vi entra por dos resistencias R en serie a la entrada positiva del operacional. Un condensador C lleva la salida al nudo entre las dos R y otro C va de la entrada positiva a masa. Un divisor RB y RA entre la salida y masa alimenta la entrada negativa." loading="lazy" width="630" height="430"><figcaption><b class="n">Enunciado · noviembre de 2023</b>Es la estructura de Sallen-Key: dos $R$ en serie, un $C$ a masa, un $C$ de realimentación y ganancia fijada por $R_A$ y $R_B$.</figcaption></figure>
+<details class="paso" open><summary><span class="pn">0</span>La idea, desde cero</summary><div class="inner">
+<p>Hay dos condensadores, así que el denominador será un polinomio de segundo grado en $j\omega$. Con realimentación negativa $V^+=V^-$. El operacional con $R_A$ y $R_B$ es un no inversor de ganancia $K=1+\dfrac{R_B}{R_A}=\dfrac{R_A+R_B}{R_A}=2{,}9$, así que $V^+=\dfrac{V_o}{K}$. Escribe Kirchhoff en el nudo entre las dos $R$ (lo llamo A) y sustituye.</p></div></details>
+<details class="paso"><summary><span class="pn">1</span>Kirchhoff en el nudo A</summary><div class="inner">
+<p>No entra corriente en $V^+$. La corriente que llega por la primera $R$ se reparte entre la segunda $R$ y el condensador de realimentación:</p>
+<p>$\dfrac{V_i-V_A}{R}=\dfrac{V_A-V^+}{R}+\dfrac{V_A-V_o}{Z_C}$, con $Z_C=\dfrac1{j\omega C}$.</p></div></details>
+<details class="paso"><summary><span class="pn">2</span>Relación entre $V_A$ y $V^+$</summary><div class="inner">
+<p>La segunda $R$ y el condensador a masa son un divisor: $V^+=\dfrac{Z_C}{R+Z_C}V_A$, luego $V_A=(1+j\omega RC)\,V^+=(1+x)\dfrac{V_o}{K}$ con $x=j\omega RC$.</p></div></details>
+<details class="paso"><summary><span class="pn">3</span>Sustituir y despejar</summary><div class="inner">
+<p>Multiplica el nudo A por $R$: $V_i-V_A=V_A-V^++x\,(V_A-V_o)$, es decir, $V_i=(2+x)V_A-V^+-xV_o$. Sustituyendo $V_A$ y $V^+$:</p>
+<p>$V_i=\dfrac{(2+x)(1+x)-1}{K}V_o-xV_o=\dfrac{1+3x+x^2-Kx}{K}V_o$.</p></div></details>
+<details class="paso"><summary><span class="pn">4</span>Resultado en forma estándar</summary><div class="inner">
+<p>$G(j\omega)=\dfrac{K}{1+(3-K)\,x+x^2}$ con $x=j\omega RC$. Aquí $K=2{,}9$ y $RC=15{,}8\cdot10^3\cdot10^{-8}=1{,}58\cdot10^{-4}$ s. Entonces</p>
+<p>$G(j\omega)=\dfrac{2{,}9}{1+0{,}1\,(j\omega\,1{,}58\cdot10^{-4})+(j\omega\,1{,}58\cdot10^{-4})^2}$.</p></div></details>
+<details class="paso"><summary><span class="pn">5</span>Polos y factor de calidad</summary><div class="inner">
+<p>Compara con $1+\dfrac{x}{Q}+x^2$: la frecuencia natural es $\omega_0=\dfrac1{RC}=6329$ rad/s ($f_0=1007$ Hz) y $\dfrac1Q=3-K=0{,}1$, luego $Q=10$. Las raíces del denominador son complejas: $s=-316\pm j\,6321$ rad/s. Al tener parte real pequeña, el polo está casi sobre el eje imaginario y el circuito resuena.</p></div></details>
+<details class="paso"><summary><span class="pn">6</span>Bode</summary><div class="inner">
+<p>Asíntota baja: $K=2{,}9\to9{,}25$ dB, plana. En $\omega_0=6329$ rad/s empieza a caer $-40$ dB/dec. Como $Q=10$, hay un <b>pico de resonancia</b> en $\omega_0$ de valor $KQ=29$, es decir, $29{,}25$ dB (20 dB por encima de la asíntota). La fase baja de 0° a −180° y en $\omega_0$ vale −90°.</p></div></details>
+<figure class="fig"><p class="ft">Bode · noviembre de 2023, ejercicio 1</p>
+<div id="fig-x23a"></div>
+<p class="muted" style="font-size:13px;margin:4px 0 0">Línea discontinua: aproximación asintótica. Azul: módulo exacto, con el pico de 20 dB que sobresale de la asíntota.</p></figure>
+<div class="box trap"><h4>Ojo: la solución del aula virtual de este ejercicio tiene un error de signo</h4><p>La solución publicada llega a $1+j\omega RC\left(4+\dfrac{R_B}{R_A}\right)+(j\omega RC)^2$, con raíces reales de −1102 y −36 272 rad/s. Al pasar el término $-(R_A+R_B)\,j\omega RC$ al otro lado cambia su signo, y por eso aparece un $+$ donde debe ir un $-$. Comprobado de dos formas: resolviendo las ecuaciones del nudo con un programa, $|G(j\,6329)|=29$ (29,3 dB), y con la fórmula de aquí. Si el profesor te pide la solución oficial, pregúntale. Lo importante para el examen es el método.</p></div>
+<details class="resul"><summary>Resultado</summary><div class="inner"><p class="et">Solución</p><p>$G=\dfrac{K}{1+(3-K)x+x^2}$ con $K=2{,}9$, $x=j\omega\,1{,}58\cdot10^{-4}$. Pasa bajos de segundo orden con $\omega_0=6329$ rad/s, $Q=10$, ganancia 9,25 dB y pico de 29,25 dB.</p></div></details>
+</div>
+
+<div class="prob" id="x23b">
+<h3 class="ph">Ejercicio 2 · 2 puntos · red en T</h3>
+<div class="enun"><p class="et">Enunciado</p>
+<p>Calcula (a) la ganancia del circuito y (b) la tensión de salida teórica con entradas de 21 V y de 30 V. Datos: $R_1=R_5=3$ kΩ, $R_2=6$ kΩ, $R_3=8$ kΩ, $R_4=5$ kΩ, $\pm V_{cc}=\pm12$ V.</p></div>
+<figure class="slide nota"><img src="img/ex-n2.jpg" alt="Circuito: Vi entra por R1 a un nudo con R2 a masa, R3 hacia la salida y R5 hacia la entrada negativa. De la entrada negativa sale R4 hacia la salida. La entrada positiva está a masa." loading="lazy" width="500" height="360"><figcaption><b class="n">Enunciado · noviembre de 2023</b>Inversor con una red en T ($R_2$, $R_3$ y $R_5$) en lugar de una sola resistencia de realimentación.</figcaption></figure>
+<details class="paso"><summary><span class="pn">1</span>Idea</summary><div class="inner"><p>La entrada positiva está a masa, luego $V^-=0$ (masa virtual). Hay dos nudos con corrientes que calcular: el nudo A (entre $R_1$, $R_2$, $R_3$ y $R_5$) y la entrada negativa.</p></div></details>
+<details class="paso"><summary><span class="pn">2</span>Entrada negativa</summary><div class="inner"><p>Sin corriente al operacional, la que viene de A por $R_5$ sale por $R_4$ hacia la salida: $\dfrac{V_A}{R_5}+\dfrac{V_o}{R_4}=0\Rightarrow V_A=-\dfrac{R_5}{R_4}V_o=-0{,}6\,V_o$.</p></div></details>
+<details class="paso"><summary><span class="pn">3</span>Nudo A</summary><div class="inner"><p>$\dfrac{V_i-V_A}{R_1}=\dfrac{V_A}{R_2}+\dfrac{V_A-V_o}{R_3}+\dfrac{V_A}{R_5}$. Con $V_A=-0{,}6V_o$ y las resistencias en kΩ: $\dfrac{V_i}{3}=-0{,}6V_o\left(\dfrac13+\dfrac16+\dfrac18+\dfrac13\right)-\dfrac{V_o}{8}=-0{,}575V_o-0{,}125V_o=-0{,}7V_o$.</p>
+<p>Por tanto $\dfrac{V_o}{V_i}=-\dfrac{1/3}{0{,}7}=-0{,}476$.</p></div></details>
+<details class="paso"><summary><span class="pn">4</span>Con 21 V y 30 V</summary><div class="inner"><p>Con 21 V: $V_o=-0{,}476\cdot21=-10$ V, dentro del rango de ±12 V. Con 30 V saldría $-14{,}29$ V, pero el operacional <b>satura</b> y se queda en $-12$ V.</p></div></details>
+<details class="resul"><summary>Resultado</summary><div class="inner"><p class="et">Solución</p><p>Ganancia $-0{,}476$. Salida $-10$ V con 21 V y $-12$ V (saturación) con 30 V.</p></div></details>
+</div>
+
+<div class="prob" id="x23c">
+<h3 class="ph">Problema · 5,5 puntos · inversor con operacional real</h3>
+<div class="enun"><p class="et">Enunciado</p>
+<p>Un inversor de ganancia $-K$ recibe $V_i=A\sin\omega t$ con $A=1$ V. Datos del operacional: $SR=0{,}5$ V/µs, $\pm V_{SAT}=\pm14$ V, $f_0=1$ MHz (frecuencia de ganancia 1) e $I_{OS}=25$ mA. Se pide: (a) frecuencia máxima aplicable. (b) Con $A$ máxima sin saturar, limitación por velocidad. (c) Comparar $K=10$ y $K=1$ con la propiedad ganancia por ancho de banda constante, y decir qué limita. (d) Ganancia con $A_{AO}$ finita. (e) Rango con tolerancias del 5 %. (f) Con $K=10$, $R_1=1$ kΩ y $R_2=10$ kΩ, $R_L$ mínima sin distorsión.</p></div>
+<figure class="slide nota"><img src="img/ex-n3.jpg" alt="Inversor: Vi entra por R1 a la entrada negativa, R2 une la salida a la entrada negativa y la entrada positiva está a masa." loading="lazy" width="440" height="360"><figcaption><b class="n">Enunciado · noviembre de 2023</b>Inversor básico con $R_1$ y $R_2$; $K=R_2/R_1$.</figcaption></figure>
+<details class="paso"><summary><span class="pn">a</span>Frecuencia máxima con $A=1$ V</summary><div class="inner">
+<p>La salida es $V_o=-KA\sin\omega t$ y su pendiente máxima vale $KA\omega=2\pi f\,KA$. El operacional no puede cambiar más rápido que el $SR$: $2\pi f\,KA&lt;0{,}5\cdot10^6$ V/s, luego $f&lt;\dfrac{0{,}5\cdot10^6}{2\pi KA}$.</p>
+<p>$K=10$: $f_{max}=7{,}96$ kHz. $K=1$: $f_{max}=79{,}6$ kHz.</p></div></details>
+<details class="paso"><summary><span class="pn">b</span>Con la amplitud máxima sin saturar</summary><div class="inner">
+<p>La salida no puede pasar de 14 V, luego $KA=14$ V, es decir, $A=14/K$: $K=1\to14$ V, $K=10\to1{,}4$ V. Ahora $KA=14$ V en ambos casos y $f_{max}=\dfrac{0{,}5\cdot10^6}{2\pi\cdot14}=5{,}68$ kHz <b>para los dos</b>.</p></div></details>
+<details class="paso"><summary><span class="pn">c</span>Comparación con el producto ganancia por ancho de banda</summary><div class="inner">
+<p>En lazo cerrado el ancho de banda vale $f_c=\dfrac{f_0}K$: 100 kHz para $K=10$ y 1 MHz para $K=1$. Esos valores son <b>mucho mayores</b> que 7,96 kHz y 79,6 kHz. En ambos casos limita el <b>slew rate</b>, no el ancho de banda.</p></div></details>
+<details class="paso"><summary><span class="pn">d</span>Ganancia finita $A_{AO}$</summary><div class="inner">
+<p>$V_o=A_{AO}(V^+-V^-)=-A_{AO}V^-$. Kirchhoff en la entrada negativa (sin corriente al operacional): $\dfrac{V_i-V^-}{R_1}=\dfrac{V^--V_o}{R_2}$, luego $V^-=\dfrac{R_1R_2}{R_1+R_2}\left(\dfrac{V_i}{R_1}+\dfrac{V_o}{R_2}\right)$. Sustituyendo $V^-=-V_o/A_{AO}$ y despejando:</p>
+<p>$\dfrac{V_o}{V_i}=-\dfrac{R_2}{R_1+\dfrac{R_1+R_2}{A_{AO}}}$. Si $A_{AO}\to\infty$ vuelve a $-R_2/R_1$.</p></div></details>
+<details class="paso"><summary><span class="pn">e</span>Tolerancias del 5 %</summary><div class="inner">
+<p>La ganancia máxima en valor absoluto sale con $R_2$ al $+5\,\%$ y $R_1$ al $-5\,\%$: $\dfrac{1{,}05}{0{,}95}=1{,}105$ veces la ideal. La mínima, con $R_2$ al $-5\,\%$ y $R_1$ al $+5\,\%$: $\dfrac{0{,}95}{1{,}05}=0{,}905$. Así que la ganancia queda entre $0{,}905\,G_{ideal}$ y $1{,}105\,G_{ideal}$.</p></div></details>
+<details class="paso"><summary><span class="pn">f</span>Resistencia de carga mínima</summary><div class="inner">
+<p>La salida del operacional entrega la corriente de la carga y la de $R_2$ (que va a la masa virtual): $I_{os}=\dfrac{V_o}{R_L}+\dfrac{V_o}{R_2}&lt;25$ mA. Con el peor caso $V_o=14$ V: $\dfrac{14}{R_L}&lt;0{,}025-\dfrac{14}{10^4}=0{,}0236$ A, así que $R_L>\dfrac{14}{0{,}0236}=593$ Ω.</p></div></details>
+<details class="resul"><summary>Resultado</summary><div class="inner"><p class="et">Solución</p><p>a) 7,96 kHz y 79,6 kHz. b) 5,68 kHz en ambos. c) Limita el slew rate ($f_c$ de 100 kHz y 1 MHz). d) $-R_2/\left[R_1+(R_1+R_2)/A_{AO}\right]$. e) $0{,}905\,G$ a $1{,}105\,G$. f) $R_L>593$ Ω.</p></div></details>
+</div>
+</section>
+
+<section class="sec tema" style="--tc:var(--c6);--tcs:var(--c6s)">
+<div class="sh"><span class="badge" aria-hidden="true">24</span><div class="shx"><p class="kick">Examen · final del primer parcial, enero de 2024</p><h2 id="x24a">Fuente de corriente controlada por tensión (Howland)</h2></div></div>
+<div class="prob">
+<h3 class="ph">Ejercicio 1 · 2 puntos</h3>
+<div class="enun"><p class="et">Enunciado</p>
+<p>Halla la relación que deben cumplir las resistencias para que el circuito sea una fuente de corriente controlada por tensión $I_L=f(V_i)$ y la expresión de la corriente por la carga $Z_L$ cuando se cumple.</p></div>
+<figure class="slide nota"><img src="img/ex-e1.jpg" alt="Dos operacionales. El primero recibe Vi en la entrada positiva, tiene R de la salida a la entrada negativa y R2 desde la salida final hasta esa entrada. El segundo es un inversor con R de entrada y R de realimentación. La salida del segundo pasa por R1 a la carga ZL." loading="lazy" width="640" height="440"><figcaption><b class="n">Enunciado · enero de 2024</b>El segundo operacional es un inversor de ganancia $-1$. $R_1$ y $R_2$ cierran la realimentación hacia la carga.</figcaption></figure>
+<details class="paso" open><summary><span class="pn">0</span>La idea, desde cero</summary><div class="inner"><p>Una fuente de corriente entrega la misma corriente aunque cambie la carga. Eso significa que $I_L$ <b>no puede depender de $V_o$</b> (la tensión en la carga). El método es obtener $I_L$ en función de $V_i$ y $V_o$ y ver qué condición anula el término de $V_o$.</p></div></details>
+<details class="paso"><summary><span class="pn">1</span>El segundo operacional</summary><div class="inner"><p>Es un inversor con dos $R$ iguales: $V_{o2}=-V_{o1}$.</p></div></details>
+<details class="paso"><summary><span class="pn">2</span>Nudo de la entrada negativa del primero</summary><div class="inner"><p>$V^-=V^+=V_i$. Sin corriente en el operacional: $\dfrac{V_i-V_{o1}}{R}+\dfrac{V_i-V_o}{R_2}=0$, luego $V_{o1}=\dfrac{(R+R_2)V_i-RV_o}{R_2}$.</p></div></details>
+<details class="paso"><summary><span class="pn">3</span>Corriente por la carga</summary><div class="inner"><p>Al nudo de salida $B$ llegan dos corrientes: la de $R_2$, que vale $\dfrac{V_i-V_o}{R_2}$ porque $V^-=V_i$, y la de $R_1$, que vale $\dfrac{V_{o2}-V_o}{R_1}$. Su suma es la corriente de la carga: $I_L=\dfrac{V_i-V_o}{R_2}+\dfrac{V_{o2}-V_o}{R_1}$. Sustituye $V_{o2}=-V_{o1}$:</p>
+<p>$I_L=V_i\,\dfrac{R_1-R-R_2}{R_1R_2}+V_o\,\dfrac{R-R_1-R_2}{R_1R_2}$.</p></div></details>
+<details class="paso"><summary><span class="pn">4</span>Condición</summary><div class="inner"><p>Anulas el término de $V_o$: <b>$R=R_1+R_2$</b>. Entonces $I_L=V_i\,\dfrac{R_1-R_1-2R_2}{R_1R_2}=-\dfrac{2V_i}{R_1}$. El signo menos solo indica que la corriente circula de masa hacia el nudo $B$ a través de $Z_L$. En módulo, $I_L=\dfrac{2V_i}{R_1}$ y no depende de $Z_L$.</p></div></details>
+<div class="box trap"><h4>Ojo: la solución del aula virtual de este ejercicio plantea mal el nudo de salida</h4><p>La solución publicada escribe $i_{R_2}=i_{R_1}+i_L$, con las dos corrientes entrando al nudo $B$, y llega a $R=R_2-R_1$. Con las dos entrando, la ecuación correcta es $i_{R_2}+i_{R_1}=i_L$ y da $R=R_1+R_2$. Lo he comprobado simulando el circuito: con $R_1=1$ kΩ, $R_2=3$ kΩ y $R=4$ kΩ la corriente vale $-2$ mA para $V_i=1$ V con cargas de 100 Ω, 1 kΩ y 5 kΩ, mientras que con $R=2$ kΩ ($=R_2-R_1$) cambia con la carga (−1,25, −0,8 y −0,31 mA). La magnitud $2V_i/R_1$ coincide con la publicada.</p></div>
+<details class="resul"><summary>Resultado</summary><div class="inner"><p class="et">Solución</p><p>Condición $R=R_1+R_2$. Corriente $|I_L|=\dfrac{2V_i}{R_1}$, independiente de $Z_L$.</p></div></details>
+</div>
+
+<div class="prob" id="x24b">
+<h3 class="ph">Ejercicio 2 · 2,5 puntos · Sallen-Key de ganancia 2</h3>
+<div class="enun"><p class="et">Enunciado</p>
+<p>Obtén (a) $G(j\omega)$ y (b) el diagrama de Bode. Datos: $R=R_a=R_b=10$ kΩ, $C=10$ nF.</p></div>
+<figure class="slide nota"><img src="img/ex-e2.jpg" alt="Sallen-Key: dos R en serie, un C de realimentación desde la salida hasta el nudo entre las R y otro C a masa en la entrada positiva. Ra y Rb forman la ganancia." loading="lazy" width="580" height="410"><figcaption><b class="n">Enunciado · enero de 2024</b>Misma estructura que el ejercicio de noviembre de 2023, pero con $R_a=R_b$, es decir $K=2$.</figcaption></figure>
+<details class="paso"><summary><span class="pn">1</span>Aplica la fórmula del Sallen-Key</summary><div class="inner"><p>Es la misma topología que el ejercicio 1 de noviembre de 2023, y tienes la deducción allí: $G(j\omega)=\dfrac{K}{1+(3-K)x+x^2}$, con $x=j\omega RC$ y $K=1+\dfrac{R_b}{R_a}=2$.</p></div></details>
+<details class="paso"><summary><span class="pn">2</span>Números</summary><div class="inner"><p>$RC=10^4\cdot10^{-8}=10^{-4}$ s, así que $\omega_0=10^4$ rad/s. $G(j\omega)=\dfrac{2}{1+j\omega10^{-4}+(j\omega10^{-4})^2}$ y $Q=\dfrac1{3-K}=1$.</p></div></details>
+<details class="paso"><summary><span class="pn">3</span>Bode</summary><div class="inner"><p>Plano a $20\log2=6{,}02$ dB hasta $10^4$ rad/s y después $-40$ dB/dec. Con $Q=1$ hay un abultamiento pequeño: máximo de 7,27 dB hacia 7071 rad/s, y en $\omega_0$ el módulo vale exactamente 2 (6,02 dB). La fase baja de 0° a −180° y vale −90° en $\omega_0$.</p></div></details>
+<figure class="fig"><p class="ft">Bode · enero de 2024, ejercicio 2</p>
+<div id="fig-x24b"></div></figure>
+<details class="resul"><summary>Resultado</summary><div class="inner"><p class="et">Solución</p><p>$G=\dfrac{2}{1+j\omega10^{-4}+(j\omega10^{-4})^2}$. Pasa bajos de segundo orden, 6,02 dB, $\omega_0=10^4$ rad/s, $Q=1$.</p></div></details>
+</div>
+
+<div class="prob" id="x24c">
+<h3 class="ph">Problema · 5,5 puntos · parte I · comparador con zéneres</h3>
+<div class="enun"><p class="et">Enunciado</p>
+<p>Los diodos zéner son ideales con $V_{Z1}=10$ V y $V_{Z2}=5$ V. El operacional es ideal, pero con alimentación de ±15 V satura en $\pm13{,}6$ V. En $V_{ref}$ hay $-5$ V y $R=10$ kΩ. (a) Obtén la función de transferencia ideal. (b) Dibuja $V_i$ y $V_o$ para una triangular de 20 V de pico a pico, valor medio nulo y 100 Hz.</p></div>
+<figure class="slide nota"><img src="img/ex-e3.jpg" alt="El operacional recibe Vi en la entrada negativa. La salida pasa por dos zéneres en serie y opuestos hasta Vo. De Vo sale R hacia la entrada positiva, que también recibe Vref por otra R." loading="lazy" width="630" height="280"><figcaption><b class="n">Enunciado · enero de 2024</b>La salida del operacional pasa por dos zéneres en oposición hasta $V_o$, y de ahí vuelve a la entrada positiva (realimentación positiva).</figcaption></figure>
+<details class="paso" open><summary><span class="pn">0</span>La idea, desde cero</summary><div class="inner"><p>La realimentación es positiva, así que el operacional satura siempre (+13,6 V o −13,6 V). Los zéneres recortan esa salida: con dos en serie y en oposición, uno conduce como diodo normal (0 V, ideal) y el otro en ruptura (su $V_Z$). Cuál es cuál depende del signo. Después, igual que en un Schmitt, se mira cuándo se igualan $V^+$ y $V^-$ con cada nivel de salida.</p></div></details>
+<details class="paso"><summary><span class="pn">1</span>Nivel de salida con la salida del AO en +13,6 V</summary><div class="inner"><p>Conduce $D_{Z2}$ como diodo y $D_{Z1}$ en ruptura (10 V): $V_o=13{,}6-10=\mathbf{3{,}6}$ V.</p></div></details>
+<details class="paso"><summary><span class="pn">2</span>Nivel de salida con la salida del AO en −13,6 V</summary><div class="inner"><p>Ahora $D_{Z1}$ conduce y $D_{Z2}$ está en ruptura (5 V): $V_o=-13{,}6+5=\mathbf{-8{,}6}$ V.</p></div></details>
+<details class="paso"><summary><span class="pn">3</span>Tensión en la entrada positiva</summary><div class="inner"><p>Las dos $R$ iguales forman un divisor entre $V_{ref}$ y $V_o$: $V^+=\dfrac{V_{ref}+V_o}{2}$. La tensión diferencial es $V_d=V^+-V^-=\dfrac{V_{ref}+V_o}2-V_i$.</p></div></details>
+<details class="paso"><summary><span class="pn">4</span>Umbrales</summary><div class="inner"><p>Con $V_o=3{,}6$ V: $V_d=-0{,}7-V_i$. Pasa a la salida baja cuando $V_d&lt;0$, es decir, <b>$V_i>-0{,}7$ V</b>.</p>
+<p>Con $V_o=-8{,}6$ V: $V_d=-6{,}8-V_i$. Vuelve a la salida alta cuando $V_d>0$, es decir, <b>$V_i&lt;-6{,}8$ V</b>.</p>
+<p>Es un Schmitt <b>inversor</b>: salida 3,6 V para entradas bajas y −8,6 V para altas, con histéresis de 6,1 V.</p></div></details>
+<details class="paso"><summary><span class="pn">5</span>Triangular de 20 Vpp a 100 Hz</summary><div class="inner"><p>Periodo de 10 ms. La entrada va de −10 V a +10 V en 5 ms, con pendiente 4 V/ms. Empezando en −10 V (salida alta, 3,6 V) cruza −0,7 V en $t=\dfrac{9{,}3}{4}=2{,}325$ ms y la salida cae a −8,6 V. Al bajar desde +10 V (en $t=5$ ms) cruza −6,8 V en $t=5+\dfrac{16{,}8}{4}=9{,}2$ ms y la salida vuelve a 3,6 V.</p></div></details>
+<figure class="fig"><p class="ft">Entrada y salida durante un periodo · enero de 2024</p>
+<div id="fig-x24c"></div>
+<p class="muted" style="font-size:13px;margin:4px 0 0">Azul: entrada triangular. Rojo: salida cuadrada, con los cambios en 2,325 ms y 9,2 ms.</p></figure>
+<details class="resul"><summary>Resultado</summary><div class="inner"><p class="et">Solución</p><p>Salida de 3,6 V a −8,6 V con umbrales de −0,7 V (baja) y −6,8 V (sube). Schmitt inversor.</p></div></details>
+</div>
+
+<div class="prob" id="x24d">
+<h3 class="ph">Problema · parte II · amplificador diferencial y CMRR</h3>
+<div class="enun"><p class="et">Enunciado</p>
+<p>(a) Ganancia diferencial $A_d$ y de modo común $A_{cm}$. (b) Relación entre resistencias que minimiza $A_{cm}$. (c) Con $R_1=R_4=10$ kΩ y $R_2=R_3=1$ kΩ, el CMRR a 200 Hz es de 70 dB. Si se acopla un armónico de red de 200 Hz con 100 mV de amplitud, ¿qué interferencia aparece en la salida?</p></div>
+<figure class="slide nota"><img src="img/ex-e4.jpg" alt="Dos operacionales. El primero recibe V1 en la entrada positiva y tiene R1 a masa y R2 a su salida Vo1. El segundo recibe V2 en la entrada positiva, R3 de Vo1 a su entrada negativa y R4 a la salida Vo." loading="lazy" width="660" height="345"><figcaption><b class="n">Enunciado · enero de 2024</b>Amplificador de instrumentación de dos operacionales.</figcaption></figure>
+<details class="paso"><summary><span class="pn">1</span>Salida de cada operacional</summary><div class="inner"><p>AO1 es un no inversor: $V_{o1}=\left(1+\dfrac{R_2}{R_1}\right)V_1$. AO2 combina un no inversor para $V_2$ y un inversor para $V_{o1}$: $V_o=\left(1+\dfrac{R_4}{R_3}\right)V_2-\dfrac{R_4}{R_3}V_{o1}$ (superposición).</p></div></details>
+<details class="paso"><summary><span class="pn">2</span>(a) Ganancias</summary><div class="inner"><p>$V_o=\left(1+\dfrac{R_4}{R_3}\right)V_2-\dfrac{R_4}{R_3}\left(1+\dfrac{R_2}{R_1}\right)V_1$. Con $V_d=V_2-V_1$ y $V_c=\dfrac{V_1+V_2}2$: $A_d=\dfrac12\left[\left(1+\dfrac{R_4}{R_3}\right)+\dfrac{R_4}{R_3}\left(1+\dfrac{R_2}{R_1}\right)\right]$ y $A_{cm}=1-\dfrac{R_2R_4}{R_1R_3}$.</p></div></details>
+<details class="paso"><summary><span class="pn">3</span>(b) Minimizar $A_{cm}$</summary><div class="inner"><p>$A_{cm}=0$ cuando $R_2R_4=R_1R_3$. Entonces las dos ramas se cancelan para una entrada común a $V_1$ y $V_2$.</p></div></details>
+<details class="paso"><summary><span class="pn">4</span>(c) Interferencia</summary><div class="inner"><p>Con los valores dados, $R_4/R_3=10$ y $1+R_2/R_1=1{,}1$. $A_d=\dfrac12(11+11)=11$. Se cumple $R_2R_4=R_1R_3=10^7$, luego $A_{cm}=0$ en teoría. En la práctica el CMRR es de 70 dB $=3162$. $A_{cm}=\dfrac{A_d}{CMRR}=\dfrac{11}{3162}=3{,}48\cdot10^{-3}$. Con 100 mV de modo común: $V_{o,int}=3{,}48\cdot10^{-3}\cdot0{,}1=0{,}348$ mV.</p></div></details>
+<details class="resul"><summary>Resultado</summary><div class="inner"><p class="et">Solución</p><p>$A_d=11$, $A_{cm}=1-R_2R_4/(R_1R_3)=0$ con la condición $R_2R_4=R_1R_3$. Interferencia a la salida: 0,35 mV.</p></div></details>
+</div>
+</section>
+
+<section class="sec tema" style="--tc:var(--c6);--tcs:var(--c6s)">
+<div class="sh"><span class="badge" aria-hidden="true">J</span><div class="shx"><p class="kick">Examen · primer parcial de la convocatoria de julio, curso 23-24</p><h2 id="x24j">Comparador con histéresis: umbrales y ciclo</h2></div></div>
+<div class="prob">
+<h3 class="ph">Ejercicio 1 · 2 puntos</h3>
+<div class="enun"><p class="et">Enunciado</p>
+<p>Con el operacional alimentado a ±12 V, $R_1=18$ kΩ y $R_2=2{,}2$ kΩ: (a) relación entre $V_{sal}$ y $V_{ent}$; (b) represéntala; (c) ¿qué tipo de circuito es?</p></div>
+<figure class="slide nota"><img src="img/ex-j1.jpg" alt="Operacional con Vent en la entrada negativa. La salida vuelve por 18 kiloohmios a la entrada positiva, que además tiene 2,2 kiloohmios a masa." loading="lazy" width="520" height="432"><figcaption><b class="n">Enunciado · julio de 2024</b>$V_{ent}$ entra por la <b>entrada negativa</b>; la salida vuelve a la positiva por $R_1$, con $R_2$ a masa.</figcaption></figure>
+<details class="paso" open><summary><span class="pn">0</span>La idea, desde cero</summary><div class="inner"><p>La salida se conecta de vuelta a la entrada <b>positiva</b>: realimentación positiva. Entonces el operacional ya no es un amplificador, <b>satura</b>: su salida solo puede valer $+12$ V o $-12$ V. Lo que cambia con la señal es <i>cuándo</i> pasa de una a otra. Para saberlo se mira el signo de $u_d=u^+-u^-$, con $u^-=V_{ent}$.</p></div></details>
+<details class="paso"><summary><span class="pn">1</span>Tensión en la entrada positiva</summary><div class="inner"><p>$R_1$ y $R_2$ forman un divisor entre la salida y masa: $u^+=\dfrac{R_2}{R_1+R_2}V_{sal}=\dfrac{2{,}2}{20{,}2}V_{sal}=0{,}109\,V_{sal}$. Con la salida en $\pm12$ V, $u^+=\pm1{,}307$ V. Y $u_d=u^+-V_{ent}$.</p></div></details>
+<details class="paso"><summary><span class="pn">2</span>Si la salida está en $+12$ V</summary><div class="inner"><p>$u^+=+1{,}307$ V. Se mantiene en $+12$ V mientras $u_d>0$, esto es, $V_{ent}&lt;1{,}307$ V. Cuando la entrada <b>sube</b> por encima de $+1{,}307$ V, $u_d$ cambia de signo y la salida cae a $-12$ V.</p></div></details>
+<details class="paso"><summary><span class="pn">3</span>Si la salida está en $-12$ V</summary><div class="inner"><p>$u^+=-1{,}307$ V. Se mantiene en $-12$ V mientras $u_d&lt;0$, es decir, $V_{ent}>-1{,}307$ V. Cuando la entrada <b>baja</b> de $-1{,}307$ V, la salida sube a $+12$ V.</p></div></details>
+<details class="paso"><summary><span class="pn">4</span>Gráfica y nombre</summary><div class="inner"><p>Entre $-1{,}307$ V y $+1{,}307$ V la salida puede valer cualquiera de las dos: <b>depende de la historia</b>. Eso es histéresis, de ancho $2\cdot1{,}307=2{,}61$ V. Como la entrada va a la negativa y la salida se invierte, es un <b>comparador con histéresis (Schmitt trigger) inversor</b>.</p></div></details>
+<figure class="fig"><p class="ft">Característica de transferencia · julio de 2024, ejercicio 1</p>
+<div id="fig-xj1"></div>
+<p class="muted" style="font-size:13px;margin:4px 0 0">Azul continuo: la entrada sube. Rojo discontinuo: la entrada baja.</p></figure>
+<div class="box trap"><h4>Ojo: el umbral es $R_2/(R_1+R_2)\cdot V_{cc}$, no $R_1/(R_1+R_2)$</h4><p>El dibujo final de la solución del aula virtual rotula los umbrales con $R_1/(R_1+R_2)V_{cc}$. Con $R_1=18$ kΩ eso daría 10,7 V, y los cálculos numéricos de la propia solución dan 1,31 V, que es la cifra buena con $R_2/(R_1+R_2)$. Es una errata de rotulado.</p></div>
+<details class="resul"><summary>Resultado</summary><div class="inner"><p class="et">Solución</p><p>Schmitt inversor con salidas $\pm12$ V y umbrales $\pm1{,}307$ V (sube en $+1{,}307$ V, baja en $-1{,}307$ V). Histéresis de 2,61 V.</p></div></details>
+</div>
+
+<div class="prob" id="x24jb">
+<h3 class="ph">Ejercicio 2 · 2,5 puntos · dos Sallen-Key de ganancia 1 en cascada</h3>
+<div class="enun"><p class="et">Enunciado</p>
+<p>(a) Obtén $G(j\omega)=V_o/V_i$. (b) Dibuja el diagrama de Bode. Datos: $R_1=R_2=3{,}9$ kΩ, $R_3=R_4=9{,}1$ kΩ, $C_1=C_3=15$ nF, $C_2=100$ nF, $C_4=18$ nF.</p></div>
+<figure class="slide nota"><img src="img/ex-j2.jpg" alt="Dos etapas iguales en cascada. Cada una tiene dos resistencias en serie, un condensador de realimentación desde la salida al nudo entre ellas, un condensador a masa en la entrada positiva y el operacional como seguidor." loading="lazy" width="800" height="258"><figcaption><b class="n">Enunciado · julio de 2024</b>Cada etapa es un Sallen-Key con el operacional como seguidor (ganancia 1). $C_2$ y $C_4$ son los condensadores de realimentación.</figcaption></figure>
+<details class="paso" open><summary><span class="pn">0</span>La idea, desde cero</summary><div class="inner"><p>Hay dos etapas <b>iguales en forma</b> y la salida de la primera (un operacional, impedancia de salida casi cero) alimenta a la segunda sin cargarla. Por eso $G=G_1\cdot G_2$: calculas una etapa en general y la aplicas dos veces con números distintos. En Bode eso significa <b>sumar los dos diagramas en dB</b>.</p></div></details>
+<details class="paso"><summary><span class="pn">1</span>Una etapa, en general</summary><div class="inner"><p>Llama $A$ al nudo entre las dos resistencias ($R_a$ y $R_b$) y $V_o$ a la salida. El operacional es un seguidor: $V^+=V^-=V_o$. $C_a$ (a masa) y $R_b$ hacen un divisor: $V^+=\dfrac{V_A}{1+j\omega C_aR_b}$, luego $V_A=(1+j\omega C_aR_b)V_o$.</p>
+<p>La corriente por $R_b$ es la que carga $C_a$: vale $j\omega C_aV_o$ (porque $V^+=V_o$). La que sale por $C_b$ hacia la salida es $j\omega C_b(V_A-V_o)$. En el nudo $A$ entra por $R_a$ la suma de las dos:</p>
+<p>$\dfrac{V_i-V_A}{R_a}=j\omega C_b(V_A-V_o)+j\omega C_aV_o$. Sustituyes $V_A=(1+j\omega C_aR_b)V_o$ y ordenas:</p>
+<p>$\boxed{G=\dfrac{1}{1+j\omega\,C_a(R_a+R_b)+(j\omega)^2R_aR_bC_aC_b}}$</p>
+<p>Es un <b>pasa bajos de segundo orden con ganancia 1</b>, con $\omega_0=\dfrac{1}{\sqrt{R_aR_bC_aC_b}}$ y $Q=\dfrac{\sqrt{R_aR_bC_aC_b}}{C_a(R_a+R_b)}$.</p></div></details>
+<details class="paso"><summary><span class="pn">2</span>Primera etapa ($R_1,R_2,C_1,C_2$)</summary><div class="inner"><p>$C_1(R_1+R_2)=15\cdot10^{-9}\cdot7800=1{,}17\cdot10^{-4}$ y $R_1R_2C_1C_2=3900^2\cdot15\cdot10^{-9}\cdot100\cdot10^{-9}=2{,}28\cdot10^{-8}$.</p>
+<p>$G_1=\dfrac{1}{1+1{,}17\cdot10^{-4}\,j\omega+2{,}28\cdot10^{-8}(j\omega)^2}$, con $\omega_{01}=6620$ rad/s (1054 Hz) y $Q_1=1{,}29$. Los polos son complejos: $-2564\pm j\,6104$ rad/s.</p></div></details>
+<details class="paso"><summary><span class="pn">3</span>Segunda etapa ($R_3,R_4,C_3,C_4$)</summary><div class="inner"><p>$C_3(R_3+R_4)=15\cdot10^{-9}\cdot18200=2{,}73\cdot10^{-4}$ y $R_3R_4C_3C_4=9100^2\cdot15\cdot10^{-9}\cdot18\cdot10^{-9}=2{,}24\cdot10^{-8}$.</p>
+<p>$G_2=\dfrac{1}{1+2{,}73\cdot10^{-4}\,j\omega+2{,}24\cdot10^{-8}(j\omega)^2}$, con $\omega_{02}=6688$ rad/s (1064 Hz) y $Q_2=0{,}548$. Polos complejos: $-6105\pm j\,2730$ rad/s.</p></div></details>
+<details class="paso"><summary><span class="pn">4</span>(a) Resultado global</summary><div class="inner"><p>$G(j\omega)=G_1\,G_2$, producto de los dos cuadráticos anteriores. Cuarto orden, ganancia 1 (0 dB) en continua.</p></div></details>
+<details class="paso"><summary><span class="pn">5</span>(b) Bode</summary><div class="inner"><p>Las dos frecuencias propias están casi juntas ($\omega_{01}\approx\omega_{02}\approx6{,}65\cdot10^3$ rad/s), así que el diagrama asintótico es: <b>0 dB hasta unos 6650 rad/s y después $-80$ dB/dec</b> (dos pares de polos). La fase baja de 0° a $-360^\circ$ y vale $-180^\circ$ en esa zona.</p>
+<p>La curva real tiene pequeños detalles. La primera etapa ($Q=1{,}29$) suma $+2{,}2$ dB en $\omega_{01}$ y la segunda ($Q=0{,}548$) resta $5{,}2$ dB en $\omega_{02}$: se compensan y el conjunto queda <b>casi plano</b> hasta el codo (variación máxima de 0,05 dB), con $-3$ dB en $\omega\approx6650$ rad/s (1058 Hz). Algunos valores: $-0{,}35$ dB a 5000, $-14{,}3$ dB a $10^4$, $-38{,}2$ dB a $2\cdot10^4$ y $-94$ dB a $10^5$ rad/s.</p>
+<p>No es casualidad: unos $Q$ de 0,541 y 1,307 son los de un filtro <b>Butterworth de cuarto orden</b>, y los de este ejercicio (0,548 y 1,29) se les parecen. Es un <b>pasa bajos de cuarto orden casi Butterworth, con frecuencia de corte de unos 1,06 kHz</b>.</p></div></details>
+<figure class="fig"><p class="ft">Bode · julio de 2024, ejercicio 2</p>
+<div id="fig-xj2"></div>
+<p class="muted" style="font-size:13px;margin:4px 0 0">Azul: módulo exacto. Discontinuo: asíntotas ($-80$ dB/dec desde 6650 rad/s). Las líneas verticales marcan $\omega_{01}$ y $\omega_{02}$.</p></figure>
+<div class="box trap"><h4>Ojo: no confundas los dos condensadores de cada etapa</h4><p>En cada etapa el condensador <b>a masa</b> (el que está en la entrada positiva) va multiplicando la <b>suma</b> $R_a+R_b$ en el término de primer orden, y el de <b>realimentación</b> solo aparece en el producto del término de segundo orden. Si los intercambias, $Q$ sale mal (con $C_2=100$ nF a masa, $Q_1$ sería 0,19 en vez de 1,29). La solución del aula virtual da los polos de la segunda etapa redondeados ($-6148\pm j\,2691$ en vez de $-6105\pm j\,2730$): es redondeo de $2{,}24\cdot10^{-8}$ a $(1{,}49\cdot10^{-4})^2$, sin importancia.</p></div>
+<details class="resul"><summary>Resultado</summary><div class="inner"><p class="et">Solución</p><p>$G=\dfrac{1}{(1+1{,}17\cdot10^{-4}j\omega+2{,}28\cdot10^{-8}(j\omega)^2)(1+2{,}73\cdot10^{-4}j\omega+2{,}24\cdot10^{-8}(j\omega)^2)}$. Pasa bajos de cuarto orden, 0 dB, codo hacia 6650 rad/s y $-80$ dB/dec.</p></div></details>
+</div>
+
+<div class="prob" id="x24jc">
+<h3 class="ph">Problema · 5,5 puntos · parte I · amplificador diferencial y tensión de modo común</h3>
+<div class="enun"><p class="et">Enunciado</p>
+<p>Etapa de entrada de un sistema de adquisición, con un operacional alimentado a $\pm12$ V que soporta en sus entradas tensiones hasta las de alimentación y da en su salida valores próximos a ellas. Se prevé que $V_d$ entre las dos entradas no pase de 5 V. Datos: $R_1=R_3=1$ kΩ, $R_2=R_4=2$ kΩ. (a) ¿Qué $V_d$ máxima se puede introducir sin saturar la etapa? (b) ¿Cuál es la mayor tensión en modo común permitida? ¿Qué pasaría si se supera?</p></div>
+<figure class="slide nota"><img src="img/ex-j3.jpg" alt="Amplificador diferencial. V1 entra por R1 a la entrada negativa, con R2 de realimentación. V2 entra por R3 a la entrada positiva, con R4 a masa. Vd es la diferencia entre V1 y V2." loading="lazy" width="620" height="387"><figcaption><b class="n">Enunciado · julio de 2024</b>Amplificador diferencial clásico: $V_d=V_1-V_2$ según la flecha del enunciado.</figcaption></figure>
+<details class="paso" open><summary><span class="pn">0</span>La idea, desde cero</summary><div class="inner"><p>Un diferencial amplifica la <b>diferencia</b> $V_d$ de sus dos entradas y debería ignorar lo que tienen <b>en común</b>, $V_c=\dfrac{V_1+V_2}{2}$. Pero el operacional tiene límites físicos: su salida no puede pasar de $\pm12$ V (limita $V_d$), y sus entradas tampoco pueden salirse de $\pm12$ V (limita $V_c$). Son dos límites distintos.</p></div></details>
+<details class="paso"><summary><span class="pn">1</span>Salida del circuito</summary><div class="inner"><p>Con operacional ideal, $u^+=u^-$ y $u^+=\dfrac{R_4}{R_3+R_4}V_2=\dfrac23V_2$. En el nudo de la entrada negativa, $\dfrac{V_1-u^-}{R_1}=\dfrac{u^--V_o}{R_2}$, de donde $V_o=\left(1+\dfrac{R_2}{R_1}\right)u^--\dfrac{R_2}{R_1}V_1=3u^--2V_1$. Sustituyes $u^-=\tfrac23V_2$: <b>$V_o=2(V_2-V_1)=-2V_d$</b>. Ganancia diferencial 2.</p></div></details>
+<details class="paso"><summary><span class="pn">2</span>(a) Máxima $V_d$ sin saturar</summary><div class="inner"><p>La salida debe quedar dentro de $\pm12$ V: $|V_o|=2|V_d|&lt;12$, luego <b>$|V_d|&lt;6$ V</b>. Con los 5 V previstos hay margen.</p></div></details>
+<details class="paso"><summary><span class="pn">3</span>(b) Qué limita el modo común</summary><div class="inner"><p>Las entradas del operacional valen $u^+=u^-=\tfrac23V_2$, y deben estar entre $-12$ V y $+12$ V. Eso exige $|V_2|\le18$ V. Con $V_2=V_c-\dfrac{V_d}{2}$ y $|V_d|\le5$ V (el peor caso es el que más acerca $V_2$ al límite, es decir $V_d=-5$ V para el máximo y $V_d=+5$ V para el mínimo):</p>
+<p>$V_{c,max}=18-2{,}5=\mathbf{15{,}5}$ V y $V_{c,min}=-18+2{,}5=\mathbf{-15{,}5}$ V.</p>
+<p>Comprobación para $V_c=15{,}5$ V y $V_d=-5$ V: $V_1=13$ V, $V_2=18$ V, $u^+=12$ V (justo en el límite) y $V_o=2(18-13)=10$ V, dentro de $\pm12$ V. Un poco más y $u^+$ se pasa de 12 V.</p></div></details>
+<details class="paso"><summary><span class="pn">4</span>¿Qué pasa si se supera?</summary><div class="inner"><p>La entrada del operacional sale de su <b>rango de modo común de entrada</b>. Fuera de él deja de comportarse como un diferencial: la salida deja de seguir a $-2V_d$, se distorsiona o se queda saturada, y con tensiones muy grandes en las entradas el operacional puede dañarse.</p></div></details>
+<div class="box trap"><h4>Ojo: el rango de la solución del aula virtual no coincide con éste</h4><p>La solución publicada da $V_c\in[-9{,}5;\,15{,}5]$ V (y en el cuerpo del cálculo aparece también $-10{,}5$ V). Lo he recomprobado con un programa: con $V_c=-15{,}5$ V y $V_d=+5$ V, $u^+=-12$ V, justo en el límite, y con $V_c=-15{,}51$ V ya se sale; el rango simétrico $\pm15{,}5$ V es el que sigue del enunciado. Los 9,5 V salen si se exige además que $V_1\le12$ V ($12-2{,}5$), cosa que el enunciado no pide porque $V_1$ no es una entrada del operacional. Y el $-10{,}5$ V viene de usar 13 en vez de 18 en el límite inferior. El máximo, 15,5 V, sí coincide. Si el profesor corrige con su rango, conviene razonar en el examen que el límite lo ponen las entradas del operacional.</p></div>
+<details class="resul"><summary>Resultado</summary><div class="inner"><p class="et">Solución</p><p>$V_o=-2V_d$. (a) $|V_d|&lt;6$ V. (b) $|V_c|\le15{,}5$ V. Por encima, el operacional sale de su rango de entrada y la etapa deja de amplificar bien.</p></div></details>
+</div>
+
+<div class="prob" id="x24jd">
+<h3 class="ph">Problema · parte II · comparadores con ventana y diodos</h3>
+<div class="enun"><p class="et">Enunciado</p>
+<p>Componentes ideales. Obtén las ecuaciones de la salida y grafícala para una entrada senoidal de 20 V pico a pico ($V_{max}=10$ V).</p></div>
+<figure class="slide nota"><img src="img/ex-j4.jpg" alt="Dos operacionales sin realimentación. El de arriba tiene +3,5 V en la entrada positiva y Vent en la negativa. El de abajo tiene Vent en la positiva y +4,75 V en la negativa. Cada salida pasa por un diodo hasta un nudo común con 1 kiloohmio a masa, que es Vsal." loading="lazy" width="560" height="346"><figcaption><b class="n">Enunciado · julio de 2024</b>Alimentaciones $\pm12$ V. Sin realimentación, los dos operacionales son comparadores.</figcaption></figure>
+<details class="paso" open><summary><span class="pn">0</span>La idea, desde cero</summary><div class="inner"><p>Un operacional <b>sin realimentación</b> es un comparador: su salida es $+12$ V si $u^+>u^-$ y $-12$ V si no. Los diodos ideales solo dejan pasar tensión positiva hacia el nudo de salida, donde la resistencia a masa la convierte en $V_{sal}$. Así que $V_{sal}$ es el mayor de tres valores: la salida de cada comparador (si es positiva) y 0 V.</p></div></details>
+<details class="paso"><summary><span class="pn">1</span>Cada comparador</summary><div class="inner"><p>AO1 ($u^+=3{,}5$ V, $u^-=V_{ent}$): salida $+12$ V si $V_{ent}&lt;3{,}5$ V y $-12$ V si $V_{ent}>3{,}5$ V.</p>
+<p>AO2 ($u^+=V_{ent}$, $u^-=4{,}75$ V): salida $+12$ V si $V_{ent}>4{,}75$ V y $-12$ V si $V_{ent}&lt;4{,}75$ V.</p></div></details>
+<details class="paso"><summary><span class="pn">2</span>Tres zonas</summary><div class="inner"><p><b>$V_{ent}&lt;3{,}5$ V:</b> AO1 da $+12$ V (D1 conduce) y AO2 da $-12$ V (D2 cortado): $V_{sal}=12$ V.</p>
+<p><b>$3{,}5&lt;V_{ent}&lt;4{,}75$ V:</b> los dos dan $-12$ V, los dos diodos cortados y la resistencia deja el nudo en $V_{sal}=0$ V.</p>
+<p><b>$V_{ent}>4{,}75$ V:</b> AO1 da $-12$ V (D1 cortado) y AO2 da $+12$ V (D2 conduce): $V_{sal}=12$ V.</p>
+<p>Es un <b>detector de ventana invertido</b>: 12 V fuera de la ventana [3,5 V; 4,75 V] y 0 V dentro.</p></div></details>
+<details class="paso"><summary><span class="pn">3</span>La senoidal de 10 V de pico</summary><div class="inner"><p>$V_{ent}=10\sin\theta$. Los niveles se cruzan en $\theta=\arcsin0{,}35=20{,}49^\circ$ y $\theta=\arcsin0{,}475=28{,}36^\circ$, y por simetría en $151{,}64^\circ$ y $159{,}51^\circ$. Solo hay dos <b>muescas a 0 V</b> por periodo, de 7,87° cada una (un 4,4 % del periodo en total). El resto del tiempo, incluida toda la semionda negativa, $V_{sal}=12$ V.</p></div></details>
+<figure class="fig"><p class="ft">Entrada y salida durante un periodo · julio de 2024</p>
+<div id="fig-xj4"></div>
+<p class="muted" style="font-size:13px;margin:4px 0 0">Azul: $V_{ent}$. Rojo: $V_{sal}$. Discontinuas: los niveles de 3,5 V y 4,75 V.</p></figure>
+<details class="resul"><summary>Resultado</summary><div class="inner"><p class="et">Solución</p><p>$V_{sal}=12$ V si $V_{ent}&lt;3{,}5$ V o $V_{ent}>4{,}75$ V, y $V_{sal}=0$ V entre ambos. Con la senoidal, dos muescas a 0 V por periodo entre 20,5° y 28,4° y entre 151,6° y 159,5°.</p></div></details>
+</div>
+</section>
+
+<section class="sec tema" style="--tc:var(--c2);--tcs:var(--c2s)">
+<div class="sh"><span class="badge" aria-hidden="true">24</span><div class="shx"><p class="kick">Examen · primer parcial, curso 24-25 (octubre de 2024)</p><h2 id="x2425a">Comparador con zéner y realimentación positiva</h2></div></div>
+<div class="prob">
+<h3 class="ph">Ejercicio 1 · 2 puntos</h3>
+<div class="enun"><p class="et">Enunciado</p>
+<p>Con todos los componentes ideales, obtén la función que relaciona la salida $U_s$ con la entrada $U_e$ y represéntala. Datos: $\pm V_{cc}=\pm15$ V, $R_1=R_2=10$ kΩ, $V_z=5$ V.</p></div>
+<figure class="slide nota"><img src="img/ex-q1.jpg" alt="Operacional con la entrada negativa conectada a Ue. La entrada positiva está conectada a un nudo con un zéner a masa, R1 a masa y R2 hasta la salida Us." loading="lazy" width="370" height="205"><figcaption><b class="n">Enunciado · curso 24-25</b>$U_e$ entra por la entrada negativa. La positiva depende de la salida a través de $R_2$.</figcaption></figure>
+<details class="paso" open><summary><span class="pn">0</span>La idea, desde cero</summary><div class="inner"><p>Hay realimentación hacia la entrada positiva, así que el operacional <b>no es lineal</b>: la salida solo puede valer $+V_{cc}$ o $-V_{cc}$. Para saber cuál, miras el signo de $u_d=u^+-u^-=u^+-U_e$. Y $u^+$ vale una cosa u otra según cuál sea la salida, porque el zéner cambia de estado. Resuelves dos hipótesis, una por cada salida, y compruebas que son coherentes.</p></div></details>
+<details class="paso"><summary><span class="pn">1</span>Hipótesis 1: $U_s=+V_{cc}=+15$ V</summary><div class="inner"><p>$R_2$ conecta 15 V con el nudo, y en el nudo hay $R_1$ a masa y el zéner. Sin zéner, un divisor daría $u^+=\dfrac{R_1}{R_1+R_2}15=7{,}5$ V. Como 7,5 V supera los 5 V del zéner, <b>el zéner conduce en zona zéner y fija $u^+=5$ V</b>. Para que esta hipótesis se mantenga hace falta $u_d>0$, es decir, $5-U_e>0\Rightarrow U_e&lt;5$ V.</p></div></details>
+<details class="paso"><summary><span class="pn">2</span>Hipótesis 2: $U_s=-V_{cc}=-15$ V</summary><div class="inner"><p>Ahora $R_2$ lleva el nudo hacia −15 V. El zéner queda en directa y conduce como un diodo ideal: $u^+=0$ V. La salida sigue en −15 V si $u_d&lt;0$, esto es, $0-U_e&lt;0\Rightarrow U_e>0$. Si $U_e&lt;0$ la hipótesis es incoherente y la salida salta a +15 V.</p></div></details>
+<details class="paso"><summary><span class="pn">3</span>Juntar las dos</summary><div class="inner"><p>Si $U_e&lt;0$ solo es coherente la salida alta. Si $U_e>5$ V solo es coherente la baja. Entre 0 y 5 V valen las dos y <b>manda la historia</b>: la salida se queda como estaba. Es un comparador con histéresis (Schmitt) <b>inversor</b>, con umbrales 0 V (la salida sube al bajar la entrada) y 5 V (la salida baja al subir la entrada). Ancho de histéresis: 5 V.</p></div></details>
+<figure class="fig"><p class="ft">Característica de transferencia · curso 24-25</p>
+<div id="fig-q1"></div>
+<p class="muted" style="font-size:13px;margin:4px 0 0">Azul: la entrada sube. Rojo discontinuo: la entrada baja.</p></figure>
+<details class="resul"><summary>Resultado</summary><div class="inner"><p class="et">Solución</p><p>Schmitt inversor con salidas ±15 V y umbrales $U_e=0$ V y $U_e=5$ V. $u^+=5$ V con salida alta, $u^+=0$ V con salida baja.</p></div></details>
+</div>
+
+<div class="prob" id="x2425b">
+<h3 class="ph">Ejercicio 2 · 2,5 puntos · dos etapas inversoras con realimentación global</h3>
+<div class="enun"><p class="et">Enunciado</p>
+<p>(a) Obtén $G(j\omega)=V_o/V_i$. (b) Dibuja el diagrama de Bode. Datos: $R=1$ kΩ, $C_1=1$ µF, $C_2=10$ µF.</p></div>
+<figure class="slide nota"><img src="img/ex-q2.jpg" alt="Dos operacionales A1 y A2. A1 recibe vi por una R y tiene una R de realimentación; además una R en serie con C1 va desde la salida final hasta su entrada negativa. Una R une la salida de A1 con A2, que tiene R en paralelo con C2 como realimentación." loading="lazy" width="535" height="315"><figcaption><b class="n">Enunciado · curso 24-25</b>La salida final $V_o$ vuelve a la entrada del primer operacional por la rama $R+C_1$.</figcaption></figure>
+<details class="paso" open><summary><span class="pn">0</span>La idea, desde cero</summary><div class="inner"><p>Los dos operacionales tienen la entrada positiva a masa, así que las dos entradas negativas son <b>tierras virtuales</b> (0 V). Eso te da dos ecuaciones sencillas: una por nudo de entrada negativa. Llama $V_A$ a la salida del primero. Las impedancias que aparecen son $Z_{eq1}=R+\dfrac1{j\omega C_1}$ (rama $R$ y $C_1$ en serie) y $Z_{eq2}=\dfrac{R}{1+j\omega C_2R}$ ($R$ y $C_2$ en paralelo).</p></div></details>
+<details class="paso"><summary><span class="pn">1</span>Segunda etapa</summary><div class="inner"><p>Es un inversor con entrada $R$ y realimentación $Z_{eq2}$: $\dfrac{V_o}{V_A}=-\dfrac{Z_{eq2}}{R}=-\dfrac1{1+j\omega C_2R}$. Despeja $V_A=-V_o(1+j\omega C_2R)$.</p></div></details>
+<details class="paso"><summary><span class="pn">2</span>Nudo de entrada negativa del primero</summary><div class="inner"><p>Con $u^-=0$ llegan $V_i/R$ y las corrientes que salen hacia $V_A$ (por $R$) y hacia $V_o$ (por $Z_{eq1}$): $\dfrac{V_i}R=-\dfrac{V_A}R-\dfrac{V_o}{Z_{eq1}}$. Es decir, $V_i=-V_A-\dfrac{R}{Z_{eq1}}V_o$, con $\dfrac R{Z_{eq1}}=\dfrac{j\omega C_1R}{1+j\omega C_1R}$.</p></div></details>
+<details class="paso"><summary><span class="pn">3</span>Sustituir y simplificar</summary><div class="inner"><p>$V_i=V_o(1+j\omega C_2R)-\dfrac{j\omega C_1R}{1+j\omega C_1R}V_o$. Con denominador común, el numerador es $(1+j\omega C_2R)(1+j\omega C_1R)-j\omega C_1R=1+j\omega C_2R+(j\omega)^2C_1C_2R^2$. Entonces</p>
+<p>$G(j\omega)=\dfrac{1+j\omega C_1R}{1+j\omega C_2R+(j\omega)^2C_1C_2R^2}$.</p></div></details>
+<details class="paso"><summary><span class="pn">4</span>Números y polos</summary><div class="inner"><p>$C_1R=10^{-3}$ s, $C_2R=10^{-2}$ s, $C_1C_2R^2=10^{-5}$ s². Así $G=\dfrac{1+j\omega\,10^{-3}}{1+j\omega\,10^{-2}+(j\omega)^2\,10^{-5}}$. El denominador, con $s=j\omega$, se anula cuando $s^2+1000\,s+10^5=0$, y sus raíces son reales: $s=-112{,}7$ y $s=-887{,}3$ rad/s. Por tanto</p>
+<p>$G(j\omega)=\dfrac{1+j\omega/1000}{\left(1+j\omega/112{,}7\right)\left(1+j\omega/887{,}3\right)}$.</p></div></details>
+<details class="paso"><summary><span class="pn">5</span>Bode</summary><div class="inner"><p>Ganancia en continua $=1$ (0 dB). A 112,7 rad/s aparece el primer polo y baja a $-20$ dB/dec. A 887,3 rad/s el segundo polo lo lleva a $-40$ dB/dec. El cero de 1000 rad/s sube la pendiente en $+20$ dB/dec y el tramo final queda en $-20$ dB/dec. Como el polo de 887,3 y el cero de 1000 están casi juntos, la asíntota $-40$ dura muy poco. Exacto: −3,02 dB en 112,7 rad/s, −13,4 dB en 500 y −19,6 dB en 1000.</p></div></details>
+<figure class="fig"><p class="ft">Bode · curso 24-25, ejercicio 2</p>
+<div id="fig-q2"></div></figure>
+<details class="resul"><summary>Resultado</summary><div class="inner"><p class="et">Solución</p><p>$G=\dfrac{1+j\omega C_1R}{1+j\omega C_2R+(j\omega)^2C_1C_2R^2}$. Con los datos: polos en 112,7 y 887,3 rad/s, cero en 1000 rad/s, 0 dB en continua y pendiente final de $-20$ dB/dec.</p></div></details>
+</div>
+
+<div class="prob" id="x2425c">
+<h3 class="ph">Problema · 5,5 puntos · acondicionar un sensor de ±10 V a 0–5 V</h3>
+<div class="enun"><p class="et">Enunciado</p>
+<p>Un sensor (fuente de tensión real que en vacío da entre −10 y +10 V) se conecta a un microcontrolador que solo acepta de 0 a 5 V. Parte 1: (a) obtén $V_o$ en función de $V_i$; (b) dimensiona $V_{ref}$ para que $V_o$ no baje de 0 V con sensor negativo; (c) dimensiona las resistencias que faltan para adaptar la salida al rango del micro. Parte 2: modelo de amplificador de la figura 2: (d) $Z_i$, (e) $Z_o$, (f) $A_u$, (g) comenta si el circuito es un buen amplificador de tensión y propón una mejora. Datos: $R_1=R_2=12$ kΩ, $R_3=2$ kΩ.</p></div>
+<figure class="slide nota"><img src="img/ex-q3.jpg" alt="V_i entra por R1 al nudo positivo del operacional. En ese nudo hay R2 hasta una fuente Vref y R3 a masa. La entrada negativa tiene R4 hasta la salida y R5 a masa." loading="lazy" width="550" height="225"><figcaption><b class="n">Enunciado · curso 24-25</b>Un sumador resistivo ($R_1$, $R_2$, $R_3$) seguido de un amplificador no inversor ($R_4$, $R_5$).</figcaption></figure>
+<details class="paso" open><summary><span class="pn">0</span>La idea, desde cero</summary><div class="inner"><p>Un microcontrolador con convertidor de 0 a 5 V no admite tensiones negativas. Hay que hacer una <b>transformación lineal</b> $V_o=a\,V_i+b$ que lleve −10 V a 0 V y +10 V a 5 V. El término $b$ (un desplazamiento) lo da $V_{ref}$, y la pendiente $a$ la dan las resistencias.</p></div></details>
+<details class="paso"><summary><span class="pn">1</span>(a) $V_o$ en función de $V_i$</summary><div class="inner"><p>Operacional con realimentación negativa: $u^+=u^-$ y no entra corriente. La entrada negativa es un divisor de la salida: $u^-=\dfrac{R_5}{R_4+R_5}V_o$. Nudo de la entrada positiva: $\dfrac{V_i-u^+}{R_1}+\dfrac{V_{ref}-u^+}{R_2}=\dfrac{u^+}{R_3}$. Despejando,</p>
+<p>$u^+=\dfrac{V_i/R_1+V_{ref}/R_2}{1/R_1+1/R_2+1/R_3}$.</p>
+<p>Con $R_1=R_2=12$ kΩ y $R_3=2$ kΩ el denominador vale $\dfrac{8}{12\text{ k}\Omega}$, luego $u^+=\dfrac{V_i+V_{ref}}{8}$. La salida es $V_o=\dfrac{R_4+R_5}{R_5}u^+$:</p>
+<p>$V_o=\dfrac{R_4+R_5}{8R_5}\,(V_i+V_{ref})$.</p></div></details>
+<details class="paso"><summary><span class="pn">2</span>(b) $V_{ref}$</summary><div class="inner"><p>El peor caso es $V_i=-10$ V, que debe dar $V_o=0$: $-10+V_{ref}=0\Rightarrow V_{ref}=10$ V.</p></div></details>
+<details class="paso"><summary><span class="pn">3</span>(c) $R_4$ y $R_5$</summary><div class="inner"><p>Con $V_i=+10$ V debe salir 5 V: $5=\dfrac{R_4+R_5}{8R_5}\cdot20\Rightarrow\dfrac{R_4+R_5}{R_5}=2\Rightarrow R_4=R_5$. Por ejemplo, 10 kΩ las dos. Queda $V_o=\dfrac{V_i+10}{4}$. Comprobación: $-10\to0$ V, $0\to2{,}5$ V, $+10\to5$ V.</p></div></details>
+<figure class="fig"><p class="ft">Característica de entrada-salida · curso 24-25</p>
+<div id="fig-q3"></div></figure>
+<details class="paso"><summary><span class="pn">4</span>(d), (e), (f) Modelo de amplificador</summary><div class="inner"><p>Se pide mirar el circuito como un amplificador. La solución del aula virtual hace un equivalente de Thévenin del sensor y el sumador resistivo visto desde la entrada positiva: $V_{th}=\left[(R_s+R_1)\|R_2\|R_3\right]\left(\dfrac{V_s}{R_s+R_1}+\dfrac{V_{ref}}{R_2}\right)$ y $Z_{th}=(R_s+R_1)\|R_2\|R_3$. Lo que queda después es un <b>no inversor</b> de ganancia $1+\dfrac{R_4}{R_5}$. Un no inversor ideal tiene entrada infinita y salida igual a la del operacional, de modo que:</p>
+<p>$Z_i=\infty$, $Z_o=Z_{o,AO}\approx0$ y $A_u=1+\dfrac{R_4}{R_5}=2$.</p></div></details>
+<details class="paso"><summary><span class="pn">5</span>(g) Comentario y mejora</summary><div class="inner"><p>El amplificador cumple lo que se pide de un amplificador de tensión: entrada altísima, salida baja y ganancia fijada por las resistencias. El defecto es que $V_{th}$ <b>depende de $R_s$</b>, la resistencia del sensor, que no controlas (cambia con el sensor y la temperatura): $R_s$ se suma a $R_1$ en el divisor y la pendiente de $V_o$ cambia. La mejora es poner entre el sensor y $R_1$ un <b>seguidor de tensión</b>. Su entrada no carga al sensor, su salida es de baja impedancia y desaparece la dependencia: $V_{th}=(R_1\|R_2\|R_3)\left(\dfrac{V_s}{R_1}+\dfrac{V_{ref}}{R_2}\right)$.</p>
+<p>Ojo con la palabra «entrada»: si miras desde $V_i$ hacia la red de resistencias, la resistencia que ve el sensor es $R_1+(R_2\|R_3)=12+1{,}71=13{,}7$ kΩ, no infinita (con $V_{ref}$ ideal, una fuente de tensión ideal equivale a un cortocircuito). Esa es la razón de que $R_s$ importe y de que el seguidor ayude.</p></div></details>
+<details class="resul"><summary>Resultado</summary><div class="inner"><p class="et">Solución</p><p>(a) $V_o=\dfrac{R_4+R_5}{8R_5}(V_i+V_{ref})$. (b) $V_{ref}=10$ V. (c) $R_4=R_5$, y entonces $V_o=\dfrac{V_i+10}{4}$. (d–f) $Z_i=\infty$, $Z_o\approx0$, $A_u=2$ (para el no inversor). (g) Buen amplificador salvo por la dependencia de $R_s$; se arregla con un seguidor tras el sensor.</p></div></details>
+</div>
+</section>
+
+<section class="sec tema" style="--tc:var(--c4);--tcs:var(--c4s)">
+<div class="sh"><span class="badge" aria-hidden="true">21</span><div class="shx"><p class="kick">Examen · primer parcial, noviembre de 2021</p><h2 id="x21a">Derivador, no inversor con condensador y Bode con cinco factores</h2></div></div>
+<div class="prob">
+<h3 class="ph">Ejercicio 1 · 3,5 puntos</h3>
+<div class="enun"><p class="et">Enunciado</p>
+<p>Operacionales ideales. (a) Obtén $G(j\omega)=v_s/v_e$. (b) Dibuja el Bode acotando todos los valores y calcula la ganancia exacta a $\omega=10^4$ rad/s en dos casos: b.1) $C_5=1$ nF, b.2) $C_5=2$ µF. Datos: $R_1=R_4=1$ kΩ, $R_2=R_3=R_5=10$ kΩ, $C_1=100$ nF.</p></div>
+<figure class="slide nota"><img src="img/ex-a1.jpg" alt="Primer operacional inversor con R1 y C1 en serie a la entrada y R2 de realimentación. Su salida va por R3 a la entrada positiva de un segundo operacional. En su entrada negativa hay R4 a masa y R5 en paralelo con C5 hacia la salida." loading="lazy" width="550" height="225"><figcaption><b class="n">Enunciado · noviembre de 2021</b>Etapa inversora con $R_1$ y $C_1$ en serie, y etapa no inversora con $R_5\|C_5$ en la realimentación.</figcaption></figure>
+<details class="paso" open><summary><span class="pn">0</span>La idea, desde cero</summary><div class="inner"><p>Son dos etapas en cascada y se resuelven por separado. La salida del primero ($u_1$) es la entrada del segundo, y el segundo operacional no carga al primero (su entrada es infinita), así que $G=\dfrac{u_1}{v_e}\cdot\dfrac{v_s}{u_1}$. Cada etapa es una de las que ya conoces: inversor y no inversor, pero con impedancias en lugar de resistencias.</p></div></details>
+<details class="paso"><summary><span class="pn">1</span>Primera etapa: inversor con $Z_1=R_1+\dfrac1{j\omega C_1}$</summary><div class="inner"><p>$\dfrac{u_1}{v_e}=-\dfrac{R_2}{Z_1}=-\dfrac{j\omega C_1R_2}{1+j\omega C_1R_1}$. Con los datos, $C_1R_2=10^{-3}$ s y $C_1R_1=10^{-4}$ s: $\dfrac{u_1}{v_e}=-\dfrac{j\omega\,10^{-3}}{1+j\omega\,10^{-4}}$. Es un derivador con un polo a $10^4$ rad/s (a altas frecuencias se queda en $-R_2/R_1=-10$). El signo menos es solo un giro de fase de 180° y no afecta al módulo.</p></div></details>
+<details class="paso"><summary><span class="pn">2</span>Segunda etapa: no inversor con $Z_5=R_5\|C_5$</summary><div class="inner"><p>$\dfrac{v_s}{u_1}=1+\dfrac{Z_5}{R_4}$ con $Z_5=\dfrac{R_5}{1+j\omega C_5R_5}$. Operando, $\dfrac{v_s}{u_1}=\dfrac{R_4+R_5}{R_4}\cdot\dfrac{1+j\omega C_5\,(R_4\|R_5)}{1+j\omega C_5R_5}=11\,\dfrac{1+j\omega C_5\,(R_4\|R_5)}{1+j\omega C_5R_5}$, con $R_4\|R_5=909$ Ω. A baja frecuencia el condensador está abierto y vale 11; a alta frecuencia lo cortocircuita y vale 1.</p></div></details>
+<details class="paso"><summary><span class="pn">3</span>Función total</summary><div class="inner"><p>$G(j\omega)=-11\,\dfrac{1+j\omega C_5(R_4\|R_5)}{1+j\omega C_5R_5}\cdot\dfrac{j\omega\,10^{-3}}{1+j\omega\,10^{-4}}$. Escrita con $K$ y $\omega$ delante: $K=11\cdot10^{-3}=0{,}011$ con un cero en el origen.</p></div></details>
+<details class="paso"><summary><span class="pn">4</span>(b.1) $C_5=1$ nF</summary><div class="inner"><p>Cero en $\dfrac1{C_5(R_4\|R_5)}=1{,}1\cdot10^6$ rad/s y polo en $\dfrac1{C_5R_5}=10^5$ rad/s; el polo de la primera etapa está en $10^4$ rad/s. El cero del origen da $+20$ dB/dec, y a $\omega=1$ rad/s el módulo vale $20\log0{,}011=-39{,}2$ dB. Corta 0 dB en $\omega=91$ rad/s. Pendientes: $+20$ hasta $10^4$ rad/s, <b>plano</b> de $10^4$ a $10^5$ (el polo cancela el cero del origen), $-20$ de $10^5$ a $1{,}1\cdot10^6$ y plano después. En $\omega=10^4$: <b>37,77 dB</b> exactos (la asíntota daría 40,83 dB, 3 dB más, porque estás en un polo). Alta frecuencia: <b>20 dB</b>, es decir $11\cdot\dfrac1{11}\cdot10=10$.</p></div></details>
+<details class="paso"><summary><span class="pn">5</span>(b.2) $C_5=2$ µF</summary><div class="inner"><p>$C_5R_5=2\cdot10^{-2}$ s (polo a 50 rad/s) y $C_5(R_4\|R_5)=1{,}82\cdot10^{-3}$ s (cero a 550 rad/s). Entre 0 y 50 rad/s sube $+20$ dB/dec, de 50 a 550 es plano (polo contra cero del origen), de 550 a $10^4$ sube $+20$ dB/dec otra vez, y por encima de $10^4$ rad/s es plano. En $\omega=10^4$ el módulo exacto es <b>17,0 dB</b> y a alta frecuencia otra vez 20 dB.</p></div></details>
+<figure class="fig"><p class="ft">Bode · noviembre de 2021, ejercicio 1</p>
+<div id="fig-a1"></div>
+<p class="muted" style="font-size:13px;margin:4px 0 0">Azul: $C_5=1$ nF. Rojo: $C_5=2$ µF. En ambos casos acaba en 20 dB.</p></figure>
+<div class="box trap"><h4>Ojo: la solución del aula redondea y se desvía 0,83 dB</h4><p>La solución publicada reescribe el cero de la segunda etapa como si $R_4\|R_5$ fuera $1$ kΩ (cero a $10^6$ en vez de $1{,}1\cdot10^6$ rad/s, y a 500 en vez de 550 rad/s) y de ahí saca una ganancia a alta frecuencia de 11 (20,83 dB). Con el valor exacto la ganancia es 10, es decir 20 dB, porque la segunda etapa vale 1 a alta frecuencia y la primera $-R_2/R_1=-10$. Lo he comprobado resolviendo la función completa con un programa.</p></div>
+<details class="resul"><summary>Resultado</summary><div class="inner"><p class="et">Solución</p><p>$G=-11\dfrac{1+j\omega C_5(R_4\|R_5)}{1+j\omega C_5R_5}\cdot\dfrac{j\omega\,10^{-3}}{1+j\omega\,10^{-4}}$. A $10^4$ rad/s: 37,77 dB con $C_5=1$ nF y 17,0 dB con $C_5=2$ µF. Alta frecuencia: 20 dB.</p></div></details>
+</div>
+
+<div class="prob" id="x21b">
+<h3 class="ph">Ejercicio 2 · 3,5 puntos · acoplamiento de impedancias</h3>
+<div class="enun"><p class="et">Enunciado</p>
+<p>Dos etapas inversoras en cascada con un sensor de 0–50 mV y resistencia de salida $R_g$ variable entre 0 y 50 Ω. (a) Modelo de cuadripolo ($Z_{in}$, $Z_o$, $G_i$) de cada etapa. (b) Ganancia $V_L/V_g$. (c) Error máximo en la salida por el acoplamiento. (d) El 741C da como mucho 25 mA: valor mínimo de $R_L$. Datos: $R_1=R_3=1$ kΩ, $R_2=R_4=10$ kΩ.</p></div>
+<figure class="slide nota"><img src="img/ex-a2.jpg" alt="Una fuente de 0 a 50 mV con una resistencia de salida variable de 0 a 50 ohmios, R1 de 1 kilohmio, un inversor con R2 de 10 kilohmios, R3 de 1 kilohmio, otro inversor con R4 de 10 kilohmios y la carga RL." loading="lazy" width="470" height="160"><figcaption><b class="n">Enunciado · noviembre de 2021</b>Dos inversores de ganancia $-10$ en cascada.</figcaption></figure>
+<details class="paso" open><summary><span class="pn">0</span>La idea, desde cero</summary><div class="inner"><p>Cada etapa se modela como un cuadripolo: una resistencia de entrada $Z_{in}$, una fuente $G_i\cdot V_{in}$ y una resistencia de salida $Z_o$. Al acoplar etapas, la tensión se reparte entre la salida de una y la entrada de la siguiente (divisor de tensión), y eso hace perder ganancia si la salida no es casi cero o la entrada no es muy grande.</p></div></details>
+<details class="paso"><summary><span class="pn">1</span>(a) Cada etapa</summary><div class="inner"><p>Un inversor ideal tiene $G_i=-\dfrac{R_f}{R_{in}}$, $Z_{in}=R_{in}$ (la resistencia de entrada, porque la entrada negativa es una tierra virtual) y $Z_o=0$ Ω. Etapa 1: $G_1=-10$, $Z_{in1}=R_1=1$ kΩ, $Z_{o1}=0$. Etapa 2: $G_2=-10$, $Z_{in2}=R_3=1$ kΩ, $Z_{o2}=0$.</p></div></details>
+<details class="paso"><summary><span class="pn">2</span>(b) Ganancia total</summary><div class="inner"><p>Como $Z_{o1}=0$, entre las dos etapas no se pierde nada. Solo hay divisor a la entrada: $u_1=V_g\dfrac{Z_{in1}}{R_g+Z_{in1}}$. Así</p>
+<p>$\dfrac{V_L}{V_g}=G_2\,G_1\,\dfrac{Z_{in1}}{R_g+Z_{in1}}$.</p></div></details>
+<details class="paso"><summary><span class="pn">3</span>(c) Error máximo</summary><div class="inner"><p>Ideal ($R_g=0$): $G=(-10)(-10)=100$. Con $R_g=50$ Ω: $G=100\cdot\dfrac{1000}{1050}=95{,}24$. Error máximo: $\dfrac{|95{,}24-100|}{100}=4{,}76\ \%$, de menos ganancia.</p></div></details>
+<details class="paso"><summary><span class="pn">4</span>(d) $R_L$ mínima</summary><div class="inner"><p>La tensión de salida máxima es $50\text{ mV}\cdot100=5$ V. El operacional entrega como mucho 25 mA, luego $I=\dfrac{5}{R_L}&lt;25$ mA $\Rightarrow R_L>200$ Ω. (Con $R_g=50$ Ω la salida máxima es 4,76 V y bastaría 190 Ω; 200 Ω es el valor seguro.)</p></div></details>
+<details class="resul"><summary>Resultado</summary><div class="inner"><p class="et">Solución</p><p>$G_i=-10$, $Z_{in}=1$ kΩ, $Z_o=0$ para ambas etapas. $V_L/V_g=100\dfrac{Z_{in1}}{R_g+Z_{in1}}$. Error máximo 4,76 %. $R_L>200$ Ω.</p></div></details>
+</div>
+
+<div class="prob" id="x21c">
+<h3 class="ph">Ejercicio 3 · 3 puntos · slew rate</h3>
+<div class="enun"><p class="et">Enunciado</p>
+<p>Inversor con $|G_1|=1$ o $|G_2|=10$ y señal senoidal de valor medio nulo. Datos: slew rate $0{,}5$ V/µs, $\pm V_{cc}=\pm14$ V. (a) Con 1 V de amplitud de entrada, la frecuencia máxima con cada ganancia. (b) Si la amplitud de entrada es la máxima sin saturar, la frecuencia máxima con cada ganancia.</p></div>
+<figure class="slide nota"><img src="img/ex-a3.jpg" alt="Inversor con R1 a la entrada, R2 de realimentación y salida Us." loading="lazy" width="370" height="150"><figcaption><b class="n">Enunciado · noviembre de 2021</b>Amplificador inversor con $|G|=R_2/R_1$.</figcaption></figure>
+<details class="paso" open><summary><span class="pn">0</span>La idea, desde cero</summary><div class="inner"><p>La salida $|G|A\sin\omega t$ no puede cambiar más deprisa que el slew rate (SR). Su pendiente máxima es $|G|A\omega=|G|A\,2\pi f$, así que $f&lt;\dfrac{SR}{2\pi|G|A}$. La amplitud <b>de salida</b> $A_s=|G|A$ es lo que manda.</p></div></details>
+<details class="paso"><summary><span class="pn">1</span>(a) $A=1$ V</summary><div class="inner"><p>$SR=0{,}5\cdot10^6$ V/s. $|G|=1$: $f&lt;\dfrac{0{,}5\cdot10^6}{2\pi\cdot1}=79{,}6$ kHz. $|G|=10$: $f&lt;\dfrac{0{,}5\cdot10^6}{2\pi\cdot10}=7{,}96$ kHz.</p></div></details>
+<details class="paso"><summary><span class="pn">2</span>(b) Amplitud máxima sin saturar</summary><div class="inner"><p>La salida no puede pasar de 14 V: $A=14$ V con $|G|=1$ y $A=1{,}4$ V con $|G|=10$. En los dos casos la amplitud de salida es 14 V: $f&lt;\dfrac{0{,}5\cdot10^6}{2\pi\cdot14}=5{,}68$ kHz para ambas ganancias.</p></div></details>
+<details class="resul"><summary>Resultado</summary><div class="inner"><p class="et">Solución</p><p>(a) 79,6 kHz con $|G|=1$ y 7,96 kHz con $|G|=10$. (b) 5,68 kHz con las dos.</p></div></details>
+</div>
+</section>
+
+<section class="sec tema" style="--tc:var(--c6);--tcs:var(--c6s)">
+<div class="sh"><span class="badge" aria-hidden="true">T</span><div class="shx"><p class="kick">Problema del aula virtual · entrega 02</p><h2 id="xtemp">Termómetro con LM35: etapas, ganancia, umbral e histéresis</h2></div></div>
+<div class="prob">
+<h3 class="ph">Problema · 5,5 puntos · parte I: Schmitt con referencia</h3>
+<div class="enun"><p class="et">Enunciado</p>
+<p>(a) Obtén $V_{out}$ en función de $V_2$ con $V_{ref}$ constante. (b) Represéntala.</p></div>
+<figure class="slide nota"><img src="img/ex-t1.jpg" alt="Operacional con V2 en la entrada negativa. La entrada positiva está unida a Vref por R3 y a la salida por R4." loading="lazy" width="315" height="140"><figcaption><b class="n">Enunciado · parte I</b>$V_{ref}$ y la salida se mezclan en la entrada positiva con $R_3$ y $R_4$.</figcaption></figure>
+<details class="paso" open><summary><span class="pn">0</span>La idea, desde cero</summary><div class="inner"><p>Realimentación a la entrada positiva: operacional no lineal, la salida es $+V_{cc}$ o $-V_{cc}$. Se escribe $u^+$ en función de la salida, se compara con $u^-=V_2$ y se mira el signo de $u_d=u^+-V_2$.</p></div></details>
+<details class="paso"><summary><span class="pn">1</span>$u^+$ en función de $V_{out}$</summary><div class="inner"><p>Por $R_3$ y $R_4$ circula una corriente $I=\dfrac{V_{ref}-V_{out}}{R_3+R_4}$ (el operacional no consume), y $u^+=V_{ref}-R_3I$. Operando,</p>
+<p>$u^+=\dfrac{R_4}{R_3+R_4}V_{ref}+\dfrac{R_3}{R_3+R_4}V_{out}$.</p></div></details>
+<details class="paso"><summary><span class="pn">2</span>Dos hipótesis</summary><div class="inner"><p><b>Salida alta</b> ($V_{out}=+V_{cc}$): se mantiene si $u_d>0$, es decir, $V_2&lt;\dfrac{R_4V_{ref}+R_3V_{cc}}{R_3+R_4}=V_H$. <b>Salida baja</b> ($V_{out}=-V_{cc}$): se mantiene si $V_2>\dfrac{R_4V_{ref}-R_3V_{cc}}{R_3+R_4}=V_L$. Entre $V_L$ y $V_H$ hay dos estados posibles y manda la historia: es un <b>Schmitt inversor</b> (la salida es alta cuando $V_2$ es baja).</p></div></details>
+<details class="paso"><summary><span class="pn">3</span>(b) Gráfica</summary><div class="inner"><p>Ciclo centrado en $\dfrac{R_4}{R_3+R_4}V_{ref}$ y con semiancho $\dfrac{R_3}{R_3+R_4}V_{cc}$. Subiendo $V_2$ la salida cae a $-V_{cc}$ en $V_H$; bajando, vuelve a $+V_{cc}$ en $V_L$. Ancho total: $\dfrac{2R_3}{R_3+R_4}V_{cc}$.</p></div></details>
+<details class="resul"><summary>Resultado</summary><div class="inner"><p class="et">Solución</p><p>$V_{out}=+V_{cc}$ si $V_2&lt;V_H$ y $-V_{cc}$ si $V_2>V_L$, con $V_{H,L}=\dfrac{R_4V_{ref}\pm R_3V_{cc}}{R_3+R_4}$.</p></div></details>
+</div>
+
+<div class="prob" id="xtempb">
+<h3 class="ph">Parte II · del LM35 al comparador</h3>
+<div class="enun"><p class="et">Enunciado</p>
+<p>Un LM35 da $10$ mV/°C. (a) Función de cada etapa. (b) Ajusta la ganancia para que $V_2$ vaya de 0 a 3 V cuando la temperatura va de 0 a 30 °C. (c) $V_{ref}$ para que la salida conmute a 10 °C. (d) Rediseña la última etapa con una histéresis de ±2 °C usando el circuito de la parte I. (e) Cambios en la segunda etapa para medir de 35 a 42 °C con $V_2$ entre 0 y 2 V, y $V_{ref}$ de la última etapa para que conmute a 37 °C. Datos: $V_{cc}=10$ V.</p></div>
+<figure class="slide nota"><img src="img/ex-t2.jpg" alt="Fuente LM35 que alimenta un seguidor, luego un no inversor con R1 a masa y R2 de realimentación, y un tercer operacional comparador con Vref." loading="lazy" width="615" height="200"><figcaption><b class="n">Enunciado · parte II</b>Seguidor, no inversor y comparador en cascada.</figcaption></figure>
+<details class="paso"><summary><span class="pn">1</span>(a) Etapas</summary><div class="inner"><p>AO1 es un <b>seguidor</b> (adaptador de impedancia): $V_1=V_s=10\text{ mV/°C}\cdot T$. AO2 es un <b>no inversor</b>: $V_2=\left(1+\dfrac{R_2}{R_1}\right)V_1$. AO3 es un <b>comparador</b> con $u^+=V_{ref}$ y $u^-=V_2$: $V_{out}=+V_{cc}$ si $V_2&lt;V_{ref}$ y $-V_{cc}$ si $V_2>V_{ref}$.</p></div></details>
+<details class="paso"><summary><span class="pn">2</span>(b) Ganancia</summary><div class="inner"><p>A 30 °C, $V_1=300$ mV y se quiere $V_2=3$ V: $1+\dfrac{R_2}{R_1}=10\Rightarrow R_2=9R_1$. A 0 °C, $V_2=0$ V (se cumple solo).</p></div></details>
+<details class="paso"><summary><span class="pn">3</span>(c) $V_{ref}$ a 10 °C</summary><div class="inner"><p>A 10 °C, $V_1=100$ mV y $V_2=10\cdot0{,}1=1$ V. Para que el comparador conmute ahí, $V_{ref}=1$ V.</p></div></details>
+<details class="paso"><summary><span class="pn">4</span>(d) Histéresis de ±2 °C</summary><div class="inner"><p>La etapa 3 pasa a ser el Schmitt de la parte I, centrado en $V_2=1$ V (10 °C). ±2 °C equivalen a $\pm20$ mV en $V_1$ y a $\pm0{,}2$ V en $V_2$, así que los umbrales son $V_2=0{,}8$ V (8 °C) y $1{,}2$ V (12 °C). Semiancho: $\dfrac{R_3}{R_3+R_4}V_{cc}=0{,}2\Rightarrow\dfrac{R_3}{R_3+R_4}=0{,}02\Rightarrow R_4=49R_3$. Centro: $\dfrac{R_4}{R_3+R_4}V_{ref}=1\Rightarrow V_{ref}=\dfrac{50}{49}=1{,}02$ V.</p></div></details>
+<figure class="fig"><p class="ft">Salida frente a temperatura · histéresis de ±2 °C</p>
+<div id="fig-t1"></div>
+<p class="muted" style="font-size:13px;margin:4px 0 0">Azul: la temperatura sube (conmuta a 12 °C). Rojo discontinuo: baja (conmuta a 8 °C).</p></figure>
+<details class="paso"><summary><span class="pn">5</span>(e) Termómetro clínico, 35–42 °C</summary><div class="inner"><p>Hay que restar 350 mV (la salida a 35 °C) y amplificar el resto: a 42 °C, $V_1=420$ mV y $V_1-0{,}35=70$ mV deben dar 2 V, luego la ganancia es $K=\dfrac{2}{0{,}07}=28{,}57$. La segunda etapa pasa a ser un <b>amplificador diferencial</b>: $V_2=\dfrac{R_3}{R_1}(V_A-V_B)$ con $V_A=V_1$, $V_B=350$ mV y $\dfrac{R_3}{R_1}=28{,}57$.</p>
+<p>Fiebre a 37 °C: $V_1=370$ mV, $V_2=28{,}57\,(0{,}37-0{,}35)=0{,}571$ V, así que <b>$V_{ref}=0{,}571$ V</b> (571 mV). Por debajo de 37 °C la salida es $+V_{cc}$ y por encima $-V_{cc}$.</p></div></details>
+<details class="resul"><summary>Resultado</summary><div class="inner"><p class="et">Solución</p><p>(a) seguidor, no inversor, comparador. (b) $R_2=9R_1$. (c) $V_{ref}=1$ V. (d) $R_4=49R_3$ y $V_{ref}=1{,}02$ V. (e) diferencial con ganancia 28,57, $V_B=350$ mV y $V_{ref}=0{,}571$ V.</p></div></details>
+</div>
+</section>
+
+</main>
+</div>
+<nav class="pager" aria-label="Páginas"><a href="examen-2025-26.html"><small>← Anterior</small>P1 curso 25-26 resuelto</a><a class="nx" href="examenes-p2.html"><small>Siguiente →</small>Exámenes P2 resueltos</a></nav>
+<script src="app.js?v=2"></script>
+<script>
+/* ---------- exámenes: gráficas ---------- */
+(function(){
+  const $=id=>document.getElementById(id)||{};
+  const lw=rng(0,6,400);
+  const lab=v=>{const w=Math.round(Math.pow(10,v));return w>=1e6?(w/1e6)+'M':w>=1e3?(w/1e3)+'k':String(w);};
+  // G = K (jw)^p prod (1+jw/w0)^n ; terms: [w0,n]
+  function bode(id,K,p,terms,o,label,extra){
+    const mag=l=>{const w=Math.pow(10,l);let g=Math.log10(K)+p*l;for(const [w0,n] of terms)g+=n*0.5*Math.log10(1+(w/w0)*(w/w0));return 20*g;};
+    const asy=l=>{let g=20*Math.log10(K)+20*p*l;for(const [w0,n] of terms)g+=20*n*Math.max(0,l-Math.log10(w0));return g;};
+    const x=rng(o.x0,o.x1,400);
+    const vl=terms.map(t=>({t:'vline',x:Math.log10(t[0]),c:'s2'}));
+    $(id).innerHTML=plotSVG(Object.assign({label,yl:'|G| dB',xl:'ω rad/s',xt:o.xt,xtf:lab},o),[
+      {t:'line',x,y:x.map(asy),c:'s3',dash:1,w:1.6},{t:'line',x,y:x.map(mag),c:'s1'}].concat(vl,extra||[]));
+    return {mag,asy};
+  }
+  // Feb 2013
+  // el integrador 1/(jw 0.01): K=100, p=-1
+  bode('fig-x13',100,-1,[[1/0.1005,1],[200,1],[400,-1],[2000,-2]],
+    {x0:0,x1:4,xt:[0,1,2,3,4],y0:-10,y1:50,yt:[0,10,20,30,40,50]},'Bode de la función de transferencia de febrero de 2013');
+  // Sep 2020
+  bode('fig-x20b',2*0.0159,1,[[1/0.0159,-1],[1/1.59e-5,-1]],
+    {x0:0,x1:6,xt:[0,1,2,3,4,5,6],y0:-40,y1:10,yt:[-40,-30,-20,-10,0,10]},'Bode del filtro pasa banda de septiembre de 2020');
+  // Nov 2023 Ej1: Sallen-Key K=2.9, Q=10, w0=6329
+  (function(){
+    const K=2.9,w0=1/(15.8e3*10e-9),Q=10;
+    const x=rng(2.5,5.5,500);
+    const mag=l=>{const w=Math.pow(10,l)/w0;const re=1-w*w,im=w/Q;return 20*Math.log10(K/Math.hypot(re,im));};
+    const asy=l=>20*Math.log10(K)-40*Math.max(0,l-Math.log10(w0));
+    $('fig-x23a').innerHTML=plotSVG({x0:2.5,x1:5.5,y0:-60,y1:40,yt:[-60,-40,-20,0,20,40],xt:[3,4,5],xtf:lab,label:'Bode del Sallen-Key de noviembre de 2023',yl:'|G| dB',xl:'ω rad/s'},[
+      {t:'line',x,y:x.map(asy),c:'s3',dash:1,w:1.6},{t:'line',x,y:x.map(mag),c:'s1'},{t:'vline',x:Math.log10(w0),c:'s2'}]);
+  })();
+  // Ene 2024 Ej2: K=2, Q=1, w0=1e4
+  (function(){
+    const K=2,w0=1e4,Q=1;
+    const x=rng(2.5,5.5,500);
+    const mag=l=>{const w=Math.pow(10,l)/w0;return 20*Math.log10(K/Math.hypot(1-w*w,w/Q));};
+    const asy=l=>20*Math.log10(K)-40*Math.max(0,l-Math.log10(w0));
+    $('fig-x24b').innerHTML=plotSVG({x0:2.5,x1:5.5,y0:-60,y1:20,yt:[-60,-40,-20,0,20],xt:[3,4,5],xtf:lab,label:'Bode del Sallen-Key de enero de 2024',yl:'|G| dB',xl:'ω rad/s'},[
+      {t:'line',x,y:x.map(asy),c:'s3',dash:1,w:1.6},{t:'line',x,y:x.map(mag),c:'s1'},{t:'vline',x:4,c:'s2'}]);
+  })();
+  // Feb 2020: histéresis
+  $('fig-x20a').innerHTML=plotSVG({x0:0,x1:12,y0:-1,y1:14,xt:[0,3,6,9,12],yt:[0,6,12],xtf:v=>v+' V',ytf:v=>v+' V',label:'Característica de transferencia del Schmitt no inversor',yl:'Vo',xl:'Vin'},[
+    {t:'line',x:[0,9,9,12],y:[0,0,12,12],c:'s1',w:2.4},
+    {t:'line',x:[12,3,3,0],y:[12,12,0,0],c:'s2',w:2.4,dash:1},
+    {t:'vline',x:3,c:'s2'},{t:'vline',x:9,c:'s1'},
+    {t:'text',x:9.2,y:6,s:'sube en 9 V',a:'start',c:'s1'},{t:'text',x:2.8,y:6,s:'baja en 3 V',a:'end',c:'s2'}]);
+  // Ene 2024: temporal
+  (function(){
+    const t=[0,5,10],vi=[-10,10,-10];
+    $('fig-x24c').innerHTML=plotSVG({x0:0,x1:10,y0:-12,y1:12,xt:[0,2,4,6,8,10],yt:[-10,-5,0,5,10],xtf:v=>v+' ms',ytf:v=>v+' V',label:'Entrada triangular y salida del comparador con zéneres',yl:'V',xl:'t'},[
+      {t:'line',x:t,y:vi,c:'s1',w:2},
+      {t:'line',x:[0,2.325,2.325,9.2,9.2,10],y:[3.6,3.6,-8.6,-8.6,3.6,3.6],c:'s2',w:2.4},
+      {t:'vline',x:2.325,c:'s3'},{t:'vline',x:9.2,c:'s3'},
+      {t:'text',x:1.1,y:5.6,s:'3,6 V',c:'s2'},{t:'text',x:6,y:-10.5,s:'−8,6 V',c:'s2'}]);
+  })();
+
+
+  // Jul 2024: Schmitt inversor, Bode de cuarto orden, ventana con diodos
+  $('fig-xj1').innerHTML=plotSVG({x0:-4,x1:4,y0:-16,y1:16,xt:[-4,-1.307,0,1.307,4],yt:[-12,0,12],xtf:v=>(Math.round(v*100)/100).toString().replace('.',',')+' V',ytf:v=>v+' V',label:'Característica del Schmitt inversor de julio de 2024',yl:'Vsal',xl:'Vent'},[
+    {t:'line',x:[-4,1.307,1.307,4],y:[12,12,-12,-12],c:'s1',w:2.4},
+    {t:'line',x:[4,-1.307,-1.307,-4],y:[-12,-12,12,12],c:'s2',w:2.4,dash:1},
+    {t:'vline',x:1.307,c:'s1'},{t:'vline',x:-1.307,c:'s2'}]);
+  (function(){
+    const a1=1.17e-4,b1=2.2815e-8,a2=2.73e-4,b2=2.23587e-8;
+    const x=rng(2.5,5,400);
+    const mag=l=>{const w=Math.pow(10,l);return -20*Math.log10(Math.hypot(1-b1*w*w,a1*w))-20*Math.log10(Math.hypot(1-b2*w*w,a2*w));};
+    const w1=1/Math.sqrt(b1),w2=1/Math.sqrt(b2),wm=Math.log10(Math.sqrt(w1*w2));
+    const asy=l=>-80*Math.max(0,l-wm);
+    $('fig-xj2').innerHTML=plotSVG({x0:2.5,x1:5,y0:-100,y1:10,yt:[-100,-80,-60,-40,-20,0],xt:[3,4,5],xtf:lab,label:'Bode del filtro de cuarto orden de julio de 2024',yl:'|G| dB',xl:'ω rad/s'},[
+      {t:'line',x,y:x.map(asy),c:'s3',dash:1,w:1.6},{t:'line',x,y:x.map(mag),c:'s1'},
+      {t:'vline',x:Math.log10(w1),c:'s2'},{t:'vline',x:Math.log10(w2),c:'s2'}]);
+  })();
+  (function(){
+    const th=[];for(let i=0;i<=360;i+=2)th.push(i);
+    const a=Math.asin(.35)*180/Math.PI,b=Math.asin(.475)*180/Math.PI;
+    $('fig-xj4').innerHTML=plotSVG({x0:0,x1:360,y0:-12,y1:14,xt:[0,90,180,270,360],yt:[-10,0,12],xtf:v=>v+'°',ytf:v=>v+' V',label:'Entrada senoidal y salida del detector de ventana',yl:'V',xl:'θ'},[
+      {t:'line',x:[0,360],y:[3.5,3.5],c:'s3',dash:1,w:1.2},{t:'line',x:[0,360],y:[4.75,4.75],c:'s3',dash:1,w:1.2},
+      {t:'line',x:th,y:th.map(v=>10*Math.sin(v*Math.PI/180)),c:'s1',w:2},
+      {t:'line',x:[0,a,a,b,b,180-b,180-b,180-a,180-a,360],y:[12,12,0,0,12,12,0,0,12,12],c:'s2',w:2.4},
+      {t:'text',x:200,y:5.6,s:'4,75 V',a:'start',c:'s3'},{t:'text',x:200,y:2.2,s:'3,5 V',a:'start',c:'s3'}]);
+  })();
+
+
+  // P2: banda de paso de los emisores comunes
+  function banda(id,A0,fci,fcs,x0,x1,xt,label,yt){
+    const x=rng(x0,x1,500);
+    const mag=l=>{const f=Math.pow(10,l);return A0-10*Math.log10(1+(fci/f)*(fci/f))-10*Math.log10(1+(f/fcs)*(f/fcs));};
+    const lc=Math.log10(fci),ls=Math.log10(fcs);
+    const asy=l=>A0+(l<lc?20*(l-lc):0)-(l>ls?20*(l-ls):0);
+    const fl=v=>{const f=Math.pow(10,v);return f>=1e6?(f/1e6)+'M':f>=1e3?(f/1e3)+'k':String(f).replace('.',',');};
+    $(id).innerHTML=plotSVG({x0,x1,y0:-30,y1:A0+10,yt,xt,xtf:fl,label,yl:'|A| dB',xl:'f Hz'},[
+      {t:'line',x,y:x.map(asy),c:'s3',dash:1,w:1.6},{t:'line',x,y:x.map(mag),c:'s1'},
+      {t:'vline',x:lc,c:'s2'},{t:'vline',x:ls,c:'s2'},
+      {t:'text',x:lc+0.15,y:A0+4,s:'fci',a:'start',c:'s2'},{t:'text',x:ls-0.15,y:A0+4,s:'fcs',a:'end',c:'s2'}]);
+  }
+  banda('fig-xk3',46.9,7.97,116e3,0,7,[0,1,2,3,4,5,6,7],'Respuesta en frecuencia del emisor común de julio de 2024',[-20,0,20,40]);
+  banda('fig-xm3',16.9,0.52,33.9e3,-2,7,[-2,-1,0,1,2,3,4,5,6,7],'Respuesta en frecuencia del emisor común de diciembre de 2023',[-20,0,10,20]);
+
+  // P1 curso 24-25 Ej1: Schmitt inversor, umbrales 0 y 5 V, salidas ±15 V
+  $('fig-q1').innerHTML=plotSVG({x0:-3,x1:8,y0:-19,y1:19,xt:[-2,0,2,4,5,6,8],yt:[-15,0,15],xtf:v=>v+' V',ytf:v=>v+' V',label:'Característica del Schmitt inversor del curso 24-25',yl:'Us',xl:'Ue'},[
+    {t:'line',x:[-3,5,5,8],y:[15,15,-15,-15],c:'s1',w:2.4},
+    {t:'line',x:[8,0,0,-3],y:[-15,-15,15,15],c:'s2',w:2.4,dash:1},
+    {t:'vline',x:0,c:'s2'},{t:'vline',x:5,c:'s1'},
+    {t:'text',x:5.2,y:0,s:'baja en 5 V',a:'start',c:'s1'},{t:'text',x:-0.2,y:0,s:'sube en 0 V',a:'end',c:'s2'}]);
+  // P1 curso 24-25 Ej2: cero en 1000, polos en 112,7 y 887,3
+  bode('fig-q2',1,0,[[1000,1],[112.7,-1],[887.3,-1]],
+    {x0:1,x1:4,xt:[1,2,3,4],y0:-50,y1:10,yt:[-50,-40,-30,-20,-10,0,10]},'Bode de la función de transferencia del curso 24-25');
+  // P1 curso 24-25 problema: Vo=(Vi+10)/4
+  $('fig-q3').innerHTML=plotSVG({x0:-12,x1:12,y0:-0.5,y1:5.5,xt:[-10,-5,0,5,10],yt:[0,2.5,5],xtf:v=>v+' V',ytf:v=>v+' V',label:'Salida frente a entrada del acondicionador',yl:'Vo',xl:'Vi'},[
+    {t:'line',x:[-10,10],y:[0,5],c:'s1',w:2.4},
+    {t:'pt',x:-10,y:0,c:'s2'},{t:'pt',x:0,y:2.5,c:'s2'},{t:'pt',x:10,y:5,c:'s2'}]);
+  // P1 curso 25-26 Ej1: pasa altos 2º orden, K=1, w0=4352, Q=0,638
+  (function(){
+    const w0=4352,Q=0.638;
+    const x=rng(2,5,500);
+    const mag=l=>{const w=Math.pow(10,l)/w0,w2=w*w;return 20*Math.log10(w2/Math.hypot(1-w2,w/Q));};
+    const asy=l=>40*Math.min(0,l-Math.log10(w0));
+    $('fig-p1').innerHTML=plotSVG({x0:2,x1:5,y0:-80,y1:10,yt:[-80,-60,-40,-20,0],xt:[2,3,4,5],xtf:lab,label:'Bode del pasa altos de segundo orden del curso 25-26',yl:'|G| dB',xl:'ω rad/s'},[
+      {t:'line',x,y:x.map(asy),c:'s3',dash:1,w:1.6},{t:'line',x,y:x.map(mag),c:'s1'},{t:'vline',x:Math.log10(w0),c:'s2'}]);
+  })();
+  // P1 curso 25-26 Ej2: respuesta al escalón, tau 0,1 ms y 1,15 ms
+  (function(){
+    const t=rng(0,8,400);
+    $('fig-p2').innerHTML=plotSVG({x0:0,x1:8,y0:-0.05,y1:1.1,xt:[0,2,4,6,8],yt:[0,0.5,0.9,1],xtf:v=>v+' ms',ytf:v=>Math.round(v*100)+' %',label:'Respuesta al escalón del sensor',yl:'Vo/Vs',xl:'t'},[
+      {t:'line',x:[0,8],y:[0.9,0.9],c:'s3',dash:1,w:1.2},
+      {t:'line',x:t,y:t.map(v=>1-Math.exp(-v/0.1)),c:'s1',w:2.4},
+      {t:'line',x:t,y:t.map(v=>1-Math.exp(-v/1.15)),c:'s2',w:2.4},
+      {t:'vline',x:0.23,c:'s1'},{t:'vline',x:2.65,c:'s2'},
+      {t:'text',x:0.4,y:0.4,s:'0,23 ms',a:'start',c:'s1'},{t:'text',x:2.85,y:0.5,s:'2,65 ms',a:'start',c:'s2'}]);
+  })();
+
+  // Nov 2021 Ej1: K=0.011, cero en el origen, polos 1e4 y 1e5 / 550 y 50
+  (function(){
+    const o={x0:0,x1:7,xt:[0,1,2,3,4,5,6,7],y0:-50,y1:45,yt:[-40,-20,0,20,40]};
+    const f1=bode('fig-a1',0.011,1,[[1.1e6,1],[1e5,-1],[1e4,-1]],o,'Bode de noviembre de 2021 con C5 = 1 nF');
+    const L=rng(0,7,400);
+    const mag=l=>{const w=Math.pow(10,l);let g=Math.log10(0.011)+l;for(const [w0,n] of [[550,1],[50,-1],[1e4,-1]])g+=n*0.5*Math.log10(1+(w/w0)*(w/w0));return 20*g;};
+    $('fig-a1').innerHTML=plotSVG(Object.assign({label:'Bode de noviembre de 2021',yl:'|G| dB',xl:'ω rad/s',xtf:lab},o),[
+      {t:'line',x:L,y:L.map(f1.mag),c:'s1'},{t:'line',x:L,y:L.map(mag),c:'s2'},
+      {t:'vline',x:4,c:'s3'},{t:'vline',x:5,c:'s1'},{t:'vline',x:Math.log10(50),c:'s2'},{t:'vline',x:Math.log10(550),c:'s2'}]);
+  })();
+  // Sensor: histéresis de ±2 °C alrededor de 10 °C, salidas ±10 V
+  $('fig-t1').innerHTML=plotSVG({x0:0,x1:20,y0:-13,y1:13,xt:[0,4,8,10,12,16,20],yt:[-10,0,10],xtf:v=>v+' °C',ytf:v=>v+' V',label:'Salida del termómetro con histéresis',yl:'Vout',xl:'T'},[
+    {t:'line',x:[0,12,12,20],y:[10,10,-10,-10],c:'s1',w:2.4},
+    {t:'line',x:[20,8,8,0],y:[-10,-10,10,10],c:'s2',w:2.4,dash:1},
+    {t:'vline',x:8,c:'s2'},{t:'vline',x:12,c:'s1'}]);
+})();
+
+</script>
+</body>
+</html>
