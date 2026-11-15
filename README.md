@@ -1,6 +1,6 @@
 # Electrónica Analógica · Guía para aprobar
 
-Guía de estudio no oficial de **Electrónica Analógica** (UPCT, Grado en Ingeniería Electrónica Industrial y Automática, 3.er curso).
+Guía de estudio no oficial de **Electrónica Analógica** (Grado en Ingeniería Electrónica Industrial y Automática, 3.er curso).
 
 **Web:** https://helionacon-ui.github.io/GIEIA-UPCT/electronica-analogica/
 
