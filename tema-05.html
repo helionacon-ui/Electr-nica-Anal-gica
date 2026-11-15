@@ -73,6 +73,51 @@ v_{o,\text{error}}=\frac{A_d}{CMRR}\,v_{cm}\]
 <li>Suponer que un CMRR alto del AO basta. En un restador, el CMRR del circuito lo limitan las <b>tolerancias de las resistencias</b>, casi siempre mucho peores que el del AO.</li>
 <li>Despreciar las corrientes de polarización con resistencias de megaohmios. El error crece con el valor de las resistencias.</li>
 </ul></div>
+<h3 id="t5-gbw-paso">Ancho de banda de un no inversor, paso a paso</h3>
+<p>Un operacional real tiene una ganancia que cae con la frecuencia. Con un modelo de un solo polo y el producto ganancia-ancho de banda (GBW), el ancho de banda en lazo cerrado sale directamente de la ganancia.</p>
+<figure class="fig"><p class="ft">Figura interactiva · no inversor con R₁ = 1 kΩ, R_f = 9 kΩ y GBW = 1 MHz</p>
+<div id="gbw-paso" style="font-family:system-ui,sans-serif"><input id="gbw-paso-s" type="range" min="0" max="6" step="1" value="0" style="width:100%"><div id="gbw-paso-l" style="font-size:13px;color:#56635e;margin:4px 0">paso de la resolución (0 = problema): 0</div><canvas id="gbw-paso-c" width="640" height="300" style="width:100%;max-width:640px;height:auto;display:block"></canvas><div id="gbw-paso-t" style="font-size:15px;line-height:1.5;margin-top:8px;min-height:90px"></div></div>
+<figcaption>Sube el paso: se calcula la ganancia en lazo cerrado, la realimentación β, el ancho de banda y se comprueba en la gráfica.</figcaption></figure>
+<div class="box trap"><h4>Trampas típicas</h4><ul><li>Usar la ganancia de lazo abierto como ganancia del amplificador.</li><li>Olvidar que el ancho de banda cae al aumentar la ganancia: el producto es constante.</li><li>Confundir β = R₁/(R₁ + R_f) con R_f/R₁.</li></ul></div>
+<script>
+(function(){
+  var T=[
+   'Amplificador no inversor con R₁ = 1 kΩ y R_f = 9 kΩ, alimentado por un operacional con GBW = 1 MHz. Se piden la ganancia en lazo cerrado y su ancho de banda a −3 dB.',
+   'Ganancia ideal del no inversor: A_cl = 1 + R_f/R₁ = 1 + 9 = 10, es decir, 20 dB.',
+   'Con el modelo de un solo polo, la ganancia de lazo abierto es A_OL(f) = GBW/(jf): cae 20 dB por década. Por eso la ganancia en lazo cerrado no puede ser constante hasta frecuencias altas.',
+   'Realimentación: β = R₁/(R₁ + R_f) = 1/10 = 0,1. Con A_OL grande, A_cl ≈ 1/β = 10, que coincide con el resultado ideal.',
+   'Ancho de banda: el modelo da A_cl(f) = GBW/(jf + β·GBW), así que el polo está en f_c = β·GBW = 0,1 · 1 MHz = 100 kHz. Es exacto para este modelo, y el producto A_cl · f_c = GBW = 1 MHz.',
+   'Comprobación en f_c: |A_cl| = 10/√2 = 7,07, es decir, 17 dB, que es la caída de 3 dB respecto a los 20 dB de la ganancia.',
+   'Comprobación a 1 MHz: |A_cl| ≈ 1, así que la ganancia ya es casi unitaria. Cuanto más ganancia se pida, menor será el ancho de banda.'
+  ];
+  var cv=document.getElementById('gbw-paso-c'), g=cv.getContext('2d'), sl=document.getElementById('gbw-paso-s'),
+      lb=document.getElementById('gbw-paso-l'), tx=document.getElementById('gbw-paso-t');
+  var X0=70,X1=620,Y0=40,Y1=260;                       // eje log f: 1 kHz … 10 MHz; eje dB: −5 … 25
+  function X(f){return X0+(X1-X0)*(Math.log10(f)-3)/4;}
+  function Y(db){return Y1-(Y1-Y0)*(db+5)/30;}
+  function txt(s,x,y,col,sz,al){g.fillStyle=col;g.font=(sz||12)+'px system-ui,sans-serif';g.textAlign=al||'left';g.fillText(s,x,y);}
+  function line(x1,y1,x2,y2,col,w,dash){g.strokeStyle=col;g.lineWidth=w||1;g.setLineDash(dash||[]);g.beginPath();g.moveTo(x1,y1);g.lineTo(x2,y2);g.stroke();g.setLineDash([]);}
+  function gain(f){return 20*Math.log10(1e6/Math.sqrt(f*f+1e10));}  // |A_cl| en dB, GBW = 1 MHz, β = 0,1
+  function draw(p){
+    g.clearRect(0,0,cv.width,cv.height);
+    line(X0,Y1,X1,Y1,'#8a958f',1); line(X0,Y0,X0,Y1,'#8a958f',1);
+    [1e3,1e4,1e5,1e6,1e7].forEach(function(f){ txt(f>=1e6?(f/1e6)+' MHz':(f/1e3)+' kHz',X(f),Y1+16,'#56635e',11,'center'); });
+    [0,10,20].forEach(function(d){ txt(d+' dB',X0-8,Y(d)+4,'#56635e',11,'right'); line(X0,Y(d),X1,Y(d),'rgba(138,149,143,0.25)',1); });
+    g.strokeStyle='#3a63c4';g.lineWidth=2.4;g.setLineDash([]);g.beginPath();
+    for(var k=0;k<=80;k++){var f=Math.pow(10,3+4*k/80), y=Y(gain(f)); k===0?g.moveTo(X(f),y):g.lineTo(X(f),y);}
+    g.stroke();
+    if(p>=1){ line(X0,Y(20),X1,Y(20),'#2c8a52',1.2,[6,4]); txt('A_cl = 10 (20 dB)',X1,Y(20)-6,'#2c8a52',12,'right'); }
+    if(p>=4){ line(X(1e5),Y1,X(1e5),Y(gain(1e5)),'#b4232f',1.2,[4,3]); g.fillStyle='#b4232f';g.beginPath();g.arc(X(1e5),Y(gain(1e5)),4,0,6.283);g.fill();
+      txt('f_c = 100 kHz',X(1e5)+8,Y1-12,'#b4232f',12,'left'); }
+    if(p>=5){ txt('17 dB (−3 dB)',X(1e5)+8,Y(gain(1e5))-8,'#b4232f',11,'left'); }
+    if(p>=6){ g.fillStyle='#b8730c';g.beginPath();g.arc(X(1e6),Y(gain(1e6)),4,0,6.283);g.fill(); txt('≈ 0 dB a 1 MHz',X(1e6)+8,Y(gain(1e6))+14,'#b8730c',11,'left'); }
+    lb.textContent='paso de la resolución (0 = problema): '+p;
+    tx.innerHTML='<div>'+T[p]+'</div>';
+  }
+  sl.addEventListener('input',function(){draw(+sl.value);});
+  draw(0);
+})();
+</script>
 <h3 id="t5-problema">Problema resuelto</h3>
 <div class="prob"><div class="enun"><p class="et">Enunciado</p><p>Un restador construido con un AO tiene ganancia diferencial \(A_d=10\) y se comprueba experimentalmente que a 200 Hz presenta un CMRR de <b>70 dB</b>. El circuito usa un AO con \(GBW=1\) MHz, \(SR=0{,}5\) V/µs y \(V_{OS}=2\) mV.</p>
 <ol><li>Si se acopla un armónico de la red de 200 Hz y 100 mV sobre las dos entradas, ¿qué interferencia aparece en la salida?</li>
