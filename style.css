@@ -511,3 +511,10 @@ details.paso .inner p{margin:6px 0}
 .sim-box table select{font:inherit;font-size:14px;padding:4px 6px;border-radius:8px;border:1px solid var(--line);background:var(--surface);color:var(--fg);max-width:100%}
 .mini{border-collapse:collapse;font:12px/1.4 var(--mono);margin:4px 0}.mini td{padding:2px 8px;text-align:right;border:1px solid var(--line)}
 .sim-out .hint{display:block;margin-top:6px;color:var(--muted);font-family:var(--body);font-size:13px}
+
+/*slides*/.slides{margin:1.2rem 0;border:1px solid var(--line,#d8d2c4);border-radius:12px;background:var(--card,#fff);padding:.2rem .9rem}
+.slides>summary{cursor:pointer;font-weight:600;padding:.7rem 0}
+.slides .sn{margin:.2rem 0 .8rem;font-size:.9rem;opacity:.8}
+.sgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:.7rem;padding-bottom:.9rem}
+.sgrid a{display:block;border:1px solid var(--line,#d8d2c4);border-radius:8px;overflow:hidden;background:#fff}
+.sgrid img{display:block;width:100%;height:auto}
