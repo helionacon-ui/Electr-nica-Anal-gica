@@ -518,3 +518,7 @@ details.paso .inner p{margin:6px 0}
 .sgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:.7rem;padding-bottom:.9rem}
 .sgrid a{display:block;border:1px solid var(--line,#d8d2c4);border-radius:8px;overflow:hidden;background:#fff}
 .sgrid img{display:block;width:100%;height:auto}
+
+/* --- ampliación --- */
+details.paso>summary{overflow-x:auto;overflow-y:hidden}
+.prob .enun mjx-container[display="true"],.prob .inner mjx-container[display="true"]{overflow-x:auto;overflow-y:hidden;max-width:100%}
