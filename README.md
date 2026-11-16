@@ -1,4 +1,4 @@
-# Electrónica Analógica · Guía para aprobar
+# Electrónica Analógica · Apuntes
 
 Guía de estudio no oficial de **Electrónica Analógica** (Grado en Ingeniería Electrónica Industrial y Automática, 3.er curso).
 

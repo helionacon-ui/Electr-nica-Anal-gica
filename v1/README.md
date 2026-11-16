@@ -1,4 +1,4 @@
-# Electrónica Analógica · Guía para aprobar
+# Electrónica Analógica · Apuntes
 
 Guía de estudio (GIEyA · 3.º curso · asignatura 507103006, curso 2026-27) pensada para estudiar desde cero:
 operacionales (ideal y real), aplicaciones lineales y no lineales, Bode y filtros, cuadripolos y transistores en frecuencia.
