@@ -17,24 +17,64 @@
 <style id="lectura">
 @media screen{
 :root{--body:"Atkinson Hyperlegible Next","Atkinson Hyperlegible","Segoe UI",system-ui,-apple-system,sans-serif}
-body{font-family:var(--body);font-size:20.5px;line-height:2.1;letter-spacing:.022em;word-spacing:.09em}
-p{margin:0 0 1.75em}
-li{margin:.8em 0}
-p,li{max-width:62ch}
+body{font-family:var(--body);font-size:20px;line-height:1.95;letter-spacing:.014em;word-spacing:.05em}
+p{margin:0 0 1.5em;max-width:64ch;hyphens:auto;-webkit-hyphens:auto}
+li{margin:.72em 0;max-width:64ch}
 .box p:last-child,.box ul:last-child,.box ol:last-child{margin-bottom:0}
-h2{margin-top:92px;margin-bottom:24px;line-height:1.3}
-h3{font-size:24px;margin:58px 0 18px;line-height:1.35}
-h4{margin-top:34px;margin-bottom:10px}
-.box{padding:24px 30px;margin:32px 0}
-table{font-size:18px;line-height:1.75}
-td,th{padding-top:.85em;padding-bottom:.85em}
-figure.fig figcaption{font-size:17px;line-height:1.8;margin-top:12px}
+h2{margin-top:92px;margin-bottom:22px;line-height:1.25}
+h3{font-size:25px;margin:66px 0 20px;line-height:1.3}
+h4{margin:38px 0 12px;line-height:1.4}
+/* ---- entradilla con capitular ---- */
+.zero .lede{font-size:1.05em;line-height:1.86;text-align:left}
+.zero .lede::first-letter{float:left;font-size:3.05em;line-height:.84;font-weight:700;padding:.06em .14em 0 0;color:var(--tc,var(--accent))}
+/* ---- sumario del tema ---- */
+p.obj{max-width:none;text-align:left;margin:0 0 1.7em;padding:14px 20px;border-radius:10px;
+ background:color-mix(in srgb,var(--surface) 62%,transparent);
+ border-left:3px solid var(--tc,var(--accent));font-size:.95em;line-height:1.75}
+p.obj>b:first-child{display:block;font:700 11.5px/1.7 var(--mono,monospace);letter-spacing:.1em;
+ text-transform:uppercase;color:var(--tc,var(--accent))}
+/* ---- términos con entrada, al modo de un manual ---- */
+p.run{margin:0 0 1.38em}
+p.run>b:first-child{display:block;font:700 12px/1.7 var(--mono,monospace);letter-spacing:.09em;
+ text-transform:uppercase;color:var(--tc,var(--accent))}
+/* ---- rótulos internos ---- */
+.zero>.ft{font:700 11.5px/1.6 var(--mono,monospace);letter-spacing:.1em;text-transform:uppercase}
+.zero>.ft:not(:first-child){margin-top:2em;font-size:12.5px;color:var(--fg);opacity:.72}
+/* ---- desarrollo teórico ---- */
+.deep h4{position:relative;padding-left:2.35em;font-size:1.03em}
+.deep h4 .hn{position:absolute;left:0;top:.06em;font:700 .84em/1.7 var(--mono,monospace);
+ color:var(--tc,var(--accent));opacity:.8}
+.deep>h4:not(:first-child){border-top:1px solid var(--line);padding-top:30px;margin-top:42px}
+.eqd{margin:1.65em 0;text-align:center;overflow-x:auto;overflow-y:hidden}
+/* ---- notas al margen, sin duplicar el rótulo ---- */
+.box.deepnote{padding:15px 20px;margin:1.5em 0;border-radius:0 10px 10px 0;
+ background:color-mix(in srgb,var(--surface) 76%,transparent)}
+.box.key.deepnote::before,.box.trap.deepnote::before{content:none}
+.box.deepnote>b:first-child{display:block;font:700 11.5px/1.7 var(--mono,monospace);
+ letter-spacing:.1em;text-transform:uppercase;color:var(--tc,var(--accent))}
+.box.trap.deepnote>b:first-child{color:var(--warn)}
+/* ---- resto ---- */
+.box{padding:22px 28px;margin:30px 0}
+table{font-size:18px;line-height:1.7}
+td,th{padding-top:.8em;padding-bottom:.8em}
+figure.fig figcaption{font-size:17px;line-height:1.78;margin-top:12px}
 figure.fig{margin-block:34px}
-.lede{line-height:1.85}
 .toc a{font-size:15.5px;padding:8px 0 8px 10px}
 svg,svg text,canvas,.katex,mjx-container{letter-spacing:normal;word-spacing:normal}
+mjx-container[display]{margin:0!important}
 details>summary{line-height:1.7;padding-block:.5em}
-@media (max-width:600px){body{font-size:19px;line-height:2}}
+.enun p,.inner p{text-align:left}
+@media (min-width:1040px){
+p,li{text-align:justify}
+.zero .lede,.enun p,.inner p,figcaption,.ft{text-align:left}
+}
+@media (max-width:600px){
+body{font-size:18.5px;line-height:1.9}
+p{text-align:left}
+.zero .lede::first-letter{font-size:2.6em}
+.deep h4{padding-left:0}
+.deep h4 .hn{position:static;margin-right:.5em}
+}
 }
 </style>
 </head>
@@ -46,43 +86,43 @@ details>summary{line-height:1.7;padding-block:.5em}
 <main>
 <section class="sec tema" style="--tc:var(--c4);--tcs:var(--c4s)">
 <div class="sh"><span aria-hidden="true" class="badge">11</span><div class="shx"><p class="kick">Transistores, realimentación y potencia · Tema 11</p><h2 id="t11">Circuitos osciladores</h2><div class="tags"><span class="tag">Transistores, realimentación y potencia</span><span class="tag">2.º parcial</span></div></div></div>
-<div class="zero"><p class="ft">Desde cero</p><p><b>Objetivo:</b> aplicar el criterio de Barkhausen, calcular la frecuencia y la condición de arranque del oscilador de puente de Wien, del de desplazamiento de fase y de los LC, y conocer el oscilador de cristal y el 555.</p>
-<p>Un <b>oscilador</b> es un amplificador con realimentación <b>positiva</b> que genera una señal periódica sin que entre nada por la entrada. Arranca con el propio ruido del circuito.</p>
-<p><b>Criterio de Barkhausen:</b> oscila a la frecuencia en la que la ganancia de lazo cumple \(|A\beta|=1\) y el desfase total es 0° (o 360°). La condición de fase fija <b>la frecuencia</b>; la de módulo, <b>si arranca</b>.</p>
-<p><b>Wien:</b> \(f_0=1/2\pi RC\), necesita ganancia exactamente 3. <b>Desplazamiento de fase</b> (3 células RC): \(f_0=1/(2\pi RC\sqrt6)\), ganancia 29. <b>LC (Colpitts/Hartley):</b> \(f_0=1/2\pi\sqrt{LC_{eq}}\).</p>
-<p><b>Cristal de cuarzo:</b> estabilidad de 1 parte en 10⁶ o mejor; es el que lleva cualquier reloj o microcontrolador. <b>555:</b> no es senoidal, genera onda cuadrada con \(f=1{,}44/((R_A+2R_B)C)\).</p>
+<div class="zero"><p class="ft">Desde cero</p><p class="obj"><b>Objetivo:</b> aplicar el criterio de Barkhausen, calcular la frecuencia y la condición de arranque del oscilador de puente de Wien, del de desplazamiento de fase y de los LC, y conocer el oscilador de cristal y el 555.</p>
+<p class="lede">Un <b>oscilador</b> es un amplificador con realimentación <b>positiva</b> que genera una señal periódica sin que entre nada por la entrada. Arranca con el propio ruido del circuito.</p>
+<p class="run"><b>Criterio de Barkhausen:</b> oscila a la frecuencia en la que la ganancia de lazo cumple \(|A\beta|=1\) y el desfase total es 0° (o 360°). La condición de fase fija <b>la frecuencia</b>; la de módulo, <b>si arranca</b>.</p>
+<p class="run"><b>Wien:</b> \(f_0=1/2\pi RC\), necesita ganancia exactamente 3. <b>Desplazamiento de fase</b> (3 células RC): \(f_0=1/(2\pi RC\sqrt6)\), ganancia 29. <b>LC (Colpitts/Hartley):</b> \(f_0=1/2\pi\sqrt{LC_{eq}}\).</p>
+<p class="run"><b>Cristal de cuarzo:</b> estabilidad de 1 parte en 10⁶ o mejor; es el que lleva cualquier reloj o microcontrolador. <b>555:</b> no es senoidal, genera onda cuadrada con \(f=1{,}44/((R_A+2R_B)C)\).</p>
 </div>
 <details class="nom"><summary><span aria-hidden="true" class="nom-ic">Aa</span>Nomenclatura del tema 11 <span class="src">5 símbolos</span></summary><div class="inner">
 <div class="tw"><table><tr><th>Símbolo</th><th>Qué significa</th><th>Unidades · ejemplo</th></tr><tr><td class="sym">f₀</td><td>Frecuencia de oscilación</td><td class="u">Hz</td></tr><tr><td class="sym">Aβ</td><td>Ganancia de lazo</td><td class="u">= 1 ∠0° en oscilación</td></tr><tr><td class="sym">Q</td><td>Factor de calidad del resonador</td><td class="u">cuarzo: 10⁴–10⁶</td></tr><tr><td class="sym">R_A, R_B, C</td><td>Red de tiempos del 555</td><td class="u">Ω, F</td></tr><tr><td class="sym">D</td><td>Ciclo de trabajo</td><td class="u">%; 555 astable: (R_A+R_B)/(R_A+2R_B)</td></tr></table></div></div></details>
-<!--amp1--><div class="zero" style="margin-top:14px"><p class="ft">Explicación ampliada</p><p class="ft">Cómo arranca algo que no tiene entrada</p><p>La pregunta natural es de dónde sale la primera señal. La respuesta es el <b>ruido</b>: cualquier resistencia genera ruido térmico en todas las frecuencias. El lazo amplifica solo la componente que cumple la condición de fase, y como \(|A\beta|&gt;1\) esa componente crece en cada vuelta.</p>
+<!--amp1--><div class="zero" style="margin-top:14px"><p class="ft">Explicación ampliada</p><p class="ft">Cómo arranca algo que no tiene entrada</p><p class="lede">La pregunta natural es de dónde sale la primera señal. La respuesta es el <b>ruido</b>: cualquier resistencia genera ruido térmico en todas las frecuencias. El lazo amplifica solo la componente que cumple la condición de fase, y como \(|A\beta|&gt;1\) esa componente crece en cada vuelta.</p>
 <p>Por eso los osciladores reales se diseñan con <b>|Aβ| algo mayor que 1</b> (un 5-10 %): con exactamente 1 no arrancarían nunca, y con la tolerancia de las resistencias podrían quedarse por debajo.</p>
 <p class="ft">Y cómo deja de crecer</p><p>Si \(|A\beta|&gt;1\) siempre, la amplitud crecería hasta saturar y la onda saldría recortada. Hace falta un mecanismo que <b>baje la ganancia al crecer la amplitud</b>:</p>
 <ul><li>El clásico del Wien: una <b>lámpara de filamento</b> en la rama de realimentación. Al subir la corriente se calienta, sube su resistencia y baja la ganancia.</li><li>La versión moderna: dos <b>diodos en antiparalelo</b> en paralelo con una resistencia, que conducen al superar 0,6 V y reducen la ganancia.</li><li>Un <b>JFET</b> trabajando como resistencia controlada por tensión, con un detector de pico.</li></ul>
 <div class="box trap deepnote"><b>Cuidado.</b> Un oscilador senoidal sin control de amplitud da una onda cuadrada recortada, no una senoide. Si en el laboratorio el Wien sale «con las puntas planas», el problema es ese, no la frecuencia.</div>
 </div><!--/amp1--><!--deep--><h3 id="t11-profundiza">Desarrollo teórico a fondo</h3><div class="deep">
-<h4>1. Criterio de Barkhausen en detalle</h4>
+<h4><span class="hn">1</span>Criterio de Barkhausen en detalle</h4>
 <div class="eqd">\[A(j\omega)\,\beta(j\omega)=1\quad\Longleftrightarrow\quad |A\beta|=1\ \ \text{y}\ \ \angle A\beta=0^\circ\ (\text{o }360^\circ)\]</div>
 <div class="box key deepnote"><b>Idea clave.</b> la condición de <b>fase</b> selecciona la frecuencia (solo una la cumple); la de <b>módulo</b> decide si la oscilación se mantiene. Son dos ecuaciones y se resuelven por separado: primero la fase para sacar \(f_0\), luego el módulo para sacar la ganancia necesaria.</div>
-<h4>2. Oscilador de puente de Wien</h4>
+<h4><span class="hn">2</span>Oscilador de puente de Wien</h4>
 <p>La red es un RC serie en la rama superior y un RC paralelo en la inferior, realimentando a la entrada <b>no inversora</b> de un operacional:</p>
 <div class="eqd">\[\beta(j\omega)=\frac{1}{3+j\left(\omega RC-\dfrac{1}{\omega RC}\right)}\]</div>
 <p>La parte imaginaria se anula cuando \(\omega RC=1/\omega RC\), es decir:</p>
 <div class="eqd">\[\omega_0=\frac{1}{RC}\qquad f_0=\frac{1}{2\pi RC}\qquad \beta(\omega_0)=\frac13\]</div>
 <p>Como \(\beta=1/3\), hace falta \(A=3\) exactamente, que se consigue con un no inversor de \(R_f=2R_1\). Es el oscilador senoidal de audio por excelencia: barato, limpio y fácil de sintonizar con un potenciómetro doble.</p>
 <div class="box trap deepnote"><b>Cuidado.</b> Con \(A&lt;3\) no arranca; con \(A\) bastante mayor que 3 satura. El margen útil es estrecho, de ahí la necesidad del control automático de amplitud.</div>
-<h4>3. Oscilador de desplazamiento de fase</h4>
+<h4><span class="hn">3</span>Oscilador de desplazamiento de fase</h4>
 <p>Tres células RC iguales aportan 60° cada una para sumar los 180° que faltan tras el amplificador inversor. Imponiendo fase cero en el lazo:</p>
 <div class="eqd">\[f_0=\frac{1}{2\pi RC\sqrt6}\qquad |\beta|=\frac{1}{29}\ \Rightarrow\ |A|\ge29\]</div>
 <p>Necesita mucha más ganancia que el Wien y su pureza espectral es peor, pero usa solo resistencias y condensadores iguales, lo que lo hace cómodo de montar. Con dos células no funcionaría: cada RC no puede dar 90°, así que harían falta al menos tres.</p>
-<h4>4. Osciladores LC: Colpitts y Hartley</h4>
+<h4><span class="hn">4</span>Osciladores LC: Colpitts y Hartley</h4>
 <ul><li><b>Colpitts:</b> divisor <b>capacitivo</b>. \(f_0=\dfrac{1}{2\pi\sqrt{LC_{eq}}}\) con \(C_{eq}=\dfrac{C_1C_2}{C_1+C_2}\), y \(\beta=C_1/C_2\).</li><li><b>Hartley:</b> divisor <b>inductivo</b>. \(L_{eq}=L_1+L_2\) y \(\beta=L_2/L_1\).</li></ul>
 <div class="box key deepnote"><b>Idea clave.</b> truco para no confundirlos: <b>Co</b>lpitts lleva <b>Co</b>ndensadores en el divisor. Es la pregunta de test más repetida del tema.</div>
 <p>Se usan de cientos de kHz a cientos de MHz, donde las redes RC serían impracticables por el tamaño de los componentes.</p>
-<h4>5. Oscilador de cristal</h4>
+<h4><span class="hn">5</span>Oscilador de cristal</h4>
 <p>Un cristal de cuarzo es un resonador piezoeléctrico con un factor de calidad altísimo (\(Q\) de 10 000 a 1 000 000, frente a 100 de un LC bueno). Su circuito equivalente tiene dos frecuencias muy próximas:</p>
 <ul><li><b>Serie</b> \(f_s=1/2\pi\sqrt{L_sC_s}\): impedancia mínima.</li><li><b>Paralelo</b> \(f_p=f_s\sqrt{1+C_s/C_0}\): impedancia máxima. Están separadas menos del 1 %.</li></ul>
 <p>Entre ambas el cristal es <b>inductivo</b>, y ahí es donde trabaja el oscilador. La estabilidad en frecuencia es de 1 ppm o mejor, frente a 1 % de un RC: por eso todo lo que tenga que medir tiempo (un reloj, un microcontrolador, un transmisor de radio) lleva cristal y no una red RC.</p>
-<h4>6. El 555 como astable</h4>
+<h4><span class="hn">6</span>El 555 como astable</h4>
 <p>No es un oscilador senoidal, sino un <b>multivibrador</b> que genera onda cuadrada. El condensador se carga a través de \(R_A+R_B\) y se descarga por \(R_B\) entre 1/3 y 2/3 de \(V_{CC}\):</p>
 <div class="eqd">\[t_H=0{,}693(R_A+R_B)C\qquad t_L=0{,}693\,R_BC\]</div>
 <div class="eqd">\[f=\frac{1{,}44}{(R_A+2R_B)C}\qquad D=\frac{R_A+R_B}{R_A+2R_B}\]</div>

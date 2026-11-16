@@ -17,24 +17,64 @@
 <style id="lectura">
 @media screen{
 :root{--body:"Atkinson Hyperlegible Next","Atkinson Hyperlegible","Segoe UI",system-ui,-apple-system,sans-serif}
-body{font-family:var(--body);font-size:20.5px;line-height:2.1;letter-spacing:.022em;word-spacing:.09em}
-p{margin:0 0 1.75em}
-li{margin:.8em 0}
-p,li{max-width:62ch}
+body{font-family:var(--body);font-size:20px;line-height:1.95;letter-spacing:.014em;word-spacing:.05em}
+p{margin:0 0 1.5em;max-width:64ch;hyphens:auto;-webkit-hyphens:auto}
+li{margin:.72em 0;max-width:64ch}
 .box p:last-child,.box ul:last-child,.box ol:last-child{margin-bottom:0}
-h2{margin-top:92px;margin-bottom:24px;line-height:1.3}
-h3{font-size:24px;margin:58px 0 18px;line-height:1.35}
-h4{margin-top:34px;margin-bottom:10px}
-.box{padding:24px 30px;margin:32px 0}
-table{font-size:18px;line-height:1.75}
-td,th{padding-top:.85em;padding-bottom:.85em}
-figure.fig figcaption{font-size:17px;line-height:1.8;margin-top:12px}
+h2{margin-top:92px;margin-bottom:22px;line-height:1.25}
+h3{font-size:25px;margin:66px 0 20px;line-height:1.3}
+h4{margin:38px 0 12px;line-height:1.4}
+/* ---- entradilla con capitular ---- */
+.zero .lede{font-size:1.05em;line-height:1.86;text-align:left}
+.zero .lede::first-letter{float:left;font-size:3.05em;line-height:.84;font-weight:700;padding:.06em .14em 0 0;color:var(--tc,var(--accent))}
+/* ---- sumario del tema ---- */
+p.obj{max-width:none;text-align:left;margin:0 0 1.7em;padding:14px 20px;border-radius:10px;
+ background:color-mix(in srgb,var(--surface) 62%,transparent);
+ border-left:3px solid var(--tc,var(--accent));font-size:.95em;line-height:1.75}
+p.obj>b:first-child{display:block;font:700 11.5px/1.7 var(--mono,monospace);letter-spacing:.1em;
+ text-transform:uppercase;color:var(--tc,var(--accent))}
+/* ---- términos con entrada, al modo de un manual ---- */
+p.run{margin:0 0 1.38em}
+p.run>b:first-child{display:block;font:700 12px/1.7 var(--mono,monospace);letter-spacing:.09em;
+ text-transform:uppercase;color:var(--tc,var(--accent))}
+/* ---- rótulos internos ---- */
+.zero>.ft{font:700 11.5px/1.6 var(--mono,monospace);letter-spacing:.1em;text-transform:uppercase}
+.zero>.ft:not(:first-child){margin-top:2em;font-size:12.5px;color:var(--fg);opacity:.72}
+/* ---- desarrollo teórico ---- */
+.deep h4{position:relative;padding-left:2.35em;font-size:1.03em}
+.deep h4 .hn{position:absolute;left:0;top:.06em;font:700 .84em/1.7 var(--mono,monospace);
+ color:var(--tc,var(--accent));opacity:.8}
+.deep>h4:not(:first-child){border-top:1px solid var(--line);padding-top:30px;margin-top:42px}
+.eqd{margin:1.65em 0;text-align:center;overflow-x:auto;overflow-y:hidden}
+/* ---- notas al margen, sin duplicar el rótulo ---- */
+.box.deepnote{padding:15px 20px;margin:1.5em 0;border-radius:0 10px 10px 0;
+ background:color-mix(in srgb,var(--surface) 76%,transparent)}
+.box.key.deepnote::before,.box.trap.deepnote::before{content:none}
+.box.deepnote>b:first-child{display:block;font:700 11.5px/1.7 var(--mono,monospace);
+ letter-spacing:.1em;text-transform:uppercase;color:var(--tc,var(--accent))}
+.box.trap.deepnote>b:first-child{color:var(--warn)}
+/* ---- resto ---- */
+.box{padding:22px 28px;margin:30px 0}
+table{font-size:18px;line-height:1.7}
+td,th{padding-top:.8em;padding-bottom:.8em}
+figure.fig figcaption{font-size:17px;line-height:1.78;margin-top:12px}
 figure.fig{margin-block:34px}
-.lede{line-height:1.85}
 .toc a{font-size:15.5px;padding:8px 0 8px 10px}
 svg,svg text,canvas,.katex,mjx-container{letter-spacing:normal;word-spacing:normal}
+mjx-container[display]{margin:0!important}
 details>summary{line-height:1.7;padding-block:.5em}
-@media (max-width:600px){body{font-size:19px;line-height:2}}
+.enun p,.inner p{text-align:left}
+@media (min-width:1040px){
+p,li{text-align:justify}
+.zero .lede,.enun p,.inner p,figcaption,.ft{text-align:left}
+}
+@media (max-width:600px){
+body{font-size:18.5px;line-height:1.9}
+p{text-align:left}
+.zero .lede::first-letter{font-size:2.6em}
+.deep h4{padding-left:0}
+.deep h4 .hn{position:static;margin-right:.5em}
+}
 }
 </style>
 </head>
@@ -46,7 +86,7 @@ details>summary{line-height:1.7;padding-block:.5em}
 <main>
 <section class="sec tema" style="--tc:var(--c1);--tcs:var(--c1s)">
 <div class="sh"><span aria-hidden="true" class="badge">8</span><div class="shx"><p class="kick">Respuesta en frecuencia · Tema 8</p><h2 id="t8">Respuesta en frecuencia de amplificadores con transistores</h2><div class="tags"><span class="tag">Respuesta en frecuencia</span><span class="tag">2.º parcial</span></div></div></div>
-<div class="zero"><p class="ft">Desde cero</p><p><b>Objetivo:</b> calcular las frecuencias de corte inferior y superior de un amplificador con transistores, aplicar el teorema de Miller y el método de las constantes de tiempo.</p><ul>
+<div class="zero"><p class="ft">Desde cero</p><p class="obj"><b>Objetivo:</b> calcular las frecuencias de corte inferior y superior de un amplificador con transistores, aplicar el teorema de Miller y el método de las constantes de tiempo.</p><ul>
 <li>Un amplificador con transistores tiene una banda plana entre dos frecuencias de corte. Por <b>debajo</b> de \(f_L\) la ganancia cae por culpa de los condensadores <b>grandes</b> (acoplamiento y desacoplo); por <b>encima</b> de \(f_H\) cae por culpa de los condensadores <b>pequeños</b> (los parásitos internos del transistor y los del montaje).</li>
 <li>Esa es la idea que ordena todo el tema: dos familias de condensadores actuando en dos extremos opuestos del espectro, y <b>en la banda plana no actúa ninguno</b>: los grandes son cortocircuitos y los pequeños, circuitos abiertos.</li>
 <li>En <b>baja frecuencia</b>, cada condensador de acoplamiento o desacoplo aporta un <b>cero en el origen y un polo</b>. El método aproximado consiste en calcular la frecuencia de corte de cada uno por separado, \(f_i=1/(2\pi R_iC_i)\) con \(R_i\) la resistencia vista por ese condensador con los demás en cortocircuito, y quedarse con la <b>mayor</b>, que es la que domina.</li>
@@ -60,14 +100,14 @@ details>summary{line-height:1.7;padding-block:.5em}
 <details class="nom"><summary><span aria-hidden="true" class="nom-ic">Aa</span>Nomenclatura del tema 8 <span class="src">10 entradas</span></summary><div class="inner">
 <div class="tw"><table><tr><th>Símbolo</th><th>Significado</th><th>Unidad · nota</th></tr><tr><td class="sym">rπ</td><td>resistencia de entrada</td><td class="u">β·re</td></tr><tr><td class="sym">gm</td><td>transconductancia</td><td class="u">IC/VT</td></tr><tr><td class="sym">re</td><td>resistencia de emisor</td><td class="u">26 mV / IE</td></tr><tr><td class="sym">Cπ</td><td>capacidad base-emisor</td><td class="u">pF</td></tr><tr><td class="sym">Cµ</td><td>capacidad base-colector</td><td class="u">pF</td></tr><tr><td class="sym">CM</td><td>capacidad de Miller</td><td class="u">Cµ(1+|Av|)</td></tr><tr><td class="sym">fL</td><td>corte inferior</td><td class="u">condensadores grandes</td></tr><tr><td class="sym">fH</td><td>corte superior</td><td class="u">parásitos</td></tr><tr><td class="sym">fT</td><td>frecuencia de transición</td><td class="u">β = 1</td></tr><tr><td class="sym">cascodo</td><td>EC + BC</td><td class="u">anula Miller</td></tr></table></div></div></details>
 <figure class="fig"><p class="ft">Calculadora interactiva - efecto Miller y frecuencia de corte superior</p><div data-sim="miller"></div><figcaption>Mueve los controles y observa cómo cambia el resultado: es el mismo cálculo que hay que saber hacer a mano en el examen.</figcaption></figure>
-<!--amp1--><div class="zero" style="margin-top:14px"><p class="ft">Explicación ampliada</p><p class="ft">Del transistor al modelo de pequeña señal</p><p>Para señales pequeñas el transistor bipolar se sustituye por un modelo lineal alrededor de su punto de trabajo. Todo depende de la corriente de colector en reposo \(I_C\): la <b>transconductancia</b> \(g_m=I_C/V_T\) (con \(V_T\approx26\) mV a temperatura ambiente), la <b>resistencia de emisor</b> \(r_e=V_T/I_E\approx26\ \text{mV}/I_E\) y la <b>resistencia de entrada</b> \(r_\pi=\beta r_e\). Con ese modelo, un <b>emisor común</b> con \(R_E\) desacoplada tiene ganancia \(A_v\approx-g_mR_C'=-R_C'/r_e\) (con \(R_C'=R_C\|R_L\)), impedancia de entrada \(R_B\|r_\pi\) y de salida \(\approx R_C\). Con \(I_C\) del orden del mA, \(r_e\) es de decenas de ohmios y la ganancia sale de cientos.</p><p class="ft">Respuesta en frecuencia: condensadores de acoplo y efecto Miller</p><p>Cada condensador forma, con la resistencia que «ve», un filtro paso alto con \(f=1/(2\pi R_{vista}C)\). Los de <b>acoplo</b> (entrada y salida) y el de <b>desacoplo de emisor</b> fijan la frecuencia de corte inferior \(f_L\), que se toma como la mayor de las \(f_i\) (si una domina) o como \(\sqrt{\sum f_i^2}\) (si son parecidas). Para saber qué resistencia ve cada uno, <b>apaga las fuentes y mira desde sus terminales</b>: \(C_s\) ve \(R_s+(R_B\|r_\pi)\); \(C_C\) ve \(R_C+R_L\); \(C_E\) ve \(R_E\|(r_e+\frac{R_s\|R_B}{\beta})\). En alta frecuencia mandan las capacidades parásitas del transistor; por el <b>efecto Miller</b>, la capacidad entre base y colector se multiplica por \((1+|A_v|)\) en la entrada: una ganancia alta empeora el ancho de banda superior.</p></div><!--/amp1--><!--deep--><h3 id="t8-profundiza">Desarrollo teórico a fondo</h3><div class="deep">
-<h4>1. Por qué importa la frecuencia en un transistor</h4>
+<!--amp1--><div class="zero" style="margin-top:14px"><p class="ft">Explicación ampliada</p><p class="ft">Del transistor al modelo de pequeña señal</p><p class="lede">Para señales pequeñas el transistor bipolar se sustituye por un modelo lineal alrededor de su punto de trabajo. Todo depende de la corriente de colector en reposo \(I_C\): la <b>transconductancia</b> \(g_m=I_C/V_T\) (con \(V_T\approx26\) mV a temperatura ambiente), la <b>resistencia de emisor</b> \(r_e=V_T/I_E\approx26\ \text{mV}/I_E\) y la <b>resistencia de entrada</b> \(r_\pi=\beta r_e\). Con ese modelo, un <b>emisor común</b> con \(R_E\) desacoplada tiene ganancia \(A_v\approx-g_mR_C'=-R_C'/r_e\) (con \(R_C'=R_C\|R_L\)), impedancia de entrada \(R_B\|r_\pi\) y de salida \(\approx R_C\). Con \(I_C\) del orden del mA, \(r_e\) es de decenas de ohmios y la ganancia sale de cientos.</p><p class="ft">Respuesta en frecuencia: condensadores de acoplo y efecto Miller</p><p>Cada condensador forma, con la resistencia que «ve», un filtro paso alto con \(f=1/(2\pi R_{vista}C)\). Los de <b>acoplo</b> (entrada y salida) y el de <b>desacoplo de emisor</b> fijan la frecuencia de corte inferior \(f_L\), que se toma como la mayor de las \(f_i\) (si una domina) o como \(\sqrt{\sum f_i^2}\) (si son parecidas). Para saber qué resistencia ve cada uno, <b>apaga las fuentes y mira desde sus terminales</b>: \(C_s\) ve \(R_s+(R_B\|r_\pi)\); \(C_C\) ve \(R_C+R_L\); \(C_E\) ve \(R_E\|(r_e+\frac{R_s\|R_B}{\beta})\). En alta frecuencia mandan las capacidades parásitas del transistor; por el <b>efecto Miller</b>, la capacidad entre base y colector se multiplica por \((1+|A_v|)\) en la entrada: una ganancia alta empeora el ancho de banda superior.</p></div><!--/amp1--><!--deep--><h3 id="t8-profundiza">Desarrollo teórico a fondo</h3><div class="deep">
+<h4><span class="hn">1</span>Por qué importa la frecuencia en un transistor</h4>
 <div class="box key deepnote"><b>Idea clave.</b> los transistores tienen capacidades internas. A altas frecuencias, esas capacidades desvían la señal y la ganancia cae.</div>
 <ul><li><b>Efecto Miller</b>: una capacidad entre entrada y salida se multiplica por la ganancia. Es el principal limitante en amplificadores con transistor.</li><li>Frecuencia de transición \(f_T\): frecuencia a la que la ganancia de corriente vale 1.</li></ul>
 <details class="dem"><summary><span class="pn">∴</span>Capacidad de Miller</summary><div class="inner"><div class="eqd">\[C_M=C_{\mu}\,(1+|A_v|)\]</div>
 <p>Una capacidad pequeña entre colector y base se ve, en la entrada, como una capacidad mucho mayor. Reduce el ancho de banda de la etapa.</p>
 <div class="box trap deepnote"><b>Cuidado.</b> Un montaje en cascodo evita el efecto Miller: la etapa inferior tiene ganancia unidad, así que no se amplifica la capacidad.</div></div></details>
-<h4>2. Ancho de banda de una etapa</h4>
+<h4><span class="hn">2</span>Ancho de banda de una etapa</h4>
 <p>Con una resistencia de fuente \(R_s\) y una capacidad total \(C\) a la entrada, la frecuencia de corte es:</p>
 <div class="eqd">\[f_H=\frac{1}{2\pi\,R_{eq}\,C}\]</div>
 <p>Para varias etapas, el ancho de banda total es menor que el de cada una: las frecuencias de corte se combinan.</p>

@@ -17,24 +17,64 @@
 <style id="lectura">
 @media screen{
 :root{--body:"Atkinson Hyperlegible Next","Atkinson Hyperlegible","Segoe UI",system-ui,-apple-system,sans-serif}
-body{font-family:var(--body);font-size:20.5px;line-height:2.1;letter-spacing:.022em;word-spacing:.09em}
-p{margin:0 0 1.75em}
-li{margin:.8em 0}
-p,li{max-width:62ch}
+body{font-family:var(--body);font-size:20px;line-height:1.95;letter-spacing:.014em;word-spacing:.05em}
+p{margin:0 0 1.5em;max-width:64ch;hyphens:auto;-webkit-hyphens:auto}
+li{margin:.72em 0;max-width:64ch}
 .box p:last-child,.box ul:last-child,.box ol:last-child{margin-bottom:0}
-h2{margin-top:92px;margin-bottom:24px;line-height:1.3}
-h3{font-size:24px;margin:58px 0 18px;line-height:1.35}
-h4{margin-top:34px;margin-bottom:10px}
-.box{padding:24px 30px;margin:32px 0}
-table{font-size:18px;line-height:1.75}
-td,th{padding-top:.85em;padding-bottom:.85em}
-figure.fig figcaption{font-size:17px;line-height:1.8;margin-top:12px}
+h2{margin-top:92px;margin-bottom:22px;line-height:1.25}
+h3{font-size:25px;margin:66px 0 20px;line-height:1.3}
+h4{margin:38px 0 12px;line-height:1.4}
+/* ---- entradilla con capitular ---- */
+.zero .lede{font-size:1.05em;line-height:1.86;text-align:left}
+.zero .lede::first-letter{float:left;font-size:3.05em;line-height:.84;font-weight:700;padding:.06em .14em 0 0;color:var(--tc,var(--accent))}
+/* ---- sumario del tema ---- */
+p.obj{max-width:none;text-align:left;margin:0 0 1.7em;padding:14px 20px;border-radius:10px;
+ background:color-mix(in srgb,var(--surface) 62%,transparent);
+ border-left:3px solid var(--tc,var(--accent));font-size:.95em;line-height:1.75}
+p.obj>b:first-child{display:block;font:700 11.5px/1.7 var(--mono,monospace);letter-spacing:.1em;
+ text-transform:uppercase;color:var(--tc,var(--accent))}
+/* ---- términos con entrada, al modo de un manual ---- */
+p.run{margin:0 0 1.38em}
+p.run>b:first-child{display:block;font:700 12px/1.7 var(--mono,monospace);letter-spacing:.09em;
+ text-transform:uppercase;color:var(--tc,var(--accent))}
+/* ---- rótulos internos ---- */
+.zero>.ft{font:700 11.5px/1.6 var(--mono,monospace);letter-spacing:.1em;text-transform:uppercase}
+.zero>.ft:not(:first-child){margin-top:2em;font-size:12.5px;color:var(--fg);opacity:.72}
+/* ---- desarrollo teórico ---- */
+.deep h4{position:relative;padding-left:2.35em;font-size:1.03em}
+.deep h4 .hn{position:absolute;left:0;top:.06em;font:700 .84em/1.7 var(--mono,monospace);
+ color:var(--tc,var(--accent));opacity:.8}
+.deep>h4:not(:first-child){border-top:1px solid var(--line);padding-top:30px;margin-top:42px}
+.eqd{margin:1.65em 0;text-align:center;overflow-x:auto;overflow-y:hidden}
+/* ---- notas al margen, sin duplicar el rótulo ---- */
+.box.deepnote{padding:15px 20px;margin:1.5em 0;border-radius:0 10px 10px 0;
+ background:color-mix(in srgb,var(--surface) 76%,transparent)}
+.box.key.deepnote::before,.box.trap.deepnote::before{content:none}
+.box.deepnote>b:first-child{display:block;font:700 11.5px/1.7 var(--mono,monospace);
+ letter-spacing:.1em;text-transform:uppercase;color:var(--tc,var(--accent))}
+.box.trap.deepnote>b:first-child{color:var(--warn)}
+/* ---- resto ---- */
+.box{padding:22px 28px;margin:30px 0}
+table{font-size:18px;line-height:1.7}
+td,th{padding-top:.8em;padding-bottom:.8em}
+figure.fig figcaption{font-size:17px;line-height:1.78;margin-top:12px}
 figure.fig{margin-block:34px}
-.lede{line-height:1.85}
 .toc a{font-size:15.5px;padding:8px 0 8px 10px}
 svg,svg text,canvas,.katex,mjx-container{letter-spacing:normal;word-spacing:normal}
+mjx-container[display]{margin:0!important}
 details>summary{line-height:1.7;padding-block:.5em}
-@media (max-width:600px){body{font-size:19px;line-height:2}}
+.enun p,.inner p{text-align:left}
+@media (min-width:1040px){
+p,li{text-align:justify}
+.zero .lede,.enun p,.inner p,figcaption,.ft{text-align:left}
+}
+@media (max-width:600px){
+body{font-size:18.5px;line-height:1.9}
+p{text-align:left}
+.zero .lede::first-letter{font-size:2.6em}
+.deep h4{padding-left:0}
+.deep h4 .hn{position:static;margin-right:.5em}
+}
 }
 </style>
 </head>
@@ -46,7 +86,7 @@ details>summary{line-height:1.7;padding-block:.5em}
 <main>
 <section class="sec tema" style="--tc:var(--c5);--tcs:var(--c5s)">
 <div class="sh"><span aria-hidden="true" class="badge">4</span><div class="shx"><p class="kick">El amplificador operacional · Tema 4</p><h2 id="t4">Aplicaciones no lineales</h2><div class="tags"><span class="tag">El amplificador operacional</span><span class="tag">1.er parcial</span></div></div></div>
-<div class="zero"><p class="ft">Desde cero</p><p><b>Objetivo:</b> analizar comparadores, disparadores de Schmitt, comparadores de ventana y circuitos con diodos, y dibujar las formas de onda de salida.</p><ul>
+<div class="zero"><p class="ft">Desde cero</p><p class="obj"><b>Objetivo:</b> analizar comparadores, disparadores de Schmitt, comparadores de ventana y circuitos con diodos, y dibujar las formas de onda de salida.</p><ul>
 <li>Cuando el operacional trabaja <b>sin realimentación</b> o con <b>realimentación positiva</b>, la regla \(v^{+}=v^{-}\) deja de valer y la salida sólo puede estar en uno de dos valores: \(+V_{sat}\) o \(-V_{sat}\). El circuito ya no amplifica, <b>compara</b>.</li>
 <li>Un <b>comparador</b> simple pone la salida a \(+V_{sat}\) si \(v^{+}>v^{-}\) y a \(-V_{sat}\) si \(v^{+}<v^{-}\). Con la referencia en la entrada inversora es un comparador <b>no inversor</b>; con la señal en la inversora, <b>inversor</b>.</li>
 <li>El problema del comparador simple aparece con señales ruidosas: cerca del punto de cruce, el ruido hace que la salida <b>conmute muchas veces</b> en lugar de una. En un sistema digital eso se traduce en pulsos espurios.</li>
@@ -60,13 +100,13 @@ details>summary{line-height:1.7;padding-block:.5em}
 <details class="nom"><summary><span aria-hidden="true" class="nom-ic">Aa</span>Nomenclatura del tema 4 <span class="src">8 entradas</span></summary><div class="inner">
 <div class="tw"><table><tr><th>Símbolo</th><th>Significado</th><th>Unidad · nota</th></tr><tr><td class="sym">VTH</td><td>umbral superior</td><td class="u">V</td></tr><tr><td class="sym">VTL</td><td>umbral inferior</td><td class="u">V</td></tr><tr><td class="sym">histéresis</td><td>VTH − VTL</td><td class="u">V</td></tr><tr><td class="sym">Schmitt</td><td>comparador con histéresis</td><td class="u"></td></tr><tr><td class="sym">Vz</td><td>tensión Zéner</td><td class="u">limita la salida</td></tr><tr><td class="sym">ventana</td><td>dos comparadores</td><td class="u">detecta un intervalo</td></tr><tr><td class="sym">rectificador de precisión</td><td>diodo dentro del lazo</td><td class="u"></td></tr><tr><td class="sym">ciclo de trabajo</td><td>fracción del periodo en alto</td><td class="u">%</td></tr></table></div></div></details>
 <figure class="fig"><p class="ft">Figura interactiva - comparador, Schmitt e histeresis con formas de onda</p><div data-sim="schmitt"></div><figcaption>Mueve los controles y observa cómo cambia el resultado: es el mismo cálculo que hay que saber hacer a mano en el examen.</figcaption></figure>
-<!--amp1--><div class="zero" style="margin-top:14px"><p class="ft">Explicación ampliada</p><p class="ft">Comparador: el operacional sin realimentación negativa</p><p>Sin realimentación negativa (o con la señal comparada directamente), el operacional <b>satura</b>: si \(v^+>v^-\) la salida va a \(+V_{sat}\) y si no, a \(-V_{sat}\). Es un <b>comparador</b>: una decisión de 1 bit. Con una referencia \(V_{ref}\), la salida cambia cuando la señal cruza ese valor. Problema: con ruido, la señal cruza varias veces el umbral y la salida «tiembla». La solución es la <b>histéresis</b>: <b>realimentación positiva</b> (la salida influye en la entrada \(+\)), de modo que el umbral cambia según el estado de la salida. Esto es el <b>disparador de Schmitt</b>. Las reglas de oro no valen aquí (no hay realimentación negativa): el análisis es por estados.</p><p class="ft">Umbrales del Schmitt paso a paso</p><p>Para obtener los umbrales: <b>(1)</b> supón la salida en \(+V_{sat}\) y calcula la tensión en la entrada \(+\): es el umbral superior \(V_{TH}\) (la salida cambiará cuando la señal lo cruce); <b>(2)</b> repite con \(-V_{sat}\): umbral inferior \(V_{TL}\). En el <b>Schmitt inversor</b> (señal en la entrada \(-\)): \(V_{TH}=V_{sat}\frac{R_1}{R_1+R_2}\), \(V_{TL}=-V_{TH}\). En el <b>no inversor</b>: \(V_{TH}=V_{sat}\frac{R_1}{R_2}\). La <b>histéresis</b> \(V_H=V_{TH}-V_{TL}\) debe ser mayor que el ruido. Con una referencia \(V_{ref}\) distinta de cero, los umbrales se desplazan pero la anchura de la histéresis no cambia. Con dos Zéner en oposición, la salida se limita a \(\pm(V_Z+V_D)\) en vez de \(\pm V_{sat}\).</p></div><!--/amp1--><!--deep--><h3 id="t4-profundiza">Desarrollo teórico a fondo</h3><div class="deep">
-<h4>1. Comparador</h4>
+<!--amp1--><div class="zero" style="margin-top:14px"><p class="ft">Explicación ampliada</p><p class="ft">Comparador: el operacional sin realimentación negativa</p><p class="lede">Sin realimentación negativa (o con la señal comparada directamente), el operacional <b>satura</b>: si \(v^+>v^-\) la salida va a \(+V_{sat}\) y si no, a \(-V_{sat}\). Es un <b>comparador</b>: una decisión de 1 bit. Con una referencia \(V_{ref}\), la salida cambia cuando la señal cruza ese valor. Problema: con ruido, la señal cruza varias veces el umbral y la salida «tiembla». La solución es la <b>histéresis</b>: <b>realimentación positiva</b> (la salida influye en la entrada \(+\)), de modo que el umbral cambia según el estado de la salida. Esto es el <b>disparador de Schmitt</b>. Las reglas de oro no valen aquí (no hay realimentación negativa): el análisis es por estados.</p><p class="ft">Umbrales del Schmitt paso a paso</p><p>Para obtener los umbrales: <b>(1)</b> supón la salida en \(+V_{sat}\) y calcula la tensión en la entrada \(+\): es el umbral superior \(V_{TH}\) (la salida cambiará cuando la señal lo cruce); <b>(2)</b> repite con \(-V_{sat}\): umbral inferior \(V_{TL}\). En el <b>Schmitt inversor</b> (señal en la entrada \(-\)): \(V_{TH}=V_{sat}\frac{R_1}{R_1+R_2}\), \(V_{TL}=-V_{TH}\). En el <b>no inversor</b>: \(V_{TH}=V_{sat}\frac{R_1}{R_2}\). La <b>histéresis</b> \(V_H=V_{TH}-V_{TL}\) debe ser mayor que el ruido. Con una referencia \(V_{ref}\) distinta de cero, los umbrales se desplazan pero la anchura de la histéresis no cambia. Con dos Zéner en oposición, la salida se limita a \(\pm(V_Z+V_D)\) en vez de \(\pm V_{sat}\).</p></div><!--/amp1--><!--deep--><h3 id="t4-profundiza">Desarrollo teórico a fondo</h3><div class="deep">
+<h4><span class="hn">1</span>Comparador</h4>
 <div class="box key deepnote"><b>Idea clave.</b> un comparador compara dos tensiones y da una salida digital (alta o baja). No tiene realimentación negativa: se usa en lazo abierto, y el operacional satura.</div>
 <div class="eqd">\[v_o=V_{sat+}\ \text{si}\ v_+>v_-\qquad v_o=V_{sat-}\ \text{si}\ v_+<v_-\]</div>
 <details class="dem"><summary><span class="pn">∴</span>Comparador con histéresis (Schmitt)</summary><div class="inner"><p>Con realimentación positiva, el comparador tiene dos umbrales distintos según la dirección del cambio. Así evita que el ruido haga oscilar la salida cerca del umbral.</p>
 <div class="eqd">\[V_{U}=\frac{R_1}{R_1+R_2}\,V_{sat}\qquad\text{ancho de histéresis}=2\,V_U\]</div></div></details>
-<h4>2. Rectificador de precisión</h4>
+<h4><span class="hn">2</span>Rectificador de precisión</h4>
 <p>Con un diodo dentro del lazo de realimentación, el operacional rectifica señales de pocos milivoltios sin la caída de 0,7 V del diodo.</p>
 <div class="box trap deepnote"><b>Cuidado.</b> Un diodo en el lazo de realimentación actúa como interruptor. Con ello se elimina la caída del diodo, pero hay que vigilar la saturación.</div>
 </div><!--/deep--><h3 id="t4-formulas">Fórmulas y conceptos que hay que saber</h3>

@@ -17,24 +17,64 @@
 <style id="lectura">
 @media screen{
 :root{--body:"Atkinson Hyperlegible Next","Atkinson Hyperlegible","Segoe UI",system-ui,-apple-system,sans-serif}
-body{font-family:var(--body);font-size:20.5px;line-height:2.1;letter-spacing:.022em;word-spacing:.09em}
-p{margin:0 0 1.75em}
-li{margin:.8em 0}
-p,li{max-width:62ch}
+body{font-family:var(--body);font-size:20px;line-height:1.95;letter-spacing:.014em;word-spacing:.05em}
+p{margin:0 0 1.5em;max-width:64ch;hyphens:auto;-webkit-hyphens:auto}
+li{margin:.72em 0;max-width:64ch}
 .box p:last-child,.box ul:last-child,.box ol:last-child{margin-bottom:0}
-h2{margin-top:92px;margin-bottom:24px;line-height:1.3}
-h3{font-size:24px;margin:58px 0 18px;line-height:1.35}
-h4{margin-top:34px;margin-bottom:10px}
-.box{padding:24px 30px;margin:32px 0}
-table{font-size:18px;line-height:1.75}
-td,th{padding-top:.85em;padding-bottom:.85em}
-figure.fig figcaption{font-size:17px;line-height:1.8;margin-top:12px}
+h2{margin-top:92px;margin-bottom:22px;line-height:1.25}
+h3{font-size:25px;margin:66px 0 20px;line-height:1.3}
+h4{margin:38px 0 12px;line-height:1.4}
+/* ---- entradilla con capitular ---- */
+.zero .lede{font-size:1.05em;line-height:1.86;text-align:left}
+.zero .lede::first-letter{float:left;font-size:3.05em;line-height:.84;font-weight:700;padding:.06em .14em 0 0;color:var(--tc,var(--accent))}
+/* ---- sumario del tema ---- */
+p.obj{max-width:none;text-align:left;margin:0 0 1.7em;padding:14px 20px;border-radius:10px;
+ background:color-mix(in srgb,var(--surface) 62%,transparent);
+ border-left:3px solid var(--tc,var(--accent));font-size:.95em;line-height:1.75}
+p.obj>b:first-child{display:block;font:700 11.5px/1.7 var(--mono,monospace);letter-spacing:.1em;
+ text-transform:uppercase;color:var(--tc,var(--accent))}
+/* ---- términos con entrada, al modo de un manual ---- */
+p.run{margin:0 0 1.38em}
+p.run>b:first-child{display:block;font:700 12px/1.7 var(--mono,monospace);letter-spacing:.09em;
+ text-transform:uppercase;color:var(--tc,var(--accent))}
+/* ---- rótulos internos ---- */
+.zero>.ft{font:700 11.5px/1.6 var(--mono,monospace);letter-spacing:.1em;text-transform:uppercase}
+.zero>.ft:not(:first-child){margin-top:2em;font-size:12.5px;color:var(--fg);opacity:.72}
+/* ---- desarrollo teórico ---- */
+.deep h4{position:relative;padding-left:2.35em;font-size:1.03em}
+.deep h4 .hn{position:absolute;left:0;top:.06em;font:700 .84em/1.7 var(--mono,monospace);
+ color:var(--tc,var(--accent));opacity:.8}
+.deep>h4:not(:first-child){border-top:1px solid var(--line);padding-top:30px;margin-top:42px}
+.eqd{margin:1.65em 0;text-align:center;overflow-x:auto;overflow-y:hidden}
+/* ---- notas al margen, sin duplicar el rótulo ---- */
+.box.deepnote{padding:15px 20px;margin:1.5em 0;border-radius:0 10px 10px 0;
+ background:color-mix(in srgb,var(--surface) 76%,transparent)}
+.box.key.deepnote::before,.box.trap.deepnote::before{content:none}
+.box.deepnote>b:first-child{display:block;font:700 11.5px/1.7 var(--mono,monospace);
+ letter-spacing:.1em;text-transform:uppercase;color:var(--tc,var(--accent))}
+.box.trap.deepnote>b:first-child{color:var(--warn)}
+/* ---- resto ---- */
+.box{padding:22px 28px;margin:30px 0}
+table{font-size:18px;line-height:1.7}
+td,th{padding-top:.8em;padding-bottom:.8em}
+figure.fig figcaption{font-size:17px;line-height:1.78;margin-top:12px}
 figure.fig{margin-block:34px}
-.lede{line-height:1.85}
 .toc a{font-size:15.5px;padding:8px 0 8px 10px}
 svg,svg text,canvas,.katex,mjx-container{letter-spacing:normal;word-spacing:normal}
+mjx-container[display]{margin:0!important}
 details>summary{line-height:1.7;padding-block:.5em}
-@media (max-width:600px){body{font-size:19px;line-height:2}}
+.enun p,.inner p{text-align:left}
+@media (min-width:1040px){
+p,li{text-align:justify}
+.zero .lede,.enun p,.inner p,figcaption,.ft{text-align:left}
+}
+@media (max-width:600px){
+body{font-size:18.5px;line-height:1.9}
+p{text-align:left}
+.zero .lede::first-letter{font-size:2.6em}
+.deep h4{padding-left:0}
+.deep h4 .hn{position:static;margin-right:.5em}
+}
 }
 </style>
 </head>
@@ -46,41 +86,41 @@ details>summary{line-height:1.7;padding-block:.5em}
 <main>
 <section class="sec tema" style="--tc:var(--c2);--tcs:var(--c2s)">
 <div class="sh"><span aria-hidden="true" class="badge">9</span><div class="shx"><p class="kick">Transistores, realimentación y potencia · Tema 9</p><h2 id="t9">Modelo en pequeña señal del BJT y del FET</h2><div class="tags"><span class="tag">Transistores, realimentación y potencia</span><span class="tag">2.º parcial</span></div></div></div>
-<div class="zero"><p class="ft">Desde cero</p><p><b>Objetivo:</b> separar continua y alterna, calcular el punto de trabajo, sustituir el transistor por su modelo en pequeña señal y obtener ganancia, impedancia de entrada y de salida de las tres configuraciones básicas.</p>
-<p>Un amplificador con transistor trabaja en <b>dos planos a la vez</b>. En continua, las resistencias de polarización fijan el <b>punto de trabajo Q</b> (\(I_{CQ}\), \(V_{CEQ}\)); en alterna, la señal pequeña monta encima y el transistor se comporta como un elemento lineal.</p>
-<p><b>Regla de oro del análisis en alterna:</b> las fuentes de continua se cortocircuitan a masa y los condensadores de acoplo y desacoplo se sustituyen por cortocircuitos. Lo que queda es el <b>circuito equivalente en alterna</b>.</p>
-<p><b>Parámetros del BJT:</b> \(g_m=I_{CQ}/V_T\) con \(V_T\approx25\) mV, \(r_\pi=\beta/g_m\), \(r_o=V_A/I_{CQ}\). Para el <b>FET</b>: \(g_m=2I_{DQ}/|V_{GS}-V_T|\) y la puerta no consume corriente.</p>
-<p><b>Las tres configuraciones</b> (BJT): emisor común (gran ganancia, invierte), colector común o seguidor (ganancia ≈ 1, alta Z entrada, baja Z salida: adaptador) y base común (no invierte, baja Z de entrada, buena en alta frecuencia).</p>
+<div class="zero"><p class="ft">Desde cero</p><p class="obj"><b>Objetivo:</b> separar continua y alterna, calcular el punto de trabajo, sustituir el transistor por su modelo en pequeña señal y obtener ganancia, impedancia de entrada y de salida de las tres configuraciones básicas.</p>
+<p class="lede">Un amplificador con transistor trabaja en <b>dos planos a la vez</b>. En continua, las resistencias de polarización fijan el <b>punto de trabajo Q</b> (\(I_{CQ}\), \(V_{CEQ}\)); en alterna, la señal pequeña monta encima y el transistor se comporta como un elemento lineal.</p>
+<p class="run"><b>Regla de oro del análisis en alterna:</b> las fuentes de continua se cortocircuitan a masa y los condensadores de acoplo y desacoplo se sustituyen por cortocircuitos. Lo que queda es el <b>circuito equivalente en alterna</b>.</p>
+<p class="run"><b>Parámetros del BJT:</b> \(g_m=I_{CQ}/V_T\) con \(V_T\approx25\) mV, \(r_\pi=\beta/g_m\), \(r_o=V_A/I_{CQ}\). Para el <b>FET</b>: \(g_m=2I_{DQ}/|V_{GS}-V_T|\) y la puerta no consume corriente.</p>
+<p class="run"><b>Las tres configuraciones:</b> (BJT): emisor común (gran ganancia, invierte), colector común o seguidor (ganancia ≈ 1, alta Z entrada, baja Z salida: adaptador) y base común (no invierte, baja Z de entrada, buena en alta frecuencia).</p>
 </div>
 <details class="nom"><summary><span aria-hidden="true" class="nom-ic">Aa</span>Nomenclatura del tema 9 <span class="src">6 símbolos</span></summary><div class="inner">
 <div class="tw"><table><tr><th>Símbolo</th><th>Qué significa</th><th>Unidades · ejemplo</th></tr><tr><td class="sym">Q</td><td>Punto de trabajo en continua</td><td class="u">I_CQ, V_CEQ</td></tr><tr><td class="sym">g_m</td><td>Transconductancia</td><td class="u">S (A/V); g_m = I_CQ/V_T</td></tr><tr><td class="sym">r_π</td><td>Resistencia de entrada base-emisor</td><td class="u">Ω; r_π = β/g_m</td></tr><tr><td class="sym">r_o</td><td>Resistencia de salida (Early)</td><td class="u">Ω; r_o = V_A/I_CQ</td></tr><tr><td class="sym">V_T</td><td>Potencial térmico</td><td class="u">≈ 25 mV a 300 K</td></tr><tr><td class="sym">A_v</td><td>Ganancia de tensión en pequeña señal</td><td class="u">adimensional o dB</td></tr></table></div></div></details>
-<!--amp1--><div class="zero" style="margin-top:14px"><p class="ft">Explicación ampliada</p><p class="ft">Por qué se puede linealizar</p><p>La relación del transistor es exponencial: \(i_C=I_Se^{v_{BE}/V_T}\). No es lineal, así que en principio no se le pueden aplicar las herramientas de circuitos lineales.</p>
+<!--amp1--><div class="zero" style="margin-top:14px"><p class="ft">Explicación ampliada</p><p class="ft">Por qué se puede linealizar</p><p class="lede">La relación del transistor es exponencial: \(i_C=I_Se^{v_{BE}/V_T}\). No es lineal, así que en principio no se le pueden aplicar las herramientas de circuitos lineales.</p>
 <p>El truco es el desarrollo de Taylor alrededor del punto de trabajo. Si la señal es <b>pequeña</b> (unos pocos milivoltios), basta el término de primer orden:</p>
 <div class="eqd">\[i_c=\left.\frac{\partial i_C}{\partial v_{BE}}\right|_Q v_{be}=g_m v_{be}\qquad g_m=\frac{I_{CQ}}{V_T}\]</div>
 <p>Ahí está todo el tema: la pendiente de la exponencial en Q es la transconductancia, y la pendiente depende de dónde esté Q. Por eso <b>la ganancia depende de la polarización</b>: si cambias \(I_{CQ}\), cambias \(g_m\) y cambias la ganancia.</p>
 <p class="ft">El orden de trabajo en un problema</p><ol class="pasos"><li><b>Continua:</b> apaga la fuente de señal, abre los condensadores y calcula \(I_{CQ}\) y \(V_{CEQ}\). Comprueba que el transistor está en activa.</li><li><b>Parámetros:</b> con \(I_{CQ}\) calcula \(g_m\), \(r_\pi\) y \(r_o\).</li><li><b>Alterna:</b> cortocircuita las fuentes de continua y los condensadores, dibuja el equivalente y sustituye el transistor por su modelo en π.</li><li><b>Resuelve</b> \(A_v\), \(Z_i\) y \(Z_o\) con análisis de nudos o mallas normal.</li></ol>
 <div class="box trap deepnote"><b>Cuidado.</b> Si te olvidas de comprobar que el transistor está en activa, todo lo demás sobra: en saturación o corte el modelo en pequeña señal no vale y la ganancia que calcules será ficticia.</div>
 </div><!--/amp1--><!--deep--><h3 id="t9-profundiza">Desarrollo teórico a fondo</h3><div class="deep">
-<h4>1. Polarización: fijar Q y que no se mueva</h4>
+<h4><span class="hn">1</span>Polarización: fijar Q y que no se mueva</h4>
 <div class="box key deepnote"><b>Idea clave.</b> un buen circuito de polarización mantiene Q estable frente a cambios de \(\beta\) y de temperatura. Esa es toda la razón de ser de las cuatro resistencias del divisor.</div>
 <p>La polarización por <b>divisor de tensión con resistencia de emisor</b> es la estándar:</p>
 <div class="eqd">\[V_B=V_{CC}\frac{R_2}{R_1+R_2}\qquad I_{CQ}\simeq\frac{V_B-V_{BE}}{R_E}\qquad V_{CEQ}=V_{CC}-I_{CQ}(R_C+R_E)\]</div>
 <p>La aproximación vale si \(R_2\ll\beta R_E\) (el divisor es «rígido» frente a la corriente de base). Fíjate en que \(I_{CQ}\) <b>no depende de \(\beta\)</b>: ahí está la estabilidad.</p>
 <ul><li>\(R_E\) grande estabiliza más, pero resta margen de excursión a la salida.</li><li>Para que la señal no lo note en alterna se pone en paralelo el <b>condensador de desacoplo</b> \(C_E\), que lo cortocircuita a la frecuencia de trabajo.</li></ul>
-<h4>2. El modelo en π híbrido</h4>
+<h4><span class="hn">2</span>El modelo en π híbrido</h4>
 <p>Sustituido el transistor, el BJT en activa es:</p>
 <ul><li>Entre base y emisor, \(r_\pi=\beta/g_m=\beta V_T/I_{CQ}\).</li><li>Una fuente de corriente dependiente \(g_mv_{be}\) de colector a emisor.</li><li>En paralelo con ella, \(r_o=V_A/I_{CQ}\) (efecto Early); suele despreciarse si \(r_o\gg R_C\).</li></ul>
 <details class="dem"><summary><span class="pn">∴</span>Equivalencia con el modelo en T y con h_fe</summary><div class="inner"><p>\(h_{fe}=\beta\) y \(h_{ie}=r_\pi\): el modelo en parámetros híbridos de los libros clásicos es el mismo con otro nombre. En el modelo en T aparece \(r_e=V_T/I_{EQ}\approx1/g_m\), y se cumple \(r_\pi=(\beta+1)r_e\).</p></div></details>
-<h4>3. Emisor común: la etapa de ganancia</h4>
+<h4><span class="hn">3</span>Emisor común: la etapa de ganancia</h4>
 <div class="eqd">\[A_v=-g_m(R_C\parallel R_L)\qquad Z_i=R_1\parallel R_2\parallel r_\pi\qquad Z_o\simeq R_C\]</div>
 <p>El signo menos es la <b>inversión de fase</b> de 180°, marca de la casa del emisor común. La ganancia puede ser de cientos.</p>
 <p>Si <b>no</b> se desacopla \(R_E\), aparece realimentación de serie y la ganancia cae pero se estabiliza:</p>
 <div class="eqd">\[A_v=-\frac{g_m(R_C\parallel R_L)}{1+g_mR_E}\simeq-\frac{R_C}{R_E}\ \ (g_mR_E\gg1)\]</div>
 <div class="box key deepnote"><b>Idea clave.</b> ese resultado, \(A_v\approx-R_C/R_E\), es muy útil: la ganancia depende solo de dos resistencias, no de \(\beta\) ni de la temperatura. Es realimentación negativa en estado puro, el tema siguiente.</div>
-<h4>4. Colector común (seguidor) y base común</h4>
+<h4><span class="hn">4</span>Colector común (seguidor) y base común</h4>
 <ul><li><b>Seguidor de emisor:</b> \(A_v=\dfrac{g_mR_E}{1+g_mR_E}\lesssim1\), \(Z_i=R_B\parallel[r_\pi+(\beta+1)R_E]\) (muy alta) y \(Z_o\approx R_E\parallel\dfrac{r_\pi+R_S}{\beta+1}\) (muy baja). No amplifica tensión: <b>adapta impedancias</b>. Es la etapa que se pone antes de una carga pequeña para que no hunda la señal.</li><li><b>Base común:</b> \(A_v=+g_m(R_C\parallel R_L)\) (no invierte), \(Z_i\approx1/g_m\) (muy baja, decenas de ohmios) y \(Z_o\approx R_C\). Su virtud es que no sufre efecto Miller, así que llega mucho más alto en frecuencia.</li></ul>
 <div class="tw"><table><tr><th>Etapa</th><th>A_v</th><th>Z entrada</th><th>Z salida</th><th>Para qué</th></tr><tr><td>Emisor común</td><td>Alta, invierte</td><td>Media</td><td>Media</td><td>Ganancia</td></tr><tr><td>Colector común</td><td>≈ 1</td><td>Muy alta</td><td>Muy baja</td><td>Adaptar, buffer</td></tr><tr><td>Base común</td><td>Alta, no invierte</td><td>Muy baja</td><td>Media</td><td>Alta frecuencia</td></tr></table></div>
-<h4>5. El FET: lo mismo, con otras constantes</h4>
+<h4><span class="hn">5</span>El FET: lo mismo, con otras constantes</h4>
 <p>El MOSFET en saturación cumple \(i_D=\tfrac12k(v_{GS}-V_T)^2\), así que</p>
 <div class="eqd">\[g_m=\frac{\partial i_D}{\partial v_{GS}}=k(V_{GS}-V_T)=\frac{2I_{DQ}}{V_{GS}-V_T}=\sqrt{2kI_{DQ}}\]</div>
 <ul><li>La puerta <b>no consume corriente</b>: \(Z_i\) la fijan solo las resistencias de polarización, y puede ser de megaohmios.</li><li>La \(g_m\) de un FET es bastante <b>menor</b> que la de un BJT a la misma corriente, así que da menos ganancia por etapa.</li><li>Fuente común ↔ emisor común; drenador común ↔ seguidor; puerta común ↔ base común.</li></ul>
