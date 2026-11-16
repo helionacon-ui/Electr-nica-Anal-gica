@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>T11 Circuitos osciladores · Electrónica Analógica · Apuntes</title>
+<meta name="description" content="Electrónica Analógica (GIEyA): tema 11, Circuitos osciladores">
+<meta name="theme-color" content="#8a6a12">
+<link href="https://fonts.googleapis.com" rel="preconnect"><link crossorigin href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=IBM+Plex+Sans:ital,wght@0,400;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script>window.MathJax={tex:{inlineMath:[['\\(','\\)']],displayMath:[['\\[','\\]']]},svg:{fontCache:'global'}};</script>
+<script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+<link rel="stylesheet" href="style.css">
+<style>html{-webkit-text-size-adjust:100%}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+<script src="asig-nav.js" defer></script>
+<link id="lectura-font" rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible+Next:ital,wght@0,400;0,600;0,700;1,400;1,700&amp;display=swap">
+<style id="lectura">
+@media screen{
+:root{--body:"Atkinson Hyperlegible Next","Atkinson Hyperlegible","Segoe UI",system-ui,-apple-system,sans-serif}
+body{font-family:var(--body);font-size:20.5px;line-height:2.1;letter-spacing:.022em;word-spacing:.09em}
+p{margin:0 0 1.75em}
+li{margin:.8em 0}
+p,li{max-width:62ch}
+.box p:last-child,.box ul:last-child,.box ol:last-child{margin-bottom:0}
+h2{margin-top:92px;margin-bottom:24px;line-height:1.3}
+h3{font-size:24px;margin:58px 0 18px;line-height:1.35}
+h4{margin-top:34px;margin-bottom:10px}
+.box{padding:24px 30px;margin:32px 0}
+table{font-size:18px;line-height:1.75}
+td,th{padding-top:.85em;padding-bottom:.85em}
+figure.fig figcaption{font-size:17px;line-height:1.8;margin-top:12px}
+figure.fig{margin-block:34px}
+.lede{line-height:1.85}
+.toc a{font-size:15.5px;padding:8px 0 8px 10px}
+svg,svg text,canvas,.katex,mjx-container{letter-spacing:normal;word-spacing:normal}
+details>summary{line-height:1.7;padding-block:.5em}
+@media (max-width:600px){body{font-size:19px;line-height:2}}
+}
+</style>
+</head>
+<body>
+<div class="hub-bar" style="max-width:1180px;margin:0 auto;padding:10px 16px 0"><a href="https://helionacon-ui.github.io/GIEIA-UPCT/" style="display:inline-flex;align-items:center;gap:6px;font:600 13.5px/1 system-ui,sans-serif;padding:8px 12px;border-radius:999px;border:1px solid var(--line);background:var(--surface);color:var(--fg);text-decoration:none">← Todas las guías GIEyA</a><p class="fecha" style="margin:6px 0 0;max-width:none;font:13px/1.45 system-ui,sans-serif;color:var(--muted)">Datos tomados del curso <time datetime="2023-09">2023/24</time> (transparencias de las ocho unidades, apuntes, boletines de ejercicios resueltos, prácticas y exámenes de 2022 a 2024) · página creada en noviembre de 2026</p></div>
+<div class="crumb"><a href="index.html">Electrónica Analógica</a><span class="sep">›</span><span>Transistores, realimentación y potencia</span><span class="sep">›</span><span>T11 · Circuitos osciladores</span></div><a href="#top" class="totop" id="totop" aria-label="Volver arriba">↑</a>
+<div class="wrap" id="top">
+<nav aria-label="Índice" class="toc"><a href="index.html" style="--tc:var(--c0)">Portada</a><div class="grp">Empezar</div><a href="index.html#cero" style="--tc:var(--c0)">Empieza aquí desde cero</a><a href="plan.html" style="--tc:var(--c0)">Cómo es la evaluación</a><a href="index.html#progreso" style="--tc:var(--c0)">Tu progreso</a><div class="grp">El amplificador operacional</div><a href="tema-01.html" style="--tc:var(--c2)">T1 Introducción a los amplificadores</a><a href="tema-02.html" style="--tc:var(--c3)">T2 El amplificador operacional ideal</a><a href="tema-03.html" style="--tc:var(--c4)">T3 Aplicaciones lineales del operacional</a><a href="tema-04.html" style="--tc:var(--c5)">T4 Aplicaciones no lineales</a><a href="tema-05.html" style="--tc:var(--c6)">T5 El amplificador operacional real</a><div class="grp">Respuesta en frecuencia</div><a href="tema-06.html" style="--tc:var(--c7)">T6 Diagramas de Bode y filtros</a><a href="tema-07.html" style="--tc:var(--c8)">T7 Cuadripolos</a><a href="tema-08.html" style="--tc:var(--c1)">T8 Respuesta en frecuencia de amplificadores con transistores</a><div class="grp">Transistores, realimentación y potencia</div><a href="tema-09.html" style="--tc:var(--c2)">T9 Modelo en pequeña señal del BJT y del FET</a><a href="tema-10.html" style="--tc:var(--c3)">T10 Realimentación</a><a href="tema-11.html" class="on" aria-current="page" style="--tc:var(--c4)">T11 Circuitos osciladores</a><a href="tema-12.html" style="--tc:var(--c5)">T12 Amplificadores de potencia</a><div class="grp">Practicar</div><a href="cuestiones.html" style="--tc:var(--c8)">Cuestiones de teoría respondidas</a><a href="examenes.html" style="--tc:var(--c8)">Problemas de examen resueltos</a><a href="problemas.html" style="--tc:var(--c8)">Qué cae en el examen</a><a href="laboratorio.html" style="--tc:var(--c7)">Prácticas y simulación</a><a href="formulario.html" style="--tc:var(--c8)">Formulario</a></nav>
+<main>
+<section class="sec tema" style="--tc:var(--c4);--tcs:var(--c4s)">
+<div class="sh"><span aria-hidden="true" class="badge">11</span><div class="shx"><p class="kick">Transistores, realimentación y potencia · Tema 11</p><h2 id="t11">Circuitos osciladores</h2><div class="tags"><span class="tag">Transistores, realimentación y potencia</span><span class="tag">2.º parcial</span></div></div></div>
+<div class="zero"><p class="ft">Desde cero</p><p><b>Objetivo:</b> aplicar el criterio de Barkhausen, calcular la frecuencia y la condición de arranque del oscilador de puente de Wien, del de desplazamiento de fase y de los LC, y conocer el oscilador de cristal y el 555.</p>
+<p>Un <b>oscilador</b> es un amplificador con realimentación <b>positiva</b> que genera una señal periódica sin que entre nada por la entrada. Arranca con el propio ruido del circuito.</p>
+<p><b>Criterio de Barkhausen:</b> oscila a la frecuencia en la que la ganancia de lazo cumple \(|A\beta|=1\) y el desfase total es 0° (o 360°). La condición de fase fija <b>la frecuencia</b>; la de módulo, <b>si arranca</b>.</p>
+<p><b>Wien:</b> \(f_0=1/2\pi RC\), necesita ganancia exactamente 3. <b>Desplazamiento de fase</b> (3 células RC): \(f_0=1/(2\pi RC\sqrt6)\), ganancia 29. <b>LC (Colpitts/Hartley):</b> \(f_0=1/2\pi\sqrt{LC_{eq}}\).</p>
+<p><b>Cristal de cuarzo:</b> estabilidad de 1 parte en 10⁶ o mejor; es el que lleva cualquier reloj o microcontrolador. <b>555:</b> no es senoidal, genera onda cuadrada con \(f=1{,}44/((R_A+2R_B)C)\).</p>
+</div>
+<details class="nom"><summary><span aria-hidden="true" class="nom-ic">Aa</span>Nomenclatura del tema 11 <span class="src">5 símbolos</span></summary><div class="inner">
+<div class="tw"><table><tr><th>Símbolo</th><th>Qué significa</th><th>Unidades · ejemplo</th></tr><tr><td class="sym">f₀</td><td>Frecuencia de oscilación</td><td class="u">Hz</td></tr><tr><td class="sym">Aβ</td><td>Ganancia de lazo</td><td class="u">= 1 ∠0° en oscilación</td></tr><tr><td class="sym">Q</td><td>Factor de calidad del resonador</td><td class="u">cuarzo: 10⁴–10⁶</td></tr><tr><td class="sym">R_A, R_B, C</td><td>Red de tiempos del 555</td><td class="u">Ω, F</td></tr><tr><td class="sym">D</td><td>Ciclo de trabajo</td><td class="u">%; 555 astable: (R_A+R_B)/(R_A+2R_B)</td></tr></table></div></div></details>
+<!--amp1--><div class="zero" style="margin-top:14px"><p class="ft">Explicación ampliada</p><p class="ft">Cómo arranca algo que no tiene entrada</p><p>La pregunta natural es de dónde sale la primera señal. La respuesta es el <b>ruido</b>: cualquier resistencia genera ruido térmico en todas las frecuencias. El lazo amplifica solo la componente que cumple la condición de fase, y como \(|A\beta|&gt;1\) esa componente crece en cada vuelta.</p>
+<p>Por eso los osciladores reales se diseñan con <b>|Aβ| algo mayor que 1</b> (un 5-10 %): con exactamente 1 no arrancarían nunca, y con la tolerancia de las resistencias podrían quedarse por debajo.</p>
+<p class="ft">Y cómo deja de crecer</p><p>Si \(|A\beta|&gt;1\) siempre, la amplitud crecería hasta saturar y la onda saldría recortada. Hace falta un mecanismo que <b>baje la ganancia al crecer la amplitud</b>:</p>
+<ul><li>El clásico del Wien: una <b>lámpara de filamento</b> en la rama de realimentación. Al subir la corriente se calienta, sube su resistencia y baja la ganancia.</li><li>La versión moderna: dos <b>diodos en antiparalelo</b> en paralelo con una resistencia, que conducen al superar 0,6 V y reducen la ganancia.</li><li>Un <b>JFET</b> trabajando como resistencia controlada por tensión, con un detector de pico.</li></ul>
+<div class="box trap deepnote"><b>Cuidado.</b> Un oscilador senoidal sin control de amplitud da una onda cuadrada recortada, no una senoide. Si en el laboratorio el Wien sale «con las puntas planas», el problema es ese, no la frecuencia.</div>
+</div><!--/amp1--><!--deep--><h3 id="t11-profundiza">Desarrollo teórico a fondo</h3><div class="deep">
+<h4>1. Criterio de Barkhausen en detalle</h4>
+<div class="eqd">\[A(j\omega)\,\beta(j\omega)=1\quad\Longleftrightarrow\quad |A\beta|=1\ \ \text{y}\ \ \angle A\beta=0^\circ\ (\text{o }360^\circ)\]</div>
+<div class="box key deepnote"><b>Idea clave.</b> la condición de <b>fase</b> selecciona la frecuencia (solo una la cumple); la de <b>módulo</b> decide si la oscilación se mantiene. Son dos ecuaciones y se resuelven por separado: primero la fase para sacar \(f_0\), luego el módulo para sacar la ganancia necesaria.</div>
+<h4>2. Oscilador de puente de Wien</h4>
+<p>La red es un RC serie en la rama superior y un RC paralelo en la inferior, realimentando a la entrada <b>no inversora</b> de un operacional:</p>
+<div class="eqd">\[\beta(j\omega)=\frac{1}{3+j\left(\omega RC-\dfrac{1}{\omega RC}\right)}\]</div>
+<p>La parte imaginaria se anula cuando \(\omega RC=1/\omega RC\), es decir:</p>
+<div class="eqd">\[\omega_0=\frac{1}{RC}\qquad f_0=\frac{1}{2\pi RC}\qquad \beta(\omega_0)=\frac13\]</div>
+<p>Como \(\beta=1/3\), hace falta \(A=3\) exactamente, que se consigue con un no inversor de \(R_f=2R_1\). Es el oscilador senoidal de audio por excelencia: barato, limpio y fácil de sintonizar con un potenciómetro doble.</p>
+<div class="box trap deepnote"><b>Cuidado.</b> Con \(A&lt;3\) no arranca; con \(A\) bastante mayor que 3 satura. El margen útil es estrecho, de ahí la necesidad del control automático de amplitud.</div>
+<h4>3. Oscilador de desplazamiento de fase</h4>
+<p>Tres células RC iguales aportan 60° cada una para sumar los 180° que faltan tras el amplificador inversor. Imponiendo fase cero en el lazo:</p>
+<div class="eqd">\[f_0=\frac{1}{2\pi RC\sqrt6}\qquad |\beta|=\frac{1}{29}\ \Rightarrow\ |A|\ge29\]</div>
+<p>Necesita mucha más ganancia que el Wien y su pureza espectral es peor, pero usa solo resistencias y condensadores iguales, lo que lo hace cómodo de montar. Con dos células no funcionaría: cada RC no puede dar 90°, así que harían falta al menos tres.</p>
+<h4>4. Osciladores LC: Colpitts y Hartley</h4>
+<ul><li><b>Colpitts:</b> divisor <b>capacitivo</b>. \(f_0=\dfrac{1}{2\pi\sqrt{LC_{eq}}}\) con \(C_{eq}=\dfrac{C_1C_2}{C_1+C_2}\), y \(\beta=C_1/C_2\).</li><li><b>Hartley:</b> divisor <b>inductivo</b>. \(L_{eq}=L_1+L_2\) y \(\beta=L_2/L_1\).</li></ul>
+<div class="box key deepnote"><b>Idea clave.</b> truco para no confundirlos: <b>Co</b>lpitts lleva <b>Co</b>ndensadores en el divisor. Es la pregunta de test más repetida del tema.</div>
+<p>Se usan de cientos de kHz a cientos de MHz, donde las redes RC serían impracticables por el tamaño de los componentes.</p>
+<h4>5. Oscilador de cristal</h4>
+<p>Un cristal de cuarzo es un resonador piezoeléctrico con un factor de calidad altísimo (\(Q\) de 10 000 a 1 000 000, frente a 100 de un LC bueno). Su circuito equivalente tiene dos frecuencias muy próximas:</p>
+<ul><li><b>Serie</b> \(f_s=1/2\pi\sqrt{L_sC_s}\): impedancia mínima.</li><li><b>Paralelo</b> \(f_p=f_s\sqrt{1+C_s/C_0}\): impedancia máxima. Están separadas menos del 1 %.</li></ul>
+<p>Entre ambas el cristal es <b>inductivo</b>, y ahí es donde trabaja el oscilador. La estabilidad en frecuencia es de 1 ppm o mejor, frente a 1 % de un RC: por eso todo lo que tenga que medir tiempo (un reloj, un microcontrolador, un transmisor de radio) lleva cristal y no una red RC.</p>
+<h4>6. El 555 como astable</h4>
+<p>No es un oscilador senoidal, sino un <b>multivibrador</b> que genera onda cuadrada. El condensador se carga a través de \(R_A+R_B\) y se descarga por \(R_B\) entre 1/3 y 2/3 de \(V_{CC}\):</p>
+<div class="eqd">\[t_H=0{,}693(R_A+R_B)C\qquad t_L=0{,}693\,R_BC\]</div>
+<div class="eqd">\[f=\frac{1{,}44}{(R_A+2R_B)C}\qquad D=\frac{R_A+R_B}{R_A+2R_B}\]</div>
+<div class="box trap deepnote"><b>Cuidado.</b> Con esta topología el ciclo de trabajo es siempre <b>mayor del 50 %</b>, porque la carga pasa por más resistencia que la descarga. Para bajar del 50 % hay que añadir un diodo en paralelo con \(R_B\).</div>
+<p>En modo <b>monoestable</b> da un único pulso de \(T=1{,}1R C\) al dispararlo.</p>
+</div><!--/deep--><h3 id="t11-ejercicios">Ejercicios tipo, paso a paso</h3><details class="paso"><summary><span class="pn">1</span>Wien con R = 10 k y C = 10 nF: frecuencia y resistencias del amplificador.</summary><div class="inner"><p>\(f_0=1/(2\pi\times10^4\times10^{-8})=1592\) Hz. Hace falta \(A=3\): con un no inversor, \(1+R_f/R_1=3\Rightarrow R_f=2R_1\); por ejemplo \(R_1=10\) k y \(R_f=20\) k.</p></div></details><details class="paso"><summary><span class="pn">2</span>Desplazamiento de fase con R = 4,7 k y C = 10 nF.</summary><div class="inner"><p>\(f_0=1/(2\pi\times4700\times10^{-8}\times2{,}449)=1383\) Hz. Ganancia mínima del inversor: 29, es decir \(R_f=29R\approx136\) kΩ.</p></div></details><details class="paso"><summary><span class="pn">3</span>Colpitts con L = 100 µH, C1 = 1 nF y C2 = 10 nF.</summary><div class="inner"><p>\(C_{eq}=(1\times10)/(11)=0{,}909\) nF. \(f_0=1/(2\pi\sqrt{100\times10^{-6}\times0{,}909\times10^{-9}})=528\) kHz. \(\beta=C_1/C_2=0{,}1\), luego hace falta \(A\ge10\).</p></div></details><details class="paso"><summary><span class="pn">4</span>555 astable con R_A = 1 k, R_B = 10 k y C = 100 nF.</summary><div class="inner"><p>\(f=1{,}44/((1000+20000)\times10^{-7})=686\) Hz. \(D=(1+10)/(1+20)=52{,}4\,\%\): casi simétrica, porque \(R_B\gg R_A\). Con \(R_A=R_B\) saldría el 66 %.</p></div></details>
+</section>
+<nav class="pager" aria-label="Páginas"><a href="tema-10.html"><small>← Anterior</small>T10 · Realimentación</a><a class="nx" href="tema-12.html"><small>Siguiente →</small>T12 · Amplificadores de potencia</a></nav>
+<p class="inicio" style="margin:36px 0 8px;text-align:center;font-size:13px;color:var(--muted)">Guía no oficial de Electrónica Analógica (GIEyA) · Datos tomados en el curso <time datetime="2021-09">2021/22</time> (apuntes y exámenes) · página creada en noviembre de 2026</p>
+</main>
+</div>
+<script src="app.js"></script>
+<script src="sims.js"></script>
+</body>
+</html>

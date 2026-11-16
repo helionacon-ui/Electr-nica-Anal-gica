@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>T12 Amplificadores de potencia · Electrónica Analógica · Apuntes</title>
+<meta name="description" content="Electrónica Analógica (GIEyA): tema 12, Amplificadores de potencia">
+<meta name="theme-color" content="#8a6a12">
+<link href="https://fonts.googleapis.com" rel="preconnect"><link crossorigin href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=IBM+Plex+Sans:ital,wght@0,400;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script>window.MathJax={tex:{inlineMath:[['\\(','\\)']],displayMath:[['\\[','\\]']]},svg:{fontCache:'global'}};</script>
+<script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+<link rel="stylesheet" href="style.css">
+<style>html{-webkit-text-size-adjust:100%}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+<script src="asig-nav.js" defer></script>
+<link id="lectura-font" rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible+Next:ital,wght@0,400;0,600;0,700;1,400;1,700&amp;display=swap">
+<style id="lectura">
+@media screen{
+:root{--body:"Atkinson Hyperlegible Next","Atkinson Hyperlegible","Segoe UI",system-ui,-apple-system,sans-serif}
+body{font-family:var(--body);font-size:20.5px;line-height:2.1;letter-spacing:.022em;word-spacing:.09em}
+p{margin:0 0 1.75em}
+li{margin:.8em 0}
+p,li{max-width:62ch}
+.box p:last-child,.box ul:last-child,.box ol:last-child{margin-bottom:0}
+h2{margin-top:92px;margin-bottom:24px;line-height:1.3}
+h3{font-size:24px;margin:58px 0 18px;line-height:1.35}
+h4{margin-top:34px;margin-bottom:10px}
+.box{padding:24px 30px;margin:32px 0}
+table{font-size:18px;line-height:1.75}
+td,th{padding-top:.85em;padding-bottom:.85em}
+figure.fig figcaption{font-size:17px;line-height:1.8;margin-top:12px}
+figure.fig{margin-block:34px}
+.lede{line-height:1.85}
+.toc a{font-size:15.5px;padding:8px 0 8px 10px}
+svg,svg text,canvas,.katex,mjx-container{letter-spacing:normal;word-spacing:normal}
+details>summary{line-height:1.7;padding-block:.5em}
+@media (max-width:600px){body{font-size:19px;line-height:2}}
+}
+</style>
+</head>
+<body>
+<div class="hub-bar" style="max-width:1180px;margin:0 auto;padding:10px 16px 0"><a href="https://helionacon-ui.github.io/GIEIA-UPCT/" style="display:inline-flex;align-items:center;gap:6px;font:600 13.5px/1 system-ui,sans-serif;padding:8px 12px;border-radius:999px;border:1px solid var(--line);background:var(--surface);color:var(--fg);text-decoration:none">← Todas las guías GIEyA</a><p class="fecha" style="margin:6px 0 0;max-width:none;font:13px/1.45 system-ui,sans-serif;color:var(--muted)">Datos tomados del curso <time datetime="2023-09">2023/24</time> (transparencias de las ocho unidades, apuntes, boletines de ejercicios resueltos, prácticas y exámenes de 2022 a 2024) · página creada en noviembre de 2026</p></div>
+<div class="crumb"><a href="index.html">Electrónica Analógica</a><span class="sep">›</span><span>Transistores, realimentación y potencia</span><span class="sep">›</span><span>T12 · Amplificadores de potencia</span></div><a href="#top" class="totop" id="totop" aria-label="Volver arriba">↑</a>
+<div class="wrap" id="top">
+<nav aria-label="Índice" class="toc"><a href="index.html" style="--tc:var(--c0)">Portada</a><div class="grp">Empezar</div><a href="index.html#cero" style="--tc:var(--c0)">Empieza aquí desde cero</a><a href="plan.html" style="--tc:var(--c0)">Cómo es la evaluación</a><a href="index.html#progreso" style="--tc:var(--c0)">Tu progreso</a><div class="grp">El amplificador operacional</div><a href="tema-01.html" style="--tc:var(--c2)">T1 Introducción a los amplificadores</a><a href="tema-02.html" style="--tc:var(--c3)">T2 El amplificador operacional ideal</a><a href="tema-03.html" style="--tc:var(--c4)">T3 Aplicaciones lineales del operacional</a><a href="tema-04.html" style="--tc:var(--c5)">T4 Aplicaciones no lineales</a><a href="tema-05.html" style="--tc:var(--c6)">T5 El amplificador operacional real</a><div class="grp">Respuesta en frecuencia</div><a href="tema-06.html" style="--tc:var(--c7)">T6 Diagramas de Bode y filtros</a><a href="tema-07.html" style="--tc:var(--c8)">T7 Cuadripolos</a><a href="tema-08.html" style="--tc:var(--c1)">T8 Respuesta en frecuencia de amplificadores con transistores</a><div class="grp">Transistores, realimentación y potencia</div><a href="tema-09.html" style="--tc:var(--c2)">T9 Modelo en pequeña señal del BJT y del FET</a><a href="tema-10.html" style="--tc:var(--c3)">T10 Realimentación</a><a href="tema-11.html" style="--tc:var(--c4)">T11 Circuitos osciladores</a><a href="tema-12.html" class="on" aria-current="page" style="--tc:var(--c5)">T12 Amplificadores de potencia</a><div class="grp">Practicar</div><a href="cuestiones.html" style="--tc:var(--c8)">Cuestiones de teoría respondidas</a><a href="examenes.html" style="--tc:var(--c8)">Problemas de examen resueltos</a><a href="problemas.html" style="--tc:var(--c8)">Qué cae en el examen</a><a href="laboratorio.html" style="--tc:var(--c7)">Prácticas y simulación</a><a href="formulario.html" style="--tc:var(--c8)">Formulario</a></nav>
+<main>
+<section class="sec tema" style="--tc:var(--c5);--tcs:var(--c5s)">
+<div class="sh"><span aria-hidden="true" class="badge">12</span><div class="shx"><p class="kick">Transistores, realimentación y potencia · Tema 12</p><h2 id="t12">Amplificadores de potencia</h2><div class="tags"><span class="tag">Transistores, realimentación y potencia</span><span class="tag">2.º parcial</span></div></div></div>
+<div class="zero"><p class="ft">Desde cero</p><p><b>Objetivo:</b> clasificar las etapas de salida por su ángulo de conducción, calcular rendimiento y potencia disipada, entender la distorsión de cruce y dimensionar el disipador.</p>
+<p>Una etapa de potencia no busca ganancia de tensión, sino <b>entregar corriente a una carga pequeña</b> (un altavoz de 8 Ω, un motor) con el mejor rendimiento y sin destruirse por calor.</p>
+<p><b>Clase A:</b> conduce los 360°. Lineal y limpia, pero rendimiento máximo del 25 % (50 % con acoplo por transformador) y <b>disipa el máximo en reposo</b>, sin señal.</p>
+<p><b>Clase B:</b> dos transistores, cada uno conduce 180°. Rendimiento máximo \(\pi/4=78{,}5\,\%\) y consumo nulo en reposo, pero aparece <b>distorsión de cruce</b> en el paso por cero.</p>
+<p><b>Clase AB:</b> la solución práctica. Se polarizan ligeramente los dos transistores (ángulo algo mayor de 180°) para eliminar el cruce, con un rendimiento casi de clase B. Es lo que lleva cualquier amplificador de audio.</p>
+<p><b>Clase C:</b> conduce menos de 180°, rendimiento superior al 90 %, pero solo sirve para señales sintonizadas (radiofrecuencia). <b>Clase D:</b> conmutada, con PWM y filtro de salida; rendimiento por encima del 90 %.</p>
+</div>
+<details class="nom"><summary><span aria-hidden="true" class="nom-ic">Aa</span>Nomenclatura del tema 12 <span class="src">6 símbolos</span></summary><div class="inner">
+<div class="tw"><table><tr><th>Símbolo</th><th>Qué significa</th><th>Unidades · ejemplo</th></tr><tr><td class="sym">η</td><td>Rendimiento P_salida/P_fuente</td><td class="u">%; clase B máx. 78,5 %</td></tr><tr><td class="sym">P_D</td><td>Potencia disipada por el transistor</td><td class="u">W</td></tr><tr><td class="sym">θ_JA</td><td>Resistencia térmica unión-ambiente</td><td class="u">°C/W</td></tr><tr><td class="sym">T_J</td><td>Temperatura de la unión</td><td class="u">°C; límite típico 150 °C</td></tr><tr><td class="sym">V_CEsat</td><td>Tensión de saturación</td><td class="u">V; ~0,2 V</td></tr><tr><td class="sym">THD</td><td>Distorsión armónica total</td><td class="u">%</td></tr></table></div></div></details>
+<!--amp1--><div class="zero" style="margin-top:14px"><p class="ft">Explicación ampliada</p><p class="ft">Por qué la clase A es tan mala y aun así se usa</p><p>En clase A el transistor está polarizado en el centro de la recta de carga, así que consume \(I_{CQ}\) <b>constantemente</b>, haya señal o no. Sin señal, toda esa potencia se convierte en calor: el peor caso de disipación es con la entrada a cero.</p>
+<p>A cambio, el transistor nunca se corta, así que no hay discontinuidades y la distorsión es mínima. Por eso sobrevive en audio de alta fidelidad de pocos vatios y en etapas previas, donde el rendimiento da igual porque la potencia es pequeña.</p>
+<p class="ft">La distorsión de cruce, con números</p><p>En clase B pura, mientras \(|v_{in}|&lt;0{,}7\) V ninguno de los dos transistores conduce: la salida se queda plana. Ese escalón se nota muchísimo en señales pequeñas, porque su peso relativo crece al bajar la amplitud: con 10 V de pico es un 7 % de la onda, pero con 1 V de pico es el 70 %.</p>
+<p>La clase AB lo resuelve con una tensión de polarización de unos 1,2 V entre las dos bases (dos diodos, o un multiplicador de \(V_{BE}\)) que mantiene ambos transistores al borde de la conducción. La corriente de reposo es pequeña, así que el rendimiento apenas baja.</p>
+<div class="box trap deepnote"><b>Cuidado.</b> Los diodos de polarización deben estar <b>térmicamente acoplados</b> a los transistores de potencia. Si no, al calentarse estos baja su \(V_{BE}\), sube la corriente de reposo, se calientan más… y se destruyen. Es la <b>embalada térmica</b>, y es la razón de que en un amplificador real los diodos vayan atornillados al mismo disipador.</div>
+</div><!--/amp1--><!--deep--><h3 id="t12-profundiza">Desarrollo teórico a fondo</h3><div class="deep">
+<h4>1. Clase A: cuentas de rendimiento</h4>
+<p>Con acoplo directo a la carga \(R_L\), fuente \(V_{CC}\) y el punto de trabajo en el centro:</p>
+<div class="eqd">\[P_{\text{fuente}}=V_{CC}I_{CQ}\qquad P_{o(\max)}=\frac{V_{CC}^2}{8R_L}\qquad \eta_{\max}=25\,\%\]</div>
+<p>El rendimiento del 25 % es el <b>techo teórico</b>, alcanzado solo a plena señal. En reposo el rendimiento es 0 y el transistor disipa \(V_{CC}I_{CQ}/2\).</p>
+<div class="box key deepnote"><b>Idea clave.</b> consecuencia práctica: una etapa clase A de 10 W de salida necesita disipar unos 40 W <b>en silencio</b>. Por eso estos amplificadores son grandes, pesados y calientes.</div>
+<h4>2. Clase B push-pull</h4>
+<div class="eqd">\[P_o=\frac{V_p^2}{2R_L}\qquad P_{\text{fuente}}=\frac{2V_{CC}V_p}{\pi R_L}\qquad \eta=\frac{\pi}{4}\cdot\frac{V_p}{V_{CC}}\]</div>
+<p>Con excursión completa (\(V_p=V_{CC}\)) sale \(\eta=\pi/4=78{,}5\,\%\).</p>
+<details class="dem"><summary><span class="pn">∴</span>¿Cuándo disipa más cada transistor?</summary><div class="inner"><p>La potencia disipada por los dos transistores es \(P_D=P_{\text{fuente}}-P_o\). Derivando respecto de \(V_p\) e igualando a cero:</p>
+<div class="eqd">\[V_p=\frac{2V_{CC}}{\pi}\approx0{,}64\,V_{CC}\qquad P_{D(\max)}=\frac{2V_{CC}^2}{\pi^2R_L}\approx0{,}2\frac{V_{CC}^2}{R_L}\]</div>
+<p>No es a plena potencia, sino a <b>dos tercios de la excursión</b>. El dato importa: el disipador hay que calcularlo para ese caso, no para el máximo de salida. En términos de la potencia máxima de salida, \(P_{D(\max)}\approx0{,}4\,P_{o(\max)}\) entre los dos transistores.</p></div></details>
+<h4>3. Clase AB, C y D</h4>
+<ul><li><b>AB:</b> ángulo de conducción algo mayor de 180°. Elimina el cruce a cambio de una pequeña corriente de reposo. Rendimiento real del 60-70 %. Es la estándar en audio.</li><li><b>C:</b> ángulo menor de 180°; la salida es una serie de pulsos que un circuito <b>resonante LC</b> convierte otra vez en senoide. Rendimiento &gt; 90 %, pero solo con señal de frecuencia fija: transmisores de radio, no audio.</li><li><b>D:</b> el transistor solo está cortado o saturado, así que idealmente no disipa (\(v\cdot i=0\) en ambos estados). La señal se codifica en <b>PWM</b> a cientos de kHz y un filtro LC paso bajo recupera el audio. Rendimiento del 90-95 %; es lo que llevan los altavoces portátiles y los amplificadores de coche.</li></ul>
+<h4>4. Cálculo térmico del disipador</h4>
+<p>El calor va de la unión al ambiente atravesando resistencias térmicas en serie, igual que una corriente por resistencias eléctricas:</p>
+<div class="eqd">\[T_J=T_A+P_D\left(\theta_{JC}+\theta_{CS}+\theta_{SA}\right)\]</div>
+<ul><li>\(\theta_{JC}\): unión-cápsula, la da el fabricante (1-2 °C/W en un TO-220 de potencia).</li><li>\(\theta_{CS}\): cápsula-disipador, depende del aislante y la pasta térmica (0,2-1 °C/W).</li><li>\(\theta_{SA}\): disipador-ambiente, <b>la única que eliges tú</b> al comprar el disipador.</li></ul>
+<p>El diseño consiste en despejar \(\theta_{SA}\) imponiendo una \(T_J\) de seguridad (típicamente 125 °C y no los 150 del límite):</p>
+<div class="eqd">\[\theta_{SA}\le\frac{T_{J(\max)}-T_A}{P_D}-\theta_{JC}-\theta_{CS}\]</div>
+<div class="box trap deepnote"><b>Cuidado.</b> Si el resultado sale <b>negativo</b>, no hay disipador posible: hace falta ventilación forzada, otro encapsulado o repartir la potencia entre varios transistores.</div>
+<h4>5. Protección y casos límite</h4>
+<ul><li><b>Área de operación segura (SOA):</b> la curva del fabricante que limita simultáneamente \(I_C\), \(V_{CE}\) y \(P_D\). Con carga inductiva hay que vigilarla especialmente.</li><li><b>Limitación de corriente:</b> una resistencia de pocas décimas de ohmio en emisor y un transistor que roba base cuando la caída supera 0,6 V.</li><li><b>Resistencias de emisor:</b> además de medir la corriente, igualan el reparto si se ponen transistores en paralelo y frenan la embalada térmica.</li></ul>
+</div><!--/deep--><h3 id="t12-ejercicios">Ejercicios tipo, paso a paso</h3><details class="paso"><summary><span class="pn">1</span>Clase B con V_CC = ±15 V sobre 8 Ω: potencia máxima y rendimiento.</summary><div class="inner"><p>\(P_{o(\max)}=V_{CC}^2/2R_L=225/16=14{,}1\) W. A plena excursión \(\eta=78{,}5\,\%\), así que la fuente entrega \(14{,}1/0{,}785=17{,}9\) W y se disipan 3,8 W entre los dos transistores.</p></div></details><details class="paso"><summary><span class="pn">2</span>El mismo circuito: ¿cuál es la peor disipación y a qué nivel de señal?</summary><div class="inner"><p>\(V_p=2V_{CC}/\pi=9{,}55\) V. \(P_{D(\max)}=2V_{CC}^2/(\pi^2R_L)=450/(9{,}87\times8)=5{,}70\) W entre los dos, es decir <b>2,85 W cada uno</b>. Es más que a plena potencia: este es el número para el disipador.</p></div></details><details class="paso"><summary><span class="pn">3</span>Disipador para ese transistor: θ_JC = 1,5 °C/W, θ_CS = 0,5 °C/W, T_A = 40 °C, T_J máx. de diseño 125 °C.</summary><div class="inner"><p>\(\theta_{SA}\le(125-40)/2{,}85-1{,}5-0{,}5=29{,}8-2=27{,}8\) °C/W. Vale un disipador pequeño de aletas. Si quisiéramos el doble de potencia, el requisito bajaría a unos 12 °C/W y el disipador sería mucho mayor.</p></div></details><details class="paso"><summary><span class="pn">4</span>Clase A de 2 W sobre 8 Ω con acoplo directo: ¿qué fuente y qué disipación en reposo?</summary><div class="inner"><p>\(P_{o}=V_{CC}^2/8R_L\Rightarrow V_{CC}=\sqrt{8\times8\times2}=11{,}3\) V. \(I_{CQ}=V_{CC}/2R_L=0{,}71\) A; la fuente entrega \(11{,}3\times0{,}71=8{,}0\) W constantemente. En silencio se disipan los 8 W íntegros: cuatro veces la potencia útil.</p></div></details>
+</section>
+<nav class="pager" aria-label="Páginas"><a href="tema-11.html"><small>← Anterior</small>T11 · Circuitos osciladores</a><a class="nx" href="cuestiones.html"><small>Siguiente →</small>Cuestiones de teoría</a></nav>
+<p class="inicio" style="margin:36px 0 8px;text-align:center;font-size:13px;color:var(--muted)">Guía no oficial de Electrónica Analógica (GIEyA) · Datos tomados en el curso <time datetime="2021-09">2021/22</time> (apuntes y exámenes) · página creada en noviembre de 2026</p>
+</main>
+</div>
+<script src="app.js"></script>
+<script src="sims.js"></script>
+</body>
+</html>
