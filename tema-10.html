@@ -118,7 +118,8 @@ mjx-container:not([display="true"]){padding:.2em .32em}
 <!--amp1--><div class="zero" style="margin-top:14px"><p class="ft">Explicación ampliada</p><p class="ft">Qué compras y qué pagas</p><p class="lede">La realimentación negativa es el mejor negocio de la electrónica analógica: se entrega ganancia, que sobra, a cambio de todo lo que falta.</p>
 <div class="tw"><table><tr><th>Magnitud</th><th>Efecto</th></tr><tr><td>Ganancia</td><td>Se divide por 1+Aβ</td></tr><tr><td>Ancho de banda</td><td>Se multiplica por 1+Aβ</td></tr><tr><td>Distorsión y ruido del propio amplificador</td><td>Se dividen por 1+Aβ</td></tr><tr><td>Sensibilidad a β del transistor, a la temperatura</td><td>Se divide por 1+Aβ</td></tr><tr><td>Impedancias</td><td>×(1+Aβ) o ÷(1+Aβ) según la topología</td></tr><tr><td>Estabilidad</td><td><b>Empeora</b>: puede oscilar</td></tr></table></div><p>El <b>producto ganancia por ancho de banda</b> se mantiene constante: \(A_f\cdot BW_f=A\cdot BW\). Por eso en la hoja de características de un operacional se da un único número, el GBW, y de ahí se saca el ancho de banda de cualquier montaje: un AO con GBW = 1 MHz configurado con ganancia 100 llega a 10 kHz.</p>
 <div class="box trap deepnote"><b>Cuidado.</b> El ruido que entra <b>con la señal</b> no se reduce: la realimentación solo corrige lo que genera el propio amplificador dentro del lazo. Es una confusión muy frecuente en las preguntas de teoría.</div>
-</div><!--/amp1--><!--deep--><h3 id="t10-profundiza">Desarrollo teórico a fondo</h3><div class="deep">
+</div><!--/amp1--><!--manim:ea-t10--><figure class="fig manim-fig" id="anim-ea-t10"><p class="ft">Animación · Ganancia con realimentación</p><div class="manim" data-anim="ea-t10"><p class="muted">Activa JavaScript para ver la animación.</p></div><figcaption>Se reproduce sola al llegar a ella. Puedes pausarla, arrastrar la barra para ir a cualquier instante y cambiar la velocidad.</figcaption></figure><!--/manim-->
+<!--deep--><h3 id="t10-profundiza">Desarrollo teórico a fondo</h3><div class="deep">
 <h4><span class="hn">1</span>La ecuación del lazo</h4>
 <p>Con el sumador restando, la señal de error es \(x_e=x_i-\beta x_o\) y la salida \(x_o=Ax_e\). Sustituyendo:</p>
 <div class="eqd">\[A_f=\frac{x_o}{x_i}=\frac{A}{1+A\beta}\]</div>
@@ -148,5 +149,7 @@ mjx-container:not([display="true"]){padding:.2em .32em}
 </div>
 <script src="app.js"></script>
 <script src="sims.js"></script>
+<script src="anim-manim.js?v=23972" defer></script>
+<script src="anim-temas.js?v=23972" defer></script>
 </body>
 </html>

@@ -122,7 +122,8 @@ mjx-container:not([display="true"]){padding:.2em .32em}
 <p class="ft">Y cómo deja de crecer</p><p>Si \(|A\beta|&gt;1\) siempre, la amplitud crecería hasta saturar y la onda saldría recortada. Hace falta un mecanismo que <b>baje la ganancia al crecer la amplitud</b>:</p>
 <ul><li>El clásico del Wien: una <b>lámpara de filamento</b> en la rama de realimentación. Al subir la corriente se calienta, sube su resistencia y baja la ganancia.</li><li>La versión moderna: dos <b>diodos en antiparalelo</b> en paralelo con una resistencia, que conducen al superar 0,6 V y reducen la ganancia.</li><li>Un <b>JFET</b> trabajando como resistencia controlada por tensión, con un detector de pico.</li></ul>
 <div class="box trap deepnote"><b>Cuidado.</b> Un oscilador senoidal sin control de amplitud da una onda cuadrada recortada, no una senoide. Si en el laboratorio el Wien sale «con las puntas planas», el problema es ese, no la frecuencia.</div>
-</div><!--/amp1--><!--deep--><h3 id="t11-profundiza">Desarrollo teórico a fondo</h3><div class="deep">
+</div><!--/amp1--><!--manim:ea-t11--><figure class="fig manim-fig" id="anim-ea-t11"><p class="ft">Animación · Criterio de Barkhausen</p><div class="manim" data-anim="ea-t11"><p class="muted">Activa JavaScript para ver la animación.</p></div><figcaption>Se reproduce sola al llegar a ella. Puedes pausarla, arrastrar la barra para ir a cualquier instante y cambiar la velocidad.</figcaption></figure><!--/manim-->
+<!--deep--><h3 id="t11-profundiza">Desarrollo teórico a fondo</h3><div class="deep">
 <h4><span class="hn">1</span>Criterio de Barkhausen en detalle</h4>
 <div class="eqd">\[A(j\omega)\,\beta(j\omega)=1\quad\Longleftrightarrow\quad |A\beta|=1\ \ \text{y}\ \ \angle A\beta=0^\circ\ (\text{o }360^\circ)\]</div>
 <div class="box key deepnote"><b>Idea clave.</b> la condición de <b>fase</b> selecciona la frecuencia (solo una la cumple); la de <b>módulo</b> decide si la oscilación se mantiene. Son dos ecuaciones y se resuelven por separado: primero la fase para sacar \(f_0\), luego el módulo para sacar la ganancia necesaria.</div>
@@ -160,5 +161,7 @@ mjx-container:not([display="true"]){padding:.2em .32em}
 </div>
 <script src="app.js"></script>
 <script src="sims.js"></script>
+<script src="anim-manim.js?v=23972" defer></script>
+<script src="anim-temas.js?v=23972" defer></script>
 </body>
 </html>

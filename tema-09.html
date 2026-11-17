@@ -123,7 +123,8 @@ mjx-container:not([display="true"]){padding:.2em .32em}
 <p>Ahí está todo el tema: la pendiente de la exponencial en Q es la transconductancia, y la pendiente depende de dónde esté Q. Por eso <b>la ganancia depende de la polarización</b>: si cambias \(I_{CQ}\), cambias \(g_m\) y cambias la ganancia.</p>
 <p class="ft">El orden de trabajo en un problema</p><ol class="pasos"><li><b>Continua:</b> apaga la fuente de señal, abre los condensadores y calcula \(I_{CQ}\) y \(V_{CEQ}\). Comprueba que el transistor está en activa.</li><li><b>Parámetros:</b> con \(I_{CQ}\) calcula \(g_m\), \(r_\pi\) y \(r_o\).</li><li><b>Alterna:</b> cortocircuita las fuentes de continua y los condensadores, dibuja el equivalente y sustituye el transistor por su modelo en π.</li><li><b>Resuelve</b> \(A_v\), \(Z_i\) y \(Z_o\) con análisis de nudos o mallas normal.</li></ol>
 <div class="box trap deepnote"><b>Cuidado.</b> Si te olvidas de comprobar que el transistor está en activa, todo lo demás sobra: en saturación o corte el modelo en pequeña señal no vale y la ganancia que calcules será ficticia.</div>
-</div><!--/amp1--><!--deep--><h3 id="t9-profundiza">Desarrollo teórico a fondo</h3><div class="deep">
+</div><!--/amp1--><!--manim:ea-t9--><figure class="fig manim-fig" id="anim-ea-t9"><p class="ft">Animación · Transconductancia del BJT</p><div class="manim" data-anim="ea-t9"><p class="muted">Activa JavaScript para ver la animación.</p></div><figcaption>Se reproduce sola al llegar a ella. Puedes pausarla, arrastrar la barra para ir a cualquier instante y cambiar la velocidad.</figcaption></figure><!--/manim-->
+<!--deep--><h3 id="t9-profundiza">Desarrollo teórico a fondo</h3><div class="deep">
 <h4><span class="hn">1</span>Polarización: fijar Q y que no se mueva</h4>
 <div class="box key deepnote"><b>Idea clave.</b> un buen circuito de polarización mantiene Q estable frente a cambios de \(\beta\) y de temperatura. Esa es toda la razón de ser de las cuatro resistencias del divisor.</div>
 <p>La polarización por <b>divisor de tensión con resistencia de emisor</b> es la estándar:</p>
@@ -160,5 +161,7 @@ mjx-container:not([display="true"]){padding:.2em .32em}
 </div>
 <script src="app.js"></script>
 <script src="sims.js"></script>
+<script src="anim-manim.js?v=23972" defer></script>
+<script src="anim-temas.js?v=23972" defer></script>
 </body>
 </html>
