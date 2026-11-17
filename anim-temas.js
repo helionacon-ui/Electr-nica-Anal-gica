@@ -46,14 +46,16 @@ M.reg('ea-t6',M.curva({title:'Bode de un filtro paso banda',H:560,dur:18,p:[2,4.
  caps:[[6,'Un paso alto RC seguido de un paso bajo (separados por un seguidor) deja pasar solo la banda entre f<sub>1</sub> y f<sub>2</sub>.'],[12,'En Bode cada polo o cero simple aporta una recta de ±20 dB/déc a partir de su frecuencia de corte.'],[99,'Si las dos esquinas se acercan, la banda se estrecha y las dos caídas se solapan: la ganancia máxima ya no llega a 0 dB.']]}));
 
 /* T7 cuadripolos: parámetros */
-M.reg('ea-t7',M.pasos({title:'Cuadripolos: cuatro parámetros para describirlo',H:560,dur:20,y0:115,lines:[
- {s:'Parámetros z:  v_{1} = z_{11}i_{1} + z_{12}i_{2},   v_{2} = z_{21}i_{1} + z_{22}i_{2}',size:18},
- {s:'Parámetros y:  i_{1} = y_{11}v_{1} + y_{12}v_{2},   i_{2} = y_{21}v_{1} + y_{22}v_{2}',size:18},
- {s:'Parámetros h:  v_{1} = h_{11}i_{1} + h_{12}v_{2},   i_{2} = h_{21}i_{1} + h_{22}v_{2}',size:18,c:'m'},
- {s:'h_{11} = h_{ie}: impedancia de entrada con la salida en corto',size:17},
- {s:'h_{21} = h_{fe} = β: ganancia de corriente con la salida en corto',size:17},
- {s:'h_{22} = h_{oe}: admitancia de salida con la entrada abierta',size:17},
- {s:'Cada parámetro se mide anulando una variable (corto o abierto)',size:17,c:'hl'}]}));
+function tnet2(D,x,y){var c=C.ax;D.rect(x,y,300,170,C.mut,null,1.2);D.line(x-40,y+30,x+20,y+30,c,2.2);D.rect(x+20,y+12,80,36,C.f,RG(C.f,.12),2);D.text('Z_{a} = 2',x+60,y+36,{s:14,a:'center',c:C.f});D.line(x+100,y+30,x+200,y+30,c,2.2);D.rect(x+200,y+12,80,36,C.f,RG(C.f,.12),2);D.text('Z_{b} = 3',x+240,y+36,{s:14,a:'center',c:C.f});D.line(x+280,y+30,x+340,y+30,c,2.2);
+ D.line(x+150,y+30,x+150,y+55,c,2.2);D.rect(x+120,y+55,60,70,C.f,RG(C.f,.12),2);D.text('Z_{c} = 4',x+150,y+96,{s:14,a:'center',c:C.f});D.line(x+150,y+125,x+150,y+150,c,2.2);D.line(x-40,y+150,x+340,y+150,c,2.2);}
+M.reg('ea-t7',M.base({title:'Cuadripolos: medir los parámetros h',H:580,dur:20,caps:[[7,'Parámetros h: <i>v₁ = h₁₁i₁ + h₁₂v₂</i>, <i>i₂ = h₂₁i₁ + h₂₂v₂</i>. Primero se cortocircuita la salida (v₂ = 0) y se inyecta i₁.'],[14,'Con la salida en corto, Z<sub>b</sub> y Z<sub>c</sub> quedan en paralelo: <i>h₁₁ = Z<sub>a</sub> + Z<sub>b</sub>∥Z<sub>c</sub></i>, y la corriente se reparte: <i>h₂₁ = −Z<sub>c</sub>/(Z<sub>b</sub> + Z<sub>c</sub>)</i>.'],[99,'Después se deja la entrada abierta (i₁ = 0) y se aplica v₂: <i>h₂₂ = 1/(Z<sub>b</sub> + Z<sub>c</sub>)</i>, <i>h₁₂ = Z<sub>c</sub>/(Z<sub>b</sub> + Z<sub>c</sub>)</i>. En el BJT, h₁₁ = h<sub>ie</sub> y h₂₁ = h<sub>fe</sub> = β.']]},
+ function(D,t){var x=170,y=120,ph=t<10?1:2,k=ease(seg(t%10,1,5));tnet2(D,x,y);
+  if(ph===1){D.line(x+340,y+30,x+340,y+150,C.bad,3);D.text('corto',x+350,y+95,{s:14,c:C.bad});D.arrow(x-40,y+30,x-40+50*k,y+30,C.m,3);D.text('i₁ = 1 A',x-40,y+18,{s:15,c:C.m});
+   if(k>=1){D.text('i₂ = −0,571 A',x+350,y+20,{s:15,c:C.hl,bold:true});D.text('v₁ = 3,714 V',x-50,y+80,{s:15,c:C.m,a:'right',bold:true});}}
+  else{D.text('abierta',x-75,y+128,{s:14,c:C.mut});D.dot(x+360,y+90,14,RG(C.hl,.15));D.ring(x+360,y+90,14,C.hl,2);D.text('v₂ = 1 V',x+380,y+95,{s:15,c:C.hl});
+   if(k>=1){D.text('i₂ = 0,143 A',x+350,y+20,{s:15,c:C.hl,bold:true});D.text('v₁ = 0,571 V',x-50,y+80,{s:15,c:C.m,a:'right',bold:true});}}
+  U.readout(D,[ph===1?'h₁₁ = 2 + 3·4/7 = 3,71 Ω    h₂₁ = −4/7 = −0,571':'h₂₂ = 1/7 = 0,143 S    h₁₂ = 4/7 = 0,571'],420);}));
+
 
 /* T8 efecto Miller */
 M.reg('ea-t8',M.traza({title:'Respuesta en alta frecuencia: el efecto Miller',H:560,dur:16,x0:1,x1:200,ax:{xr:[0,210],yr:[0,12],xt:[50,100,150,200],yt:[3,6,9,12],xd:0,yd:0,xl:'|A_{v}|',yl:'f_{H} (MHz)'},h:300,
