@@ -4,9 +4,9 @@
 :root{
   --bg:#f3f5fa; --surface:#ffffff; --fg:#141b2b; --muted:#566178; --line:#d6dce9;
   --accent:#1d5fb8; --accent-soft:#e1ebf9; --warn:#b2482a; --warn-soft:#f7e6df;
-  --display:"Bricolage Grotesque", "Segoe UI", system-ui, sans-serif;
-  --body:"IBM Plex Sans", "Segoe UI", system-ui, sans-serif;
-  --mono:"IBM Plex Mono", ui-monospace, Consolas, monospace;
+  --display:"Inter","Inter Display",-apple-system,"Segoe UI",system-ui,sans-serif;
+  --body:"Caladea","Cambria",Georgia,"Times New Roman",serif;
+  --mono:"IBM Plex Mono",ui-monospace,Consolas,monospace;
 }
 @media (prefers-color-scheme: dark){ :root:not([data-theme="light"]){
   --bg:#0e131d; --surface:#161d2b; --fg:#e4e9f3; --muted:#9aa6bb; --line:#2a3445;
